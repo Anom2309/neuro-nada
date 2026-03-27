@@ -3,7 +3,7 @@ from datetime import date
 import urllib.parse
 
 # Konfigurasi Tampilan
-st.set_page_config(page_title="Neuro Nada-NLP Analis", page_icon="🧠", layout="centered")
+st.set_page_config(page_title="Neuro Nada-NLP Analizer", page_icon="🧠", layout="centered")
 
 # Visual Estetik
 st.markdown(
@@ -60,7 +60,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("🧠 Neuro Nada-NLP Analis")
+st.title("🧠 Neuro Nada-NLP Analizer")
 st.markdown("**Temukan Struktur Pikiran & Potensimu di Balik Tanggal Lahir**")
 st.write("---")
 
