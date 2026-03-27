@@ -1,4 +1,61 @@
-database = {
+import streamlit as st
+from datetime import datetime
+
+# Konfigurasi Tampilan
+st.set_page_config(page_title="Persona-NLP Analis", page_icon="🧠")
+
+st.title("🧠 Persona-NLP Analis")
+st.subheader("Temukan Pola Pikiran di Balik Tanggal Lahirmu")
+st.write("---")
+
+# Input Data
+nama = st.text_input("Siapa nama kamu?", placeholder="Ahmad...")
+tgl_lahir = st.date_input("Kapan kamu lahir?", min_value=datetime(1950, 1, 1))
+
+def hitung_life_path(tgl):
+    digits = "".join(filter(str.isdigit, str(tgl)))
+    total = sum(int(d) for d in digits)
+    while total > 9 and total not in [11, 22, 33]:
+        total = sum(int(d) for d in str(total))
+    return total
+
+if st.button("Analisa Karakter Saya"):
+    lp = hitung_life_path(tgl_lahir)
+    
+    # Database Narasi (Contoh untuk Angka 1 & 7)
+    database = {
+        1: {
+            "inti": "Pemimpin yang Berdikari",
+            "pola": "Kamu cenderung proaktif dengan 'Internal Frame of Reference' yang kuat. Kamu tahu apa yang kamu mau tanpa perlu validasi berlebih.",
+            "emosi": "Mandiri, namun terkadang merasa kesepian di puncak.",
+            "saran": "Belajarlah bahwa delegasi bukan berarti kehilangan kontrol, tapi meluaskan pengaruh."
+        },
+        7: {
+            "inti": "Pencari Kedalaman Jati Diri",
+            "pola": "Otakmu bekerja secara reflektif. Kamu tidak puas dengan permukaan; kamu harus menemukan 'mengapa' di balik segalanya.",
+            "emosi": "Introspektif, butuh ruang sendiri (me-time) untuk mengisi energi.",
+            "saran": "Jangan biarkan analisismu berubah menjadi kelumpuhan. Terkadang, jawaban ditemukan dalam tindakan, bukan pemikiran."
+        }
+        # Tambahkan angka 2-6, 8, 9, 11, 22 di sini
+    }
+    
+    res = database.get(lp, {
+        "inti": "Karakter Unik",
+        "pola": "Memiliki kombinasi energi yang dinamis.",
+        "emosi": "Adaptif terhadap lingkungan.",
+        "saran": "Teruslah bereksplorasi dengan potensi dirimu."
+    })
+
+    # Output Display
+    st.success(f"Halo {nama}, hasil analisamu adalah:")
+    st.markdown(f"### **1. Inti Karakter: {res['inti']}**")
+    st.write(f"**2. Pola Pikiran:** {res['pola']}")
+    st.write(f"**3. Emosi & Relasi:** {res['emosi']}")
+    st.info(f"💡 **Saran Pengembangan:** {res['saran']}")
+    
+    st.write("---")
+    st.caption("Analisis ini bersifat reflektif berdasarkan pola psikologi & numerologi ringan.")
+    database = {
     1: {
         "inti": "Sang Inisiator Mandiri",
         "pola": "Memiliki 'Internal Frame of Reference' yang kuat. Kamu adalah pengemudi bagi hidupmu sendiri, cenderung proaktif, dan sulit menerima perintah jika tidak logis bagimu.",
