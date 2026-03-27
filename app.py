@@ -9,22 +9,7 @@ st.subheader("Temukan Pola Pikiran di Balik Tanggal Lahirmu")
 st.write("---")
 st.subheader("💡 Langkah Selanjutnya untuk Kamu")
     st.write(f"Hasil di atas adalah gambaran permukaan pola pikiranmu. Ingin membedah hambatan diri atau memaksimalkan potensi {res['inti']} secara lebih mendalam?")
-    
-    # Pesan otomatis yang akan terkirim ke WA kamu
-    pesan_wa = f"Halo Mas Ahmad, saya {nama}. Saya baru saja mencoba Persona-NLP Analis dan hasilnya adalah {res['inti']}. Saya ingin diskusi lebih dalam tentang sesi coaching/hipnoterapi."
-    
-    # Encode pesan agar bisa dibaca URL (mengganti spasi jadi %20)
-    import urllib.parse
-    pesan_encoded = urllib.parse.quote(pesan_wa)
-    
-    # Ganti nomor di bawah dengan nomor WA kamu (awali dengan 62)
-    nomor_wa = "6281234567890" # <-- GANTI DENGAN NOMOR KAMU
-    link_wa = f"https://wa.me/{nomor_wa}?text={pesan_encoded}"
-
-    if st.button("Konsultasi Deep Coaching via WhatsApp"):
-        st.markdown(f'<p style="text-align:center;"><a href="{link_wa}" target="_blank" style="background-color:#25D366;color:white;padding:10px 20px;border-radius:10px;text-decoration:none;font-weight:bold;">KLIK DI SINI UNTUK CHAT SEKARANG</a></p>', unsafe_allow_html=True)
-
-# Input Data
+     # Input Data
 nama = st.text_input("Siapa nama kamu?", placeholder="Ahmad...")
 tgl_lahir = st.date_input("Kapan kamu lahir?", min_value=datetime(1950, 1, 1))
 
