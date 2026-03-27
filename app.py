@@ -117,7 +117,7 @@ if st.button("Analisa Karakter Saya Sekarang", type="primary"):
     st.info(f"💡 **Saran Pengembangan:** {res['saran']}")
     
     # 2. TAMPILAN PREMIUM (Cuan) - Kotak Kuning Eksklusif
-    link_beli_pdf = "https://lynk.id/namalu" # <-- GANTI DENGAN LINK KARYAKARSA / LYNK.ID LU NANTI
+    link_beli_pdf = "https://lynk.id/neuronada" # <-- GANTI DENGAN LINK KARYAKARSA / LYNK.ID LU NANTI
     
     st.markdown(f"""
         <div class="premium-box">
