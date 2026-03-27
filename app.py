@@ -1,9 +1,3 @@
-Lahir
-Percakapan baru
-Item Buatan Saya
-Gem
-
-Setelan & bantuan
 Percakapan dengan Gemini
 Anda berkata
 Anda adalah AI analis karakter berbasis NLP, psikologi, dan numerologi ringan.
