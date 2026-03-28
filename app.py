@@ -110,7 +110,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
 
         # --- CTA ---
         link_produk = {
-            1: "https://http://lynk.id/neuronada/kj98l4zgzwdw/produk-angka-1",
+            1: "https://https://lynk.id/neuronada/kj98l4zgzwdw",
             2: "https://lynk.id/username_lu/produk-angka-2",
             3: "https://lynk.id/username_lu/produk-angka-3",
             4: "https://lynk.id/username_lu/produk-angka-4",
