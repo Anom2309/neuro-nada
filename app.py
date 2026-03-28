@@ -3,7 +3,7 @@ import datetime
 import os
 import time
 
-# --- PENGATURAN HALAMAN (Tab Browser) ---
+# --- PENGATURAN HALAMAN ---
 st.set_page_config(
     page_title="NLP Deep Analysis | Ahmad Septian", 
     page_icon="🧠", 
@@ -12,13 +12,13 @@ st.set_page_config(
 
 # --- SIDEBAR PROMOSI ---
 with st.sidebar:
-    st.markdown("## 🧠 Layanan NLP Eksklusif")
+    st.markdown("## 🧠 Sesi Transformasi")
     st.markdown("---")
-    st.info("**Update Program Pikiranmu!**\n\nSering merasa 'mentok' atau sulit maju? Itu tanda ada program lama yang perlu di-Update. Beresin bareng **Ahmad Septian** lewat sesi *Private Hypno-NLP*.")
-    st.markdown("[👉 **Atur Jadwal Re-Programming**](https://lynk.id/username_lu/private-hypnotherapy)")
+    st.info("**Reset Pola Pikir Anda**\n\nSering merasa terhambat oleh pikiran sendiri? Mari kita lakukan kalibrasi ulang dalam sesi *Private Hypno-NLP* bersama **Ahmad Septian**.")
+    st.markdown("[👉 **Amankan Jadwal Anda**](https://lynk.id/username_lu/private-hypnotherapy)")
     st.markdown("---")
-    st.success("**📚 Ilmu Persuasi NLP**\n\nBongkar rahasia cara kerja otak agar omonganmu lebih didengar dan meyakinkan orang lain.")
-    st.markdown("[👉 **Ambil Modul NLP**](https://lynk.id/username_lu/ebook-nlp)")
+    st.success("**📚 Seni Persuasi NLP**\n\nPelajari bagaimana bahasa bekerja di tingkat bawah sadar untuk meningkatkan pengaruh Anda.")
+    st.markdown("[👉 **Akses Modul Lengkap**](https://lynk.id/username_lu/ebook-nlp)")
     st.markdown("---")
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
@@ -55,13 +55,13 @@ def hitung_zodiak(tanggal):
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
     else: return "Pisces"
 
-# --- INTERFACE UTAMA (Halaman Web) ---
+# --- INTERFACE UTAMA ---
 st.title("🧠 NLP Deep Analysis")
-st.subheader("Mapping Your Internal Program")
-st.write("Identifikasi pola pikiran bawah sadar melalui sinkronisasi Numerologi, Weton, dan Zodiak.")
+st.subheader("Membedah Struktur Pikiran & Potensi Diri")
+st.write("Sinkronisasi data personal Anda untuk memetakan program bawah sadar dalam aspek Karakter dan Asmara.")
 st.markdown("---")
 
-nama_user = st.text_input("Siapa nama panggilan Anda?", placeholder="Input Nama...")
+nama_user = st.text_input("Siapa nama lengkap Anda?", placeholder="Masukkan nama panggilan Anda...")
 
 tgl_today = datetime.date.today()
 tgl_input = st.date_input(
@@ -75,33 +75,40 @@ tgl_input = st.date_input(
 st.markdown("---")
 
 # --- PROSES ANALISA ---
-if st.button("Mulai Pemetaan NLP", type="primary"):
+if st.button("Mulai Pemetaan Internal", type="primary"):
     if not nama_user:
-        st.error("🚨 **Maaf:** Nama diperlukan untuk kalibrasi data.")
+        st.error("🚨 **Peringatan:** Nama diperlukan untuk proses identifikasi pola.")
     elif tgl_input == tgl_today:
-        st.error("🚨 **Maaf:** Silakan pilih tanggal lahir Anda yang benar.")
+        st.error("🚨 **Peringatan:** Mohon masukkan tanggal lahir Anda yang valid.")
     else:
-        with st.spinner('Menganalisa struktur program pikiran Anda...'):
+        with st.spinner('Melakukan kalibrasi pola pikiran Anda...'):
             time.sleep(2) 
             
             angka_hasil = hitung_angka(tgl_input)
             weton_hasil = hitung_weton(tgl_input)
             zodiak_hasil = hitung_zodiak(tgl_input)
         
-        st.markdown(f"### 📋 Mapping Result: {nama_user}")
+        st.markdown(f"### 📋 Hasil Mapping: {nama_user}")
         st.divider()
         
         c1, c2, c3 = st.columns(3)
         c1.metric("KODE PROGRAM", angka_hasil)
-        c2.metric("VAR WETON", weton_hasil)
-        c3.metric("VAR ZODIAK", zodiak_hasil)
+        c2.metric("ENERGI WETON", weton_hasil)
+        c3.metric("POLA ZODIAK", zodiak_hasil)
         
         st.markdown("---")
         
-        st.write(f"Halo **{nama_user}**, sistem mendeteksi bahwa filter pikiran Anda dipengaruhi oleh pola **{zodiak_hasil}** dan **{weton_hasil}**.")
-        
-        st.info(f"**Analisa NLP:**\n\nSebagai pemilik **Kode Program {angka_hasil}**, struktur pikiran Anda punya potensi luar biasa. Namun dalam istilah NLP, ada *Mental Block* (hambatan mental) yang sering membuat Anda merasa 'jalan di tempat'. Anda butuh teknik *Reframing* (mengubah sudut pandang) agar potensi asli Anda bisa keluar.")
-        
+        # --- HASIL 1: KARAKTER (Bahasa Profesional & Membumi) ---
+        st.subheader("💡 Struktur Karakter & Mental")
+        st.write(f"Halo **{nama_user}**, sistem mendeteksi bahwa filter utama pikiran Anda dipengaruhi oleh pola **{zodiak_hasil}** dengan pondasi energi **{weton_hasil}**.")
+        st.info(f"Sebagai pemilik **Kode {angka_hasil}**, Anda memiliki spek berpikir yang tajam namun sering kali terhambat oleh 'program lama' yang tidak lagi relevan. Secara NLP, Anda membutuhkan proses *Reframing* agar hambatan mental yang sering muncul bisa berubah menjadi kekuatan pendorong kesuksesan.")
+
+        # --- HASIL 2: PERCINTAAN (Insight Baru) ---
+        st.subheader("❤️ Pola Hubungan & Asmara")
+        st.write(f"Dalam dinamika hubungan, perpaduan **{zodiak_hasil}** dan **{weton_hasil}** membuat Anda memiliki cara unik dalam mengekspresikan kasih sayang.")
+        st.warning(f"**Insight Asmara:** Kode **{angka_hasil}** menunjukkan bahwa Anda cenderung mencari kedalaman komunikasi. Namun, hati-hati terhadap pola 'asumsi' yang sering muncul di pikiran bawah sadar Anda. Belajar memahami *Representational System* pasangan akan membuat hubungan Anda jauh lebih harmonis dan minim konflik.")
+
+        # --- CTA DINAMIS ---
         link_produk = {
             1: "https://lynk.id/username_lu/produk-angka-1",
             2: "https://lynk.id/username_lu/produk-angka-2",
@@ -116,11 +123,12 @@ if st.button("Mulai Pemetaan NLP", type="primary"):
         
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
         
-        st.markdown(f"#### 🔓 Lakukan Re-Programming Sekarang!")
-        st.write(f"Khusus untuk pemilik Kode {angka_hasil}, temukan cara menghapus hambatan mental Anda dengan teknik NLP yang praktis.")
+        st.markdown("---")
+        st.markdown(f"#### 🔓 Ingin Memprogram Ulang Hidup Anda, {nama_user}?")
+        st.write(f"Akses panduan eksklusif untuk pemilik Kode {angka_hasil}. Pelajari teknik spesifik untuk menghapus hambatan mental dan memperbaiki pola hubungan Anda.")
         
-        st.link_button(f"👉 DOWNLOAD PANDUAN RE-PROGRAMMING (KODE {angka_hasil})", url_tujuan, type="primary")
+        st.link_button(f"👉 DOWNLOAD MODUL TRANSFORMASI (KODE {angka_hasil})", url_tujuan, type="primary")
 
 # --- FOOTER ---
 st.markdown("---")
-st.write(f"Developed by **Ahmad Septian Dwi Cahyo** - Certified NLP Trainer & Hypnotherapist.")
+st.write(f"**Ahmad Septian Dwi Cahyo** - Certified NLP Trainer & Professional Hypnotherapist.")
