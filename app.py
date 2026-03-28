@@ -52,7 +52,7 @@ st.title("✨ Peta Karakter Bawah Sadar")
 st.write("Temukan potensi tersembunyi melalui perpaduan Numerologi, Weton, dan Zodiak.")
 
 # BARIS NAMA (YANG HILANG)
-nama_user = st.text_input("Siapa nama lengkapmu?", placeholder="Contoh: Budi Santoso")
+nama_user = st.text_input("Siapa nama lengkapmu?", placeholder="Contoh: .....")
 
 # INPUT TANGGAL
 tgl_lahir = st.date_input("Kapan kamu lahir?", min_value=datetime.date(1920, 1, 1))
@@ -62,7 +62,7 @@ st.markdown("---")
 # TOMBOL ANALISA DENGAN SISTEM "SATPAM"
 if st.button("Analisa Karakter Saya Sekarang", type="primary"):
     if not nama_user:
-        st.error("🚨 **Satpam: Eits, tunggu dulu!** Silakan isi namamu dulu ya sebelum lanjut.")
+        st.error("🚨 **Eits, tunggu dulu!** Silakan isi namamu dulu ya sebelum lanjut.")
     else:
         angka = hitung_angka(tgl_lahir)
         weton = hitung_weton(tgl_lahir)
