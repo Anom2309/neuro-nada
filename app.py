@@ -13,8 +13,6 @@ with st.sidebar:
     st.markdown("---")
     st.success("**📚 E-Book: NLP Persuasi**\n\nKuasai teknik komunikasi bawah sadar.")
     st.markdown("[👉 Download Sekarang](https://lynk.id/username_lu/ebook-nlp)")
-    st.markdown("---")
-    st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
 # --- TAMPILKAN BANNER ---
 if os.path.exists("banner.jpg"):
@@ -55,53 +53,38 @@ st.write("Temukan potensi tersembunyi melalui perpaduan Numerologi, Weton, dan Z
 
 st.markdown("---")
 
-# 1. KOLOM NAMA (MANUAL)
+# 1. KOLOM NAMA (Wajib Isi)
 nama_user = st.text_input("Siapa nama lengkapmu?", placeholder="Ketik namamu di sini...")
 
-# 2. KOLOM TANGGAL LAHIR (KOSONG DI AWAL)
+# 2. KOLOM TANGGAL LAHIR (Trik Anti-Error)
+# Kita set default ke hari ini
+tgl_hari_ini = datetime.date.today()
 tgl_input = st.date_input(
-    "Kapan kamu lahir?",
-    value=None, # Membuat kolom kosong/manual
+    "Pilih Tanggal Lahirmu:",
+    value=tgl_hari_ini,
     min_value=datetime.date(1920, 1, 1),
-    max_value=datetime.date.today(),
-    format="DD/MM/YYYY",
-    placeholder="Pilih tanggal lahirmu"
+    max_value=tgl_hari_ini,
+    format="DD/MM/YYYY"
 )
 
 st.markdown("---")
 
-# 3. TOMBOL ANALISA DENGAN LOGIKA PENOLAKAN (SATPAM)
+# 3. TOMBOL ANALISA DENGAN SATPAM KETAT
 if st.button("Analisa Karakter Saya Sekarang", type="primary"):
-    # VALIDASI KETAT
-    if not nama_user or tgl_input is None:
-        st.error("🚨 **Akses Ditolak:** Mohon isi Nama Lengkap dan Pilih Tanggal Lahirmu terlebih dahulu untuk melanjutkan analisa.")
+    # VALIDASI: Nama kosong ATAU Tanggal belum dirubah dari hari ini
+    if not nama_user:
+        st.error("🚨 **Akses Ditolak:** Nama Lengkap tidak boleh kosong!")
+    elif tgl_input == tgl_hari_ini:
+        st.error("🚨 **Akses Ditolak:** Silakan pilih Tanggal Lahir Anda yang benar (jangan biarkan tanggal hari ini).")
     else:
-        # Menghitung Hasil
+        # Proses Analisa
         angka = hitung_angka(tgl_input)
         weton = hitung_weton(tgl_input)
         zodiak = hitung_zodiak(tgl_input)
         
-        # Efek Visual Berhasil
         st.balloons()
         st.success(f"Halo **{nama_user}**, Analisa Karaktermu telah siap!")
         
-        # Menampilkan Hasil (Metric)
         col1, col2, col3 = st.columns(3)
         col1.metric("Angka Karakter", angka)
-        col2.metric("Weton Jawa", weton)
-        col3.metric("Zodiak", zodiak)
-        
-        st.markdown("---")
-        
-        # Copywriting Curiosity NLP
-        st.info(f"Kombinasi energi **{zodiak}** dan weton **{weton}** menunjukkan pola pikiran bawah sadar yang sangat spesifik. Namun, sebagai pemilik **Angka Karakter {angka}**, ada 'Mental Block' tersembunyi yang mungkin selama ini menghambat potensi terbaikmu.")
-        
-        # Call to Action (Ganti 'username_lu' dengan link aslimu)
-        st.markdown(f"### 🔓 Buka Rahasia Penuh Potensimu, {nama_user}!")
-        url_tujuan = f"https://lynk.id/username_lu/produk-{angka}"
-        st.link_button("👉 KLIK DI SINI UNTUK DOWNLOAD ANALISA LENGKAP", url_tujuan, type="primary")
-
-# --- PROFIL KREATOR ---
-st.markdown("---")
-st.markdown("### 👤 Tentang Kreator")
-st.write("**Ahmad Septian Dwi Cahyo** adalah seorang Trainer NLP & Profesional Hipnoterapis yang mendedikasikan ilmunya untuk membantu Anda mengenali potensi pikiran bawah sadar.")
+        col2
