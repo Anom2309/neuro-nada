@@ -51,7 +51,7 @@ def hitung_zodiak(tanggal):
     elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra"
     elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio"
     elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius"
-    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn"
+    elif (m == 12 and d >= 22) or (m == 13 and d <= 19): return "Capricorn"
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
     else: return "Pisces"
 
@@ -127,17 +127,25 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.markdown(f"#### 🔓 Ingin Memprogram Ulang Hidup Anda, {nama_user}?")
         st.link_button(f"👉 DOWNLOAD MODUL TRANSFORMASI (KODE {angka_hasil})", url_tujuan, type="primary")
 
-        # --- BAGIAN DISCLAIMER (BARU) ---
+        # --- BAGIAN FAQ (BARU) ---
+        st.markdown("---")
+        st.subheader("❓ Pertanyaan Sering Diajukan (FAQ)")
+        
+        with st.expander("Apakah ini sama dengan ramalan nasib?"):
+            st.write("Bukan. Analisa ini menggunakan data personal sebagai 'pintu masuk' untuk memetakan pola pikiran bawah sadar Anda. NLP fokus pada bagaimana Anda mengolah informasi, bukan meramal masa depan.")
+            
+        with st.expander("Kenapa hasilnya bisa berbeda dengan zodiak/weton biasa?"):
+            st.write("Karena Ahmad Septian menggabungkan ketiga variabel tersebut untuk melihat 'Meta-Program' yang lebih spesifik. Ini adalah analisa yang dipersonalisasi khusus untuk struktur mental Anda.")
+            
+        with st.expander("Bagaimana cara hasil ini membantu hidup saya?"):
+            st.write("Dengan mengetahui 'Kode Program' Anda, Anda bisa lebih mudah mengenali kenapa Anda sering melakukan pola yang sama (misal: sering gagal di titik yang sama). Ini adalah langkah awal untuk melakukan Re-Programming.")
+
+        # --- BAGIAN DISCLAIMER ---
         st.markdown("---")
         with st.expander("⚖️ Disclaimer & Batasan Layanan"):
             st.caption("""
-            Analisa ini dihasilkan melalui pendekatan *Self-Awareness* berbasis sinkronisasi data personal (Numerologi, Weton, dan Zodiak) dalam bingkai disiplin ilmu Neuro-Linguistic Programming (NLP). 
-            
-            **Harap diperhatikan:**
-            1. Hasil analisa ini bertujuan sebagai alat edukasi dan refleksi diri, bukan diagnosis medis atau psikologis klinis.
-            2. Keakuratan interpretasi sangat bergantung pada kejujuran data yang dimasukkan.
-            3. Ahmad Septian Dwi Cahyo tidak bertanggung jawab atas keputusan pribadi yang diambil pengguna berdasarkan hasil analisa ini.
-            4. Untuk perubahan perilaku yang permanen dan mendalam, disarankan untuk mengikuti sesi bimbingan tatap muka (Private Session).
+            Analisa ini bertujuan sebagai alat edukasi dan refleksi diri, bukan diagnosis medis atau psikologis klinis.
+            Ahmad Septian Dwi Cahyo tidak bertanggung jawab atas keputusan pribadi yang diambil pengguna berdasarkan hasil analisa ini.
             """)
 
 # --- FOOTER ---
