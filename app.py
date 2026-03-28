@@ -5,7 +5,7 @@ import time
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="NLP Deep Analysis | Ahmad Septian", 
+    page_title="NLP Deep Analysis | Neuro Nada", 
     page_icon="🧠", 
     layout="centered"
 )
