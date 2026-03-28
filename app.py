@@ -108,4 +108,4 @@ if st.button("Mulai Analisa Mendalam", type="primary"):
 
 # --- FOOTER ---
 st.markdown("---")
-st.write(f"Dikembangkan secara profesional oleh **Ahmad Septian Dwi Cahyo**.")
+st.write(f"Dikembangkan secara profesional oleh **Ahmad Septian Dwi Cahyo C.MH, C.PHt, C.T NNLP**.")
