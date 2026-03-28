@@ -22,7 +22,7 @@ with st.sidebar:
 if os.path.exists("banner.jpg"):
     st.image("banner.jpg", use_container_width=True)
 
-# --- FUNGSI LOGIKA ---
+# --- FUNGSI LOGIKA PERHITUNGAN ---
 def hitung_angka(tanggal):
     tgl_str = tanggal.strftime("%d%m%Y")
     total = sum(int(digit) for digit in tgl_str)
@@ -54,7 +54,6 @@ def hitung_zodiak(tanggal):
 # --- INTERFACE UTAMA ---
 st.title("✨ Peta Karakter Bawah Sadar")
 st.write("Analisa pola pikiran melalui perpaduan Numerologi, Weton, dan Zodiak.")
-
 st.markdown("---")
 
 nama_user = st.text_input("Siapa nama lengkapmu?", placeholder="Ketik namamu di sini...")
@@ -70,23 +69,23 @@ tgl_input = st.date_input(
 
 st.markdown("---")
 
-# --- PROSES ANALISA ELEGAN ---
+# --- PROSES ANALISA ---
 if st.button("Mulai Analisa Mendalam", type="primary"):
     if not nama_user:
         st.error("🚨 **Akses Ditolak:** Nama Lengkap tidak boleh kosong!")
     elif tgl_input == tgl_today:
         st.error("🚨 **Akses Ditolak:** Silakan pilih Tanggal Lahir Anda yang benar.")
     else:
-        # Efek Loading Elegan (Biar terkesan aplikasi lagi 'membaca' karakter)
+        # Efek Loading Elegan
         with st.spinner('Menghubungkan pola bawah sadar...'):
-            time.sleep(2) # Memberi jeda 2 detik agar lebih dramatis
+            time.sleep(2) 
             
             # Hitung Hasil
             angka_hasil = hitung_angka(tgl_input)
             weton_hasil = hitung_weton(tgl_input)
             zodiak_hasil = hitung_zodiak(tgl_input)
         
-        # Tampilan Hasil yang Bersih & Berwibawa
+        # Tampilan Hasil
         st.markdown(f"### 🖋️ Laporan Analisa: {nama_user}")
         st.divider()
         
@@ -97,15 +96,29 @@ if st.button("Mulai Analisa Mendalam", type="primary"):
         
         st.markdown("---")
         
-        # Narasi Singkat
         st.write(f"Berdasarkan pola frekuensi Anda, perpaduan antara **{zodiak_hasil}** dan **{weton_hasil}** menciptakan struktur kepribadian yang unik. Sebagai pemilik **Angka Karakter {angka_hasil}**, Anda memiliki potensi besar yang sering kali terhambat oleh hambatan mental yang tidak disadari.")
         
-        # Call to Action
+        # Call to Action Dinamis (PASTI SESUAI ANGKA)
         st.info(f"**Insight untuk {nama_user}:** Titik balik kesuksesan Anda ada pada pemahaman 'Blind Spot' psikologis Anda sendiri.")
         
-        url_lynk = f"https://lynk.id/username_lu/produk-{angka_hasil}"
-        st.link_button("👉 DOWNLOAD ANALISA PSIKOLOGIS LENGKAP", url_lynk, type="primary")
+        # LOGIKA LINK DINAMIS (Ganti link di bawah ini sesuai link produk Lynk.id lu)
+        link_produk = {
+            1: "https://lynk.id/username_lu/produk-angka-1",
+            2: "https://lynk.id/username_lu/produk-angka-2",
+            3: "https://lynk.id/username_lu/produk-angka-3",
+            4: "https://lynk.id/username_lu/produk-angka-4",
+            5: "https://lynk.id/username_lu/produk-angka-5",
+            6: "https://lynk.id/username_lu/produk-angka-6",
+            7: "https://lynk.id/username_lu/produk-angka-7",
+            8: "https://lynk.id/username_lu/produk-angka-8",
+            9: "https://lynk.id/username_lu/produk-angka-9"
+        }
+        
+        url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
+        
+        st.markdown(f"### 🔓 Buka Rahasia Penuh Potensimu, {nama_user}!")
+        st.link_button(f"👉 DOWNLOAD ANALISA LENGKAP ANGKA {angka_hasil}", url_tujuan, type="primary")
 
 # --- FOOTER ---
 st.markdown("---")
-st.write(f"Dikembangkan secara profesional oleh **Ahmad Septian Dwi Cahyo C.MH, C.PHt, C.T NNLP**.")
+st.write(f"Dikembangkan secara profesional oleh **Ahmad Septian Dwi Cahyo**.")
