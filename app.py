@@ -137,7 +137,7 @@ if st.button("Analisa Karakter Saya Sekarang", type="primary"):
 # --- PROFIL OTORITAS & FAQ ---
 st.markdown("---")
 st.markdown("### 👤 Tentang Kreator")
-st.write("**Ahmad Septian Dwi Cahyo** adalah seorang Trainer Neuro-Linguistic Programming (NLP) dan Profesional Hipnoterapis yang mendedikasikan ilmunya untuk membantu setiap individu mengenali dan memaksimalkan potensi pikiran bawah sadar mereka, berpadu harmonis dengan kebijaksanaan lokal.")
+st.write("**Ahmad Septian Dwi Cahyo C.MH, C.PHT, C.T NNLP** adalah seorang Trainer Neuro-Linguistic Programming (NLP) dan Profesional Hipnoterapis yang mendedikasikan ilmunya untuk membantu setiap individu mengenali dan memaksimalkan potensi pikiran bawah sadar mereka, berpadu harmonis dengan kebijaksanaan lokal.")
 
 # Kolom expander biar layar tetep bersih tapi isinya padat
 with st.expander("Pertanyaan yang Sering Diajukan (FAQ)"):
