@@ -108,4 +108,4 @@ if st.button("Analisa Karakter Saya Sekarang", type="primary"):
 # --- PROFIL KREATOR ---
 st.markdown("---")
 st.markdown("### 👤 Tentang Kreator")
-st.write("**Ahmad Septian Dwi Cahyo** adalah seorang Trainer NLP & Profesional Hipnoterapis yang membantu Anda memaksimalkan potensi pikiran bawah sadar.")
+st.write("**Ahmad Septian Dwi Cahyo C.MH, C.PHt, C.T NNLP** adalah seorang Trainer NLP & Profesional Hipnoterapis yang membantu Anda memaksimalkan potensi pikiran bawah sadar.")
