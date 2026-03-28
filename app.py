@@ -3,18 +3,22 @@ import datetime
 import os
 import time
 
-# --- PENGATURAN HALAMAN ---
-st.set_page_config(page_title="Cek Program Pikiran - Ahmad Septian", page_icon="🧠", layout="centered")
+# --- PENGATURAN HALAMAN (Tab Browser) ---
+st.set_page_config(
+    page_title="NLP Deep Analysis | Ahmad Septian", 
+    page_icon="🧠", 
+    layout="centered"
+)
 
-# --- SIDEBAR PROMOSI (BAHASA AWAM) ---
+# --- SIDEBAR PROMOSI ---
 with st.sidebar:
-    st.markdown("## 🧠 Beresin Pikiran, Yuk!")
+    st.markdown("## 🧠 Layanan NLP Eksklusif")
     st.markdown("---")
-    st.info("**Merasa Hidup Stagnan?**\n\nMungkin ada 'virus' atau program lama di pikiranmu yang perlu di-update. Konsultasi langsung sama **Ahmad Septian** buat hapus beban mentalmu.")
-    st.markdown("[👉 **Atur Jadwal Obrolan**](https://lynk.id/username_lu/private-hypnotherapy)")
+    st.info("**Update Program Pikiranmu!**\n\nSering merasa 'mentok' atau sulit maju? Itu tanda ada program lama yang perlu di-Update. Beresin bareng **Ahmad Septian** lewat sesi *Private Hypno-NLP*.")
+    st.markdown("[👉 **Atur Jadwal Re-Programming**](https://lynk.id/username_lu/private-hypnotherapy)")
     st.markdown("---")
-    st.success("**📚 Cara Jago Ngomong**\n\nBelajar teknik NLP biar omonganmu gampang dituruti orang lain. Cocok buat jualan atau negosiasi.")
-    st.markdown("[👉 **Ambil Materinya**](https://lynk.id/username_lu/ebook-nlp)")
+    st.success("**📚 Ilmu Persuasi NLP**\n\nBongkar rahasia cara kerja otak agar omonganmu lebih didengar dan meyakinkan orang lain.")
+    st.markdown("[👉 **Ambil Modul NLP**](https://lynk.id/username_lu/ebook-nlp)")
     st.markdown("---")
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
@@ -51,16 +55,17 @@ def hitung_zodiak(tanggal):
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
     else: return "Pisces"
 
-# --- INTERFACE UTAMA ---
-st.title("🧠 Cek 'Program' Bawah Sadarmu")
-st.write("Cari tahu pola pikiranmu lewat hitungan tanggal lahir, adat jawa (weton), dan bintang (zodiak).")
+# --- INTERFACE UTAMA (Halaman Web) ---
+st.title("🧠 NLP Deep Analysis")
+st.subheader("Mapping Your Internal Program")
+st.write("Identifikasi pola pikiran bawah sadar melalui sinkronisasi Numerologi, Weton, dan Zodiak.")
 st.markdown("---")
 
-nama_user = st.text_input("Siapa nama panggilanmu?", placeholder="Tulis namamu di sini ya...")
+nama_user = st.text_input("Siapa nama panggilan Anda?", placeholder="Input Nama...")
 
 tgl_today = datetime.date.today()
 tgl_input = st.date_input(
-    "Pilih Tanggal Lahirmu:",
+    "Data Input (Tanggal Lahir):",
     value=tgl_today,
     min_value=datetime.date(1920, 1, 1),
     max_value=tgl_today,
@@ -70,35 +75,33 @@ tgl_input = st.date_input(
 st.markdown("---")
 
 # --- PROSES ANALISA ---
-if st.button("Lihat Hasil Analisa", type="primary"):
+if st.button("Mulai Pemetaan NLP", type="primary"):
     if not nama_user:
-        st.error("🚨 **Maaf:** Isi namamu dulu ya biar sistem nggak bingung.")
+        st.error("🚨 **Maaf:** Nama diperlukan untuk kalibrasi data.")
     elif tgl_input == tgl_today:
-        st.error("🚨 **Maaf:** Tanggal lahirnya diganti dulu ya, jangan pakai tanggal hari ini.")
+        st.error("🚨 **Maaf:** Silakan pilih tanggal lahir Anda yang benar.")
     else:
-        with st.spinner('Sedang memetakan pola pikiranmu...'):
+        with st.spinner('Menganalisa struktur program pikiran Anda...'):
             time.sleep(2) 
             
             angka_hasil = hitung_angka(tgl_input)
             weton_hasil = hitung_weton(tgl_input)
             zodiak_hasil = hitung_zodiak(tgl_input)
         
-        st.markdown(f"### 📋 Hasil Untuk: {nama_user}")
+        st.markdown(f"### 📋 Mapping Result: {nama_user}")
         st.divider()
         
         c1, c2, c3 = st.columns(3)
-        c1.metric("KODE PIKIRAN", angka_hasil)
-        c2.metric("WETON", weton_hasil)
-        c3.metric("ZODIAK", zodiak_hasil)
+        c1.metric("KODE PROGRAM", angka_hasil)
+        c2.metric("VAR WETON", weton_hasil)
+        c3.metric("VAR ZODIAK", zodiak_hasil)
         
         st.markdown("---")
         
-        # NARASI BAHASA AWAM
-        st.write(f"Halo **{nama_user}**, sistem kami melihat kalau kamu punya pola bawaan dari **{zodiak_hasil}** dan **{weton_hasil}**.")
+        st.write(f"Halo **{nama_user}**, sistem mendeteksi bahwa filter pikiran Anda dipengaruhi oleh pola **{zodiak_hasil}** dan **{weton_hasil}**.")
         
-        st.info(f"**Apa artinya buat kamu?**\n\nSebagai pemilik **Kode {angka_hasil}**, pikiranmu itu ibarat HP yang punya spek tinggi tapi sering 'lemot' karena ada settingan lama yang nggak cocok. Kamu sering ngerasa pengen maju, tapi kayak ada rem tangan yang narik di belakang.")
+        st.info(f"**Analisa NLP:**\n\nSebagai pemilik **Kode Program {angka_hasil}**, struktur pikiran Anda punya potensi luar biasa. Namun dalam istilah NLP, ada *Mental Block* (hambatan mental) yang sering membuat Anda merasa 'jalan di tempat'. Anda butuh teknik *Reframing* (mengubah sudut pandang) agar potensi asli Anda bisa keluar.")
         
-        # DATABASE LINK
         link_produk = {
             1: "https://lynk.id/username_lu/produk-angka-1",
             2: "https://lynk.id/username_lu/produk-angka-2",
@@ -113,11 +116,11 @@ if st.button("Lihat Hasil Analisa", type="primary"):
         
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
         
-        st.markdown(f"#### 🔓 Mau 'Update' Program Pikiranmu?")
-        st.write(f"Khusus buat pemilik Kode {angka_hasil}, ada cara cepat buat hapus hambatan mentalmu biar hidup makin lancar.")
+        st.markdown(f"#### 🔓 Lakukan Re-Programming Sekarang!")
+        st.write(f"Khusus untuk pemilik Kode {angka_hasil}, temukan cara menghapus hambatan mental Anda dengan teknik NLP yang praktis.")
         
-        st.link_button(f"👉 DOWNLOAD CARA UPDATE-NYA (KODE {angka_hasil})", url_tujuan, type="primary")
+        st.link_button(f"👉 DOWNLOAD PANDUAN RE-PROGRAMMING (KODE {angka_hasil})", url_tujuan, type="primary")
 
 # --- FOOTER ---
 st.markdown("---")
-st.write(f"Dibuat oleh **Ahmad Septian Dwi Cahyo** - Pakar Re-Program Pikiran & Hipnoterapi.")
+st.write(f"Developed by **Ahmad Septian Dwi Cahyo** - Certified NLP Trainer & Hypnotherapist.")
