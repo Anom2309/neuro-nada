@@ -237,7 +237,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.info(f"**Tips Komunikasi NLP ({zodiak_hasil}):** {tips_zodiak_nlp.get(zodiak_hasil)}")
 
         # ==============================
-        # 🔥 CLOSING BRUTAL (ANTI-ERROR)
+        # 🔥 CLOSING BRUTAL (DINAMIS)
         # ==============================
         st.markdown("---")
 
@@ -249,7 +249,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
 
         st.success(f"Arketipe **{arketipe}** punya potensi luar biasa besar jika filternya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan...\nItu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
 
-        # --- CTA ---
+        # --- CTA MODUL (DIRECT CLOSING) ---
         link_produk = {
             1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout",
             2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
@@ -263,10 +263,12 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         }
         
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
+        nama_panggilan = nama_user.split()[0] if nama_user else 'Sahabat'
         
         st.markdown("---")
-        st.markdown(f"#### 🔓 Kuasai 'Remote Control' Pikiran Bawah Sadar Anda Sekarang, {nama_user}!")
-        st.link_button(f"👉 DOWNLOAD MODUL TRANSFORMASI (KODE {angka_hasil})", url_tujuan, type="primary")
+        st.markdown(f"#### 🔓 Keputusan Ada di Tangan Anda Sekarang, {nama_panggilan}.")
+        st.write("Modul ini bukan sekadar e-book, ini adalah **'Kunci Pas'** untuk membongkar mesin bawah sadar Anda. Jangan tunda lagi.")
+        st.link_button(f"👉 YA! SAYA SIAP MENGHANCURKAN MENTAL BLOCK SAYA (AMBIL MODUL KODE {angka_hasil})", url_tujuan, type="primary")
 
         # --- BAGIAN FAQ & DISCLAIMER ---
         st.markdown("---")
@@ -285,13 +287,27 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         with st.expander("⚖️ Disclaimer & Batasan Layanan"):
             st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
 
-        # --- INTEGRASI WHATSAPP (ANTI-ERROR) ---
+        # --- INTEGRASI WHATSAPP (HIGH TICKET CLOSING) ---
         phone_number = "628999771486" 
-        wa_text = f"Halo Coach Ahmad, saya {nama_user}. Hasil mapping saya adalah Kode {angka_hasil} ({arketipe}). Insight asmara dan bagian yang 'stuck' tadi bener-bener ngena banget! Boleh info untuk jadwal sesi kalibrasi privat?"
+        wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
         encoded_wa = urllib.parse.quote(wa_text)
         wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
 
-        html_wa = f'<div style="text-align: center; margin-top: 30px; padding: 25px; background-color: #f8f9fb; border: 1px solid #e1e4e8; border-radius: 15px;"><h4 style="color: #1f1f1f; margin-bottom: 15px;">Butuh Sesi Deep Calibration?</h4><p style="font-size: 14px; color: #444; margin-bottom: 20px;">Bersihkan hambatan mental dan instal pola pikir baru bersama Coach Ahmad Septian.</p><a href="{wa_link}" target="_blank" style="text-decoration: none;"><button style="width: 100%; background-color: #25D366; color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 12px rgba(37, 211, 102, 0.3);">💬 Konsultasi via WhatsApp</button></a></div>'
+        html_wa = f"""
+        <div style="text-align: center; margin-top: 40px; padding: 30px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 15px;">
+            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Butuh Perubahan Instan & Permanen?</h3>
+            <p style="font-size: 15px; color: #f0f0f0; margin-bottom: 25px;">
+                Membaca modul adalah langkah pertama. Tapi jika Anda butuh 'pembedahan' mental yang cepat, terarah, dan dibimbing langsung 1-on-1...<br><br>
+                <b>Jangan biarkan program lama merusak masa depan Anda lebih lama lagi.</b>
+            </p>
+            <a href="{wa_link}" target="_blank" style="text-decoration: none;">
+                <button style="width: 100%; background-color: #25D366; color: white; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4); text-transform: uppercase;">
+                    💬 Amankan Jadwal Private Sesi Saya
+                </button>
+            </a>
+            <p style="font-size: 12px; color: #888; margin-top: 15px;">*Slot konsultasi bersama Coach Ahmad sangat terbatas setiap minggunya.</p>
+        </div>
+        """
         st.markdown(html_wa, unsafe_allow_html=True)
 
 # --- FOOTER ---
