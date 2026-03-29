@@ -221,31 +221,8 @@ if st.button("Mulai Pemetaan Internal"):
 
         st.markdown(f"""
         <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Mengambil Alih Kendali?</h3>
-            <p style="color: #f0f0f0; margin-bottom: 20px;">Menyadari pola lama adalah langkah pertama. Sekarang, rasakan betapa leganya saat Anda mengizinkan pikiran bawah sadar Anda dikalibrasi ulang sepenuhnya.</p>
-            <a href="{wa_link}" target="_blank" style="text-decoration: none;">
-                <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
-                    💬 Amankan Jadwal Sesi Saya
-                </div>
-            </a>
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown(f"""
-        <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Mengambil Alih Kendali?</h3>
-            <p style="color: #f0f0f0; margin-bottom: 20px;">Menyadari pola lama adalah langkah pertama. Sekarang, rasakan betapa leganya saat Anda mengizinkan pikiran bawah sadar Anda dikalibrasi ulang sepenuhnya.</p>
-            <a href="{wa_link}" target="_blank" style="text-decoration: none;">
-                <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
-                    💬 Amankan Jadwal Sesi Saya
-                </div>
-            </a>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Membongkar Mental Block Anda Sampai ke Akar??</h3>
-            <p style="color: #f0f0f0; margin-bottom: 20px;">Teori bukan solusi. Hancurkan belenggu mental Anda di level bawah sadar...</p>
+            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Butuh Perubahan Instan & Permanen?</h3>
+            <p style="color: #f0f0f0; margin-bottom: 20px;">Membaca modul adalah langkah pertama. Tapi jika Anda butuh pembedahan mental yang dibimbing langsung 1-on-1...</p>
             <a href="{wa_link}" target="_blank" style="text-decoration: none;">
                 <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
                     💬 Amankan Jadwal Private Sesi Saya
