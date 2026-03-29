@@ -27,44 +27,17 @@ with st.sidebar:
 if os.path.exists("banner.jpg"):
     st.image("banner.jpg", use_container_width=True)
 
-# --- DATABASE ANALISA SPESIFIK (NLP BASED) ---
+# --- DATABASE ANALISA SPESIFIK (NLP BASED - SINKRONISASI ARKETIPE BARU) ---
 data_analisa = {
-    1: {
-        "karakter": "Anda memiliki profil 'The Leader'. Meta-program Anda sangat proaktif dan berorientasi pada tujuan (Towards). Secara NLP, Anda sering menggunakan filter 'Self', yang membuat Anda mandiri namun kadang terlihat dominan.",
-        "asmara": "Anda butuh pasangan yang menghargai independensi Anda. Hati-hati dengan pola komunikasi 'Command', cobalah lebih banyak menggunakan 'Request' agar pasangan merasa lebih nyaman."
-    },
-    2: {
-        "karakter": "Anda adalah 'The Mediator'. Kekuatan utama Anda adalah 'Building Rapport' secara instan. Anda sangat sensitif terhadap harmoni lingkungan, namun seringkali mengabaikan kebutuhan diri sendiri (Filter: Others).",
-        "asmara": "Asmara bagi Anda adalah tentang kedekatan emosional. Anda cenderung menghindari konflik, namun waspadai pola 'Pleasing' yang berlebihan. Komunikasikan batasan Anda dengan teknik Assertive Communication."
-    },
-    3: {
-        "karakter": "Profil Anda adalah 'The Communicator'. Anda mahir dalam teknik 'Chunking Up' (melihat gambaran besar) dan menginspirasi orang lain. Pikiran Anda sangat visual dan cepat dalam memproses ide kreatif.",
-        "asmara": "Hubungan yang ideal bagi Anda adalah yang penuh keceriaan dan stimulasi intelektual. Pasangan yang membosankan bisa memicu 'Internal Dialogue' negatif pada diri Anda. Cari partner yang bisa mengimbangi energi sosial Anda."
-    },
-    4: {
-        "karakter": "Anda adalah 'The Architect'. Struktur berpikir Anda sangat detail dan prosedural. Secara NLP, Anda memiliki filter 'Internal Reference' yang kuat, sehingga Anda tidak mudah goyah oleh opini luar jika sudah punya data.",
-        "asmara": "Anda butuh kepastian dan rencana jangka panjang. Spontanitas berlebihan dari pasangan bisa membuat sistem internal Anda 'Error'. Belajarlah sedikit lebih fleksibel dalam menerima perubahan rencana."
-    },
-    5: {
-        "karakter": "Profil 'The Explorer'. Anda adalah ahli dalam 'Reframing' situasi sulit menjadi peluang. Anda sangat fleksibel dan benci dengan batasan atau prosedur yang terlalu kaku.",
-        "asmara": "Anda butuh ruang gerak (freedom). Hubungan yang mengekang akan membuat Anda merasa 'Suffocated'. Komunikasikan kebutuhan Anda akan petualangan baru agar pasangan tidak salah paham."
-    },
-    6: {
-        "karakter": "Anda adalah 'The Nurturer'. Fokus utama pikiran Anda adalah pada 'Values' dan tanggung jawab keluarga. Anda memiliki kapasitas empati yang luar biasa besar melalui kalibrasi emosi yang tajam.",
-        "asmara": "Asmara Anda berbasis pengabdian. Anda adalah pasangan yang sangat suportif. Namun, hindari pola 'Mind Reading' (menebak-nebak pikiran pasangan) yang bisa berujung pada rasa kecewa jika ekspektasi tidak terpenuhi."
-    },
-    7: {
-        "karakter": "Profil 'The Analyst'. Anda adalah pemikir 'Deep Structure'. Anda tidak puas dengan informasi permukaan dan selalu mencari makna di balik segalanya. Intuisi Anda sangat kuat jika sudah terkalibrasi dengan baik.",
-        "asmara": "Anda butuh waktu 'Me Time' yang cukup untuk memproses pikiran Anda. Pasangan yang terlalu menuntut perhatian setiap saat bisa membuat Anda mundur. Cari pasangan yang menghargai kedalaman intelektual Anda."
-    },
-    8: {
-        "karakter": "Anda adalah 'The Strategist'. Orientasi Anda adalah pada 'Power' dan 'Outcome'. Anda sangat efisien dalam mengelola sumber daya dan memiliki kepercayaan diri yang solid dalam mengambil risiko.",
-        "asmara": "Dalam hubungan, Anda cenderung menjadi pelindung dan penyedia. Namun, jangan bawa gaya 'Negotiation' bisnis ke dalam ranah asmara. Gunakan lebih banyak 'Soft Skills' dan sentuhan afeksi yang tulus."
-    },
-    9: {
-        "karakter": "Profil 'The Humanist'. Anda memiliki 'State of Mind' yang inklusif dan bijaksana. Secara NLP, Anda cenderung memandang dunia secara 'Holistik' dan memiliki misi hidup yang melampaui kepentingan pribadi.",
-        "asmara": "Anda mencari koneksi jiwa (Soulmate). Anda sangat pemaaf, namun waspadai pola 'Generalization' yang membuat Anda sering memaklumi kesalahan pasangan berulang kali. Tetaplah realistis dalam membangun hubungan."
-    }
+    1: {"karakter": "Anda memiliki profil 'The Leader (Sang Inisiator / Perintis)'. Meta-program Anda sangat proaktif dan berorientasi pada tujuan (Towards). Secara NLP, Anda sering menggunakan filter 'Self', yang membuat Anda mandiri namun kadang terlihat dominan.", "asmara": "Anda butuh pasangan yang menghargai independensi Anda. Hati-hati dengan pola komunikasi 'Command', cobalah lebih banyak menggunakan 'Request' agar pasangan merasa lebih nyaman."},
+    2: {"karakter": "Anda adalah 'The Mediator (Sang Penjaga / Penyelaras)'. Kekuatan utama Anda adalah 'Building Rapport' secara instan. Anda sangat sensitif terhadap harmoni lingkungan, namun seringkali mengabaikan kebutuhan diri sendiri (Filter: Others).", "asmara": "Asmara bagi Anda adalah tentang kedekatan emosional. Anda cenderung menghindari konflik, namun waspadai pola 'Pleasing' yang berlebihan. Komunikasikan batasan Anda dengan teknik Assertive Communication."},
+    3: {"karakter": "Profil Anda adalah 'The Communicator (Sang Visioner / Ekspresif)'. Anda mahir dalam teknik 'Chunking Up' (melihat gambaran besar) dan menginspirasi orang lain. Pikiran Anda sangat visual dan cepat dalam memproses ide kreatif.", "asmara": "Hubungan yang ideal bagi Anda adalah yang penuh keceriaan dan stimulasi intelektual. Pasangan yang membosankan bisa memicu 'Internal Dialogue' negatif pada diri Anda. Cari partner yang bisa mengimbangi energi sosial Anda."},
+    4: {"karakter": "Anda adalah 'The Architect (Sang Alchemist / Transformator)'. Struktur berpikir Anda sangat detail dan prosedural. Secara NLP, Anda memiliki filter 'Internal Reference' yang kuat, sehingga Anda tidak mudah goyah oleh opini luar jika sudah punya data.", "asmara": "Anda butuh kepastian dan rencana jangka panjang. Spontanitas berlebihan dari pasangan bisa membuat sistem internal Anda 'Error'. Belajarlah sedikit lebih fleksibel dalam menerima perubahan rencana."},
+    5: {"karakter": "Profil 'The Explorer (Sang Eksekutor / Penggerak)'. Anda adalah ahli dalam 'Reframing' situasi sulit menjadi peluang. Anda sangat fleksibel dan benci dengan batasan atau prosedur yang terlalu kaku.", "asmara": "Anda butuh ruang gerak (freedom). Hubungan yang mengekang akan membuat Anda merasa 'Suffocated'. Komunikasikan kebutuhan Anda akan petualangan baru agar pasangan tidak salah paham."},
+    6: {"karakter": "Anda adalah 'The Nurturer (Sang Harmonizer / Penyeimbang)'. Fokus utama pikiran Anda adalah pada 'Values' dan tanggung jawab keluarga. Anda memiliki kapasitas empati yang luar biasa besar melalui kalibrasi emosi yang tajam.", "asmara": "Asmara Anda berbasis pengabdian. Anda adalah pasangan yang sangat suportif. Namun, hindari pola 'Mind Reading' (menebak-nebak pikiran pasangan) yang bisa berujung pada rasa kecewa jika ekspektasi tidak terpenuhi."},
+    7: {"karakter": "Profil 'The Analyst (Sang Legacy Builder / Pembangun Makna)'. Anda adalah pemikir 'Deep Structure'. Anda tidak puas dengan informasi permukaan dan selalu mencari makna di balik segalanya. Intuisi Anda sangat kuat jika sudah terkalibrasi dengan baik.", "asmara": "Anda butuh waktu 'Me Time' yang cukup untuk memproses pikiran Anda. Pasangan yang terlalu menuntut perhatian setiap saat bisa membuat Anda mundur. Cari pasangan yang menghargai kedalaman intelektual Anda."},
+    8: {"karakter": "Anda adalah 'The Strategist (Sang Sovereign / Penguasa Diri)'. Orientasi Anda adalah pada 'Power' dan 'Outcome'. Anda sangat efisien dalam mengelola sumber daya dan memiliki kepercayaan diri yang solid dalam mengambil risiko.", "asmara": "Dalam hubungan, Anda cenderung menjadi pelindung dan penyedia. Namun, jangan bawa gaya 'Negotiation' bisnis ke dalam ranah asmara. Gunakan lebih banyak 'Soft Skills' dan sentuhan afeksi yang tulus."},
+    9: {"karakter": "Profil 'The Humanist (Sang Ascended / Kesadaran Tinggi)'. Anda memiliki 'State of Mind' yang inklusif dan bijaksana. Secara NLP, Anda cenderung memandang dunia secara 'Holistik' dan memiliki misi hidup yang melampaui kepentingan pribadi.", "asmara": "Anda mencari koneksi jiwa (Soulmate). Anda sangat pemaaf, namun waspadai pola 'Generalization' yang membuat Anda sering memaklumi kesalahan pasangan berulang kali. Tetaplah realistis dalam membangun hubungan."}
 }
 
 tips_zodiak_nlp = {
@@ -183,86 +156,4 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.info(f"{insight['karakter']}")
 
         # --- HASIL 2: PERCINTAAN ---
-        st.subheader("❤️ Pola Hubungan & Asmara")
-        if angka_hasil % 2 == 0:
-            pembuka_asmara = f"Dalam interaksi intim, sistem nilai **{weton_hasil}** Anda bersinergi dengan karakter **{zodiak_hasil}**, menciptakan gaya afeksi yang unik."
-        else:
-            pembuka_asmara = f"Melihat pola **{zodiak_hasil}** Anda yang dipadukan dengan energi **{weton_hasil}**, sistem menangkap bahwa dalam asmara Anda adalah sosok yang khusus."
-        
-        st.write(pembuka_asmara)
-        st.warning(f"**Insight Asmara:** {insight['asmara']}")
-        st.info(f"**Tips Komunikasi NLP ({zodiak_hasil}):** {tips_zodiak_nlp.get(zodiak_hasil)}")
-
-        # ==============================
-        # 🔥 CLOSING BRUTAL (ANTI-ERROR)
-        # ==============================
-        st.markdown("---")
-
-        st.error(f"🚨 **PERHATIAN {nama_user.upper()}**\n\nPola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.")
-
-        st.markdown(f"**Karena hambatan mental (Mental Block), Anda mungkin sering:**\n- {pain_points[0]}\n- {pain_points[1]}\n- {pain_points[2]}")
-
-        st.warning("👉 **Mau tetap membiarkan pola merusak ini terjadi?** atau\n👉 **Siap melakukan Re-Programming sekarang?**")
-
-        st.success(f"Arketipe **{arketipe}** punya potensi luar biasa besar jika filternya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan...\nItu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
-
-        # --- CTA MODUL ---
-        link_produk = {
-            1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout",
-            2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
-            3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout",
-            4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
-            5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout",
-            6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
-            7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout",
-            8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
-            9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
-        }
-        
-        url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
-        nama_panggilan = nama_user.split()[0] if nama_user else 'Sahabat'
-        
-        st.markdown("---")
-        st.markdown(f"#### 🔓 Keputusan Ada di Tangan Anda Sekarang, {nama_panggilan}.")
-        st.write("Modul ini bukan sekadar e-book, ini adalah **'Kunci Pas'** untuk membongkar mesin bawah sadar Anda. Jangan tunda lagi.")
-        st.link_button(f"👉 YA! SAYA SIAP MENGHANCURKAN MENTAL BLOCK SAYA (AMBIL MODUL KODE {angka_hasil})", url_tujuan, type="primary")
-
-        # --- BAGIAN FAQ & DISCLAIMER ---
-        st.markdown("---")
-        st.subheader("❓ Pertanyaan Terkait Pemetaan")
-        
-        with st.expander("Bagaimana sistem ini membedah struktur pikiran saya?"):
-            st.write("Sistem **Persona-NLP Analis** menggunakan integrasi data kronologis (tanggal lahir) sebagai pintu masuk untuk mengidentifikasi **Meta-Program** atau filter dominan dalam pikiran bawah sadar Anda. Ini bukan ramalan nasib, melainkan pemetaan kecenderungan perilaku dan gaya pemrosesan informasi Anda.")
-            
-        with st.expander("Kenapa akurasinya terasa sangat personal?"):
-            st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
-            
-        with st.expander("Apa langkah selanjutnya setelah mengetahui 'Kode Program' ini?"):
-            st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi yang disediakan di atas atau melakukan sesi Deep Calibration secara Private bersama Coach Ahmad.")
-
-        st.markdown("---")
-        with st.expander("⚖️ Disclaimer & Batasan Layanan"):
-            st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
-
-        # --- INTEGRASI WHATSAPP (ANTI-ERROR HTML) ---
-        phone_number = "628999771486" 
-        wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
-        encoded_wa = urllib.parse.quote(wa_text)
-        wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
-
-        html_wa = (
-            '<div style="text-align: center; margin-top: 40px; padding: 30px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 15px;">'
-            '<h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Butuh Perubahan Instan & Permanen?</h3>'
-            '<p style="font-size: 15px; color: #f0f0f0; margin-bottom: 25px;">'
-            'Membaca modul adalah langkah pertama. Tapi jika Anda butuh pembedahan mental yang cepat, terarah, dan dibimbing langsung 1-on-1...<br><br>'
-            '<b>Jangan biarkan program lama merusak masa depan Anda lebih lama lagi.</b></p>'
-            f'<a href="{wa_link}" target="_blank" style="text-decoration: none;">'
-            '<button style="width: 100%; background-color: #25D366; color: white; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4); text-transform: uppercase;">'
-            '💬 Amankan Jadwal Private Sesi Saya</button></a>'
-            '<p style="font-size: 12px; color: #888; margin-top: 15px;">*Slot konsultasi bersama Coach Ahmad sangat terbatas setiap minggunya.</p></div>'
-        )
-        st.markdown(html_wa, unsafe_allow_html=True)
-
-# --- FOOTER ---
-st.markdown("---")
-st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
+        st.subheader("❤️ Pola Hubungan & Asmara
