@@ -82,53 +82,17 @@ tips_zodiak_nlp = {
     "Pisces": "Bedakan antara imajinasi dengan kenyataan agar tidak mudah kecewa."
 }
 
-# --- DATABASE CLOSING BRUTAL (DINAMIS PER ARKETIPE) ---
+# --- DATABASE CLOSING BRUTAL ---
 closing_brutal_dinamis = {
-    1: [
-        "Terus menunda karena merasa 'belum sempurna' atau takut gagal",
-        "Merasa sendirian memikul beban karena sulit percaya pada orang lain",
-        "Punya ambisi besar, tapi stuck karena meng-sabotase diri sendiri (Self-Sabotage)"
-    ],
-    2: [
-        "Terjebak memuaskan orang lain (People Pleasing) hingga mengorbankan diri sendiri",
-        "Merasa lelah dan tidak dihargai, tapi takut untuk berkata 'TIDAK'",
-        "Terus memendam emosi demi menghindari konflik, yang akhirnya menjadi bom waktu"
-    ],
-    3: [
-        "Memiliki banyak ide brilian, tapi jarang ada yang selesai sampai tuntas",
-        "Mudah teralihkan fokusnya (Shiny Object Syndrome) dan cepat merasa bosan",
-        "Menutupi kegelisahan sejati di balik candaan, merasa kosong di dalam"
-    ],
-    4: [
-        "Stres berat jika rencana berubah atau berhadapan dengan ketidakpastian",
-        "Stuck dalam rutinitas yang kaku dan takut mengambil risiko baru",
-        "Sering dinilai kaku atau kurang empati karena terlalu fokus pada logika/aturan"
-    ],
-    5: [
-        "Terus berlari dari satu hal ke hal lain tanpa membangun fondasi yang kuat",
-        "Merasa cepat 'tercekik' oleh rutinitas dan melarikan diri dari komitmen",
-        "Sulit fokus pada satu tujuan jangka panjang karena mudah bosan"
-    ],
-    6: [
-        "Kehabisan energi karena selalu sibuk 'mengurus' dan menyelamatkan orang lain",
-        "Cenderung over-controlling karena rasa takut atau khawatir yang berlebihan",
-        "Merasa bersalah jika harus memprioritaskan diri sendiri (kurang Self-Love)"
-    ],
-    7: [
-        "Terjebak dalam pikiran sendiri (Overthinking) dan sulit mengambil tindakan nyata",
-        "Merasa terisolasi karena merasa tidak ada orang yang sefrekuensi secara intelektual",
-        "Terlalu lama menganalisa keadaan tanpa eksekusi yang menghasilkan perubahan"
-    ],
-    8: [
-        "Merasa hampa meskipun sudah mencapai banyak target material",
-        "Terlihat dingin, otoriter, dan menciptakan jarak emosional dengan orang terdekat",
-        "Burnout karena tekanan untuk selalu kuat dan menang setiap saat"
-    ],
-    9: [
-        "Sering kecewa karena standar moral Anda terlalu tinggi untuk dunia nyata",
-        "Mengizinkan orang yang toksik/salah menetap terlalu lama karena rasa kasihan",
-        "Punya visi mulia, tapi kewalahan untuk mengeksekusinya di dunia nyata"
-    ]
+    1: ["Terus menunda karena merasa 'belum sempurna' atau takut gagal", "Merasa sendirian memikul beban karena sulit percaya pada orang lain", "Punya ambisi besar, tapi stuck karena meng-sabotase diri sendiri (Self-Sabotage)"],
+    2: ["Terjebak memuaskan orang lain (People Pleasing) hingga mengorbankan diri sendiri", "Merasa lelah dan tidak dihargai, tapi takut untuk berkata 'TIDAK'", "Terus memendam emosi demi menghindari konflik, yang akhirnya menjadi bom waktu"],
+    3: ["Memiliki banyak ide brilian, tapi jarang ada yang selesai sampai tuntas", "Mudah teralihkan fokusnya (Shiny Object Syndrome) dan cepat merasa bosan", "Menutupi kegelisahan sejati di balik candaan, merasa kosong di dalam"],
+    4: ["Stres berat jika rencana berubah atau berhadapan dengan ketidakpastian", "Stuck dalam rutinitas yang kaku dan takut mengambil risiko baru", "Sering dinilai kaku atau kurang empati karena terlalu fokus pada logika/aturan"],
+    5: ["Terus berlari dari satu hal ke hal lain tanpa membangun fondasi yang kuat", "Merasa cepat 'tercekik' oleh rutinitas dan melarikan diri dari komitmen", "Sulit fokus pada satu tujuan jangka panjang karena mudah bosan"],
+    6: ["Kehabisan energi karena selalu sibuk 'mengurus' dan menyelamatkan orang lain", "Cenderung over-controlling karena rasa takut atau khawatir yang berlebihan", "Merasa bersalah jika harus memprioritaskan diri sendiri (kurang Self-Love)"],
+    7: ["Terjebak dalam pikiran sendiri (Overthinking) dan sulit mengambil tindakan nyata", "Merasa terisolasi karena merasa tidak ada orang yang sefrekuensi secara intelektual", "Terlalu lama menganalisa keadaan tanpa eksekusi yang menghasilkan perubahan"],
+    8: ["Merasa hampa meskipun sudah mencapai banyak target material", "Terlihat dingin, otoriter, dan menciptakan jarak emosional dengan orang terdekat", "Burnout karena tekanan untuk selalu kuat dan menang setiap saat"],
+    9: ["Sering kecewa karena standar moral Anda terlalu tinggi untuk dunia nyata", "Mengizinkan orang yang toksik/salah menetap terlalu lama karena rasa kasihan", "Punya visi mulia, tapi kewalahan untuk mengeksekusinya di dunia nyata"]
 }
 
 # --- FUNGSI LOGIKA PERHITUNGAN ---
@@ -181,15 +145,8 @@ st.write("Sinkronisasi data personal Anda untuk memetakan program bawah sadar da
 st.markdown("---")
 
 nama_user = st.text_input("Siapa nama lengkap Anda?", placeholder="Masukkan nama panggilan Anda...")
-
 tgl_today = datetime.date.today()
-tgl_input = st.date_input(
-    "Data Input (Tanggal Lahir):",
-    value=tgl_today,
-    min_value=datetime.date(1920, 1, 1),
-    max_value=tgl_today,
-    format="DD/MM/YYYY"
-)
+tgl_input = st.date_input("Data Input (Tanggal Lahir):", value=tgl_today, min_value=datetime.date(1920, 1, 1), max_value=tgl_today, format="DD/MM/YYYY")
 
 st.markdown("---")
 
@@ -237,7 +194,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.info(f"**Tips Komunikasi NLP ({zodiak_hasil}):** {tips_zodiak_nlp.get(zodiak_hasil)}")
 
         # ==============================
-        # 🔥 CLOSING BRUTAL (DINAMIS)
+        # 🔥 CLOSING BRUTAL (ANTI-ERROR)
         # ==============================
         st.markdown("---")
 
@@ -249,7 +206,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
 
         st.success(f"Arketipe **{arketipe}** punya potensi luar biasa besar jika filternya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan...\nItu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
 
-        # --- CTA MODUL (DIRECT CLOSING) ---
+        # --- CTA MODUL ---
         link_produk = {
             1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout",
             2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
@@ -281,4 +238,31 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
             st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
             
         with st.expander("Apa langkah selanjutnya setelah mengetahui 'Kode Program' ini?"):
-            st.write("Langkah selanjutnya adalah **
+            st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi yang disediakan di atas atau melakukan sesi Deep Calibration secara Private bersama Coach Ahmad.")
+
+        st.markdown("---")
+        with st.expander("⚖️ Disclaimer & Batasan Layanan"):
+            st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
+
+        # --- INTEGRASI WHATSAPP (ANTI-ERROR HTML) ---
+        phone_number = "628999771486" 
+        wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
+        encoded_wa = urllib.parse.quote(wa_text)
+        wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
+
+        html_wa = (
+            '<div style="text-align: center; margin-top: 40px; padding: 30px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 15px;">'
+            '<h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Butuh Perubahan Instan & Permanen?</h3>'
+            '<p style="font-size: 15px; color: #f0f0f0; margin-bottom: 25px;">'
+            'Membaca modul adalah langkah pertama. Tapi jika Anda butuh pembedahan mental yang cepat, terarah, dan dibimbing langsung 1-on-1...<br><br>'
+            '<b>Jangan biarkan program lama merusak masa depan Anda lebih lama lagi.</b></p>'
+            f'<a href="{wa_link}" target="_blank" style="text-decoration: none;">'
+            '<button style="width: 100%; background-color: #25D366; color: white; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4); text-transform: uppercase;">'
+            '💬 Amankan Jadwal Private Sesi Saya</button></a>'
+            '<p style="font-size: 12px; color: #888; margin-top: 15px;">*Slot konsultasi bersama Coach Ahmad sangat terbatas setiap minggunya.</p></div>'
+        )
+        st.markdown(html_wa, unsafe_allow_html=True)
+
+# --- FOOTER ---
+st.markdown("---")
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
