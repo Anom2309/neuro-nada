@@ -107,9 +107,23 @@ def hitung_zodiak(tanggal):
     elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra"
     elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio"
     elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius"
-    elif (m == 12 and d >= 22) or (m == 13 and d <= 19): return "Capricorn"
+    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn"
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
     else: return "Pisces"
+
+def get_arketipe(angka):
+    arketipe_dict = {
+        1: "The Leader (Sang Perintis)",
+        2: "The Mediator (Sang Penyelaras)",
+        3: "The Communicator (Sang Ekspresif)",
+        4: "The Architect (Sang Pembangun)",
+        5: "The Visionary (Sang Penjelajah)",
+        6: "The Nurturer (Sang Pelindung)",
+        7: "The Analyst (Sang Pencari)",
+        8: "The Strategist (Sang Eksekutif)",
+        9: "The Humanist (Sang Humanis)"
+    }
+    return arketipe_dict.get(angka, "Pribadi Unik")
 
 # --- INTERFACE UTAMA ---
 st.title("🧠 NLP Deep Analysis")
@@ -144,6 +158,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
             weton_hasil = hitung_weton(tgl_input)
             zodiak_hasil = hitung_zodiak(tgl_input)
             insight = data_analisa.get(angka_hasil)
+            arketipe = get_arketipe(angka_hasil)
         
         st.markdown(f"### 📋 Hasil Mapping: {nama_user}")
         st.divider()
@@ -163,7 +178,6 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         # --- HASIL 2: PERCINTAAN (DINAMIS & SPESIFIK) ---
         st.subheader("❤️ Pola Hubungan & Asmara")
         
-        # Logika pembuka dinamis agar tidak kaku
         if angka_hasil % 2 == 0:
             pembuka_asmara = f"Dalam interaksi intim, sistem nilai **{weton_hasil}** Anda bersinergi dengan karakter **{zodiak_hasil}**, menciptakan gaya afeksi yang unik."
         else:
@@ -172,6 +186,36 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.write(pembuka_asmara)
         st.warning(f"**Insight Asmara:** {insight['asmara']}")
         st.info(f"**Tips Komunikasi NLP ({zodiak_hasil}):** {tips_zodiak_nlp.get(zodiak_hasil)}")
+
+        # ==============================
+        # 🔥 CLOSING BRUTAL (FIXED)
+        # ==============================
+        st.markdown("---")
+
+        st.error(f"""
+🚨 **PERHATIAN {nama_user.upper()}**
+
+Pola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.
+""")
+
+        st.markdown("""
+**Anda mungkin:**
+- Mengulang pola hambatan yang sama
+- Merasa *stuck* di titik yang itu-itu saja
+- Tahu harus berubah… tapi tidak ada perubahan nyata
+""")
+
+        st.warning("""
+👉 **Mau tetap seperti ini?** atau  
+👉 **Siap upgrade diri sekarang?**
+""")
+
+        st.success(f"""
+Arketipe **{arketipe}** punya potensi luar biasa besar.
+
+Tapi tanpa di-*reprogram* dan diarahkan...  
+Itu bisa jadi pola mental yang membelenggu seumur hidup.
+""")
 
         # --- CTA ---
         link_produk = {
@@ -189,7 +233,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
         
         st.markdown("---")
-        st.markdown(f"#### 🔓 Kuasai 'Remote Control' Pikiran Bawah Sadar Anda Sekarang, {nama_user}?")
+        st.markdown(f"#### 🔓 Kuasai 'Remote Control' Pikiran Bawah Sadar Anda Sekarang, {nama_user}!")
         st.link_button(f"👉 DOWNLOAD MODUL TRANSFORMASI (KODE {angka_hasil})", url_tujuan, type="primary")
 
         # --- BAGIAN FAQ (PRE-TALK & EDUCATIONAL) ---
@@ -242,7 +286,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.markdown(f"""
             <div style="text-align: center; margin-top: 30px; padding: 25px; background-color: #f8f9fb; border: 1px solid #e1e4e8; border-radius: 15px;">
                 <h4 style="color: #1f1f1f; margin-bottom: 15px;">Butuh Sesi Deep Calibration?</h4>
-                <p style="font-size: 14px; color: #444; margin-bottom: 20px;">Berisihkan hambatan mental dan instal pola pikir baru bersama Coach Ahmad Septian.</p>
+                <p style="font-size: 14px; color: #444; margin-bottom: 20px;">Bersihkan hambatan mental dan instal pola pikir baru bersama Coach Ahmad Septian.</p>
                 <a href="{wa_link}" target="_blank" style="text-decoration: none;">
                     <button style="width: 100%; background-color: #25D366; color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 12px rgba(37, 211, 102, 0.3);">
                         💬 Konsultasi via WhatsApp
