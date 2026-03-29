@@ -176,7 +176,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         # --- CTA ---
         link_produk = {
             1: "https://lynk.id/neuronada/kj98l4zgzwdw",
-            2: "https://lynk.id/username_lu/produk-angka-2",
+            2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
             3: "https://lynk.id/username_lu/produk-angka-3",
             4: "https://lynk.id/username_lu/produk-angka-4",
             5: "https://lynk.id/username_lu/produk-angka-5",
