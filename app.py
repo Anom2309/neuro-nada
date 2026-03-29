@@ -11,6 +11,27 @@ st.set_page_config(
     layout="centered"
 )
 
+# --- CUSTOM CSS (WARNA KUNING UNTUK TOMBOL) ---
+st.markdown(
+    "<style>\n"
+    "div.stButton > button {\n"
+    "    background-color: #FFD700 !important;\n"
+    "    color: #000000 !important;\n"
+    "    font-weight: bold !important;\n"
+    "    border: none !important;\n"
+    "    padding: 12px 24px !important;\n"
+    "    border-radius: 8px !important;\n"
+    "    width: 100% !important;\n"
+    "    font-size: 16px !important;\n"
+    "}\n"
+    "div.stButton > button:hover {\n"
+    "    background-color: #FFC107 !important;\n"
+    "    color: #000000 !important;\n"
+    "}\n"
+    "</style>", 
+    unsafe_allow_html=True
+)
+
 # --- SIDEBAR PROMOSI ---
 with st.sidebar:
     st.markdown("## 🧠 Sesi Transformasi")
@@ -200,7 +221,7 @@ if st.button("Mulai Pemetaan Internal"):
 
         st.markdown(f"""
         <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Butuh Perubahan Instan & Permanen?</h3>
+            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Membongkar Mental Block Anda Sampai ke Akar??</h3>
             <p style="color: #f0f0f0; margin-bottom: 20px;">Membaca modul adalah langkah pertama. Tapi jika Anda butuh pembedahan mental yang dibimbing langsung 1-on-1...</p>
             <a href="{wa_link}" target="_blank" style="text-decoration: none;">
                 <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
@@ -210,7 +231,7 @@ if st.button("Mulai Pemetaan Internal"):
         </div>
         """, unsafe_allow_html=True)
 
-        # --- BAGIAN FAQ & DISCLAIMER (DIKEMBALIKAN FULL) ---
+        # --- BAGIAN FAQ & DISCLAIMER ---
         st.markdown("---")
         st.subheader("❓ Pertanyaan Terkait Pemetaan")
         
