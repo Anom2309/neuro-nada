@@ -182,7 +182,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
             5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout",
             6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
             7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout",
-            8: "https://lynk.id/username_lu/produk-angka-8",
+            8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
             9: "https://lynk.id/username_lu/produk-angka-9"
         }
         
