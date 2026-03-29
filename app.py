@@ -46,7 +46,7 @@ data_analisa = {
         "asmara": "Anda butuh kepastian dan rencana jangka panjang. Spontanitas berlebihan dari pasangan bisa membuat sistem internal Anda 'Error'. Belajarlah sedikit lebih fleksibel dalam menerima perubahan rencana."
     },
     5: {
-        "karakter": "Profil 'The Visionary/Explorer'. Anda adalah ahli dalam 'Reframing' situasi sulit menjadi peluang. Anda sangat fleksibel dan benci dengan batasan atau prosedur yang terlalu kaku.",
+        "karakter": "Profil 'The Explorer'. Anda adalah ahli dalam 'Reframing' situasi sulit menjadi peluang. Anda sangat fleksibel dan benci dengan batasan atau prosedur yang terlalu kaku.",
         "asmara": "Anda butuh ruang gerak (freedom). Hubungan yang mengekang akan membuat Anda merasa 'Suffocated'. Komunikasikan kebutuhan Anda akan petualangan baru agar pasangan tidak salah paham."
     },
     6: {
@@ -162,15 +162,15 @@ def hitung_zodiak(tanggal):
 
 def get_arketipe(angka):
     arketipe_dict = {
-        1: "The Leader (Sang Perintis)",
-        2: "The Mediator (Sang Penyelaras)",
-        3: "The Communicator (Sang Ekspresif)",
-        4: "The Architect (Sang Pembangun)",
-        5: "The Visionary (Sang Penjelajah)",
-        6: "The Nurturer (Sang Pelindung)",
-        7: "The Analyst (Sang Pencari)",
-        8: "The Strategist (Sang Eksekutif)",
-        9: "The Humanist (Sang Humanis)"
+        1: "The Leader (Sang Inisiator / Perintis)",
+        2: "The Mediator (Sang Penjaga / Penyelaras)",
+        3: "The Communicator (Sang Visioner / Ekspresif)",
+        4: "The Architect (Sang Alchemist / Transformator)",
+        5: "The Explorer (Sang Eksekutor / Penggerak)",
+        6: "The Nurturer (Sang Harmonizer / Penyeimbang)",
+        7: "The Analyst (Sang Legacy Builder / Pembangun Makna)",
+        8: "The Strategist (Sang Sovereign / Penguasa Diri)",
+        9: "The Humanist (Sang Ascended / Kesadaran Tinggi)"
     }
     return arketipe_dict.get(angka, "Pribadi Unik")
 
@@ -281,35 +281,4 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
             st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
             
         with st.expander("Apa langkah selanjutnya setelah mengetahui 'Kode Program' ini?"):
-            st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi yang disediakan di atas atau melakukan sesi Deep Calibration secara Private bersama Coach Ahmad.")
-
-        st.markdown("---")
-        with st.expander("⚖️ Disclaimer & Batasan Layanan"):
-            st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
-
-        # --- INTEGRASI WHATSAPP (HIGH TICKET CLOSING) ---
-        phone_number = "628999771486" 
-        wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
-        encoded_wa = urllib.parse.quote(wa_text)
-        wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
-
-        html_wa = f"""
-        <div style="text-align: center; margin-top: 40px; padding: 30px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 15px;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Butuh Perubahan Instan & Permanen?</h3>
-            <p style="font-size: 15px; color: #f0f0f0; margin-bottom: 25px;">
-                Membaca modul adalah langkah pertama. Tapi jika Anda butuh 'pembedahan' mental yang cepat, terarah, dan dibimbing langsung 1-on-1...<br><br>
-                <b>Jangan biarkan program lama merusak masa depan Anda lebih lama lagi.</b>
-            </p>
-            <a href="{wa_link}" target="_blank" style="text-decoration: none;">
-                <button style="width: 100%; background-color: #25D366; color: white; padding: 18px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 15px rgba(37, 211, 102, 0.4); text-transform: uppercase;">
-                    💬 Amankan Jadwal Private Sesi Saya
-                </button>
-            </a>
-            <p style="font-size: 12px; color: #888; margin-top: 15px;">*Slot konsultasi bersama Coach Ahmad sangat terbatas setiap minggunya.</p>
-        </div>
-        """
-        st.markdown(html_wa, unsafe_allow_html=True)
-
-# --- FOOTER ---
-st.markdown("---")
-st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
+            st.write("Langkah selanjutnya adalah **
