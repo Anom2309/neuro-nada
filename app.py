@@ -27,6 +27,46 @@ with st.sidebar:
 if os.path.exists("banner.jpg"):
     st.image("banner.jpg", use_container_width=True)
 
+# --- DATABASE ANALISA SPESIFIK (NLP BASED) ---
+data_analisa = {
+    1: {
+        "karakter": "Anda memiliki profil 'The Leader'. Meta-program Anda sangat proaktif dan berorientasi pada tujuan (Towards). Secara NLP, Anda sering menggunakan filter 'Self', yang membuat Anda mandiri namun kadang terlihat dominan.",
+        "asmara": "Dalam asmara, Anda butuh pasangan yang menghargai independensi Anda. Hati-hati dengan pola komunikasi 'Command', cobalah lebih banyak menggunakan 'Request' agar pasangan merasa lebih nyaman."
+    },
+    2: {
+        "karakter": "Anda adalah 'The Mediator'. Kekuatan utama Anda adalah 'Building Rapport' secara instan. Anda sangat sensitif terhadap harmoni lingkungan, namun seringkali mengabaikan kebutuhan diri sendiri (Filter: Others).",
+        "asmara": "Asmara bagi Anda adalah tentang kedekatan emosional. Anda cenderung menghindari konflik, namun waspadai pola 'Pleasing' yang berlebihan. Komunikasikan batasan Anda dengan teknik Assertive Communication."
+    },
+    3: {
+        "karakter": "Profil Anda adalah 'The Communicator'. Anda mahir dalam teknik 'Chunking Up' (melihat gambaran besar) dan menginspirasi orang lain. Pikiran Anda sangat visual dan cepat dalam memproses ide kreatif.",
+        "asmara": "Hubungan yang ideal bagi Anda adalah yang penuh keceriaan dan stimulasi intelektual. Pasangan yang membosankan bisa memicu 'Internal Dialogue' negatif pada diri Anda. Cari partner yang bisa mengimbangi energi sosial Anda."
+    },
+    4: {
+        "karakter": "Anda adalah 'The Architect'. Struktur berpikir Anda sangat detail dan prosedural. Secara NLP, Anda memiliki filter 'Internal Reference' yang kuat, sehingga Anda tidak mudah goyah oleh opini luar jika sudah punya data.",
+        "asmara": "Dalam asmara, Anda butuh kepastian dan rencana jangka panjang. Spontanitas berlebihan dari pasangan bisa membuat sistem internal Anda 'Error'. Belajarlah sedikit lebih fleksibel dalam menerima perubahan rencana."
+    },
+    5: {
+        "karakter": "Profil 'The Visionary/Explorer'. Anda adalah ahli dalam 'Reframing' situasi sulit menjadi peluang. Anda sangat fleksibel dan benci dengan batasan atau prosedur yang terlalu kaku.",
+        "asmara": "Anda butuh ruang gerak (freedom). Hubungan yang mengekang akan membuat Anda merasa 'Suffocated'. Komunikasikan kebutuhan Anda akan petualangan baru agar pasangan tidak salah paham."
+    },
+    6: {
+        "karakter": "Anda adalah 'The Nurturer'. Fokus utama pikiran Anda adalah pada 'Values' dan tanggung jawab keluarga. Anda memiliki kapasitas empati yang luar biasa besar melalui kalibrasi emosi yang tajam.",
+        "asmara": "Asmara Anda berbasis pengabdian. Anda adalah pasangan yang sangat suportif. Namun, hindari pola 'Mind Reading' (menebak-nebak pikiran pasangan) yang bisa berujung pada rasa kecewa jika ekspektasi tidak terpenuhi."
+    },
+    7: {
+        "karakter": "Profil 'The Analyst'. Anda adalah pemikir 'Deep Structure'. Anda tidak puas dengan informasi permukaan dan selalu mencari makna di balik segalanya. Intuisi Anda sangat kuat jika sudah terkalibrasi dengan baik.",
+        "asmara": "Anda butuh waktu 'Me Time' yang cukup untuk memproses pikiran Anda. Pasangan yang terlalu menuntut perhatian setiap saat bisa membuat Anda mundur. Cari pasangan yang menghargai kedalaman intelektual Anda."
+    },
+    8: {
+        "karakter": "Anda adalah 'The Strategist'. Orientasi Anda adalah pada 'Power' dan 'Outcome'. Anda sangat efisien dalam mengelola sumber daya dan memiliki kepercayaan diri yang solid dalam mengambil risiko.",
+        "asmara": "Dalam hubungan, Anda cenderung menjadi pelindung dan penyedia. Namun, jangan bawa gaya 'Negotiation' bisnis ke dalam ranah asmara. Gunakan lebih banyak 'Soft Skills' dan sentuhan afeksi yang tulus."
+    },
+    9: {
+        "karakter": "Profil 'The Humanist'. Anda memiliki 'State of Mind' yang inklusif dan bijaksana. Secara NLP, Anda cenderung memandang dunia secara 'Holistik' dan memiliki misi hidup yang melampaui kepentingan pribadi.",
+        "asmara": "Anda mencari koneksi jiwa (Soulmate). Anda sangat pemaaf, namun waspadai pola 'Generalization' yang membuat Anda sering memaklumi kesalahan pasangan berulang kali. Tetaplah realistis dalam membangun hubungan."
+    }
+}
+
 # --- FUNGSI LOGIKA PERHITUNGAN ---
 def hitung_angka(tanggal):
     tgl_str = tanggal.strftime("%d%m%Y")
@@ -88,6 +128,9 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
             angka_hasil = hitung_angka(tgl_input)
             weton_hasil = hitung_weton(tgl_input)
             zodiak_hasil = hitung_zodiak(tgl_input)
+            
+            # Ambil analisa spesifik dari database
+            insight = data_analisa.get(angka_hasil)
         
         st.markdown(f"### 📋 Hasil Mapping: {nama_user}")
         st.divider()
@@ -99,15 +142,15 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         
         st.markdown("---")
         
-        # --- HASIL 1: KARAKTER ---
+        # --- HASIL 1: KARAKTER (SUDAH SPESIFIK) ---
         st.subheader("💡 Struktur Karakter & Mental")
-        st.write(f"Halo **{nama_user}**, sistem mendeteksi bahwa filter utama pikiran Anda dipengaruhi oleh pola **{zodiak_hasil}** dengan pondasi energi **{weton_hasil}**.")
-        st.info(f"Sebagai pemilik **Kode {angka_hasil}**, Anda memiliki spek berpikir yang tajam namun sering kali terhambat oleh 'program lama' yang tidak lagi relevan. Secara NLP, Anda membutuhkan proses *Reframing* agar hambatan mental yang sering muncul bisa berubah menjadi kekuatan pendorong kesuksesan.")
+        st.write(f"Halo **{nama_user}**, sistem mendeteksi filter utama pikiran Anda dipengaruhi pola **{zodiak_hasil}** dengan pondasi energi **{weton_hasil}**.")
+        st.info(f"{insight['karakter']}")
 
-        # --- HASIL 2: PERCINTAAN ---
+        # --- HASIL 2: PERCINTAAN (SUDAH SPESIFIK) ---
         st.subheader("❤️ Pola Hubungan & Asmara")
         st.write(f"Dalam dinamika hubungan, perpaduan **{zodiak_hasil}** dan **{weton_hasil}** membuat Anda memiliki cara unik dalam mengekspresikan kasih sayang.")
-        st.warning(f"**Insight Asmara:** Kode **{angka_hasil}** menunjukkan bahwa Anda cenderung mencari kedalaman komunikasi. Belajar memahami sistem komunikasi pasangan akan membuat hubungan Anda jauh lebih harmonis.")
+        st.warning(f"**Insight Asmara:** {insight['asmara']}")
 
         # --- CTA ---
         link_produk = {
@@ -133,28 +176,21 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.subheader("❓ Pertanyaan Sering Diajukan (FAQ)")
         
         with st.expander("Apakah ini sama dengan ramalan nasib?"):
-            st.write("Bukan. Analisa ini menggunakan data personal sebagai 'pintu masuk' untuk memetakan pola pikiran bawah sadar Anda. NLP fokus pada bagaimana Anda mengolah informasi, bukan meramal masa depan.")
+            st.write("Bukan. Analisa ini menggunakan data personal sebagai 'pintu masuk' untuk memetakan pola pikiran bawah sadar Anda. NLP fokus pada bagaimana Anda mengolah informasi.")
             
         with st.expander("Kenapa hasilnya bisa berbeda dengan zodiak/weton biasa?"):
-            st.write("Karena Ahmad Septian menggabungkan ketiga variabel tersebut untuk melihat 'Meta-Program' yang lebih spesifik. Ini adalah analisa yang dipersonalisasi khusus untuk struktur mental Anda.")
-            
-        with st.expander("Bagaimana cara hasil ini membantu hidup saya?"):
-            st.write("Dengan mengetahui 'Kode Program' Anda, Anda bisa lebih mudah mengenali kenapa Anda sering melakukan pola yang sama. Ini adalah langkah awal untuk melakukan Re-Programming.")
+            st.write("Karena Ahmad Septian menggabungkan ketiga variabel tersebut untuk melihat 'Meta-Program' yang lebih spesifik.")
 
         # --- BAGIAN DISCLAIMER ---
         st.markdown("---")
         with st.expander("⚖️ Disclaimer & Batasan Layanan"):
-            st.caption("""
-            Analisa ini bertujuan sebagai alat edukasi dan refleksi diri, bukan diagnosis medis atau psikologis klinis.
-            Ahmad Septian Dwi Cahyo tidak bertanggung jawab atas keputusan pribadi yang diambil pengguna berdasarkan hasil analisa ini.
-            """)
+            st.caption("Analisa ini bertujuan sebagai alat edukasi dan refleksi diri, bukan diagnosis medis.")
 
-        # --- INTEGRASI WHATSAPP (BARU) ---
-        phone_number = "628999771486" # <--- GANTI DENGAN NOMOR WA KAMU
+        # --- INTEGRASI WHATSAPP ---
+        phone_number = "628999771486" 
         wa_text = (
-            f"Halo Coach Ahmad, saya {nama_user}. Saya baru saja melihat profil karakter saya di Persona-NLP Analis. "
-            f"Hasilnya (Kode {angka_hasil}) sangat relatable! Saya penasaran bagaimana cara memaksimalkan potensi ini "
-            "melalui sesi NLP. Boleh dibantu jadwalnya?"
+            f"Halo Coach Ahmad, saya {nama_user}. Saya baru saja mencoba Persona-NLP Analis dengan hasil Kode {angka_hasil}. "
+            "Ulasan karakter dan asmaranya sangat akurat! Saya tertarik untuk konsultasi lebih dalam. Boleh dibantu jadwalnya?"
         )
         encoded_wa = urllib.parse.quote(wa_text)
         wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
