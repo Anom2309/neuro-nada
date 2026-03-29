@@ -173,6 +173,101 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.warning(f"**Insight Asmara:** {insight['asmara']}")
         st.info(f"**Tips Komunikasi NLP ({zodiak_hasil}):** {tips_zodiak_nlp.get(zodiak_hasil)}")
 
+        # ==============================
+# 🔥 CLOSING BRUTAL (TAMBAHAN)
+# ==============================
+
+st.markdown("---")
+
+st.error(f"""
+🚨 **PERHATIAN {nama_user.upper()}**
+
+Sistem mendeteksi bahwa pola **ARKETIPE {arketipe.upper()}** Anda saat ini...
+
+⚠️ BELUM BERJALAN MAKSIMAL
+""")
+
+st.markdown(f"""
+Bayangkan ini...
+
+Anda terus hidup dengan pola yang sama:
+- keputusan yang berulang
+- hubungan yang polanya itu-itu lagi
+- potensi yang sebenarnya besar... tapi tidak pernah benar-benar "meledak"
+
+Dan yang paling berbahaya...
+
+👉 Anda bahkan mulai terbiasa dengan kondisi itu.
+
+---
+
+💡 **Fakta yang jarang disadari:**
+
+Sebagian besar orang TIDAK gagal karena tidak punya potensi.
+
+Mereka gagal karena:
+👉 pola bawah sadar mereka TIDAK PERNAH DIUBAH
+
+Dan sekarang...
+
+Anda SUDAH tahu pola Anda.
+""")
+
+st.warning(f"""
+⚠️ Pertanyaannya sekarang bukan lagi "Anda tahu atau tidak"
+
+Tapi:
+
+👉 Anda MAU tetap seperti ini...
+atau
+👉 Anda siap UPGRADE versi diri Anda?
+""")
+
+st.success(f"""
+🔥 **Jika Anda membaca sampai sini... ini bukan kebetulan.**
+
+Arketipe **{arketipe}** Anda adalah tipe yang:
+👉 Bisa naik level cepat  
+👉 Tapi juga bisa stuck lama jika tidak diarahkan  
+
+Dan jujur saja...
+
+Versi Anda yang sekarang?
+👉 Belum versi maksimal.
+""")
+
+st.markdown("""
+---
+
+## 🔓 AKSES VERSI FULL (TIDAK UNTUK SEMUA ORANG)
+
+Di dalam modul lanjutan, Anda akan membuka:
+
+✔ Pola sabotase spesifik Anda  
+✔ Cara reprogram pikiran bawah sadar  
+✔ Strategi sesuai arketipe Anda  
+✔ Aktivasi potensi maksimal  
+
+---
+
+⛔ **Tidak semua orang siap melihat ini.**
+Karena ini bukan sekadar "insight"...
+
+Ini akan memaksa Anda:
+👉 melihat diri Anda yang sebenarnya
+""")
+
+st.error(f"""
+⚠️ **Last Checkpoint, {nama_user}**
+
+Jika Anda menutup halaman ini sekarang...
+
+👉 hidup Anda kemungkinan besar akan tetap berjalan seperti sekarang.
+
+Tapi jika Anda lanjut...
+
+👉 ini bisa jadi titik perubahan terbesar Anda.
+""")
         # --- CTA ---
         link_produk = {
             1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout",
