@@ -189,7 +189,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
         
         st.markdown("---")
-        st.markdown(f"#### 🔓 Ingin Memprogram Ulang Hidup Anda, {nama_user}?")
+        st.markdown(f"#### 🔓 Kuasai 'Remote Control' Pikiran Bawah Sadar Anda Sekarang, {nama_user}?")
         st.link_button(f"👉 DOWNLOAD MODUL TRANSFORMASI (KODE {angka_hasil})", url_tujuan, type="primary")
 
         # --- FAQ ---
