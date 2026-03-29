@@ -237,34 +237,17 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         st.info(f"**Tips Komunikasi NLP ({zodiak_hasil}):** {tips_zodiak_nlp.get(zodiak_hasil)}")
 
         # ==============================
-        # 🔥 CLOSING BRUTAL (DINAMIS)
+        # 🔥 CLOSING BRUTAL (ANTI-ERROR)
         # ==============================
         st.markdown("---")
 
-        st.error(f"""
-🚨 **PERHATIAN {nama_user.upper()}**
+        st.error(f"🚨 **PERHATIAN {nama_user.upper()}**\n\nPola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.")
 
-Pola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.
-""")
+        st.markdown(f"**Karena hambatan mental (Mental Block), Anda mungkin sering:**\n- {pain_points[0]}\n- {pain_points[1]}\n- {pain_points[2]}")
 
-        st.markdown(f"""
-**Karena hambatan mental (Mental Block), Anda mungkin sering:**
-- {pain_points[0]}
-- {pain_points[1]}
-- {pain_points[2]}
-""")
+        st.warning("👉 **Mau tetap membiarkan pola merusak ini terjadi?** atau\n👉 **Siap melakukan Re-Programming sekarang?**")
 
-        st.warning("""
-👉 **Mau tetap membiarkan pola merusak ini terjadi?** atau  
-👉 **Siap melakukan Re-Programming sekarang?**
-""")
-
-        st.success(f"""
-Arketipe **{arketipe}** punya potensi luar biasa besar jika filternya dibersihkan.
-
-Tapi tanpa di-kalibrasi dan diarahkan...  
-Itu bisa jadi pola penjara mental yang membelenggu seumur hidup.
-""")
+        st.success(f"Arketipe **{arketipe}** punya potensi luar biasa besar jika filternya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan...\nItu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
 
         # --- CTA ---
         link_produk = {
@@ -288,33 +271,29 @@ Itu bisa jadi pola penjara mental yang membelenggu seumur hidup.
         # --- BAGIAN FAQ & DISCLAIMER ---
         st.markdown("---")
         st.subheader("❓ Pertanyaan Terkait Pemetaan")
+        
         with st.expander("Bagaimana sistem ini membedah struktur pikiran saya?"):
-            st.write("Sistem **Persona-NLP Analis** menggunakan integrasi data kronologis sebagai *pintu masuk* untuk mengidentifikasi **Meta-Program** atau filter dominan bawah sadar Anda.")
+            st.write("Sistem **Persona-NLP Analis** menggunakan integrasi data kronologis (tanggal lahir) sebagai pintu masuk untuk mengidentifikasi **Meta-Program** atau filter dominan dalam pikiran bawah sadar Anda. Ini bukan ramalan nasib, melainkan pemetaan kecenderungan perilaku dan gaya pemrosesan informasi Anda.")
+            
         with st.expander("Kenapa akurasinya terasa sangat personal?"):
-            st.write("Karena Coach **Ahmad Septian** menggabungkan Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
-        with st.expander("Apa langkah selanjutnya setelah ini?"):
-            st.write("Langkah selanjutnya adalah **Re-Programming**. Gunakan modul transformasi atau ikuti sesi **Deep Calibration** bersama Coach Ahmad.")
+            st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
+            
+        with st.expander("Apa langkah selanjutnya setelah mengetahui 'Kode Program' ini?"):
+            st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi yang disediakan di atas atau melakukan sesi Deep Calibration secara Private bersama Coach Ahmad.")
 
         st.markdown("---")
         with st.expander("⚖️ Disclaimer & Batasan Layanan"):
-            st.caption(f"""
-            Analisa ini dirancang murni untuk edukasi dan refleksi pribadi, bukan diagnosis psikologi klinis. 
-            Segala tindakan yang diambil oleh **{nama_user}** adalah tanggung jawab pribadi.
-            © 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.
-            """)
+            st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
 
-        # --- INTEGRASI WHATSAPP ---
+        # --- INTEGRASI WHATSAPP (ANTI-ERROR) ---
         phone_number = "628999771486" 
-        wa_text = (
-            f"Halo Coach Ahmad, saya {nama_user}. Hasil mapping saya adalah Kode {angka_hasil} ({arketipe}). "
-            f"Insight asmara dan bagian yang 'stuck' tadi bener-bener ngena banget! Boleh info untuk jadwal sesi kalibrasi privat?"
-        )
+        wa_text = f"Halo Coach Ahmad, saya {nama_user}. Hasil mapping saya adalah Kode {angka_hasil} ({arketipe}). Insight asmara dan bagian yang 'stuck' tadi bener-bener ngena banget! Boleh info untuk jadwal sesi kalibrasi privat?"
         encoded_wa = urllib.parse.quote(wa_text)
         wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
 
-        st.markdown(f"""
-            <div style="text-align: center; margin-top: 30px; padding: 25px; background-color: #f8f9fb; border: 1px solid #e1e4e8; border-radius: 15px;">
-                <h4 style="color: #1f1f1f; margin-bottom: 15px;">Butuh Sesi Deep Calibration?</h4>
-                <p style="font-size: 14px; color: #444; margin-bottom: 20px;">Bersihkan hambatan mental dan instal pola pikir baru bersama Coach Ahmad Septian.</p>
-                <a href="{wa_link}" target="_blank" style="text-decoration: none;">
-                    <button style="width: 100%; background-color: #25D366; color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 12px
+        html_wa = f'<div style="text-align: center; margin-top: 30px; padding: 25px; background-color: #f8f9fb; border: 1px solid #e1e4e8; border-radius: 15px;"><h4 style="color: #1f1f1f; margin-bottom: 15px;">Butuh Sesi Deep Calibration?</h4><p style="font-size: 14px; color: #444; margin-bottom: 20px;">Bersihkan hambatan mental dan instal pola pikir baru bersama Coach Ahmad Septian.</p><a href="{wa_link}" target="_blank" style="text-decoration: none;"><button style="width: 100%; background-color: #25D366; color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 18px; box-shadow: 0px 4px 12px rgba(37, 211, 102, 0.3);">💬 Konsultasi via WhatsApp</button></a></div>'
+        st.markdown(html_wa, unsafe_allow_html=True)
+
+# --- FOOTER ---
+st.markdown("---")
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
