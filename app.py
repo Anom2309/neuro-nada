@@ -187,40 +187,40 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         }
         
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
-# ==============================
-# 🔥 CLOSING BRUTAL
-# ==============================
+        # ==============================
+        # 🔥 CLOSING BRUTAL
+        # ==============================
 
-st.markdown("---")
+        st.markdown("---")
 
-st.error(f"""
-🚨 PERHATIAN {nama_user}
+        st.error(f"""
+       🚨 PERHATIAN {nama_user}
 
-Pola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.
-""")
+       Pola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.
+       """)
 
-st.markdown("""
-Anda mungkin sudah sering:
-- mengulang pola hidup
-- merasa stuck
-- tahu harus berubah… tapi tidak berubah
+       st.markdown("""
+       Anda mungkin sudah sering:
+       - mengulang pola hidup
+       - merasa stuck
+       - tahu harus berubah… tapi tidak berubah
 
-Dan tanpa sadar...
-itu jadi kebiasaan.
-""")
+       Dan tanpa sadar...
+       itu jadi kebiasaan.
+       """)
 
-st.warning("""
-👉 Mau tetap seperti ini?
-atau
-👉 Siap upgrade diri?
-""")
+       st.warning("""
+       👉 Mau tetap seperti ini?
+       atau
+       👉 Siap upgrade diri?
+       """)
 
-st.success(f"""
-Arketipe **{arketipe}** punya potensi besar.
+       st.success(f"""
+       Arketipe **{arketipe}** punya potensi besar.
 
-Tapi tanpa diarahkan...
-bisa jadi pola berulang seumur hidup.
-""")
+       Tapi tanpa diarahkan...
+       bisa jadi pola berulang seumur hidup.
+       """)
         st.markdown("---")
         st.markdown(f"#### 🔓 Kuasai 'Remote Control' Pikiran Bawah Sadar Anda Sekarang, {nama_user}?")
         st.link_button(f"👉 DOWNLOAD MODUL TRANSFORMASI (KODE {angka_hasil})", url_tujuan, type="primary")
