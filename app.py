@@ -76,6 +76,7 @@ tips_zodiak_nlp = {
     "Pisces": "Bedakan imajinasi dengan kenyataan."
 }
 
+# --- DATABASE CLOSING BRUTAL ---
 closing_brutal_dinamis = {
     1: ["Terus menunda karena merasa 'belum sempurna' atau takut gagal", "Merasa sendirian memikul beban karena sulit percaya pada orang lain", "Punya ambisi besar, tapi stuck karena meng-sabotase diri sendiri"],
     2: ["Terjebak memuaskan orang lain hingga mengorbankan diri sendiri", "Merasa lelah dan tidak dihargai, tapi takut untuk berkata 'TIDAK'", "Terus memendam emosi demi menghindari konflik"],
@@ -86,6 +87,19 @@ closing_brutal_dinamis = {
     7: ["Terjebak dalam Overthinking dan sulit bertindak nyata", "Merasa terisolasi karena tidak ada yang sefrekuensi", "Terlalu lama menganalisa tanpa eksekusi"],
     8: ["Merasa hampa meskipun sudah mencapai target material", "Terlihat dingin dan menciptakan jarak emosional", "Burnout karena tekanan untuk selalu kuat"],
     9: ["Sering kecewa karena standar moral terlalu tinggi", "Mengizinkan orang yang toksik menetap karena rasa kasihan", "Punya visi mulia, tapi kewalahan mengeksekusinya"]
+}
+
+# --- DATABASE PENJARA MENTAL (BARU & DINAMIS) ---
+potensi_dinamis = {
+    1: "punya potensi kepemimpinan dan daya dobrak luar biasa besar jika ego-nya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... ambisi ini bisa jadi pola penjara mental yang membelenggu Anda dalam kelelahan kronis seumur hidup.",
+    2: "punya potensi penyembuhan dan diplomasi luar biasa besar jika filter 'Gak Enakan'-nya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... rasa empati ini bisa jadi pola penjara mental yang terus mengorbankan diri Anda seumur hidup.",
+    3: "punya potensi persuasi dan kreativitas luar biasa besar jika fokusnya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... ide-ide brilian ini bisa jadi pola penjara mental yang membuat Anda jalan di tempat seumur hidup.",
+    4: "punya potensi membangun mahakarya luar biasa besar jika filter kaku-nya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... perfeksionisme ini bisa jadi pola penjara mental yang membelenggu kebahagiaan Anda seumur hidup.",
+    5: "punya potensi inovasi dan pencapaian luar biasa besar jika filter kebosanannya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... energi petualang ini bisa jadi pola penjara mental yang membuat Anda kehilangan arah seumur hidup.",
+    6: "punya potensi mengayomi dan membina luar biasa besar jika filter 'Mind Reading'-nya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... pengorbanan buta ini bisa jadi pola penjara mental yang mencekik batin Anda seumur hidup.",
+    7: "punya potensi kebijaksanaan dan analisa luar biasa besar jika filter overthinking-nya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... isi kepala ini bisa jadi pola penjara mental yang mengisolasi Anda dari realita seumur hidup.",
+    8: "punya potensi eksekusi dan pencapaian luar biasa besar jika filter kontrolnya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... kekuatan ini bisa jadi pola penjara mental yang membuat Anda kesepian di puncak seumur hidup.",
+    9: "punya potensi kesadaran dan harmoni luar biasa besar jika filter ekspektasinya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... idealisme ini bisa jadi pola penjara mental yang penuh kekecewaan seumur hidup."
 }
 
 def hitung_angka(tanggal):
@@ -157,6 +171,7 @@ if st.button("Mulai Pemetaan Internal"):
             insight = data_analisa.get(angka_hasil)
             arketipe = get_arketipe(angka_hasil)
             pain_points = closing_brutal_dinamis.get(angka_hasil, ["Terjebak dalam pola yang sama", "Merasa stuck", "Butuh perubahan"])
+            teks_potensi = potensi_dinamis.get(angka_hasil, "punya potensi luar biasa besar jika filternya dibersihkan.\\n\\nTapi tanpa di-kalibrasi dan diarahkan... itu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
         
         st.markdown(f"### 📋 Hasil Mapping: {nama_user}")
         st.markdown("---")
@@ -178,12 +193,14 @@ if st.button("Mulai Pemetaan Internal"):
         st.warning(f"**Insight Asmara:** {insight['asmara']}")
         st.info(f"**Tips Komunikasi NLP:** {tips_zodiak_nlp.get(zodiak_hasil)}")
 
-        # --- CLOSING BRUTAL ---
+        # --- CLOSING BRUTAL (FULL DINAMIS) ---
         st.markdown("---")
         st.error(f"🚨 **PERHATIAN {nama_user.upper()}**\n\nPola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.")
         st.markdown(f"**Karena hambatan mental (Mental Block), Anda mungkin sering:**\n- {pain_points[0]}\n- {pain_points[1]}\n- {pain_points[2]}")
         st.warning("👉 **Mau tetap membiarkan pola merusak ini terjadi?** atau\n👉 **Siap melakukan Re-Programming sekarang?**")
-        st.success(f"Arketipe **{arketipe}** punya potensi luar biasa besar jika filternya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan...\nItu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
+        
+        # Eksekusi Teks Potensi & Penjara Dinamis
+        st.success(f"Arketipe **{arketipe}** {teks_potensi}".replace('\\n', '\n'))
 
         # --- CTA MODUL ---
         link_produk = {
@@ -212,7 +229,7 @@ if st.button("Mulai Pemetaan Internal"):
         </a>
         """, unsafe_allow_html=True)
 
-        # --- WA CTA ---
+        # --- WA CTA (HIPNOTIK SINGKAT) ---
         st.markdown("---")
         phone_number = "628999771486" 
         wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
@@ -221,8 +238,8 @@ if st.button("Mulai Pemetaan Internal"):
 
         st.markdown(f"""
         <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
-            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Mengambil Alih Kendali?</h3>
-            <p style="color: #f0f0f0; margin-bottom: 20px;">Menyadari pola lama adalah langkah pertama. Sekarang, rasakan betapa leganya saat Anda mengizinkan pikiran bawah sadar Anda dikalibrasi ulang sepenuhnya.</p>
+            <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Membongkar Mental Block Anda?</h3>
+            <p style="color: #f0f0f0; margin-bottom: 20px;">Teori tak mengubah realita. Cabut akar <i>mental block</i> Anda melalui kalibrasi bawah sadar.</p>
             <a href="{wa_link}" target="_blank" style="text-decoration: none;">
                 <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
                     💬 Amankan Jadwal Sesi Saya
