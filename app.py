@@ -187,7 +187,7 @@ if st.button("Mulai Pemetaan Internal", type="primary"):
         }
         
         url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
-        # ==============================
+# ==============================
 # 🔥 CLOSING BRUTAL (TAMBAHAN)
 # ==============================
 
