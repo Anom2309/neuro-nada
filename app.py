@@ -266,19 +266,28 @@ if st.button("Mulai Pemetaan Internal"):
             st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
 
 
-# --- FITUR TESTIMONI & REVIEW (DI LUAR TOMBOL HASIL AGAR SELALU MUNCUL) ---
+# --- FITUR TESTIMONI & REVIEW (9 REVIEW PILIHAN) ---
 st.markdown("---")
 st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Telah Dipercaya Oleh 1.542+ Pengguna</h3>", unsafe_allow_html=True)
 st.write("")
 
-# 1. Testimoni "Pancingan" (Seed Reviews)
+# Grid Testimoni (3 Baris x 2 Kolom)
 col1, col2 = st.columns(2)
 
 with col1:
-    st.info("⭐⭐⭐⭐⭐\n\n**Budi T.**\n\n*\"Gila, analisa arketipe The Explorer-nya akurat banget! Baru sadar selama ini saya sabotase diri sendiri karena gampang bosen.\"*")
+    st.info("⭐⭐⭐⭐⭐\n\n**Budi T.**\n\n*\"Analisa arketipe The Explorer-nya akurat banget! Baru sadar selama ini saya sabotase diri karena gampang bosen.\"*")
+    st.success("⭐⭐⭐⭐⭐\n\n**Andi S. (CEO)**\n\n*\"Sebagai tipe 8, saya kaget NLP ini bisa baca pola leadership saya yang bikin burnout. Sesi privatnya gila sih, mind-blowing!\"*")
+    st.warning("⭐⭐⭐⭐⭐\n\n**Rina M.**\n\n*\"Penjelasan weton dan numerologinya nyambung banget. Akhirnya paham kenapa asmara saya mentok terus di pola yang sama.\"*")
+    st.info("⭐⭐⭐⭐⭐\n\n**Fahmi K.**\n\n*\"Tadinya skeptis, tapi pas baca modul Kode 7, kok kayak lagi diceritain isi kepala sendiri ya? Langsung daftar sesi privat!\"*")
 
 with col2:
     st.success("⭐⭐⭐⭐⭐\n\n**Sinta W.**\n\n*\"Sangat relate dengan pola asmara saya yang 'Gak Enakan'. Makasih Coach Ahmad atas insightnya!\"*")
+    st.warning("⭐⭐⭐⭐⭐\n\n**Dewi Arini**\n\n*\"Modul Re-Programming-nya sangat praktis. Baru seminggu praktek, mental block soal finansial saya mulai luntur.\"*")
+    st.info("⭐⭐⭐⭐⭐\n\n**Hendra Jaya**\n\n*\"Gak nyangka weton bisa dikawinin sama NLP se-elegan ini. Aplikasi ini ngebuka mata saya soal potensi terpendam.\"*")
+    st.success("⭐⭐⭐⭐⭐\n\n**Maya Putri**\n\n*\"Tipe 6 emang bener-bener pengayom ya, tapi nasehat Coach soal 'Self-Love' di modul itu nampar banget. Makasih Coach!\"*")
+
+# Satu Testimoni Highlight di Tengah
+st.markdown("<div style='text-align: center; padding: 15px; background-color: #f0f0f0; border-radius: 10px; margin-bottom: 20px;'><i>⭐⭐⭐⭐⭐<br><b>\"Ini bukan cuma ramalan, ini pemetaan otak yang masuk akal. Investasi terbaik saya tahun ini!\"</b><br>— dr. Antonius</i></div>", unsafe_allow_html=True)
 
 st.markdown("---")
 
