@@ -431,13 +431,35 @@ with tab3:
     
     st.plotly_chart(fig, use_container_width=True)
     
-    avg_skor = sum(skor) / 5
+   avg_skor = sum(skor) / 5
+    
+    # --- DATABASE PESAN DINAMIS ---
+    pesan_rendah = [
+        "Peringatan: Roda kehidupan Anda sedang tidak seimbang. Segera benahi area dengan skor terendah sebelum memicu *burnout*.",
+        "Sistem mendeteksi ketidakseimbangan fatal. Anda butuh kalibrasi ulang segera agar siklus masalah tidak terulang.",
+        "Warning! Terlalu banyak energi mental yang terkuras. Jangan abaikan sisi yang 'bocor' ini jika ingin maju."
+    ]
+    
+    pesan_sedang = [
+        "Cukup baik, namun masih ada 'kebocoran' energi di area tertentu yang menghambat Anda melesat maksimal.",
+        "Anda sudah di jalur yang benar, tapi ada 'rem tangan' tak kasat mata yang masih menahan laju potensi Anda.",
+        "Grafik menunjukkan potensi stabil, namun sinkronisasi belum sempurna. Tutup celah pada skor terendah Anda.",
+        "Kondisi mental Anda cukup aman, namun belum mencapai *Peak State*. Fokus perbaiki area yang paling melesak ke dalam."
+    ]
+    
+    pesan_tinggi = [
+        "Luar biasa! Kondisi *State of Mind* Anda sedang di puncak. Pertahankan keseimbangan ini.",
+        "Sinergi yang sangat mantap! Pikiran bawah sadar Anda sedang berada dalam mode *High Performance*.",
+        "Keseimbangan yang langka. Roda kehidupan Anda berputar mulus, ini momentum terbaik untuk mengeksekusi visi besar."
+    ]
+
+    # --- EKSEKUSI PESAN ACAK ---
     if avg_skor < 5:
-        st.error("Peringatan: Roda kehidupan Anda sedang tidak seimbang. Segera benahi area dengan skor terendah sebelum memicu *burnout*.")
+        st.error(random.choice(pesan_rendah))
     elif avg_skor < 8:
-        st.warning("Cukup baik, namun masih ada 'kebocoran' energi di area tertentu yang menghambat Anda melesat maksimal.")
+        st.warning(random.choice(pesan_sedang))
     else:
-        st.success("Luar biasa! Kondisi *State of Mind* Anda sedang di puncak. Pertahankan keseimbangan ini.")
+        st.success(random.choice(pesan_tinggi))
 
 # ==========================================
 # TESTIMONI RUNNING TEXT & FORM EXPANDER
