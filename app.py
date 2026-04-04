@@ -184,7 +184,7 @@ def get_arketipe(angka):
 
 
 # --- INTERFACE UTAMA (TABS) ---
-st.title("🧠 Neuro Nada Ecosystem")
+st.title("🧠 Neuro Nada Deep Analysis")
 st.write("Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri")
 st.markdown("---")
 
