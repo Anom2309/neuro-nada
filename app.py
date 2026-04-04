@@ -351,9 +351,13 @@ with tab2:
         tgl_2 = st.date_input("Tgl Lahir Pasangan:", min_value=datetime.date(1920, 1, 1), key="c_tgl2")
         
     if st.button("Cek Kompatibilitas Bawah Sadar"):
-        # PASUKAN SATPAM NLP
+        tgl_today = datetime.date.today()
+        
+        # PASUKAN SATPAM NLP LAPIS GANDA
         if not nama_1 or len(nama_1.strip()) < 3 or not nama_2 or len(nama_2.strip()) < 3:
             st.error("🚨 Satpam NLP: Pastikan KEDUA nama diisi dengan benar (minimal 3 huruf) agar vibrasi hubungan bisa dihitung sempurna.")
+        elif tgl_1 == tgl_today or tgl_2 == tgl_today:
+            st.error("🚨 Satpam NLP: Masa iya lahirnya hari ini langsung pacaran? Masukkan tanggal lahir yang valid ya!")
         else:
             with st.spinner('Menyelaraskan frekuensi hubungan...'):
                 time.sleep(1)
