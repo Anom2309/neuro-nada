@@ -34,12 +34,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- SIDEBAR PROMOSI & AUDIO ---
+# --- SIDEBAR PROMOSI & VIDEO ---
 with st.sidebar:
-    st.markdown("### 🎧 Hypno-Audio Vault")
-    st.caption("Gunakan *headphone* untuk relaksasi gelombang otak (Binaural Beats) sebelum membaca analisa Anda.")
-    # Audio memanggil file dari GitHub langsung
-    st.audio("relaksasi.mp3", format="audio/mp3")
+    st.markdown("### 🎬 Hypno-Video Vault")
+    st.caption("Fokuskan pandangan Anda pada video ini sambil menggunakan headphone untuk relaksasi maksimal.")
+    
+    # Langsung putar video YouTube dari link Coach Ahmad
+    st.video("https://youtu.be/kkRcH6aH_lI?si=bpUZF3CWl8DKLw5m")
+        
     st.markdown("---")
     
     st.markdown("## 🧠 Sesi Transformasi")
@@ -320,7 +322,6 @@ with tab1:
             st.markdown("---")
             with st.expander("⚖️ Disclaimer & Batasan Layanan"):
                 st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
-
 
 # ==========================================
 # TAB 2: COUPLE SYNC (SINKRONISASI ASMARA)
