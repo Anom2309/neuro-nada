@@ -65,7 +65,7 @@ with st.sidebar:
 col_logo, col_judul = st.columns([1, 4]) # Membagi rasio: 1 buat logo di kiri, 4 buat teks di kanan
 
 with col_logo:
-    if os.path.exists("baru.jpg"):
+    if os.path.exists("baru.jpg.png"):
         st.image("baru.jpg", width=120) # Lebar logo dikecilin jadi 120 pixel
     elif os.path.exists("banner.jpg"):
         st.image("banner.jpg", width=120)
