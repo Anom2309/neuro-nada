@@ -46,16 +46,35 @@ with st.sidebar:
     
     st.markdown("## 🧠 Sesi Transformasi")
     st.info("**Reset Pola Pikir Anda**\n\nSering merasa terhambat oleh pikiran sendiri? Mari kita lakukan kalibrasi ulang dalam sesi *Private Hypno-NLP* bersama **Ahmad Septian**.")
-    st.markdown("[👉 **Amankan Jadwal Anda**](https://lynk.id/username_lu/private-hypnotherapy)")
+    
+    # --- LINK WA UNTUK AMANKAN JADWAL ---
+    phone_number_sidebar = "628999771486"
+    wa_text_sidebar = "Halo Coach Ahmad, saya tertarik untuk mengamankan jadwal Private Session Hypno-NLP. Apakah masih ada kuota?"
+    encoded_wa_sidebar = urllib.parse.quote(wa_text_sidebar)
+    wa_link_sidebar = f"https://wa.me/{phone_number_sidebar}?text={encoded_wa_sidebar}"
+    
+    st.markdown(f"[👉 **Amankan Jadwal Anda**]({wa_link_sidebar})")
+    
     st.markdown("---")
     st.success("**📚 Seni Persuasi NLP**\n\nPelajari bagaimana bahasa bekerja di tingkat bawah sadar untuk meningkatkan pengaruh Anda.")
     st.markdown("[👉 **Akses Modul Lengkap**](https://lynk.id/username_lu/ebook-nlp)")
     st.markdown("---")
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
-# --- TAMPILKAN BANNER ---
-if os.path.exists("banner.jpg"):
+# --- INTERFACE UTAMA & LOGO ---
+st.markdown("<h1 style='text-align: center;'>🧠 Neuro Nada Ecosystem</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
+
+# Menampilkan Logo Baru di Tengah Layar
+if os.path.exists("baru.jpg"):
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.image("baru.jpg", use_container_width=True)
+# Fallback kalau belum dihapus banner lamanya
+elif os.path.exists("banner.jpg"):
     st.image("banner.jpg", use_container_width=True)
+
+st.markdown("---")
 
 # --- DATABASE ANALISA & POTENSI ---
 vibrasi_nama_dict = {
@@ -184,11 +203,7 @@ def get_arketipe(angka):
     }
     return arketipe_dict.get(angka, "Pribadi Unik")
 
-# --- INTERFACE UTAMA (TABS) ---
-st.title("🧠 Neuro Nada Ecosystem")
-st.write("Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri")
-st.markdown("---")
-
+# --- MENU TABS ---
 tab1, tab2, tab3 = st.tabs(["👤 Personal Mapping", "👩‍❤️‍👨 Couple Sync", "🕸️ Audit Pikiran"])
 
 # ==========================================
@@ -322,6 +337,7 @@ with tab1:
             st.markdown("---")
             with st.expander("⚖️ Disclaimer & Batasan Layanan"):
                 st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
+
 
 # ==========================================
 # TAB 2: COUPLE SYNC (SINKRONISASI ASMARA)
