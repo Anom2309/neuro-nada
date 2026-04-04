@@ -63,11 +63,13 @@ with st.sidebar:
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
 # --- INTERFACE UTAMA & BANNER ---
+# 1. Menampilkan Banner di paling atas (jika ada)
 if os.path.exists("banner.jpg"):
     st.image("banner.jpg", use_container_width=True)
-else:
-    st.markdown("<h1 style='text-align: center;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; font-size: 18px; color: #D4AF37;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
+
+# 2. Teks Judul WAJIB Muncul (Tengah)
+st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px; color: #D4AF37;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
 
 st.markdown("---")
 
