@@ -9,7 +9,7 @@ import random
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="NLP Deep Analysis | Neuro Nada", 
+    page_title="Neuro Nada Deep Analysis", 
     page_icon="🧠", 
     layout="centered"
 )
@@ -72,7 +72,7 @@ with col_logo:
         st.image("banner.jpg", width=120)
 
 with col_judul:
-    st.markdown("<h1 style='margin-top: -15px;'>🧠 Neuro Nada Ecosystem</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='margin-top: -15px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
     st.markdown("<p style='font-size: 18px; color: #D4AF37;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
 
 st.markdown("---")
@@ -480,14 +480,14 @@ with tab3:
 # TESTIMONI RUNNING TEXT & FORM EXPANDER
 # ==========================================
 st.markdown("---")
-st.markdown("<h4 style='text-align: center; color: #D4AF37;'>Dipercaya 1.542+ Pengguna</h4>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center; color: #D4AF37;'>Dipercaya 5.500+ Pengguna</h4>", unsafe_allow_html=True)
 
 marquee_html = """
 <div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
     <marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">
         <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>dr. Antonius:</b> "Ini bukan cuma ramalan, ini pemetaan otak yang masuk akal. Investasi terbaik tahun ini!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
         <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Andi S. (CEO):</b> "Sebagai tipe 8, saya kaget NLP ini bisa baca pola leadership saya. Mind-blowing!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-        <span style="color: #FFD700;">⭐⭐⭐⭐</span> <b>Sinta W.:</b> "Sangat relate dengan pola asmara 'Gak Enakan'. Makasih Coach!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <span style="color: #FFD700;">⭐⭐⭐⭐</span> <b>Sinta W.:</b> "Kok bisa ya Sangat relate dengan pola asmara 'Gak Enakan'. Makasih Coach!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
         <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Dewi Arini:</b> "Baru seminggu praktek, mental block finansial mulai luntur." &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
         <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Budi T.:</b> "Baru sadar selama ini saya sabotase diri karena gampang bosen." &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
         <span style="color: #FFD700;">⭐⭐⭐⭐</span> <b>Hendra Jaya:</b> "Gak nyangka weton bisa dikawinin sama NLP se-elegan ini."
