@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="NLP Deep Analysis | Neuro Nada", 
+    page_title="Neuro Nada Deep Analysis", 
     page_icon="🧠", 
     layout="centered"
 )
@@ -185,7 +185,7 @@ def get_arketipe(angka):
     return arketipe_dict.get(angka, "Pribadi Unik")
 
 # --- INTERFACE UTAMA (TABS) ---
-st.title("🧠 Neuro Nada Ecosystem")
+st.title("🧠 Neuro Nada Deep Analysis")
 st.write("Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri")
 st.markdown("---")
 
