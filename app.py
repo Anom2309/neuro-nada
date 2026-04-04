@@ -62,17 +62,17 @@ with st.sidebar:
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
 # --- INTERFACE UTAMA & LOGO ---
-st.markdown("<h1 style='text-align: center;'>🧠 Neuro Nada Ecosystem</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 18px;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
+col_logo, col_judul = st.columns([1, 4]) # Membagi rasio: 1 buat logo di kiri, 4 buat teks di kanan
 
-# Menampilkan Logo Baru di Tengah Layar
-if os.path.exists("baru.jpg"):
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.image("baru.jpg", use_container_width=True)
-# Fallback kalau belum dihapus banner lamanya
-elif os.path.exists("banner.jpg"):
-    st.image("banner.jpg", use_container_width=True)
+with col_logo:
+    if os.path.exists("baru.jpg"):
+        st.image("baru.jpg", width=120) # Lebar logo dikecilin jadi 120 pixel
+    elif os.path.exists("banner.jpg"):
+        st.image("banner.jpg", width=120)
+
+with col_judul:
+    st.markdown("<h1 style='margin-top: -15px;'>🧠 Neuro Nada Ecosystem</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size: 18px; color: #D4AF37;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
 
 st.markdown("---")
 
