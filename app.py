@@ -131,7 +131,7 @@ st.caption("<div style='text-align: center; margin-bottom:10px;'>Tekan Play untu
 # Masukkan link raw dari GitHub di antara tanda kutip di bawah ini
 url_lagu_coach = "https://raw.githubusercontent.com/Anom2309/neuro-nada/refs/heads/main/relaksasi.mp3"
 
-st.audio(https://drive.google.com/drive/my-drive?hl=ID="audio/mp3")
+st.audio(https://drive.google.com/drive/my-drive?hl=ID=)
 st.markdown("---")
 # --- DATABASE ANALISA & POTENSI ---
 vibrasi_nama_dict = {
