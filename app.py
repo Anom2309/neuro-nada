@@ -246,34 +246,62 @@ with tab2:
                 res = (nep1 + nep2) % 8
                 
                 hasil_weton_dinamis = {
-                    1: [("💔 PEGAT", "Tantangan komunikasi. Latih asertif."), ("💔 PEGAT", "Jaga boundary.")],
-                    2: [("👑 RATU", "Harmonis & Disegani."), ("👑 RATU", "Power Couple.")],
-                    3: [("💞 JODOH", "Soulmate sejati."), ("💞 JODOH", "Koneksi batin kuat.")],
-                    4: [("🌱 TOPO", "Ujian bertumbuh."), ("🌱 TOPO", "Fase kalibrasi.")],
-                    5: [("💰 TINARI", "Magnet Rezeki."), ("💰 TINARI", "Kelimpahan karir.")],
-                    6: [("⚡ PADU", "Beda Frekuensi."), ("⚡ PADU", "Gesekan logika.")],
-                    7: [("👁️ SUJANAN", "Rawan Asumsi."), ("👁️ SUJANAN", "Ujian kepercayaan.")],
-                    0: [("🕊️ PESTHI", "Damai & Rukun."), ("🕊️ PESTHI", "Ketenangan batin.")]
+                    1: [
+                        ("💔 PEGAT (Rawan Gesekan)", "Kalian memiliki tantangan besar di area komunikasi. Sering terjadi salah paham dari hal kecil.\n\n**Tantangan NLP:** Kurangi filter 'Mind Reading' (berharap dia paham tanpa diucapkan). Latih komunikasi asertif."),
+                        ("💔 PEGAT (Ujian Ego)", "Hubungan ini rentan terhadap intervensi pihak luar. Ego masing-masing sedang diuji keras.\n\n**Tantangan NLP:** Bangun 'Boundary' yang kuat. Jangan biarkan omongan orang lain merusak 'State' kalian berdua.")
+                    ],
+                    2: [
+                        ("👑 RATU (Harmonis & Disegani)", "Sangat memukau! Hubungan kalian memancarkan kharisma yang membuat kalian dihargai banyak orang.\n\n**Tantangan NLP:** Jangan terjebak pada pencitraan eksternal. Pastikan keintiman kalian saat berdua sama baiknya dengan di depan publik."),
+                        ("👑 RATU (Pusat Perhatian)", "Kalian memiliki sinkronisasi energi yang membuat orang lain iri. Kalian adalah 'Power Couple'.\n\n**Tantangan NLP:** Gunakan teknik 'Anchoring' untuk menyimpan memori bahagia kalian sebagai pondasi saat sedang lelah.")
+                    ],
+                    3: [
+                        ("💞 JODOH (Sinkronisasi Alami)", "Kalian memiliki penerimaan bawah sadar yang sangat tinggi. Saling melengkapi kelemahan masing-masing.\n\n**Tantangan NLP:** Hubungan yang terlalu damai rawan kebosanan. Ciptakan 'Pattern Interrupt' (kejutan tak terduga) agar asmara tetap menyala."),
+                        ("💞 JODOH (Koneksi Batin)", "Definisi 'Soulmate' sejati. Kalian sering memikirkan hal yang sama di waktu yang bersamaan.\n\n**Tantangan NLP:** Jaga 'Rapport' ini dengan terus melakukan penyelarasan visi masa depan bersama.")
+                    ],
+                    4: [
+                        ("🌱 TOPO (Ujian Bertumbuh)", "Awal hubungan ini mungkin terasa berat, banyak perbedaan prinsip yang berbenturan keras.\n\n**Tantangan NLP:** Kuasai teknik 'Reframing'. Saat dia marah, maknai itu sebagai cara dia meminta perhatian, bukan untuk menyerang Anda."),
+                        ("🌱 TOPO (Fase Kalibrasi)", "Kalian sedang berada di fase saling 'membaca' buku manual masing-masing. Butuh kesabaran ekstra.\n\n**Tantangan NLP:** Turunkan ekspektasi. Fokus pada 'Pacing' emosinya sebelum Anda mencoba memberikan solusi logika.")
+                    ],
+                    5: [
+                        ("💰 TINARI (Magnet Rezeki)", "Penyatuan energi kalian membawa hoki yang luar biasa. Selalu ada jalan keluar dalam urusan finansial.\n\n**Tantangan NLP:** Jangan jadikan materi sebagai satu-satunya perekat. Bangun 'Deep Structure' obrolan tentang impian dan nilai spiritual."),
+                        ("💰 TINARI (Kelimpahan)", "Hubungan ini saling membesarkan satu sama lain dalam karir dan pencapaian.\n\n**Tantangan NLP:** Jangan lupakan keintiman emosional. Rutin lakukan 'Matching & Mirroring' saat mengobrol berdua.")
+                    ],
+                    6: [
+                        ("⚡ PADU (Beda Frekuensi)", "Akan sering terjadi perdebatan seru karena cara kerja otak (*Meta-Program*) kalian yang sangat berbeda.\n\n**Tantangan NLP:** Perbedaan bukan berarti musuh. Gunakan itu untuk melihat sudut pandang (Perceptual Position) yang lebih luas."),
+                        ("⚡ PADU (Gesekan Logika)", "Cekcok mulut adalah hal biasa bagi kalian, namun untungnya jarang berujung fatal.\n\n**Tantangan NLP:** Hindari kata 'TAPI'. Ganti dengan kata 'DAN' saat Anda menyanggah argumen pasangan agar ego-nya tidak tersentuh.")
+                    ],
+                    7: [
+                        ("👁️ SUJANAN (Rawan Asumsi)", "Ada kecenderungan rasa tidak aman (*insecure*), cemburu, atau salah paham yang sering membayangi.\n\n**Tantangan NLP:** Haram hukumnya menggunakan bahasa 'Generalization' (Misal: 'Kamu selalu begitu!'). Bicaralah hanya pada fakta yang ada hari ini."),
+                        ("👁️ SUJANAN (Ujian Kepercayaan)", "Hubungan ini menuntut transparansi total. Sedikit saja disembunyikan, akan memicu kecurigaan besar.\n\n**Tantangan NLP:** Latih kalibrasi visual Anda. Pahami bahasa tubuhnya saat sedang sedih agar Anda bisa merespon dengan tepat.")
+                    ],
+                    0: [
+                        ("🕊️ PESTHI (Damai & Rukun)", "Hubungan yang sangat tenang, stabil, dan minim drama. Sangat cocok untuk pernikahan jangka panjang.\n\n**Tantangan NLP:** Tetap jaga komitmen. Gunakan afirmasi positif setiap hari untuk memperkuat 'Anchor' kebahagiaan kalian."),
+                        ("🕊️ PESTHI (Ketenangan Batin)", "Kalian tidak butuh banyak kata untuk saling mengerti. Hubungan ini memberikan rasa aman yang nyata.\n\n**Tantangan NLP:** Jangan biarkan rutinitas mematikan romansa. Sisihkan waktu khusus untuk benar-benar terkoneksi tanpa gangguan gawai.")
+                    ]
                 }
                 
                 judul_dinamis, desc_dinamis = random.choice(hasil_weton_dinamis.get(res, hasil_weton_dinamis[0]))
+                
                 ang_tgl_1 = hitung_angka(d1)
                 ang_tgl_2 = hitung_angka(d2)
                 selisih_tgl = abs(ang_tgl_1 - ang_tgl_2)
                 
                 pesan_rapport = {
-                    0: "💘 **SKOR RAPPORT: 95%**\nFrekuensi Identik.",
-                    3: "💘 **SKOR RAPPORT: 90%**\nSangat Sinkron.",
-                    6: "💘 **SKOR RAPPORT: 88%**\nHarmoni Alam Bawah Sadar.",
-                    9: "💘 **SKOR RAPPORT: 92%**\nKoneksi Kuat.",
-                    1: "⚖️ **SKOR RAPPORT: 75%**\nSaling Melengkapi.",
-                    2: "⚖️ **SKOR RAPPORT: 70%**\nButuh Penyesuaian.",
-                    8: "⚖️ **SKOR RAPPORT: 78%**\nDinamis & Berkembang.",
+                    0: "💘 **SKOR RAPPORT: 95% (Frekuensi Identik)**\n\nFilter pikiran kalian selaras sempurna. Kalian ibarat bercermin satu sama lain.",
+                    3: "💘 **SKOR RAPPORT: 90% (Sangat Sinkron)**\n\nResolusi konflik kalian biasanya sangat cepat karena mudah saling memaklumi.",
+                    6: "💘 **SKOR RAPPORT: 88% (Harmoni Alam Bawah Sadar)**\n\nCara kalian memproses informasi hampir sama, membuat obrolan selalu nyambung.",
+                    9: "💘 **SKOR RAPPORT: 92% (Koneksi Kuat)**\n\nKalian memiliki bahasa cinta yang mudah dipahami satu sama lain.",
+                    1: "⚖️ **SKOR RAPPORT: 75% (Saling Melengkapi)**\n\nBanyak perbedaan sudut pandang, namun justru ini yang membuat hubungan kalian kaya.",
+                    2: "⚖️ **SKOR RAPPORT: 70% (Butuh Penyesuaian)**\n\nSesekali terjadi miskomunikasi, latih teknik 'Pacing' saat mulai berdebat.",
+                    8: "⚖️ **SKOR RAPPORT: 78% (Dinamis & Berkembang)**\n\nKalian memandang dunia dengan cara berbeda, jadikan ini kekuatan, bukan kelemahan.",
                 }
-                rapport_text = pesan_rapport.get(selisih_tgl, "🔥 **SKOR RAPPORT: 50%**\nButuh Kalibrasi Ekstra.")
+                rapport_text = pesan_rapport.get(selisih_tgl, "🔥 **SKOR RAPPORT: 50% (Butuh Kalibrasi Ekstra)**\n\nEgo kalian sering berbenturan. Kalian butuh ruang khusus untuk mempelajari *Love Language* masing-masing.")
 
             st.markdown("---")
-            st.subheader(f"🔮 Hasil Audit Asmara: {n1.split()[0].capitalize()} & {n2.split()[0].capitalize()}")
+            n1_cap = n1.split()[0].capitalize()
+            n2_cap = n2.split()[0].capitalize()
+            st.subheader(f"🔮 Hasil Audit Asmara: {n1_cap} & {n2_cap}")
+            st.caption(f"🧩 {n1_cap}: **{weton1}** | 🧩 {n2_cap}: **{weton2}**")
             st.info(f"#### {judul_dinamis}\n{desc_dinamis}")
             
             st.markdown("#### Tingkat Sinkronisasi Pola Pikir (NLP):")
@@ -282,8 +310,9 @@ with tab2:
             else: st.error(rapport_text)
             
             st.markdown("---")
+            st.write("Ingin tahu skrip komunikasi rahasia untuk meredam ego pasangan?")
             st.link_button("Booking Sesi Couple Therapy", "https://wa.me/628999771486")
-        else: st.warning("Pastikan data diisi dengan lengkap.")
+        else: st.warning("Pastikan data diisi dengan lengkap dan bukan tanggal hari ini.")
 
 # ==========================================
 # TAB 3: AUDIT PIKIRAN
@@ -301,30 +330,22 @@ with tab3:
         else: st.success(random.choice(msgs[2:]))
 
 # ==========================================
-# ULASAN DATABASE GOOGLE SHEETS
+# ULASAN REAL-TIME MENGGUNAKAN SESSION STATE
 # ==========================================
 st.markdown("---")
 st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Suara Transformasi</h3>", unsafe_allow_html=True)
 st.write("Lihat apa kata mereka yang telah membongkar pola bawah sadarnya di Neuro Nada.")
 
-# Menarik data ulasan dari Google Sheets
-daftar_ulasan = ambil_ulasan()
+# Menampilkan Daftar Ulasan (5 Teratas)
+for ulasan in st.session_state.daftar_ulasan[:5]:
+    st.markdown(f"""
+    <div class="ulasan-box">
+        <b>{ulasan['nama']}</b> {ulasan['rating']}<br>
+        <i>"{ulasan['teks']}"</i>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Tampilkan Maksimal 10 Ulasan Teratas
-for ulasan in daftar_ulasan[:10]:
-    nama = ulasan.get("Nama", "Anonim")
-    rating = ulasan.get("Rating", "⭐⭐⭐⭐⭐")
-    teks = ulasan.get("Komentar", "")
-    
-    if teks: # Hanya tampilkan jika kolom komentar tidak kosong
-        st.markdown(f"""
-        <div class="ulasan-box">
-            <b>{nama}</b> {rating}<br>
-            <i>"{teks}"</i>
-        </div>
-        """, unsafe_allow_html=True)
-
-# Form Input Ulasan Baru ke Excel
+# Form Input Ulasan Baru
 with st.expander("💬 Bagikan Pengalaman Anda di sini"):
     with st.form("form_review"):
         rev_nama = st.text_input("Nama Anda")
@@ -333,15 +354,12 @@ with st.expander("💬 Bagikan Pengalaman Anda di sini"):
         
         if st.form_submit_button("Kirim Ulasan"):
             if rev_nama and rev_komentar:
-                # Mengirim data ke Google Sheets
-                sukses = kirim_ulasan(rev_nama, rev_rating, rev_komentar)
-                if sukses:
-                    st.success("Terkirim! Terima kasih atas ulasan Anda. Memperbarui layar...")
-                    st.cache_data.clear() # Membersihkan ingatan agar ulasan baru langsung terbaca
-                    time.sleep(2)
-                    st.rerun()
-                else:
-                    st.error("Waduh, koneksi ke database gagal. Coba lagi nanti ya.")
+                st.session_state.daftar_ulasan.insert(0, {
+                    "nama": rev_nama, 
+                    "rating": rev_rating, 
+                    "teks": rev_komentar
+                })
+                st.rerun()
             else:
                 st.warning("Mohon isi Nama dan Ulasan Anda terlebih dahulu.")
 
