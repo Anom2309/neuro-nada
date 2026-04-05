@@ -228,82 +228,63 @@ with tab1:
             st.link_button(f"🔓 Ambil Modul Kode {kode_p}", link_p.get(kode_p))
 
 # ==========================================
-# TAB 2: COUPLE SYNC (WETON & NLP INTEGRATION)
+# TAB 2: COUPLE SYNC (DINAMIS 100%)
 # ==========================================
 with tab2:
-    st.subheader("Kalkulator Sinkronisasi Pasangan")
-    st.write("Uji kecocokan *Meta-Program* Anda dan pasangan berdasarkan Vibrasi Nama & Weton Primbon Nusantara.")
+    st.subheader("Sinkronisasi Pasangan")
+    c1, c2 = st.columns(2)
+    with c1: n1 = st.text_input("Nama Anda", key="n1"); d1 = st.date_input("Lahir Anda", key="d1")
+    with c2: n2 = st.text_input("Nama Pasangan", key="n2"); d2 = st.date_input("Lahir Pasangan", key="d2")
     
-    colA, colB = st.columns(2)
-    with colA:
-        nama_1 = st.text_input("Nama Anda:", key="c_nama1")
-        tgl_1 = st.date_input("Tgl Lahir Anda:", min_value=datetime.date(1920, 1, 1), key="c_tgl1")
-    with colB:
-        nama_2 = st.text_input("Nama Pasangan/Gebetan:", key="c_nama2")
-        tgl_2 = st.date_input("Tgl Lahir Pasangan:", min_value=datetime.date(1920, 1, 1), key="c_tgl2")
-        
-    if st.button("Cek Kompatibilitas Bawah Sadar"):
-        tgl_today = datetime.date.today()
-        
-        # PASUKAN SATPAM NLP
-        if not nama_1 or len(nama_1.strip()) < 3 or not nama_2 or len(nama_2.strip()) < 3:
-            st.error("🚨 Satpam NLP: Pastikan KEDUA nama diisi dengan benar (minimal 3 huruf) agar vibrasi hubungan bisa dihitung sempurna.")
-        elif tgl_1 == tgl_today or tgl_2 == tgl_today:
-            st.error("🚨 Satpam NLP: Masa iya lahirnya hari ini langsung pacaran? Masukkan tanggal lahir yang valid ya!")
-        else:
-            with st.spinner('Mengkalkulasi Neptu Weton & Frekuensi NLP...'):
+    if st.button("Cek Keselarasan"):
+        if n1 and n2 and d1 != datetime.date.today():
+            with st.spinner('Membaca Vibrasi Gabungan...'):
                 time.sleep(1.5)
                 
-            # 1. LOGIKA NEPTU WETON (PRIMBON JODOH)
-            neptu1, weton1 = get_neptu_weton(tgl_1)
-            neptu2, weton2 = get_neptu_weton(tgl_2)
-            total_neptu = neptu1 + neptu2
-            sisa_weton = total_neptu % 8
+                nep1, weton1 = get_neptu_weton(d1)
+                nep2, weton2 = get_neptu_weton(d2)
+                res = (nep1 + nep2) % 8
+                
+                hasil_weton_dinamis = {
+                    1: [("💔 PEGAT", "Tantangan komunikasi. Latih asertif."), ("💔 PEGAT", "Jaga boundary.")],
+                    2: [("👑 RATU", "Harmonis & Disegani."), ("👑 RATU", "Power Couple.")],
+                    3: [("💞 JODOH", "Soulmate sejati."), ("💞 JODOH", "Koneksi batin kuat.")],
+                    4: [("🌱 TOPO", "Ujian bertumbuh."), ("🌱 TOPO", "Fase kalibrasi.")],
+                    5: [("💰 TINARI", "Magnet Rezeki."), ("💰 TINARI", "Kelimpahan karir.")],
+                    6: [("⚡ PADU", "Beda Frekuensi."), ("⚡ PADU", "Gesekan logika.")],
+                    7: [("👁️ SUJANAN", "Rawan Asumsi."), ("👁️ SUJANAN", "Ujian kepercayaan.")],
+                    0: [("🕊️ PESTHI", "Damai & Rukun."), ("🕊️ PESTHI", "Ketenangan batin.")]
+                }
+                
+                judul_dinamis, desc_dinamis = random.choice(hasil_weton_dinamis.get(res, hasil_weton_dinamis[0]))
+                ang_tgl_1 = hitung_angka(d1)
+                ang_tgl_2 = hitung_angka(d2)
+                selisih_tgl = abs(ang_tgl_1 - ang_tgl_2)
+                
+                pesan_rapport = {
+                    0: "💘 **SKOR RAPPORT: 95%**\nFrekuensi Identik.",
+                    3: "💘 **SKOR RAPPORT: 90%**\nSangat Sinkron.",
+                    6: "💘 **SKOR RAPPORT: 88%**\nHarmoni Alam Bawah Sadar.",
+                    9: "💘 **SKOR RAPPORT: 92%**\nKoneksi Kuat.",
+                    1: "⚖️ **SKOR RAPPORT: 75%**\nSaling Melengkapi.",
+                    2: "⚖️ **SKOR RAPPORT: 70%**\nButuh Penyesuaian.",
+                    8: "⚖️ **SKOR RAPPORT: 78%**\nDinamis & Berkembang.",
+                }
+                rapport_text = pesan_rapport.get(selisih_tgl, "🔥 **SKOR RAPPORT: 50%**\nButuh Kalibrasi Ekstra.")
+
+            st.markdown("---")
+            st.subheader(f"🔮 Hasil Audit Asmara: {n1.split()[0].capitalize()} & {n2.split()[0].capitalize()}")
+            st.info(f"#### {judul_dinamis}\n{desc_dinamis}")
             
-            # DATABASE WETON & NLP TANTANGAN
-            hasil_weton = {
-                1: ("💔 PEGAT (Rawan Gesekan)", "Menurut perhitungan Weton Jodoh, hubungan ini memiliki tantangan berat di area komunikasi dan kecenderungan campur tangan pihak luar. \n\n**Tantangan NLP:** Segera perkuat *Boundary* (batasan) hubungan kalian. Hindari pola '*Mind Reading*' (berharap pasangan ngerti tanpa diomongin)."),
-                2: ("👑 RATU (Harmonis & Disegani)", "Sangat memukau! Hubungan kalian memancarkan kharisma yang membuat kalian dihargai dan disegani oleh lingkungan sekitar. \n\n**Tantangan NLP:** Jangan sampai terjebak pencitraan eksternal (Filter *Others*). Pastikan komunikasi internal saat berdua sama baiknya dengan saat di depan publik."),
-                3: ("💞 JODOH (Sinkronisasi Alami)", "Kalian memiliki toleransi dan penerimaan bawah sadar yang luar biasa tinggi satu sama lain. Definisi *Soulmate* sejati. \n\n**Tantangan NLP:** Waspadai zona nyaman yang berlebihan. Sesekali ciptakan percikan '*Break State*' (kejutan spontan) agar romansa tidak pudar ditelan rutinitas."),
-                4: ("🌱 TOPO (Ujian Bertumbuh)", "Awal hubungan mungkin terasa berat dan banyak ujian ego. Namun jika berhasil melewati fase kalibrasi ini, kalian akan sangat solid. \n\n**Tantangan NLP:** Kuasai teknik '*Reframing*'. Saat ada masalah, ubah sudut pandangnya dari 'dia nyari ribut' menjadi 'dia sedang berusaha menyampaikan kebutuhannya'."),
-                5: ("💰 TINARI (Magnet Rezeki)", "Penyatuan energi kalian membawa hoki yang melimpah. Ada saja jalan kemudahan dalam urusan karir dan finansial saat kalian bersama. \n\n**Tantangan NLP:** Jangan jadikan materi sebagai satu-satunya perekat. Arahkan fokus ke '*Outcome*' yang lebih besar, seperti membangun nilai-nilai spiritual bersama."),
-                6: ("⚡ PADU (Beda Frekuensi)", "Akan sering terjadi letupan perdebatan atau cekcok ringan karena perbedaan cara memproses informasi di kepala masing-masing. \n\n**Tantangan NLP:** Latih keras teknik '*Pacing - Leading*'. Selalu setujui/validasi emosinya dulu sebelum Anda membantah argumennya."),
-                7: ("👁️ SUJANAN (Rawan Asumsi)", "Ada kecenderungan kecemburuan, rasa tidak aman (*insecure*), atau salah paham yang sering muncul secara tiba-tiba. \n\n**Tantangan NLP:** Haram hukumnya menggunakan bahasa '*Generalization*' (misal: 'Kamu emang SELALU begini!'). Berlatihlah bicara murni berdasarkan data dan fakta hari itu saja."),
-                0: ("🕊️ PESTHI (Damai & Rukun)", "Hubungan yang sangat adem ayem, stabil, dan jauh dari drama yang menguras energi. Sangat cocok untuk pernikahan jangka panjang. \n\n**Tantangan NLP:** Saking damainya, hubungan bisa terasa hambar. Rutinlah melakukan '*Pattern Interrupt*' (kegiatan baru yang belum pernah dilakukan) agar api asmara tetap menyala.")
-            }
-            
-            # 2. LOGIKA TANGGAL LAHIR (RAPPORT)
-            ang_tgl_1 = hitung_angka(tgl_1)
-            ang_tgl_2 = hitung_angka(tgl_2)
-            selisih_tgl = abs(ang_tgl_1 - ang_tgl_2)
+            st.markdown("#### Tingkat Sinkronisasi Pola Pikir (NLP):")
+            if selisih_tgl in [0,3,6,9]: st.success(rapport_text)
+            elif selisih_tgl in [1,2,8]: st.warning(rapport_text)
+            else: st.error(rapport_text)
             
             st.markdown("---")
-            nama_panggilan_1 = nama_1.split()[0].capitalize()
-            nama_panggilan_2 = nama_2.split()[0].capitalize()
-            st.subheader(f"🔮 Hasil Audit Asmara: {nama_panggilan_1} & {nama_panggilan_2}")
-            
-            # Menampilkan Neptu
-            st.caption(f"🧩 Profil Weton {nama_panggilan_1}: **{weton1}** (Neptu: {neptu1})")
-            st.caption(f"🧩 Profil Weton {nama_panggilan_2}: **{weton2}** (Neptu: {neptu2})")
-            st.caption(f"Total Integrasi Neptu: **{total_neptu}**")
-            
-            # Menampilkan Hasil Kombinasi Weton & NLP
-            judul_weton, deskripsi_weton = hasil_weton.get(sisa_weton, ("Analisa unik", "Hubungan ini butuh kalibrasi personal."))
-            st.info(f"#### {judul_weton}\n{deskripsi_weton}")
-            
-            # Menampilkan Skor Sinkronisasi Meta-Program (Sebagai pendukung)
-            st.markdown("---")
-            st.markdown("#### Tingkat Sinkronisasi Meta-Program (Pola Pikir):")
-            if selisih_tgl == 0 or selisih_tgl == 3 or selisih_tgl == 6 or selisih_tgl == 9:
-                st.success(f"💘 **SKOR RAPPORT: 90% (Sangat Sinkron)**\n\nSecara filter pikiran, kalian sudah sefrekuensi. Resolusi konflik biasanya dapat diselesaikan dengan sangat cepat.")
-            elif selisih_tgl == 1 or selisih_tgl == 2 or selisih_tgl == 8:
-                st.warning(f"⚖️ **SKOR RAPPORT: 70% (Saling Melengkapi)**\n\nBanyak perbedaan sudut pandang, namun ini bagus untuk saling belajar dan melengkapi kekurangan satu sama lain.")
-            else:
-                st.error(f"🔥 **SKOR RAPPORT: 50% (Butuh Kalibrasi Ekstra)**\n\nEgo dan dominasi sering berbenturan keras. Kalian butuh ruang khusus untuk benar-benar mempelajari *Love Language* masing-masing.")
-            
-            st.markdown("---")
-            st.write("Ingin tahu skrip komunikasi NLP rahasia untuk meredam ego pasangan Anda? Konsultasikan secara privat bersama Coach Ahmad.")
             st.link_button("Booking Sesi Couple Therapy", "https://wa.me/628999771486")
+        else: st.warning("Pastikan data diisi dengan lengkap.")
+
 # ==========================================
 # TAB 3: AUDIT PIKIRAN
 # ==========================================
