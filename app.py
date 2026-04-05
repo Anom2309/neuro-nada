@@ -128,18 +128,11 @@ st.markdown("---")
 st.markdown("<h4 style='text-align: center; color: #D4AF37;'>🎧 Soundscape Terapi</h4>", unsafe_allow_html=True)
 st.caption("<div style='text-align: center; margin-bottom:10px;'>Tekan Play untuk memulai frekuensi relaksasi khusus dari Coach Ahmad Septian.</div>", unsafe_allow_html=True)
 
-if os.path.exists("relaksasi.mp3"):
-    try:
-        # Memaksa mesin membaca lagu sampai ke akar datanya (bytes)
-        with open("relaksasi.mp3", "rb") as f:
-            audio_bytes = f.read()
-        st.audio(audio_bytes, format="audio/mp3")
-    except Exception as e:
-        st.error("Gagal memutar audio. Pastikan file tidak rusak.")
-else:
-    st.warning("⚠️ Menunggu file 'relaksasi.mp3' diupload ke GitHub.")
-st.markdown("---")
+# Masukkan link raw dari GitHub di antara tanda kutip di bawah ini
+url_lagu_coach = "https://raw.githubusercontent.com/Anom2309/neuro-nada/refs/heads/main/relaksasi.mp3"
 
+st.audio(url_lagu_coach, format="audio/mp3")
+st.markdown("---")
 # --- DATABASE ANALISA & POTENSI ---
 vibrasi_nama_dict = {
     1: "Nama Anda memancarkan getaran KEMANDIRIAN & KEPEMIMPINAN.",
