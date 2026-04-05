@@ -198,23 +198,78 @@ potensi_dinamis = {
     9: """punya potensi kesadaran dan harmoni luar biasa besar jika filter ekspektasinya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... idealisme ini bisa jadi pola penjara mental yang penuh kekecewaan seumur hidup."""
 }
 
-# --- FUNGSI LOGIKA ---
+# --- FUNGSI-FUNGSI LOGIKA (DIPERBARUI DENGAN NEPTU WETON) ---
 def hitung_angka(tanggal):
     tgl_str = tanggal.strftime("%d%m%Y")
     total = sum(int(digit) for digit in tgl_str)
     while total > 9: total = sum(int(digit) for digit in str(total))
     return total
 
+def hitung_angka_nama(nama):
+    huruf_angka = {'A':1, 'B':2, 'C':3, 'D':4, 'E':5, 'F':6, 'G':7, 'H':8, 'I':9, 'J':1, 'K':2, 'L':3, 'M':4, 'N':5, 'O':6, 'P':7, 'Q':8, 'R':9, 'S':1, 'T':2, 'U':3, 'V':4, 'W':5, 'X':6, 'Y':7, 'Z':8}
+    total = sum(huruf_angka.get(h, 0) for h in nama.upper())
+    if total == 0: return 1
+    while total > 9: total = sum(int(d) for d in str(total))
+    return total
+
 def get_neptu_weton(tanggal):
-    anchor_date = datetime.date(2000, 1, 1)
+    anchor_date = datetime.date(2000, 1, 1) # Sabtu Pahing
     selisih_hari = (tanggal - anchor_date).days
+    
     hari_masehi = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
     pasaran_jawa = ["Pahing", "Pon", "Wage", "Kliwon", "Legi"]
+    
     hari = hari_masehi[tanggal.weekday()]
     pasaran = pasaran_jawa[selisih_hari % 5]
+    
     neptu_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
     neptu_pasaran = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
-    return neptu_hari[hari] + neptu_pasaran[pasaran], f"{hari} {pasaran}"
+    
+    total_neptu = neptu_hari[hari] + neptu_pasaran[pasaran]
+    nama_weton = f"{hari} {pasaran}"
+    return total_neptu, nama_weton
+
+def hitung_zodiak(tanggal):
+    d, m = tanggal.day, tanggal.month
+    if (m == 3 and d >= 21) or (m == 4 and d <= 19): return "Aries"
+    elif (m == 4 and d >= 20) or (m == 5 and d <= 20): return "Taurus"
+    elif (m == 5 and d >= 21) or (m == 6 and d <= 20): return "Gemini"
+    elif (m == 6 and d >= 21) or (m == 7 and d <= 22): return "Cancer"
+    elif (m == 7 and d >= 23) or (m == 8 and d <= 22): return "Leo"
+    elif (m == 8 and d >= 23) or (m == 9 and d <= 22): return "Virgo"
+    elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra"
+    elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio"
+    elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius"
+    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn"
+    elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
+    else: return "Pisces"
+
+def bioritme_nlp(tanggal_lahir):
+    hari_hidup = (datetime.date.today() - tanggal_lahir).days
+    fisik = math.sin(2 * math.pi * (hari_hidup / 23)) * 100
+    emosi = math.sin(2 * math.pi * (hari_hidup / 28)) * 100
+    intelektual = math.sin(2 * math.pi * (hari_hidup / 33)) * 100
+    
+    if emosi > 50 and intelektual > 50: state = "UPTIME STATE (Puncak Kreativitas & Sosial)"
+    elif emosi < -50 and fisik < -50: state = "DOWNTIME STATE (Butuh Me-Time & Refleksi)"
+    elif intelektual > 50 and fisik < 0: state = "ANALYTICAL STATE (Tajam untuk Perencanaan)"
+    else: state = "NEUTRAL STATE (Stabil & Seimbang)"
+    
+    return int(fisik), int(emosi), int(intelektual), state
+
+def get_arketipe(angka):
+    arketipe_dict = {
+        1: "The Leader (Sang Inisiator / Perintis)",
+        2: "The Mediator (Sang Penjaga / Penyelaras)",
+        3: "The Communicator (Sang Visioner / Ekspresif)",
+        4: "The Architect (Sang Alchemist / Transformator)",
+        5: "The Explorer (Sang Eksekutor / Penggerak)",
+        6: "The Nurturer (Sang Harmonizer / Penyeimbang)",
+        7: "The Analyst (Sang Legacy Builder / Pembangun Makna)",
+        8: "The Strategist (Sang Sovereign / Penguasa Diri)",
+        9: "The Humanist (Sang Ascended / Kesadaran Tinggi)"
+    }
+    return arketipe_dict.get(angka, "Pribadi Unik")
 
 # --- MENU TABS ---
 tab1, tab2, tab3 = st.tabs(["👤 Personal Mapping", "👩‍❤️‍👨 Couple Sync", "🕸️ Audit Pikiran"])
