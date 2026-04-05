@@ -235,7 +235,78 @@ with tab2:
     c1, c2 = st.columns(2)
 
     # BATAS TANGGAL
-    min_date = datetime.date(1,1,1901)
+    min_date = datetime.date(with tab2:
+    st.subheader("Sinkronisasi Pasangan")
+    c1, c2 = st.columns(2)
+
+    # BATAS TANGGAL
+    min_date = datetime.date(1901, 1, 1)
+    max_date = datetime.date.today() - datetime.timedelta(days=15*365)
+
+    with c1:
+        n1 = st.text_input("Nama Anda", key="n1")
+        d1 = st.date_input("Lahir Anda", min_value=min_date, max_value=max_date, key="d1")
+
+    with c2:
+        n2 = st.text_input("Nama Pasangan", key="n2")
+        d2 = st.date_input("Lahir Pasangan", min_value=min_date, max_value=max_date, key="d2")
+    
+    if st.button("Cek Keselarasan"):
+        # VALIDASI UMUR MINIMAL 15 TAHUN
+        umur1 = (datetime.date.today() - d1).days // 365
+        umur2 = (datetime.date.today() - d2).days // 365
+
+        if umur1 < 15 or umur2 < 15:
+            st.error("🚫 Minimal usia 15 tahun untuk menggunakan fitur ini.")
+        
+        elif n1 and n2 and d1 != datetime.date.today():
+            with st.spinner('Membaca Vibrasi Gabungan...'):
+                time.sleep(1.5)
+                
+                nep1, weton1 = get_neptu_weton(d1)
+                nep2, weton2 = get_neptu_weton(d2)
+                res = (nep1 + nep2) % 8
+                
+                hasil_weton_dinamis = {
+                    1: [("💔 PEGAT", "Tantangan komunikasi. Latih asertif."), ("💔 PEGAT", "Jaga boundary.")],
+                    2: [("👑 RATU", "Harmonis & Disegani."), ("👑 RATU", "Power Couple.")],
+                    3: [("💞 JODOH", "Soulmate sejati."), ("💞 JODOH", "Koneksi batin kuat.")],
+                    4: [("🌱 TOPO", "Ujian bertumbuh."), ("🌱 TOPO", "Fase kalibrasi.")],
+                    5: [("💰 TINARI", "Magnet Rezeki."), ("💰 TINARI", "Kelimpahan karir.")],
+                    6: [("⚡ PADU", "Beda Frekuensi."), ("⚡ PADU", "Gesekan logika.")],
+                    7: [("👁️ SUJANAN", "Rawan Asumsi."), ("👁️ SUJANAN", "Ujian kepercayaan.")],
+                    0: [("🕊️ PESTHI", "Damai & Rukun."), ("🕊️ PESTHI", "Ketenangan batin.")]
+                }
+                
+                judul_dinamis, desc_dinamis = random.choice(hasil_weton_dinamis.get(res, hasil_weton_dinamis[0]))
+                ang_tgl_1 = hitung_angka(d1)
+                ang_tgl_2 = hitung_angka(d2)
+                selisih_tgl = abs(ang_tgl_1 - ang_tgl_2)
+                
+                pesan_rapport = {
+                    0: "💘 **SKOR RAPPORT: 95%**\nFrekuensi Identik.",
+                    3: "💘 **SKOR RAPPORT: 90%**\nSangat Sinkron.",
+                    6: "💘 **SKOR RAPPORT: 88%**\nHarmoni Alam Bawah Sadar.",
+                    9: "💘 **SKOR RAPPORT: 92%**\nKoneksi Kuat.",
+                    1: "⚖️ **SKOR RAPPORT: 75%**\nSaling Melengkapi.",
+                    2: "⚖️ **SKOR RAPPORT: 70%**\nButuh Penyesuaian.",
+                    8: "⚖️ **SKOR RAPPORT: 78%**\nDinamis & Berkembang.",
+                }
+                rapport_text = pesan_rapport.get(selisih_tgl, "🔥 **SKOR RAPPORT: 50%**\nButuh Kalibrasi Ekstra.")
+
+            st.markdown("---")
+            st.subheader(f"🔮 Hasil Audit Asmara: {n1.split()[0].capitalize()} & {n2.split()[0].capitalize()}")
+            st.info(f"#### {judul_dinamis}\n{desc_dinamis}")
+            
+            st.markdown("#### Tingkat Sinkronisasi Pola Pikir (NLP):")
+            if selisih_tgl in [0,3,6,9]: st.success(rapport_text)
+            elif selisih_tgl in [1,2,8]: st.warning(rapport_text)
+            else: st.error(rapport_text)
+            
+            st.markdown("---")
+            st.link_button("Booking Sesi Couple Therapy", "https://wa.me/628999771486")
+        else:
+            st.warning("Pastikan data diisi dengan lengkap."))
     max_date = datetime.date.today() - datetime.timedelta(days=1*365)
 
     with c1:
