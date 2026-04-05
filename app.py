@@ -159,6 +159,21 @@ data_analisa = {
     9: {"karakter": "Profil 'The Humanist (Sang Ascended / Kesadaran Tinggi)'. Anda memiliki 'State of Mind' yang inklusif dan bijaksana. Secara NLP, Anda cenderung memandang dunia secara 'Holistik' dan memiliki misi hidup yang melampaui kepentingan pribadi.", "asmara": "Anda mencari koneksi jiwa (Soulmate). Anda sangat pemaaf, namun waspadai pola 'Generalization' yang membuat Anda sering memaklumi kesalahan pasangan berulang kali. Tetaplah realistis dalam membangun hubungan."}
 }
 
+tips_zodiak_nlp = {
+    "Aries": "Gunakan teknik 'Pacing' emosi yang lebih sabar.",
+    "Taurus": "Berikan ruang untuk 'Reframing' perbedaan pendapat.",
+    "Gemini": "Fokus pada 'Deep Rapport' daripada obrolan permukaan.",
+    "Cancer": "Hati-hati dengan pola 'Anchor' negatif dari masa lalu.",
+    "Leo": "Gunakan bahasa 'Appreciation' untuk pasangan.",
+    "Virgo": "Kurangi filter 'Detail', gunakan 'Chunk Up'.",
+    "Libra": "Pastikan 'Internal Reference' Anda kuat.",
+    "Scorpio": "Bangun 'Trust', hindari 'Mind Reading'.",
+    "Sagittarius": "Jaga komitmen melalui 'Value Alignment'.",
+    "Capricorn": "Seimbangkan karier dengan kehadiran emosional.",
+    "Aquarius": "Hubungkan visi idealis dengan realitas emosional.",
+    "Pisces": "Bedakan imajinasi dengan kenyataan."
+}
+
 closing_brutal_dinamis = {
     1: ["Terus menunda karena merasa 'belum sempurna'", "Sulit percaya pada orang lain", "Meng-sabotase diri sendiri"],
     2: ["Terjebak memuaskan orang lain", "Takut berkata 'TIDAK'", "Memendam emosi"],
