@@ -312,8 +312,7 @@ with tab1:
             value=tgl_today,
             min_value=datetime.date(1920, 1, 1),
             max_value=tgl_today,
-            format="DD/MM/YYYY",
-            key="tgl_user_t1"
+            key="tgl_user_t1"  # aman kalau cuma 1
         )
 
         if st.button("Mulai Pemetaan Internal"):
