@@ -235,7 +235,7 @@ with tab2:
     c1, c2 = st.columns(2)
 
     # BATAS TANGGAL
-    min_date = datetime.date(1901, 1, 1)
+    min_date = datetime.date(1,1,1901)
     max_date = datetime.date.today() - datetime.timedelta(days=1*365)
 
     with c1:
