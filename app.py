@@ -123,11 +123,6 @@ if os.path.exists("banner.jpg"):
 st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; font-size: 18px; color: #D4AF37;'>{get_greeting()}</p>", unsafe_allow_html=True)
 
-# --- PEMUTAR MUSIK RELAKSASI ---
-st.markdown("---")
-st.markdown("<h4 style='text-align: center; color: #D4AF37;'>🎧 Soundscape Terapi</h4>", unsafe_allow_html=True)
-st.caption("<div style='text-align: center; margin-bottom:10px;'>Tekan Play untuk memulai frekuensi relaksasi khusus dari Coach Ahmad Septian.</div>", unsafe_allow_html=True)
-
 # Memakai Direct Link Google Drive (Dijamin bunyi dan anti-error)
 url_lagu_coach = "https://drive.google.com/uc?export=download&id=1Eg-xmIhFs4Vj2eesO-D08TPr8SenY94A"
 
