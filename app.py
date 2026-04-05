@@ -125,7 +125,14 @@ if os.path.exists("banner.jpg"):
 
 st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; font-size: 18px; color: #D4AF37;'>{get_greeting()}</p>", unsafe_allow_html=True)
-
+# --- SAPAAN PERSONAL OTOMATIS ---
+nama_global = st.session_state.get("nama_global")
+if nama_global:
+    st.markdown(
+        f"<p style='text-align:center;'>Halo <b>{nama_global}</b>, siap bongkar pola hari ini? 🔥</p>",
+        unsafe_allow_html=True
+    )
+    
 # --- PEMUTAR MUSIK RELAKSASI ---
 st.markdown("---")
 st.markdown("<h4 style='text-align: center; color: #D4AF37;'>🎧 Soundscape Terapi</h4>", unsafe_allow_html=True)
