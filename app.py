@@ -106,7 +106,7 @@ st.markdown("---")
 st.markdown("<h4 style='text-align: center; color: #D4AF37;'>🎧 Soundscape Terapi</h4>", unsafe_allow_html=True)
 st.caption("<div style='text-align: center; margin-bottom:10px;'>Tekan Play untuk memulai frekuensi relaksasi khusus dari Coach Ahmad Septian.</div>", unsafe_allow_html=True)
 
-if os.path.exists("relaksasi.mp3"):
+if os.path.exists("relaksasi.mp3.mp3"):
     st.audio("relaksasi.mp3", format="audio/mp3")
 else:
     st.warning("⚠️ Menunggu file 'relaksasi.mp3'. Pastikan Anda sudah meng-uploadnya ke GitHub.")
