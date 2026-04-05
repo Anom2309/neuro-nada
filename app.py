@@ -291,11 +291,12 @@ with tab1:
     st.subheader("Bongkar Pola Bawah Sadar Anda")
     nama_user = st.text_input(
     "Nama Lengkap Anda:",
-    value=st.session_state.get("nama_global", ""),
     placeholder="Masukkan nama panggilan Anda...",
     key="nama_user_t1"
 )
 
+# AUTO UPDATE REAL-TIME
+st.session_state["nama_global"] = nama_user
 # AUTO SIMPAN KE GLOBAL
 if nama_user:
     st.session_state["nama_global"] = nama_user
