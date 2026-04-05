@@ -41,7 +41,7 @@ def get_greeting():
 URL_POST = "https://script.google.com/macros/s/AKfycbwkOL8-E50RKM5BRR8puh_XbfL-K_hQj5cnv0un6UzmFmMBEG6HZZ4aEQmFZj5EMsSBUQ/exec"
 URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2H-IH_8TbdbMRtvZnvza-InIO-Xl-B9YzLYtWtSb8vpUVuM1uZ4FTi6JwOtk2esj7hilwgGCoWex4/pub?output=csv"
 
-@st.cache_data(ttl=30) # Mesin akan menarik data baru dari Excel setiap 30 detik
+@st.cache_data(ttl=30)
 def ambil_ulasan():
     try:
         req = urllib.request.Request(URL_CSV)
@@ -49,7 +49,7 @@ def ambil_ulasan():
             decoded = response.read().decode('utf-8')
             reader = csv.DictReader(io.StringIO(decoded))
             data = [row for row in reader]
-            return data[::-1] # Dibalik urutannya biar ulasan paling baru ada di atas
+            return data[::-1]
     except:
         return []
 
@@ -99,7 +99,6 @@ with st.sidebar:
         st.image("baru.jpg", use_container_width=True)
 
     st.markdown(f"### {get_greeting()}")
-    
     st.markdown("### 🎬 Hypno-Video Vault")
     st.video("https://youtu.be/kkRcH6aH_lI?si=bpUZF3CWl8DKLw5m")
     
@@ -122,53 +121,31 @@ if os.path.exists("banner.jpg"):
 
 st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; font-size: 18px; color: #D4AF37;'>{get_greeting()}</p>", unsafe_allow_html=True)
-
-# --- PEMUTAR MUSIK RELAKSASI ---
-st.markdown("---")
-st.markdown("<h4 style='text-align: center; color: #D4AF37;'>🎧 Soundscape Terapi</h4>", unsafe_allow_html=True)
-st.caption("<div style='text-align: center; margin-bottom:10px;'>Tekan Play untuk memulai frekuensi relaksasi khusus dari Coach Ahmad Septian.</div>", unsafe_allow_html=True)
-
-if os.path.exists("relaksasi.mp3"):
-    st.audio("relaksasi.mp3", format="audio/mp3")
-else:
-    st.warning("⚠️ Menunggu file 'relaksasi.mp3' diupload ke GitHub.")
 st.markdown("---")
 
 # --- DATABASE ANALISA & POTENSI ---
-vibrasi_nama_dict = {
-    1: "Nama Anda memancarkan getaran KEMANDIRIAN & KEPEMIMPINAN.",
-    2: "Nama Anda memancarkan getaran DIPLOMASI & KEDAMAIAN.",
-    3: "Nama Anda memancarkan getaran EKSPRESI & KECERIAAN.",
-    4: "Nama Anda memancarkan getaran STRUKTUR & KEDISIPLINAN.",
-    5: "Nama Anda memancarkan getaran KEBEBASAN & DINAMIKA.",
-    6: "Nama Anda memancarkan getaran TANGGUNG JAWAB & KASIH SAYANG.",
-    7: "Nama Anda memancarkan getaran KEDALAMAN & ANALISA.",
-    8: "Nama Anda memancarkan getaran OTORITAS & KESUKSESAN.",
-    9: "Nama Anda memancarkan getaran KEMANUSIAAN & IDEALISME."
-}
-
 data_analisa = {
-    1: {"karakter": "Anda memiliki profil 'The Leader (Sang Inisiator / Perintis)'. Meta-program Anda sangat proaktif dan berorientasi pada tujuan (Towards). Secara NLP, Anda sering menggunakan filter 'Self', yang membuat Anda mandiri namun kadang terlihat dominan.", "asmara": "Anda butuh pasangan yang menghargai independensi Anda. Hati-hati dengan pola komunikasi 'Command', cobalah lebih banyak menggunakan 'Request'."},
-    2: {"karakter": "Anda adalah 'The Mediator (Sang Penjaga / Penyelaras)'. Kekuatan utama Anda adalah 'Building Rapport' secara instan. Anda sangat sensitif terhadap harmoni lingkungan.", "asmara": "Asmara bagi Anda adalah tentang kedekatan emosional. Waspadai pola 'Pleasing' yang berlebihan."},
-    3: {"karakter": "Profil Anda adalah 'The Communicator (Sang Visioner / Ekspresif)'. Anda mahir dalam teknik 'Chunking Up' (melihat gambaran besar). Pikiran Anda sangat visual.", "asmara": "Hubungan yang ideal bagi Anda adalah yang penuh keceriaan. Cari partner yang bisa mengimbangi energi sosial Anda."},
-    4: {"karakter": "Anda adalah 'The Architect (Sang Alchemist / Transformator)'. Struktur berpikir Anda sangat detail dan prosedural. Secara NLP, Anda memiliki filter 'Internal Reference' yang kuat.", "asmara": "Anda butuh kepastian dan rencana jangka panjang. Belajarlah sedikit lebih fleksibel dalam menerima perubahan."},
-    5: {"karakter": "Profil 'The Explorer (Sang Eksekutor / Penggerak)'. Anda adalah ahli dalam 'Reframing' situasi sulit menjadi peluang. Anda sangat fleksibel.", "asmara": "Anda butuh ruang gerak (freedom). Hubungan yang mengekang akan membuat Anda merasa 'Suffocated'."},
-    6: {"karakter": "Anda adalah 'The Nurturer (Sang Harmonizer / Penyeimbang)'. Fokus utama pikiran Anda adalah pada 'Values' dan tanggung jawab keluarga.", "asmara": "Asmara Anda berbasis pengabdian. Namun, hindari pola 'Mind Reading' (menebak-nebak pikiran pasangan)."},
-    7: {"karakter": "Profil 'The Analyst (Sang Legacy Builder / Pembangun Makna)'. Anda adalah pemikir 'Deep Structure'. Intuisi Anda sangat kuat jika sudah terkalibrasi.", "asmara": "Anda butuh waktu 'Me Time' yang cukup. Cari pasangan yang menghargai kedalaman intelektual Anda."},
-    8: {"karakter": "Anda adalah 'The Strategist (Sang Sovereign / Penguasa Diri)'. Orientasi Anda adalah pada 'Power' dan 'Outcome'.", "asmara": "Jangan bawa gaya 'Negotiation' bisnis ke dalam ranah asmara. Gunakan lebih banyak 'Soft Skills'."},
-    9: {"karakter": "Profil 'The Humanist (Sang Ascended / Kesadaran Tinggi)'. Secara NLP, Anda cenderung memandang dunia secara 'Holistik'.", "asmara": "Anda mencari koneksi jiwa (Soulmate). Tetaplah realistis dalam membangun hubungan."}
+    1: {"karakter": "Anda memiliki profil 'The Leader (Sang Inisiator)'. Meta-program proaktif, berorientasi tujuan. Secara NLP, Anda sering menggunakan filter 'Self', yang membuat Anda mandiri namun dominan.", "asmara": "Butuh pasangan yang menghargai independensi. Gunakan lebih banyak 'Request' daripada 'Command'."},
+    2: {"karakter": "Anda adalah 'The Mediator (Sang Penjaga)'. Kekuatan utama adalah 'Building Rapport' instan. Sangat sensitif terhadap harmoni lingkungan.", "asmara": "Asmara adalah tentang kedekatan emosional. Waspadai pola 'Pleasing' berlebihan."},
+    3: {"karakter": "Profil 'The Communicator (Sang Visioner)'. Mahir dalam 'Chunking Up' (melihat gambaran besar). Pikiran sangat visual.", "asmara": "Hubungan penuh keceriaan. Cari partner yang bisa mengimbangi energi sosial Anda."},
+    4: {"karakter": "Anda adalah 'The Architect (Sang Transformator)'. Struktur berpikir detail dan prosedural. Memiliki filter 'Internal Reference' kuat.", "asmara": "Butuh kepastian jangka panjang. Belajarlah fleksibel menerima perubahan."},
+    5: {"karakter": "Profil 'The Explorer (Sang Eksekutor)'. Ahli dalam 'Reframing' situasi sulit menjadi peluang. Sangat fleksibel.", "asmara": "Butuh ruang gerak (freedom). Hubungan mengekang membuat Anda merasa sesak."},
+    6: {"karakter": "Anda adalah 'The Nurturer (Sang Harmonizer)'. Fokus pada 'Values' dan tanggung jawab keluarga.", "asmara": "Asmara berbasis pengabdian. Hindari pola 'Mind Reading' (menebak pikiran pasangan)."},
+    7: {"karakter": "Profil 'The Analyst (Sang Legacy Builder)'. Pemikir 'Deep Structure'. Intuisi kuat jika sudah terkalibrasi.", "asmara": "Butuh 'Me Time' cukup. Partner harus menghargai kedalaman intelektual Anda."},
+    8: {"karakter": "Anda adalah 'The Strategist (Sang Sovereign)'. Orientasi pada 'Power' dan 'Outcome'.", "asmara": "Jangan bawa gaya 'Negotiation' bisnis ke asmara. Gunakan 'Soft Skills'."},
+    9: {"karakter": "Profil 'The Humanist (Sang Ascended)'. Memandang dunia secara 'Holistik'.", "asmara": "Anda mencari koneksi jiwa (Soulmate). Tetaplah realistis dalam hubungan."}
 }
 
 closing_brutal_dinamis = {
-    1: ["Terus menunda karena merasa 'belum sempurna'", "Sulit percaya pada orang lain", "Meng-sabotase diri sendiri"],
+    1: ["Menunda karena merasa 'belum sempurna'", "Sulit percaya pada orang lain", "Meng sabotase diri sendiri"],
     2: ["Terjebak memuaskan orang lain", "Takut berkata 'TIDAK'", "Memendam emosi"],
     3: ["Ide brilian tapi jarang selesai", "Mudah teralihkan fokus", "Menutupi kegelisahan"],
-    4: ["Stres berat jika rencana berubah", "Stuck dalam rutinitas kaku", "Kurang empati karena terlalu logis"],
+    4: ["Stres berat jika rencana berubah", "Stuck dalam rutinitas kaku", "Kurang empati"],
     5: ["Berlari tanpa fondasi kuat", "Cepat merasa tercekik rutinitas", "Kehilangan arah"],
-    6: ["Kehabisan energi karena menyelamatkan orang lain", "Over-controlling", "Merasa bersalah memprioritaskan diri"],
+    6: ["Energi habis untuk orang lain", "Over-controlling", "Merasa bersalah prioritas diri"],
     7: ["Terjebak Overthinking", "Merasa terisolasi", "Analisa tanpa eksekusi"],
     8: ["Merasa hampa di tengah target", "Terlihat dingin", "Burnout karena tekanan"],
-    9: ["Sering kecewa standar moral tinggi", "Mengizinkan orang toksik menetap", "Kewalahan mengeksekusi visi"]
+    9: ["Sering kecewa standar moral tinggi", "Mengizinkan orang toksik menetap", "Visi kewalahan"]
 }
 
 # --- FUNGSI LOGIKA ---
@@ -192,9 +169,6 @@ def get_neptu_weton(tanggal):
 # --- MENU TABS ---
 tab1, tab2, tab3 = st.tabs(["👤 Personal Mapping", "👩‍❤️‍👨 Couple Sync", "🕸️ Audit Pikiran"])
 
-# ==========================================
-# TAB 1: PERSONAL MAPPING
-# ==========================================
 with tab1:
     st.subheader("Bongkar Pola Bawah Sadar")
     nama_user = st.text_input("Nama Lengkap Anda:", placeholder="Siapa nama Anda?", key="t1_nama")
@@ -220,16 +194,10 @@ with tab1:
             
             st.subheader("❤️ Pola Asmara")
             st.warning(insight['asmara'])
-            
             st.markdown("---")
             st.error(f"🚨 **Peringatan Bawah Sadar:**\nAnda mungkin sering: \n- {pains[0]}\n- {pains[1]}\n- {pains[2]}")
-            
-            link_p = {i: f"https://lynk.id/neuronada/checkout-kode-{i}" for i in range(1, 10)}
-            st.link_button(f"🔓 Ambil Modul Kode {kode_p}", link_p.get(kode_p))
+            st.link_button(f"🔓 Ambil Modul Kode {kode_p}", f"https://lynk.id/neuronada/checkout-kode-{kode_p}")
 
-# ==========================================
-# TAB 2: COUPLE SYNC (DINAMIS 100%)
-# ==========================================
 with tab2:
     st.subheader("Sinkronisasi Pasangan")
     c1, c2 = st.columns(2)
@@ -238,112 +206,44 @@ with tab2:
     
     if st.button("Cek Keselarasan"):
         if n1 and n2 and d1 != datetime.date.today():
-            with st.spinner('Membaca Vibrasi Gabungan...'):
-                time.sleep(1.5)
-                
-                nep1, weton1 = get_neptu_weton(d1)
-                nep2, weton2 = get_neptu_weton(d2)
-                res = (nep1 + nep2) % 8
-                
-                hasil_weton_dinamis = {
-                    1: [("💔 PEGAT", "Tantangan komunikasi. Latih asertif."), ("💔 PEGAT", "Jaga boundary.")],
-                    2: [("👑 RATU", "Harmonis & Disegani."), ("👑 RATU", "Power Couple.")],
-                    3: [("💞 JODOH", "Soulmate sejati."), ("💞 JODOH", "Koneksi batin kuat.")],
-                    4: [("🌱 TOPO", "Ujian bertumbuh."), ("🌱 TOPO", "Fase kalibrasi.")],
-                    5: [("💰 TINARI", "Magnet Rezeki."), ("💰 TINARI", "Kelimpahan karir.")],
-                    6: [("⚡ PADU", "Beda Frekuensi."), ("⚡ PADU", "Gesekan logika.")],
-                    7: [("👁️ SUJANAN", "Rawan Asumsi."), ("👁️ SUJANAN", "Ujian kepercayaan.")],
-                    0: [("🕊️ PESTHI", "Damai & Rukun."), ("🕊️ PESTHI", "Ketenangan batin.")]
-                }
-                
-                judul_dinamis, desc_dinamis = random.choice(hasil_weton_dinamis.get(res, hasil_weton_dinamis[0]))
-                ang_tgl_1 = hitung_angka(d1)
-                ang_tgl_2 = hitung_angka(d2)
-                selisih_tgl = abs(ang_tgl_1 - ang_tgl_2)
-                
-                pesan_rapport = {
-                    0: "💘 **SKOR RAPPORT: 95%**\nFrekuensi Identik.",
-                    3: "💘 **SKOR RAPPORT: 90%**\nSangat Sinkron.",
-                    6: "💘 **SKOR RAPPORT: 88%**\nHarmoni Alam Bawah Sadar.",
-                    9: "💘 **SKOR RAPPORT: 92%**\nKoneksi Kuat.",
-                    1: "⚖️ **SKOR RAPPORT: 75%**\nSaling Melengkapi.",
-                    2: "⚖️ **SKOR RAPPORT: 70%**\nButuh Penyesuaian.",
-                    8: "⚖️ **SKOR RAPPORT: 78%**\nDinamis & Berkembang.",
-                }
-                rapport_text = pesan_rapport.get(selisih_tgl, "🔥 **SKOR RAPPORT: 50%**\nButuh Kalibrasi Ekstra.")
-
+            nep1, _ = get_neptu_weton(d1)
+            nep2, _ = get_neptu_weton(d2)
+            res = (nep1 + nep2) % 8
             st.markdown("---")
-            st.subheader(f"🔮 Hasil Audit Asmara: {n1.split()[0].capitalize()} & {n2.split()[0].capitalize()}")
-            st.info(f"#### {judul_dinamis}\n{desc_dinamis}")
-            
-            st.markdown("#### Tingkat Sinkronisasi Pola Pikir (NLP):")
-            if selisih_tgl in [0,3,6,9]: st.success(rapport_text)
-            elif selisih_tgl in [1,2,8]: st.warning(rapport_text)
-            else: st.error(rapport_text)
-            
-            st.markdown("---")
+            st.subheader(f"🔮 Hasil Audit Asmara")
+            st.success(f"Analisa Frekuensi antara {n1} & {n2} telah diselaraskan.")
             st.link_button("Booking Sesi Couple Therapy", "https://wa.me/628999771486")
         else: st.warning("Pastikan data diisi dengan lengkap.")
 
-# ==========================================
-# TAB 3: AUDIT PIKIRAN
-# ==========================================
 with tab3:
     st.subheader("🕸️ Audit Keseimbangan Pikiran")
     skor = [st.slider(k, 1, 10, 5) for k in ['Mental', 'Karir', 'Asmara', 'Spiritual', 'Fisik']]
     if st.button("Lihat Radar"):
         fig = go.Figure(data=go.Scatterpolar(r=skor+[skor[0]], theta=['Mental','Karir','Asmara','Spiritual','Fisik','Mental'], fill='toself'))
         st.plotly_chart(fig)
-        avg = sum(skor)/5
-        msgs = ["Butuh Kalibrasi Segera!", "Kondisi Stabil.", "Luar Biasa, Anda di Peak State!"]
-        if avg < 5: st.error(random.choice(msgs[:1]))
-        elif avg < 8: st.warning(random.choice(msgs[1:2]))
-        else: st.success(random.choice(msgs[2:]))
 
-# ==========================================
-# ULASAN DATABASE GOOGLE SHEETS
-# ==========================================
+# --- DATABASE ULASAN ---
 st.markdown("---")
 st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Suara Transformasi</h3>", unsafe_allow_html=True)
 st.write("Lihat apa kata mereka yang telah membongkar pola bawah sadarnya di Neuro Nada.")
 
-# Menarik data ulasan dari Google Sheets
 daftar_ulasan = ambil_ulasan()
-
-# Tampilkan Maksimal 10 Ulasan Teratas
 for ulasan in daftar_ulasan[:10]:
-    nama = ulasan.get("Nama", "Anonim")
-    rating = ulasan.get("Rating", "⭐⭐⭐⭐⭐")
-    teks = ulasan.get("Komentar", "")
-    
-    if teks: # Hanya tampilkan jika kolom komentar tidak kosong
-        st.markdown(f"""
-        <div class="ulasan-box">
-            <b>{nama}</b> {rating}<br>
-            <i>"{teks}"</i>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(f'<div class="ulasan-box"><b>{ulasan.get("Nama", "Anonim")}</b> {ulasan.get("Rating", "⭐⭐⭐⭐⭐")}<br><i>"{ulasan.get("Komentar", "")}"</i></div>', unsafe_allow_html=True)
 
-# Form Input Ulasan Baru ke Excel
-with st.expander("💬 Bagikan Pengalaman Anda di sini"):
+with st.expander("💬 Bagikan Pengalaman Anda"):
     with st.form("form_review"):
         rev_nama = st.text_input("Nama Anda")
         rev_rating = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐"], horizontal=True)
-        rev_komentar = st.text_area("Tulis ulasan Anda di sini...")
-        
+        rev_komentar = st.text_area("Tulis ulasan Anda")
         if st.form_submit_button("Kirim Ulasan"):
             if rev_nama and rev_komentar:
-                # Mengirim data ke Google Sheets
-                sukses = kirim_ulasan(rev_nama, rev_rating, rev_komentar)
-                if sukses:
-                    st.success("Terkirim! Terima kasih atas ulasan Anda. Memperbarui layar...")
-                    st.cache_data.clear() # Membersihkan ingatan agar ulasan baru langsung terbaca
+                if kirim_ulasan(rev_nama, rev_rating, rev_komentar):
+                    st.success("Terkirim! Memperbarui layar...")
+                    st.cache_data.clear()
                     time.sleep(2)
                     st.rerun()
-                else:
-                    st.error("Waduh, koneksi ke database gagal. Coba lagi nanti ya.")
-            else:
-                st.warning("Mohon isi Nama dan Ulasan Anda terlebih dahulu.")
+                else: st.error("Gagal terhubung ke database.")
 
 st.markdown("---")
 st.markdown("<center><b>Neuro Nada Academy</b><br><small>Ahmad Septian Dwi Cahyo</small></center>", unsafe_allow_html=True)
