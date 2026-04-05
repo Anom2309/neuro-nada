@@ -78,16 +78,16 @@ with st.sidebar:
 
     st.markdown(f"### {get_greeting()}")
     
-    # --- FITUR BARU: MUSIK RELAKSASI (BINAURAL BEATS) ---
+   # --- FITUR BARU: MUSIK RELAKSASI (BINAURAL BEATS) ---
     st.markdown("### 🎧 Soundscape Terapi")
-    st.markdown("""
-        <audio controls loop style="width: 100%;">
-          <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=meditation-bowl-singing-bowl-root-chakra-101155.mp3" type="audio/mpeg">
-          Browser Anda tidak mendukung elemen audio.
-        </audio>
-        <p style='font-size: 12px; color: gray;'>Putar audio ini untuk menurunkan gelombang otak Anda ke fase relaksasi (Alpha/Theta) selama membaca analisa.</p>
-    """, unsafe_allow_html=True)
+    st.caption("Putar audio ini untuk menurunkan gelombang otak Anda ke fase relaksasi (Alpha/Theta).")
     
+    # Memanggil file audio.mp3 dari dalam gudang GitHub (100% Anti-Error)
+    if os.path.exists("audio.mp3"):
+        st.audio("audio.mp3", format="audio/mp3")
+    else:
+        st.warning("Menunggu file audio.mp3 di-upload...")
+        
     st.markdown("---")
     st.markdown("### 🎬 Hypno-Video Vault")
     st.video("https://youtu.be/kkRcH6aH_lI?si=bpUZF3CWl8DKLw5m")
