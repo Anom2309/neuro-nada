@@ -123,11 +123,6 @@ if os.path.exists("banner.jpg"):
 st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
 st.markdown(f"<p style='text-align: center; font-size: 18px; color: #D4AF37;'>{get_greeting()}</p>", unsafe_allow_html=True)
 
-# Memakai Direct Link Google Drive (Dijamin bunyi dan anti-error)
-url_lagu_coach = "https://drive.google.com/uc?export=download&id=1Eg-xmIhFs4Vj2eesO-D08TPr8SenY94A"
-
-st.audio(url_lagu_coach, format="audio/mp3")
-st.markdown("---")
 # --- DATABASE ANALISA & POTENSI ---
 vibrasi_nama_dict = {
     1: "Nama Anda memancarkan getaran KEMANDIRIAN & KEPEMIMPINAN.",
