@@ -38,18 +38,11 @@ def get_greeting():
 # ==========================================
 # DATABASE CLOUD: GOOGLE SHEETS
 # ==========================================
-# 1. URL POST ini udah gw masukin otomatis dari link yang lu kasih
 URL_POST = "https://script.google.com/macros/s/AKfycbwkOL8-E50RKM5BRR8puh_XbfL-K_hQj5cnv0un6UzmFmMBEG6HZZ4aEQmFZj5EMsSBUQ/exec"
-
-# 2. TUGAS LU: Ganti tulisan di bawah ini pakai link CSV dari Tahap 3 (Publish to Web)
-URL_CSV = "MASUKKAN_URL_CSV_LU_DISINI"
+URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2H-IH_8TbdbMRtvZnvza-InIO-Xl-B9YzLYtWtSb8vpUVuM1uZ4FTi6JwOtk2esj7hilwgGCoWex4/pub?output=csv"
 
 @st.cache_data(ttl=30) # Mesin akan menarik data baru dari Excel setiap 30 detik
 def ambil_ulasan():
-    if "MASUKKAN" in URL_CSV:
-        return [
-            {"Nama": "Sistem Neuro Nada", "Rating": "⭐⭐⭐⭐⭐", "Komentar": "Menunggu URL CSV dimasukkan oleh Coach Ahmad agar ulasan asli muncul di sini."}
-        ]
     try:
         req = urllib.request.Request(URL_CSV)
         with urllib.request.urlopen(req) as response:
@@ -319,7 +312,6 @@ daftar_ulasan = ambil_ulasan()
 
 # Tampilkan Maksimal 10 Ulasan Teratas
 for ulasan in daftar_ulasan[:10]:
-    # Pastikan nama kolom sama persis dengan yang lu tulis di Baris 1 Google Sheets (Nama, Rating, Komentar)
     nama = ulasan.get("Nama", "Anonim")
     rating = ulasan.get("Rating", "⭐⭐⭐⭐⭐")
     teks = ulasan.get("Komentar", "")
