@@ -278,47 +278,120 @@ tab1, tab2, tab3 = st.tabs(["👤 Personal Mapping", "👩‍❤️‍👨 Coupl
 # TAB 1: PERSONAL MAPPING
 # ==========================================
 with tab1:
-    st.subheader("Bongkar Pola Bawah Sadar")
-    nama_user = st.text_input("Nama Lengkap Anda:", placeholder="Siapa nama Anda?", key="t1_nama")
+    st.subheader("Bongkar Pola Bawah Sadar Anda")
+    nama_user = st.text_input("Nama Lengkap Anda:", placeholder="Masukkan nama panggilan Anda...", key="nama_user_t1")
+    tgl_today = datetime.date.today()
+    tgl_input = st.date_input("Data Input (Tanggal Lahir):", value=tgl_today, min_value=datetime.date(1920, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
 
-    # BATAS TANGGAL
-    min_date_pm = datetime.date(1901, 1, 1)
-    max_date_pm = datetime.date.today()
-
-    tgl_input = st.date_input(
-        "Tanggal Lahir:",
-        value=datetime.date(2000, 1, 1),
-        min_value=min_date_pm,
-        max_value=max_date_pm,
-        format="DD/MM/YYYY"
-    )
-
-    if st.button("Mulai Kalibrasi"):
-        if len(nama_user) < 3:
-            st.error("🚨 Mohon isi nama yang benar.")
+    if st.button("Mulai Pemetaan Internal"):
+        if not nama_user or len(nama_user.strip()) < 3:
+            st.error("🚨 Satpam NLP: Mohon masukkan nama dengan benar (minimal 3 huruf) agar vibrasi identitas bisa terbaca akurat.")
+        elif tgl_input == tgl_today:
+            st.error("🚨 Satpam NLP: Mohon masukkan tanggal lahir Anda yang valid, bukan hari ini.")
         else:
-            with st.spinner('Menyelaraskan gelombang otak...'):
+            with st.spinner('Melakukan kalibrasi pola pikiran Anda...'):
                 time.sleep(1)
-                kode_p = hitung_angka(tgl_input)
-                nep, wet = get_neptu_weton(tgl_input)
-                insight = data_analisa.get(kode_p)
-                pains = closing_brutal_dinamis.get(kode_p)
+                
+                angka_hasil = hitung_angka(tgl_input)
+                angka_nama = hitung_angka_nama(nama_user)
+                _, weton_hasil = get_neptu_weton(tgl_input)
+                zodiak_hasil = hitung_zodiak(tgl_input)
+                f, e, i, state_harian = bioritme_nlp(tgl_input)
+                
+                insight = data_analisa.get(angka_hasil)
+                arketipe = get_arketipe(angka_hasil)
+                pain_points = closing_brutal_dinamis.get(angka_hasil, ["Terjebak dalam pola yang sama", "Merasa stuck", "Butuh perubahan"])
+                teks_potensi = potensi_dinamis.get(angka_hasil, "punya potensi luar biasa besar jika filternya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... itu bisa jadi pola penjara mental yang membelenggu seumur hidup.")
             
-            st.balloons()
-            st.markdown(f"### Hasil Mapping: {nama_user}")
-            st.info(f"**Kode Program: {kode_p}** | **Weton: {wet}**")
+            st.markdown(f"### 📋 Hasil Mapping: {nama_user}")
+            st.markdown("---")
             
-            st.subheader("💡 Struktur Karakter")
-            type_effect(insight['karakter'])
+            st.success(f"📊 **RADAR ENERGI HARI INI:** Anda sedang berada dalam **{state_harian}**.")
+            st.caption(f"Kapasitas Fisik: {f}% | Emosional: {e}% | Intelektual: {i}%")
+            st.markdown("---")
             
-            st.subheader("❤️ Pola Asmara")
-            st.warning(insight['asmara'])
+            c1, c2, c3, c4 = st.columns(4)
+            c1.metric("KODE NAMA", angka_nama)
+            c2.metric("KODE PROGRAM", angka_hasil)
+            c3.metric("ENERGI WETON", weton_hasil)
+            c4.metric("POLA ZODIAK", zodiak_hasil)
             
             st.markdown("---")
-            st.error(f"🚨 **Peringatan Bawah Sadar:**\nAnda mungkin sering: \n- {pains[0]}\n- {pains[1]}\n- {pains[2]}")
             
-            link_p = {i: f"https://lynk.id/neuronada/checkout-kode-{i}" for i in range(1, 10)}
-            st.link_button(f"🔓 Ambil Modul Kode {kode_p}", link_p.get(kode_p))
+            st.subheader("🗣️ Vibrasi Identitas (Nama)")
+            st.info(vibrasi_nama_dict.get(angka_nama, "Nama Anda memiliki resonansi energi yang unik."))
+
+            st.subheader("💡 Struktur Karakter & Mental")
+            st.write(f"Halo **{nama_user}**, sistem mendeteksi filter utama pikiran Anda dipengaruhi pola **{zodiak_hasil}** dengan pondasi energi **{weton_hasil}**.")
+            st.info(insight['karakter'])
+
+            st.subheader("❤️ Pola Hubungan & Asmara")
+            st.warning(f"**Insight Asmara:** {insight['asmara']}")
+            st.info(f"**Tips Komunikasi NLP:** {tips_zodiak_nlp.get(zodiak_hasil)}")
+
+            st.markdown("---")
+            st.error(f"🚨 **PERHATIAN {nama_user.upper()}**\n\nPola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.")
+            st.markdown(f"**Karena hambatan mental (Mental Block), Anda mungkin sering:**\n- {pain_points[0]}\n- {pain_points[1]}\n- {pain_points[2]}")
+            st.warning("👉 **Mau tetap membiarkan pola merusak ini terjadi?** atau\n👉 **Siap melakukan Re-Programming sekarang?**")
+            
+            st.success(f"Arketipe **{arketipe}** {teks_potensi}")
+
+            link_produk = {
+                1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout",
+                2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
+                3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout",
+                4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
+                5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout",
+                6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
+                7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout",
+                8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
+                9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
+            }
+            url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/username_lu")
+            nama_panggilan = nama_user.split()[0] if nama_user else 'Sahabat'
+            
+            st.markdown("---")
+            st.markdown(f"#### 🔓 Keputusan Ada di Tangan Anda Sekarang, {nama_panggilan}.")
+            st.write("Modul ini bukan sekadar e-book, ini adalah **'Kunci Pas'** untuk membongkar mesin bawah sadar Anda. Jangan tunda lagi.")
+            
+            st.markdown(f"""
+            <a href="{url_tujuan}" target="_blank" style="text-decoration: none;">
+                <div style="background-color: #d4af37; color: black; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; font-size: 16px;">
+                    👉 YA! SAYA SIAP AMBIL MODUL KODE {angka_hasil}
+                </div>
+            </a>
+            """, unsafe_allow_html=True)
+
+            st.markdown("---")
+            phone_number = "628999771486" 
+            wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
+            encoded_wa = urllib.parse.quote(wa_text)
+            wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
+
+            st.markdown(f"""
+            <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
+                <h3 style="color: #d4af37; margin-bottom: 10px;">🔥 Siap Membongkar Mental Block Anda?</h3>
+                <p style="color: #f0f0f0; margin-bottom: 20px;">Teori tak mengubah realita. Cabut akar <i>mental block</i> Anda melalui kalibrasi bawah sadar.</p>
+                <a href="{wa_link}" target="_blank" style="text-decoration: none;">
+                    <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
+                        💬 Amankan Jadwal Sesi Saya
+                    </div>
+                </a>
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown("---")
+            st.subheader("❓ Pertanyaan Terkait Pemetaan")
+            with st.expander("Bagaimana sistem ini membedah struktur pikiran saya?"):
+                st.write("Sistem **Persona-NLP Analis** menggunakan integrasi data kronologis (tanggal lahir) sebagai pintu masuk untuk mengidentifikasi **Meta-Program** atau filter dominan dalam pikiran bawah sadar Anda. Ini bukan ramalan nasib, melainkan pemetaan kecenderungan perilaku dan gaya pemrosesan informasi Anda.")
+            with st.expander("Kenapa akurasinya terasa sangat personal?"):
+                st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
+            with st.expander("Apa langkah selanjutnya setelah mengetahui 'Kode Program' ini?"):
+                st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi yang disediakan di atas atau melakukan sesi Deep Calibration secara Private bersama Coach Ahmad.")
+
+            st.markdown("---")
+            with st.expander("⚖️ Disclaimer & Batasan Layanan"):
+                st.caption(f"**PEMBERITAHUAN PENTING:** Analisa Persona-NLP Analis ini dirancang murni untuk tujuan edukasi dan pengembangan diri. Hasil analisa ini bukan merupakan diagnosis medis atau psikologi klinis. Segala keputusan yang diambil oleh **{nama_user}** setelah membaca analisa ini adalah tanggung jawab pribadi sepenuhnya.\n\n© 2026 Neuro Nada - Ahmad Septian Dwi Cahyo.")
 
 # ==========================================
 # TAB 2: COUPLE SYNC (DINAMIS 100%)
