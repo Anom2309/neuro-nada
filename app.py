@@ -346,4 +346,4 @@ with st.expander("💬 Bagikan Pengalaman Anda di sini"):
                 st.warning("Mohon isi Nama dan Ulasan Anda terlebih dahulu.")
 
 st.markdown("---")
-st.markdown("<center><b>Neuro Nada Academy</b><br><small>Ahmad Septian Dwi Cahyo</small></center>", unsafe_allow_html=True)Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
+st.markdown("<center><b>Neuro Nada Academy</b><br><small>Ahmad Septian Dwi Cahyo</small></center>", unsafe_allow_html=True)
