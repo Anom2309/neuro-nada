@@ -9,6 +9,9 @@ import plotly.graph_objects as go
 import random
 import csv
 import io
+# --- SESSION GLOBAL USER ---
+if "nama_global" not in st.session_state:
+    st.session_state["nama_global"] = ""
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
