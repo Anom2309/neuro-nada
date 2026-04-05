@@ -186,6 +186,18 @@ closing_brutal_dinamis = {
     9: ["Sering kecewa karena standar moral terlalu tinggi", "Mengizinkan orang yang toksik menetap karena rasa kasihan", "Punya visi mulia, tapi kewalahan mengeksekusinya"]
 }
 
+potensi_dinamis = {
+    1: """punya potensi kepemimpinan dan daya dobrak luar biasa besar jika ego-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... ambisi ini bisa jadi pola penjara mental yang membelenggu Anda dalam kelelahan kronis seumur hidup.""",
+    2: """punya potensi penyembuhan dan diplomasi luar biasa besar jika filter 'Gak Enakan'-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... rasa empati ini bisa jadi pola penjara mental yang terus mengorbankan diri Anda seumur hidup.""",
+    3: """punya potensi persuasi dan kreativitas luar biasa besar jika fokusnya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... ide-ide brilian ini bisa jadi pola penjara mental yang membuat Anda jalan di tempat seumur hidup.""",
+    4: """punya potensi membangun mahakarya luar biasa besar jika filter kaku-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... perfeksionisme ini bisa jadi pola penjara mental yang membelenggu kebahagiaan Anda seumur hidup.""",
+    5: """punya potensi inovasi dan pencapaian luar biasa besar jika filter kebosanannya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... energi petualang ini bisa jadi pola penjara mental yang membuat Anda kehilangan arah seumur hidup.""",
+    6: """punya potensi mengayomi dan membina luar biasa besar jika filter 'Mind Reading'-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... pengorbanan buta ini bisa jadi pola penjara mental yang mencekik batin Anda seumur hidup.""",
+    7: """punya potensi kebijaksanaan dan analisa luar biasa besar jika filter overthinking-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... isi kepala ini bisa jadi pola penjara mental yang mengisolasi Anda dari realita seumur hidup.""",
+    8: """punya potensi eksekusi dan pencapaian luar biasa besar jika filter kontrolnya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... kekuatan ini bisa jadi pola penjara mental yang membuat Anda kesepian di puncak seumur hidup.""",
+    9: """punya potensi kesadaran dan harmoni luar biasa besar jika filter ekspektasinya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... idealisme ini bisa jadi pola penjara mental yang penuh kekecewaan seumur hidup."""
+}
+
 # --- FUNGSI LOGIKA ---
 def hitung_angka(tanggal):
     tgl_str = tanggal.strftime("%d%m%Y")
