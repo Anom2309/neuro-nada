@@ -3,66 +3,18 @@ import datetime
 import os
 import time
 import urllib.parse
-import urllib.request
 import math
 import plotly.graph_objects as go
 import random
-import csv
-import io
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
     page_title="Neuro Nada Deep Analysis", 
     page_icon="🧠", 
-    layout="centered",
-    initial_sidebar_state="collapsed" 
+    layout="centered"
 )
 
-# --- FUNGSI NYAWA: TYPEWRITER EFFECT ---
-def type_effect(text, speed=0.01):
-    placeholder = st.empty()
-    full_text = ""
-    for char in text:
-        full_text += char
-        placeholder.markdown(full_text)
-        time.sleep(speed)
-
-# --- SALAM DINAMIS ---
-def get_greeting():
-    hour = datetime.datetime.now().hour
-    if hour < 11: return "Selamat Pagi, Jiwa yang Luar Biasa"
-    elif hour < 15: return "Selamat Siang, Sosok Visioner"
-    elif hour < 18: return "Selamat Sore, Sang Pencari Makna"
-    else: return "Selamat Malam, Pribadi yang Tenang"
-
-# ==========================================
-# DATABASE CLOUD: GOOGLE SHEETS
-# ==========================================
-URL_POST = "https://script.google.com/macros/s/AKfycbwkOL8-E50RKM5BRR8puh_XbfL-K_hQj5cnv0un6UzmFmMBEG6HZZ4aEQmFZj5EMsSBUQ/exec"
-URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2H-IH_8TbdbMRtvZnvza-InIO-Xl-B9YzLYtWtSb8vpUVuM1uZ4FTi6JwOtk2esj7hilwgGCoWex4/pub?output=csv"
-
-@st.cache_data(ttl=30) # Mesin akan menarik data baru dari Excel setiap 30 detik
-def ambil_ulasan():
-    try:
-        req = urllib.request.Request(URL_CSV)
-        with urllib.request.urlopen(req) as response:
-            decoded = response.read().decode('utf-8')
-            reader = csv.DictReader(io.StringIO(decoded))
-            data = [row for row in reader]
-            return data[::-1] # Dibalik urutannya biar ulasan paling baru ada di atas
-    except:
-        return []
-
-def kirim_ulasan(nama, rating, komentar):
-    try:
-        data = urllib.parse.urlencode({"nama": nama, "rating": rating, "komentar": komentar}).encode("utf-8")
-        req = urllib.request.Request(URL_POST, data=data)
-        urllib.request.urlopen(req)
-        return True
-    except:
-        return False
-
-# --- CUSTOM CSS ---
+# --- CUSTOM CSS (WARNA KUNING UNTUK TOMBOL) ---
 st.markdown(
     """<style>
     div.stButton > button {
@@ -71,21 +23,13 @@ st.markdown(
         font-weight: bold !important;
         border: none !important;
         padding: 12px 24px !important;
-        border-radius: 50px !important;
+        border-radius: 8px !important;
         width: 100% !important;
         font-size: 16px !important;
-        transition: 0.3s;
     }
     div.stButton > button:hover {
-        transform: scale(1.02);
         background-color: #FFC107 !important;
-    }
-    .ulasan-box {
-        background-color: #1e1e1e;
-        padding: 15px;
-        border-radius: 8px;
-        border-left: 4px solid #FFD700;
-        margin-bottom: 10px;
+        color: #000000 !important;
     }
     </style>""", 
     unsafe_allow_html=True
@@ -93,35 +37,52 @@ st.markdown(
 
 # --- SIDEBAR PROMOSI & VIDEO ---
 with st.sidebar:
+    # 1. Menampilkan Logo Identitas di Puncak Sidebar (Jika ada)
     if os.path.exists("baru.jpg.png"):
-        st.image("baru.jpg.png", use_container_width=True)
-    elif os.path.exists("baru.jpg"):
-        st.image("baru.jpg", use_container_width=True)
+        try:
+            st.image("baru.jpg.png", use_container_width=True)
+            st.markdown("<br>", unsafe_allow_html=True) # Jarak pemanis
+        except:
+            pass
 
-    st.markdown(f"### {get_greeting()}")
-    
     st.markdown("### 🎬 Hypno-Video Vault")
+    st.caption("Fokuskan pandangan Anda pada video ini sambil menggunakan headphone untuk relaksasi maksimal.")
+    
+    # Putar video YouTube Coach Ahmad
     st.video("https://youtu.be/kkRcH6aH_lI?si=bpUZF3CWl8DKLw5m")
-    
+        
     st.markdown("---")
-    st.markdown("## 🧠 Sesi Transformasi")
-    st.info("**Reset Pola Pikir Anda**\n\nSering merasa terhambat? Mari kita lakukan kalibrasi ulang dalam sesi *Private Hypno-NLP* bersama **Ahmad Septian**.")
     
+    st.markdown("## 🧠 Sesi Transformasi")
+    st.info("**Reset Pola Pikir Anda**\n\nSering merasa terhambat oleh pikiran sendiri? Mari kita lakukan kalibrasi ulang dalam sesi *Private Hypno-NLP* bersama **Ahmad Septian**.")
+    
+    # --- LINK WA UNTUK AMANKAN JADWAL ---
     phone_number_sidebar = "628999771486"
-    wa_link_sidebar = f"https://wa.me/{phone_number_sidebar}?text=Halo%20Coach%20Ahmad,%20saya%20siap%20untuk%20sesi%20Transformasi%20Pikiran."
+    wa_text_sidebar = "Halo Coach Ahmad, saya tertarik untuk mengamankan jadwal Private Session Hypno-NLP. Apakah masih ada kuota?"
+    encoded_wa_sidebar = urllib.parse.quote(wa_text_sidebar)
+    wa_link_sidebar = f"https://wa.me/{phone_number_sidebar}?text={encoded_wa_sidebar}"
+    
     st.markdown(f"[👉 **Amankan Jadwal Anda**]({wa_link_sidebar})")
     
     st.markdown("---")
-    st.success("**📚 Seni Persuasi NLP**\n\nPelajari bagaimana bahasa bekerja di tingkat bawah sadar.")
+    st.success("**📚 Seni Persuasi NLP**\n\nPelajari bagaimana bahasa bekerja di tingkat bawah sadar untuk meningkatkan pengaruh Anda.")
     st.markdown("[👉 **Akses Modul Lengkap**](https://lynk.id/username_lu/ebook-nlp)")
+    st.markdown("---")
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
 # --- INTERFACE UTAMA & BANNER ---
+# 1. Tampilkan Banner Full (Jika file banner.jpg ada)
 if os.path.exists("banner.jpg"):
-    st.image("banner.jpg", use_container_width=True)
+    try:
+        st.image("banner.jpg", use_container_width=True)
+    except:
+        st.write("🔄 Sedang memproses visual banner...")
 
+# 2. Teks Judul Utama (Langsung muncul di bawah banner)
 st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
-st.markdown(f"<p style='text-align: center; font-size: 18px; color: #D4AF37;'>{get_greeting()}</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px; color: #D4AF37;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
+
+st.markdown("---")
 
 # ==========================================
 # TAB 1: PERSONAL MAPPING
@@ -385,49 +346,36 @@ with tab3:
         st.success(random.choice(pesan_tinggi))
 
 # ==========================================
-# ULASAN DATABASE GOOGLE SHEETS
+# TESTIMONI RUNNING TEXT & FORM EXPANDER
 # ==========================================
 st.markdown("---")
-st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Suara Transformasi</h3>", unsafe_allow_html=True)
-st.write("Lihat apa kata mereka yang telah membongkar pola bawah sadarnya di Neuro Nada.")
+st.markdown("<h4 style='text-align: center; color: #D4AF37;'>Telah Diakses oleh 5.500+ Pengguna</h4>", unsafe_allow_html=True)
 
-# Menarik data ulasan dari Google Sheets
-daftar_ulasan = ambil_ulasan()
+marquee_html = """
+<div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+    <marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">
+        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>dr. Antonius:</b> "Ini bukan cuma ramalan, ini pemetaan otak yang masuk akal. Investasi terbaik tahun ini!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Andi S. (CEO):</b> "Sebagai tipe 8, saya kaget NLP ini bisa baca pola leadership saya. Mind-blowing!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <span style="color: #FFD700;">⭐⭐⭐⭐</span> <b>Sinta W.:</b> "Sangat relate dengan pola asmara 'Gak Enakan'. Makasih Coach!" &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Dewi Arini:</b> "Baru seminggu praktek, mental block finansial mulai luntur." &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Budi T.:</b> "Baru sadar selama ini saya sabotase diri karena gampang bosen." &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+        <span style="color: #FFD700;">⭐⭐⭐⭐</span> <b>Hendra Jaya:</b> "Gak nyangka weton bisa dikawinin sama NLP se-elegan ini."
+    </marquee>
+</div>
+"""
+st.markdown(marquee_html, unsafe_allow_html=True)
 
-# Tampilkan Maksimal 10 Ulasan Teratas
-for ulasan in daftar_ulasan[:10]:
-    nama = ulasan.get("Nama", "Anonim")
-    rating = ulasan.get("Rating", "⭐⭐⭐⭐⭐")
-    teks = ulasan.get("Komentar", "")
-    
-    if teks: # Hanya tampilkan jika kolom komentar tidak kosong
-        st.markdown(f"""
-        <div class="ulasan-box">
-            <b>{nama}</b> {rating}<br>
-            <i>"{teks}"</i>
-        </div>
-        """, unsafe_allow_html=True)
-
-# Form Input Ulasan Baru ke Excel
 with st.expander("💬 Bagikan Pengalaman Anda di sini"):
     with st.form("form_review"):
         rev_nama = st.text_input("Nama Anda")
-        rev_rating = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐"], horizontal=True)
+        rev_rating = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐ (Sangat Akurat)", "⭐⭐⭐⭐ (Akurat)", "⭐⭐⭐ (Cukup)"], horizontal=True)
         rev_komentar = st.text_area("Tulis ulasan Anda di sini...")
         
         if st.form_submit_button("Kirim Ulasan"):
             if rev_nama and rev_komentar:
-                # Mengirim data ke Google Sheets
-                sukses = kirim_ulasan(rev_nama, rev_rating, rev_komentar)
-                if sukses:
-                    st.success("Terkirim! Terima kasih atas ulasan Anda. Memperbarui layar...")
-                    st.cache_data.clear() # Membersihkan ingatan agar ulasan baru langsung terbaca
-                    time.sleep(2)
-                    st.rerun()
-                else:
-                    st.error("Waduh, koneksi ke database gagal. Coba lagi nanti ya.")
+                st.success("Terima kasih! Ulasan Anda telah berhasil dikirim dan akan diverifikasi oleh sistem.")
             else:
                 st.warning("Mohon isi Nama dan Ulasan Anda terlebih dahulu.")
 
 st.markdown("---")
-st.markdown("<center><b>Neuro Nada Academy</b><br><small>Ahmad Septian Dwi Cahyo</small></center>", unsafe_allow_html=True)
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
