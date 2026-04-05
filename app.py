@@ -303,7 +303,6 @@ with tab1:
     st.subheader("Bongkar Pola Bawah Sadar Anda")
     nama_user = st.session_state.get("nama_global", "")
 
-# AUTO UPDATE REAL-TIME
 # AUTO SIMPAN KE GLOBAL
 if nama_user:
     st.session_state["nama_global"] = nama_user
