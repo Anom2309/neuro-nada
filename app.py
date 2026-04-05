@@ -236,7 +236,7 @@ with tab2:
 
     # BATAS TANGGAL
     min_date = datetime.date(1901, 1, 1)
-    max_date = datetime.date.today() - datetime.timedelta(days=01*365)
+    max_date = datetime.date.today() - datetime.timedelta(days=1*365)
 
     with c1:
         n1 = st.text_input("Nama Anda", key="n1")
