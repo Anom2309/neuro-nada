@@ -273,7 +273,7 @@ def get_daily_dynamic_sync():
 tab1, tab2, tab3 = st.tabs(["👤 Identitas Kosmik", "👩‍❤️‍👨 Couple Sync", "🕸️ Audit Sistem Saraf"])
 
 # ==========================================
-# TAB 1: IDENTITAS KOSMIK (FUNNELING MODE ON)
+# TAB 1: PERSONAL IDENTITY (FUNNELING MODE ON)
 # ==========================================
 with tab1:
     st.subheader("Akses Blueprint Bawah Sadar Anda")
