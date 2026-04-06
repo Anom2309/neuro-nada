@@ -124,6 +124,8 @@ st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900;'
 st.markdown("<p style='text-align: center; font-size: 16px; color: #D4AF37; margin-bottom:0;'>Blueprint Jiwa Berbasis Waktu Lahir</p>", unsafe_allow_html=True)
 st.markdown("---")
 
+tgl_today = datetime.date.today()
+
 # --- DATABASE ARKETIPE ---
 arketipe_punchy = {
     1: {"inti": "Sang Perintis yang lahir untuk memimpin, benci didikte, dan selalu fokus pada tujuan masa depan.", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi (Outcome-oriented)"]},
@@ -253,7 +255,6 @@ tab1, tab2, tab3 = st.tabs(["👤 Identitas Kosmik", "👩‍❤️‍👨 Coupl
 with tab1:
     st.subheader("Akses Blueprint Bawah Sadar Anda")
     nama_user = st.text_input("Nama Lengkap:", placeholder="Ketik nama asli Anda...", key="t1_nama")
-    tgl_today = datetime.date.today()
     tgl_input = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1), min_value=datetime.date(1920, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
 
     if st.button("Kalkulasi Blueprint (Mulai)"):
@@ -372,14 +373,21 @@ with tab1:
                 st.markdown(f"<a href='https://wa.me/628999771486?text={urllib.parse.quote(wa_text)}' target='_blank'><div style='background-color:#25D366; color:white; padding:10px; text-align:center; border-radius:8px; font-weight:bold;'>📲 Tanya Jadwal Private</div></a>", unsafe_allow_html=True)
 
 # ==========================================
-# TAB 2 & 3
+# TAB 2: COUPLE SYNC (FIX TAHUN)
 # ==========================================
 with tab2:
     st.subheader("Sinkronisasi Asmara")
     st.write("Analisis tingkat benturan ego vs resonansi jiwa Anda dan pasangan.")
     ca, cb = st.columns(2)
-    with ca: n1 = st.text_input("Nama Anda", key="n1"); d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), key="d1")
-    with cb: n2 = st.text_input("Nama Pasangan", key="n2"); d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), key="d2")
+    with ca: 
+        n1 = st.text_input("Nama Anda", key="n1")
+        # FIX TAHUN LAHIR DI SINI
+        d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), min_value=datetime.date(1940, 1, 1), max_value=tgl_today, key="d1")
+    with cb: 
+        n2 = st.text_input("Nama Pasangan", key="n2")
+        # FIX TAHUN LAHIR DI SINI
+        d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), min_value=datetime.date(1940, 1, 1), max_value=tgl_today, key="d2")
+        
     if st.button("Cek Kompatibilitas"):
         if n1 and n2:
             ne_1, we_1 = get_neptu_weton(d1); ne_2, we_2 = get_neptu_weton(d2)
@@ -393,17 +401,53 @@ with tab2:
             zod1 = get_zodiak(d1)
             st.write(f"💡 **Trik Komunikasi untuk menaklukkan {zod1}:** {tips_zodiak_nlp.get(zod1)}")
 
+# ==========================================
+# TAB 3: AUDIT SISTEM SARAF (UPGRADE EDUKASI & RANDOMIZER)
+# ==========================================
 with tab3:
-    st.subheader("🕸️ Audit Sistem Saraf")
-    st.caption("Jika jaring ini tidak seimbang, artinya ada kebocoran energi parah di bawah sadar Anda.")
-    sk = [st.slider(k, 1, 10, 5) for k in ['Mental', 'Karir', 'Asmara', 'Spiritual', 'Fisik']]
-    if st.button("Lihat Radar"):
-        fig = go.Figure(data=go.Scatterpolar(r=sk+[sk[0]], theta=['Mental','Karir','Asmara','Spiritual','Fisik','Mental'], fill='toself', fillcolor='rgba(212, 175, 55, 0.4)', line=dict(color='#D4AF37')))
+    st.subheader("🕸️ Audit Sistem Saraf (Wheel of Life)")
+    
+    st.info("**Apa itu Audit Sistem Saraf?**\n\nDalam dunia psikologi dan NLP, energi manusia mengalir layaknya jaring roda. Jika satu area mendapat skor sangat rendah, roda hidup Anda akan 'oleng' dan menciptakan kebocoran energi *(Burnout)* yang menghambat kesuksesan di area lain. Geser *slider* di bawah ini sejujur-jujurnya untuk melihat di mana letak kebocoran energi Anda saat ini.")
+
+    # Ganti label jadi lebih formal
+    kategori_label = ['Kesehatan Mental', 'Karir & Finansial', 'Asmara', 'Spiritual', 'Fisik']
+    sk = [st.slider(k, 1, 10, 5) for k in kategori_label]
+    
+    if st.button("Mulai Audit Radar"):
+        fig = go.Figure(data=go.Scatterpolar(
+            r=sk+[sk[0]], 
+            theta=['Mental','Karir','Asmara','Spiritual','Fisik','Mental'], 
+            fill='toself', 
+            fillcolor='rgba(212, 175, 55, 0.4)', 
+            line=dict(color='#D4AF37')
+        ))
         st.plotly_chart(fig)
-        avg = sum(skor)/5 if 'skor' in locals() else sum(sk)/5
-        if avg < 5: st.error("🚨 Warning: Sistem mendeteksi kelelahan mental parah (Burnout).")
-        elif avg < 8: st.warning("⚖️ Roda kehidupan stabil, tapi ada rem yang menahan laju potensi Anda.")
-        else: st.success("🔥 Peak State! Ambil keputusan besar hari ini.")
+        
+        avg = sum(sk)/5
+        
+        # JAWABAN DINAMIS MENGGUNAKAN RANDOMIZER
+        pesan_rendah = [
+            "🚨 **KONDISI KRITIS (ALARM BAWAH SADAR BERBUNYI)**\n\nSistem saraf Anda sedang kelelahan parah. Jangan paksa mesin tetap berjalan jika olinya habis. Anda butuh 'Detoks Mental' secepatnya sebelum berujung pada psikosomatis (sakit fisik karena pikiran).",
+            "⚠️ **KEBOCORAN ENERGI FATAL**\n\nGrafik Anda melesak ke dalam. Roda kehidupan Anda sedang sangat oleng. Berhenti sejenak, ini bukan waktunya mengejar dunia, tapi waktunya menyelamatkan kewarasan batin Anda."
+        ]
+        
+        pesan_sedang = [
+            "⚖️ **FASE STAGNAN (ADA REM TANGAN YANG MENAHAN)**\n\nKondisi Anda cukup aman, namun tidak maksimal. Anda merasa 'oke' tapi sebenarnya jalan di tempat. Tutup celah pada area dengan skor terendah agar Anda bisa melesat tanpa beban.",
+            "🟡 **ZONA NYAMAN YANG MENIPU**\n\nSistem mendeteksi Anda memendam potensi besar yang tertahan oleh satu atau dua masalah yang belum tuntas. Selesaikan area terlemah Anda, dan lihat keajaiban mulai terjadi hari ini."
+        ]
+        
+        pesan_tinggi = [
+            "🔥 **PEAK STATE (GELOMBANG EMAS)**\n\nLuar biasa! Sinkronisasi otak dan tindakan Anda sedang sangat sempurna. Roda berputar mulus. Ini adalah momentum terbaik untuk mengambil keputusan besar dan mengeksekusi visi Anda!",
+            "🌟 **HIGH PERFORMANCE MODE**\n\nJaring energi Anda sangat kuat dan seimbang. Anda memancarkan aura magnetis yang akan menarik peluang, rezeki, dan keberuntungan dengan sangat mudah."
+        ]
+
+        st.markdown("---")
+        if avg < 5: 
+            st.error(random.choice(pesan_rendah))
+        elif avg < 8: 
+            st.warning(random.choice(pesan_sedang))
+        else: 
+            st.success(random.choice(pesan_tinggi))
 
 # ==========================================
 # SOCIAL PROOF (ULASAN)
