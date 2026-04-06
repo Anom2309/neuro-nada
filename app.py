@@ -12,7 +12,7 @@ import io
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="Deep Personality Mapping", 
+    page_title="Neuro Nada Deep Analysis", 
     page_icon="🌌", 
     layout="centered",
     initial_sidebar_state="collapsed" 
@@ -132,7 +132,7 @@ if os.path.exists("banner.jpg"):
     try: st.image("banner.jpg", use_container_width=True)
     except: pass
 
-st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900;'>🌌 Deep Personality Mapping</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900;'>🌌 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; font-size: 16px; color: #D4AF37; margin-bottom:0;'>Blueprint Jiwa Berbasis Waktu Lahir</p>", unsafe_allow_html=True)
 st.markdown("---")
 
@@ -476,4 +476,4 @@ with tab3:
         else: st.success(random.choice(pesan_tinggi))
 
 st.markdown("---")
-st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Deep Personality Mapping © 2026</small></center>", unsafe_allow_html=True)
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist © 2026</small></center>", unsafe_allow_html=True)
