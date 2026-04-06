@@ -324,7 +324,7 @@ with tab1:
             
             # --- THE DEEP READING ---
             st.markdown("### 👁️ Decode Kepribadian Bawah Sadar")
-            st.info(f"*{hook_text}* Perpaduan fase bulan **{m_phase}** dan weton **{wet}** melahirkan arketipe Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
+            st.info(f"*{hook_text}* Perpaduan fase bulan **{m_phase.split(' ')[1]}** dan weton **{wet}** melahirkan arketipe Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
             
             # PENJELASAN MENDALAM ARKETIPE
             st.subheader(f"🧬 Penjelasan Mendalam: {ark_n}")
@@ -373,43 +373,82 @@ with tab1:
                 st.markdown(f"<a href='https://wa.me/628999771486?text={urllib.parse.quote(wa_text)}' target='_blank'><div style='background-color:#25D366; color:white; padding:10px; text-align:center; border-radius:8px; font-weight:bold;'>📲 Tanya Jadwal Private</div></a>", unsafe_allow_html=True)
 
 # ==========================================
-# TAB 2: COUPLE SYNC (FIX TAHUN)
+# TAB 2: COUPLE SYNC (ULTIMATE ZODIAC + WETON + FALAK)
 # ==========================================
 with tab2:
     st.subheader("Sinkronisasi Asmara")
-    st.write("Analisis tingkat benturan ego vs resonansi jiwa Anda dan pasangan.")
+    st.write("Analisis benturan ego dan resonansi kosmik antara Anda dan pasangan.")
     ca, cb = st.columns(2)
     with ca: 
         n1 = st.text_input("Nama Anda", key="n1")
-        # FIX TAHUN LAHIR DI SINI
         d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), min_value=datetime.date(1940, 1, 1), max_value=tgl_today, key="d1")
     with cb: 
         n2 = st.text_input("Nama Pasangan", key="n2")
-        # FIX TAHUN LAHIR DI SINI
         d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), min_value=datetime.date(1940, 1, 1), max_value=tgl_today, key="d2")
         
-    if st.button("Cek Kompatibilitas"):
+    if st.button("Cek Kompatibilitas Bawah Sadar"):
         if n1 and n2:
-            ne_1, we_1 = get_neptu_weton(d1); ne_2, we_2 = get_neptu_weton(d2)
-            sel = abs(hitung_angka(d1) - hitung_angka(d2))
-            st.markdown("---")
-            st.info(f"**Integrasi Weton:** {we_1} & {we_2}")
-            if sel in [0, 3, 6, 9]: st.success("💘 **SKOR NLP: 90% (Sinkron Alami)**\nSangat mudah memahami *Love Language* pasangan.")
-            elif sel in [1, 2, 8]: st.warning("⚖️ **SKOR NLP: 70% (Dinamis)**\nBanyak beda sudut pandang, butuh kedewasaan untuk saling melengkapi.")
-            else: st.error("🔥 **SKOR NLP: 50% (Rawan Gesekan)**\nEgo tinggi sering berbenturan. Butuh teknik komunikasi khusus.")
+            st.snow() # Efek kosmik
             
+            # Kalkulasi Pihak 1
             zod1 = get_zodiak(d1)
-            st.write(f"💡 **Trik Komunikasi untuk menaklukkan {zod1}:** {tips_zodiak_nlp.get(zod1)}")
+            ne_1, we_1 = get_neptu_weton(d1)
+            m_phase1, _, _, _ = get_moon_energy(d1)
+            fase1_nama = m_phase1.split(" ", 1)[1] # Ambil nama bulannya aja
+            
+            # Kalkulasi Pihak 2
+            zod2 = get_zodiak(d2)
+            ne_2, we_2 = get_neptu_weton(d2)
+            m_phase2, _, _, _ = get_moon_energy(d2)
+            fase2_nama = m_phase2.split(" ", 1)[1]
+            
+            # Kombinasi
+            sel = abs(hitung_angka(d1) - hitung_angka(d2))
+            sisa_weton = (ne_1 + ne_2) % 8
+            
+            hasil_weton_kombo = {
+                1: ("💔 PEGAT (Ujian Ego)", "Terdapat perbedaan mendasar dalam cara memproses emosi dan dominasi ego.", "Turunkan ego. Gunakan teknik Pacing (menyelaraskan) sebelum berargumen dengan pasangan.", "Mind-Reading (berharap pasangan peka tanpa diberi tahu) dan mengungkit masa lalu."),
+                2: ("👑 RATU (Kharisma & Harmoni)", "Penyatuan vibrasi ini memancarkan wibawa. Orang sekitar segan melihat kalian.", "Fokus pada apresiasi harian. Jadikan pasangan sebagai partner diskusi strategis.", "Terjebak pencitraan eksternal (terlihat sempurna di luar tapi rapuh saat berdua)."),
+                3: ("💞 JODOH (Sinkronisasi Alami)", "Penerimaan bawah sadar luar biasa tinggi. Kalian seperti sudah saling mengenal lama.", "Ciptakan kejutan-kejutan spontan agar romansa tidak monoton.", "Terjebak di zona nyaman yang membosankan dan berhenti meng-upgrade diri."),
+                4: ("🌱 TOPO (Ujian Bertumbuh)", "Awal hubungan butuh banyak kalibrasi, namun akan sangat solid jika melewati badai.", "Kuasai teknik Reframing (ubah sudut pandang) saat krisis melanda.", "Memaksakan standar nilai pribadi ke pasangan dan bersikap kaku."),
+                5: ("💰 TINARI (Magnet Rezeki)", "Vibrasi kalian jika disatukan akan menarik kelancaran finansial dan hoki.", "Bangun nilai spiritual bersama, kolaborasi dalam ide atau bisnis.", "Menjadikan materi atau uang sebagai satu-satunya perekat hubungan."),
+                6: ("⚡ PADU (Beda Frekuensi)", "Sering terjadi letupan perdebatan karena beda cara filter informasi di otak.", "Validasi emosinya lebih dulu sebelum membantah logikanya (Teknik Yes-Set).", "Konfrontasi langsung saat emosi sedang tinggi (Baterai Emosi sedang merah)."),
+                7: ("👁️ SUJANAN (Rawan Asumsi)", "Ada kecenderungan muncul rasa insecure, cemburu, atau salah paham mendadak.", "Buka komunikasi transparan, bicarakan sesuatu murni berdasarkan fakta.", "Menggunakan bahasa generalisasi ('Kamu selalu begini', 'Kamu gapernah gitu')."),
+                0: ("🕊️ PESTHI (Damai & Rukun)", "Hubungan yang stabil, adem ayem, dan jauh dari drama penguras energi mental.", "Rutin mencari aktivitas, liburan, atau hobi baru bersama.", "Saking damainya bisa terasa hambar, jangan biarkan api asmara padam begitu saja.")
+            }
+            
+            judul_weton, desk_weton, saran_do, saran_dont = hasil_weton_kombo.get(sisa_weton, ("Analisa Unik", "Butuh kalibrasi", "Perbaiki komunikasi", "Jangan egois"))
+            
+            # SINTESIS DINAMIS KETIGA ILMU (THE HOOK)
+            st.markdown("---")
+            st.markdown(f"### 🔮 Analisis Resonansi: {n1.split()[0].capitalize()} & {n2.split()[0].capitalize()}")
+            st.info(f"Menyatukan filter pikiran **{zod1}** dengan **{zod2}** ibarat menggabungkan dua elemen alam. Secara Falak, frekuensi kosmik **{fase1_nama}** milikmu berbenturan dan beresonansi dengan energi **{fase2_nama}** pasangan. Ditambah akar budaya **{we_1}** dan **{we_2}**, kombinasi ini membentuk ikatan yang sangat spesifik:")
+            
+            # HASIL WETON & NLP
+            st.markdown(f"#### {judul_weton}")
+            st.write(desk_weton)
+            
+            if sel in [0, 3, 6, 9]: st.success("💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)**\nSangat mudah memahami *Love Language* satu sama lain tanpa banyak bicara.")
+            elif sel in [1, 2, 8]: st.warning("⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)**\nBanyak beda sudut pandang, butuh kedewasaan untuk saling melengkapi.")
+            else: st.error("🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)**\nEgo tinggi sering berbenturan keras. Butuh teknik komunikasi bawah sadar khusus.")
+
+            # DO'S AND DONT'S ASMARA
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown("**Berdasarkan Kalkulasi Di Atas, Ini Panduan Hubungan Anda:**")
+            c_do_c, c_dont_c = st.columns(2)
+            with c_do_c:
+                st.success(f"✅ **LAKUKAN INI:**\n\n{saran_do}")
+            with c_dont_c:
+                st.error(f"❌ **HINDARI INI:**\n\n{saran_dont}")
 
 # ==========================================
-# TAB 3: AUDIT SISTEM SARAF (UPGRADE EDUKASI & RANDOMIZER)
+# TAB 3: AUDIT SISTEM SARAF
 # ==========================================
 with tab3:
     st.subheader("🕸️ Audit Sistem Saraf (Wheel of Life)")
     
     st.info("**Apa itu Audit Sistem Saraf?**\n\nDalam dunia psikologi dan NLP, energi manusia mengalir layaknya jaring roda. Jika satu area mendapat skor sangat rendah, roda hidup Anda akan 'oleng' dan menciptakan kebocoran energi *(Burnout)* yang menghambat kesuksesan di area lain. Geser *slider* di bawah ini sejujur-jujurnya untuk melihat di mana letak kebocoran energi Anda saat ini.")
 
-    # Ganti label jadi lebih formal
     kategori_label = ['Kesehatan Mental', 'Karir & Finansial', 'Asmara', 'Spiritual', 'Fisik']
     sk = [st.slider(k, 1, 10, 5) for k in kategori_label]
     
