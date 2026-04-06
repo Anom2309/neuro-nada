@@ -133,7 +133,7 @@ if os.path.exists("banner.jpg"):
     except: pass
 
 st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900;'>🌌 Deep Personality Mapping</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 16px; color: #D4AF37; margin-bottom:0;'>Membongkar Matrix Bawah Sadar Lewat Sandi Semesta</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 16px; color: #D4AF37; margin-bottom:0;'>Blueprint Jiwa Berbasis Waktu Lahir</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 tgl_today = datetime.date.today()
