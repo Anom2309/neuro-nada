@@ -113,7 +113,7 @@ with st.sidebar:
     st.markdown("---")
     st.info("**Reset Pola Pikir Anda**\n\nMari kita lakukan kalibrasi ulang dalam sesi *Private Hypno-NLP* bersama **Ahmad Septian**.")
     st.markdown(f"[👉 **Amankan Jadwal Anda**](https://wa.me/628999771486?text={urllib.parse.quote('Halo Coach Ahmad, saya siap kalibrasi.')})")
-    st.caption("© 2026 Ahmad Septian Dwi Cahyo")
+    st.caption("© 2026 Neuro Nada Academy")
 
 # --- INTERFACE UTAMA ---
 if os.path.exists("banner.jpg"):
