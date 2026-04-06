@@ -583,7 +583,7 @@ else:
 with st.expander("💬 Bagikan Pengalaman Anda"):
     with st.form("form_review"):
         rn = st.text_input("Nama")
-        rr = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐"], horizontal=True)
+        rr = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"], horizontal=True)
         rk = st.text_area("Ulasan (Gimana akurasinya?)")
         if st.form_submit_button("Kirim Ulasan") and rn and rk:
             if kirim_ulasan(rn, rr, rk): 
