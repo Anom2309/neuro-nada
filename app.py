@@ -44,7 +44,8 @@ st.markdown(
 
     .ulasan-box {
         background-color: #1e1e1e; padding: 15px; border-radius: 8px;
-        border-left: 4px solid #FFD700; margin-bottom: 10px; font-size: 14px;
+        border-left: 4px solid #FFD700; margin-bottom: 12px; font-size: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     
     .cosmic-box {
@@ -89,6 +90,7 @@ def ambil_ulasan():
         with urllib.request.urlopen(req) as response:
             decoded = response.read().decode('utf-8')
             reader = csv.DictReader(io.StringIO(decoded))
+            # Balik urutan biar yang paling baru (terbawah di sheet) muncul duluan
             return [row for row in reader][::-1]
     except: return []
 
@@ -251,7 +253,6 @@ def get_daily_dynamic_sync():
     p = lunations % 1
     energy_score = int(math.sin(p * math.pi) * 100)
     
-    # PENJELASAN MAKNA FASE BULAN TRANSLASI
     fase_info = {
         "New Moon": ("🌑 New Moon (Bulan Baru)", "Energi semesta sedang kosong (Fase Awal). Waktu terbaik untuk merenung dan mereset niat."),
         "Waxing Crescent": ("🌒 Waxing Crescent (Bulan Sabit Awal)", "Energi mulai bertumbuh (Fase Pembenihan). Bagus untuk eksekusi langkah awal."),
@@ -540,25 +541,44 @@ with tab3:
             st.success(random.choice(pesan_tinggi))
 
 # ==========================================
-# SOCIAL PROOF (ULASAN)
+# SOCIAL PROOF (ULASAN DINAMIS)
 # ==========================================
 st.markdown("---")
 st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Jejak Transformasi</h3>", unsafe_allow_html=True)
 
-marquee_html = """
-<div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
-    <marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">
-        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>dr. Antonius:</b> "Format barunya ngeri, bener-bener nelanjangin shadow self gue!" | 
-        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Andi S:</b> "Daily Sync-nya nagih, gue buka tiap pagi sblm meeting." | 
-        <span style="color: #FFD700;">⭐⭐⭐⭐⭐</span> <b>Dewi A:</b> "Modul PDF-nya worth it parah. Mental block finansial gue luntur."
-    </marquee>
-</div>
-"""
-st.markdown(marquee_html, unsafe_allow_html=True)
-
+# Ambil data real dari Google Sheets
 daftar_ulasan = ambil_ulasan()
-for u in daftar_ulasan[:3]:
-    if u.get("Komentar"): st.markdown(f'<div class="ulasan-box"><b>{u.get("Nama")}</b> ⭐⭐⭐⭐⭐<br><i>"{u.get("Komentar")}"</i></div>', unsafe_allow_html=True)
+
+if daftar_ulasan:
+    # Marquee (Running Text) menggunakan data dinamis (3 data terbaru)
+    pilihan_marquee = daftar_ulasan[:3]
+    marquee_content = " | ".join([f"<span style='color: #FFD700;'>{u.get('Rating', '⭐⭐⭐⭐⭐')}</span> <b>{u.get('Nama', 'User')}:</b> \"{u.get('Komentar', '')[:50]}...\"" for u in pilihan_marquee])
+    
+    marquee_html = f"""
+    <div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+        <marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">
+            {marquee_content}
+        </marquee>
+    </div>
+    """
+    st.markdown(marquee_html, unsafe_allow_html=True)
+
+    # List Testimoni (5 Real Rating Terkini)
+    for u in daftar_ulasan[:5]:
+        nama_klien = u.get("Nama", "Jiwa Kosmik")
+        rating_klien = u.get("Rating", "⭐⭐⭐⭐⭐")
+        komentar_klien = u.get("Komentar", "")
+        
+        if komentar_klien: # Hanya tampilkan jika ada komentar
+            st.markdown(f"""
+            <div class="ulasan-box">
+                <span style="color: #FFD700; font-size: 12px;">{rating_klien}</span><br>
+                <b>{nama_klien}</b><br>
+                <i style="color: #ccc;">"{komentar_klien}"</i>
+            </div>
+            """, unsafe_allow_html=True)
+else:
+    st.caption("<center>Belum ada ulasan terbaru.</center>", unsafe_allow_html=True)
 
 with st.expander("💬 Bagikan Pengalaman Anda"):
     with st.form("form_review"):
@@ -566,7 +586,10 @@ with st.expander("💬 Bagikan Pengalaman Anda"):
         rr = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐"], horizontal=True)
         rk = st.text_area("Ulasan (Gimana akurasinya?)")
         if st.form_submit_button("Kirim Ulasan") and rn and rk:
-            if kirim_ulasan(rn, rr, rk): st.success("Terkirim!"); time.sleep(1); st.rerun()
+            if kirim_ulasan(rn, rr, rk): 
+                st.success("Terkirim! Testimoni Anda akan muncul setelah refresh.")
+                time.sleep(1)
+                st.rerun()
 
 st.markdown("---")
 st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist © 2026</small></center>", unsafe_allow_html=True)
