@@ -230,4 +230,118 @@ def get_moon_phase(date):
     epoch = datetime.date(2000, 1, 6)
     days = (date - epoch).days
     lunations = days / 29.53058867
-    p
+    p = lunations % 1
+    if p < 0.03 or p > 0.97: return ("🌑 Bulan Baru", "Inkubasi", "Fokus internal kuat.", "Meditasi & blueprint.", "Eksekusi ide mentah.")
+    elif p < 0.22: return ("🌒 Bulan Sabit Awal", "Momentum", "Dorongan batin tinggi.", "Langkah konkrit & relasi.", "Menunda pekerjaan.")
+    elif p < 0.28: return ("🌓 Paruh Awal", "Aksi Nyata", "Karakter petarung aktif.", "Ambil risiko & pecahkan masalah.", "Menyerah pada rintangan.")
+    elif p < 0.47: return ("🌔 Bulan Cembung", "Penyesuaian", "Fokus tajam detail.", "Cek ulang strategi & skill.", "Cepat puas diri.")
+    elif p < 0.53: return ("🌕 Bulan Purnama", "Puncak Ekspresi", "Sangat karismatik.", "Launching & perluas networking.", "Keputusan emosi sesaat.")
+    elif p < 0.72: return ("🌖 Bulan Susut", "Distribusi", "Bakat alami Mentor.", "Berbagi ilmu & pengalaman.", "Pelit ilmu & menahan diri.")
+    elif p < 0.78: return ("🌗 Paruh Akhir", "Pembersihan", "Berani buang hal toxic.", "Detoks kebiasaan buruk.", "Menyimpan dendam lama.")
+    else: return ("🌘 Bulan Sabit Akhir", "Penyembuhan", "Energi Healer intuitif.", "Rehat & lepas ekspektasi.", "Memaksa kerja keras.")
+
+# --- MENU TABS ---
+tab1, tab2, tab3 = st.tabs(["👤 Identitas Kosmik", "👩‍❤️‍👨 Sinkronisasi Asmara", "🕸️ Audit Sistem Saraf"])
+
+# ==========================================
+# TAB 1: IDENTITAS KOSMIK
+# ==========================================
+with tab1:
+    st.subheader("Bongkar Blueprint Bawah Sadar Anda")
+    nama_user = st.text_input("Nama Lengkap:", placeholder="Ketik nama Anda...", key="t1_nama")
+    tgl_today = datetime.date.today()
+    tgl_input = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1), min_value=datetime.date(1920, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
+
+    if st.button("Kalkulasi Cetak Biru (Blueprint)"):
+        if not nama_user or len(nama_user.strip()) < 3: st.error("🚨 Mohon ketik nama lengkap.")
+        elif tgl_input == tgl_today: st.error("🚨 Tanggal belum valid.")
+        else:
+            with st.spinner('Menyelaraskan gelombang kosmik...'):
+                time.sleep(2)
+                angka_hasil = hitung_angka(tgl_input); angka_nama = hitung_angka_nama(nama_user)
+                nep, wet = get_neptu_weton(tgl_input); zod, zod_s = get_zodiak(tgl_input)
+                m_p, m_s, m_d, m_do, m_dont = get_moon_phase(tgl_input)
+                desk_ark = arketipe_deskripsi.get(angka_hasil)
+                ins = data_analisa.get(angka_hasil); ark_n = get_arketipe(angka_hasil)
+                pain = closing_brutal_dinamis.get(angka_hasil); pot = potensi_dinamis.get(angka_hasil)
+            
+            st.balloons()
+            st.markdown(f"### 🌌 Blueprint Kosmik: {nama_user}")
+            
+            # --- MATRIKS KECIL ---
+            st.markdown(f"""
+            <div class="matrix-container">
+                <div class="matrix-item"><div class="matrix-label">Kode Nama</div><div class="matrix-value matrix-value-special">{angka_nama}</div></div>
+                <div class="matrix-item"><div class="matrix-label">Kode Program</div><div class="matrix-value matrix-value-special">{angka_hasil}</div></div>
+                <div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet}</div></div>
+                <div class="matrix-item"><div class="matrix-label">Pola Zodiak</div><div class="matrix-value">{zod}</div></div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # --- VIBRASI NAMA ---
+            st.subheader("🗣️ Vibrasi Identitas")
+            st.info(vibrasi_nama_dict.get(angka_nama))
+
+            # --- ARKETIPE (INI YANG KEMBALI DIMUNCULKAN COACH) ---
+            st.subheader(f"🧬 Arketipe Inti: {ark_n}")
+            st.write(desk_ark)
+
+            # --- FALAK (MOON PHASE) ---
+            st.markdown("---")
+            st.subheader("🌑 Energi Ilmu Falak (Bulan Lahir)")
+            st.write(f"Lahir pada fase **{m_p}**. Karakter: **{m_s}**.\n*{m_d}*")
+            c_do, c_dont = st.columns(2)
+            c_do.success(f"✅ **LAKUKAN:**\n{m_do}"); c_dont.error(f"❌ **HINDARI:**\n{m_dont}")
+
+            # --- ANALISA NLP & WETON ---
+            st.markdown("---")
+            st.subheader("🧠 Struktur Bio-Psikologi NLP")
+            st.write(f"Perpaduan frekuensi **{wet}**, karakter **{zod}** ({zod_s}), dan arketipe **{ark_n}** membentuk pola unik: {ins['karakter']}")
+            st.warning(f"**Blind Spot Asmara:** {ins['asmara']}")
+            st.info(f"💡 **Secret NLP Hack:** {tips_zodiak_nlp.get(zod)}")
+
+            # --- SHADOW SELF ---
+            st.markdown(f"""
+            <div style="background-color: #3b0000; padding: 20px; border-radius: 10px; border-left: 5px solid #ff4b4b;">
+                <h4 style="color: #ff4b4b; margin-top: 0;">🚨 DETEKSI KEBOCORAN ENERGI</h4>
+                <p style="color: white; font-size: 15px;">Mental Block Anda sering menyabotase potensi arketipe Anda:</p>
+                <ul style="color: #ffcccc; font-size: 15px;"><li>{pain[0]}</li><li>{pain[1]}</li><li>{pain[2]}</li></ul>
+                <p style="color: #FFD700; font-weight: bold; margin-bottom: 0;">Padahal program asli Anda {pot}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("<br>", unsafe_allow_html=True)
+            url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
+            st.markdown(f"""
+            <a href="{url_t}" target="_blank" style="text-decoration: none;">
+                <div style="background-color: #FFD700; color: black; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; font-size: 16px;">
+                    🔓 AMBIL MODUL TERAPI KODE {angka_hasil} SEKARANG
+                </div>
+            </a>
+            """, unsafe_allow_html=True)
+
+# ==========================================
+# TAB 2 & 3 (TETAP SAMA)
+# ==========================================
+with tab2:
+    st.subheader("Sinkronisasi Asmara")
+    ca, cb = st.columns(2)
+    with ca: n1 = st.text_input("Nama Anda", key="n1"); d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), key="d1")
+    with cb: n2 = st.text_input("Nama Pasangan", key="n2"); d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), key="d2")
+    if st.button("Cek Kompatibilitas"):
+        if n1 and n2:
+            ne_1, we_1 = get_neptu_weton(d1); ne_2, we_2 = get_neptu_weton(d2)
+            sel = abs(hitung_angka(d1) - hitung_angka(d2))
+            st.info(f"Weton: **{we_1}** & **{we_2}**. Integrasi Neptu: {ne_1+ne_2}")
+            if sel in [0, 3, 6, 9]: st.success("💘 **SKOR NLP: 90% (Sinkron)**")
+            else: st.warning("⚖️ **SKOR NLP: 70% (Butuh Kalibrasi)**")
+
+with tab3:
+    st.subheader("🕸️ Audit Sistem Saraf")
+    sk = [st.slider(k, 1, 10, 5) for k in ['Mental', 'Karir', 'Asmara', 'Spiritual', 'Fisik']]
+    if st.button("Lihat Radar"):
+        fig = go.Figure(data=go.Scatterpolar(r=sk+[sk[0]], theta=['Mental','Karir','Asmara','Spiritual','Fisik','Mental'], fill='toself', fillcolor='rgba(212, 175, 55, 0.4)', line=dict(color='#D4AF37')))
+        st.plotly_chart(fig)
+
+st.markdown("---")
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Neuro Nada Cosmic © 2026</small></center>", unsafe_allow_html=True)
