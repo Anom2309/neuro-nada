@@ -120,8 +120,8 @@ if os.path.exists("banner.jpg"):
     try: st.image("banner.jpg", use_container_width=True)
     except: pass
 
-st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900;'>🌌 Deep Personality Mapping</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 16px; color: #D4AF37; margin-bottom:0;'>Blueprint Jiwa Berbasis Waktu Lahir</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900;'>🌌 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 16px; color: #D4AF37; margin-bottom:0;'>"Meretas Realita Anda Melalui Kode Waktu Kelahiran"</p>", unsafe_allow_html=True)
 st.markdown("---")
 
 tgl_today = datetime.date.today()
