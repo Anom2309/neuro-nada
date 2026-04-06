@@ -12,7 +12,7 @@ import io
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="Deep Personality Mapping", 
+    page_title="Neuro Nada Deep Analysis", 
     page_icon="🌌", 
     layout="centered",
     initial_sidebar_state="collapsed" 
@@ -553,4 +553,4 @@ with st.expander("💬 Bagikan Pengalaman Anda"):
             if kirim_ulasan(rn, "5", rk): st.success("Terkirim!"); time.sleep(1); st.rerun()
 
 st.markdown("---")
-st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Deep Personality Mapping © 2026</small></center>", unsafe_allow_html=True)
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist</small></center>", unsafe_allow_html=True)
