@@ -234,14 +234,14 @@ def get_birth_moon(date):
     days = (date - epoch).days
     lunations = days / 29.53058867
     p = lunations % 1
-    if p < 0.03 or p > 0.97: return "🌑 New Moon", "Kekuatan internal sangat tajam. Anda menyerap banyak energi dari alam bawah sadar.", "Menyusun target besar secara diam-diam dan rahasia.", "Terlalu cepat mencari validasi dan persetujuan dari orang luar."
-    elif p < 0.22: return "🌒 Waxing Crescent", "Dorongan batin tinggi untuk bertumbuh dan sangat mudah menarik peluang baru.", "Berani mengambil eksekusi konkrit pada ide pertama Anda.", "Menunda pekerjaan karena keraguan dan rasa pesimis bawaan."
-    elif p < 0.28: return "🌓 First Quarter", "Karakter petarung yang aktif. Otak Anda bereaksi sangat cepat saat menghadapi krisis.", "Mengambil risiko terukur dan memecahkan masalah mendadak.", "Menyerah pada rintangan teknis atau bertindak ceroboh tanpa data."
-    elif p < 0.47: return "🌔 Waxing Gibbous", "Perfeksionis dan teliti. Anda terus mengevaluasi segala hal menuju titik sempurna.", "Memperhatikan detail pekerjaan dan mengasah skill spesifik.", "Mengabaikan kritik membangun karena merasa diri paling benar."
-    elif p < 0.53: return "🌕 Full Moon", "Gelombang otak dalam frekuensi puncak. Anda sangat karismatik namun rentan meledak.", "Tampil memimpin di depan publik dan menginspirasi massa.", "Membuat keputusan emosional atau berdebat keras dengan pasangan."
-    elif p < 0.72: return "🌖 Waning Gibbous", "Bakat alami sebagai Mentor. Anda merasa damai ketika bisa mendistribusikan ilmu.", "Berbagi pengalaman dan menjadi penengah yang bijak bagi sahabat.", "Menyombongkan kesuksesan masa lalu dan enggan beradaptasi."
-    elif p < 0.78: return "🌗 Last Quarter", "Berani mengambil keputusan ekstrem untuk membuang hal yang tidak lagi berguna.", "Membersihkan lingkaran pertemanan toxic dan merapikan hidup.", "Menyimpan dendam, terikat masa lalu, dan bernostalgia pada luka."
-    else: return "🌘 Waning Crescent", "Memancarkan energi 'Healer' intuitif. Sangat peka pada akhir dari sebuah siklus kehidupan.", "Merawat diri sendiri dan melepaskan ekspektasi berlebihan pada manusia.", "Memaksakan tubuh untuk bekerja ekstra keras mengejar ambisi materi semata."
+    if p < 0.03 or p > 0.97: return "🌑 New Moon (Bulan Baru)", "Kekuatan internal sangat tajam. Anda menyerap banyak energi dari alam bawah sadar.", "Menyusun target besar secara diam-diam dan rahasia.", "Terlalu cepat mencari validasi dan persetujuan dari orang luar."
+    elif p < 0.22: return "🌒 Waxing Crescent (Bulan Sabit Awal)", "Dorongan batin tinggi untuk bertumbuh dan sangat mudah menarik peluang baru.", "Berani mengambil eksekusi konkrit pada ide pertama Anda.", "Menunda pekerjaan karena keraguan dan rasa pesimis bawaan."
+    elif p < 0.28: return "🌓 First Quarter (Paruh Awal)", "Karakter petarung yang aktif. Otak Anda bereaksi sangat cepat saat menghadapi krisis.", "Mengambil risiko terukur dan memecahkan masalah mendadak.", "Menyerah pada rintangan teknis atau bertindak ceroboh tanpa data."
+    elif p < 0.47: return "🌔 Waxing Gibbous (Bulan Cembung Awal)", "Perfeksionis dan teliti. Anda terus mengevaluasi segala hal menuju titik sempurna.", "Memperhatikan detail pekerjaan dan mengasah skill spesifik.", "Mengabaikan kritik membangun karena merasa diri paling benar."
+    elif p < 0.53: return "🌕 Full Moon (Bulan Purnama)", "Gelombang otak dalam frekuensi puncak. Anda sangat karismatik namun rentan meledak.", "Tampil memimpin di depan publik dan menginspirasi massa.", "Membuat keputusan emosional atau berdebat keras dengan pasangan."
+    elif p < 0.72: return "🌖 Waning Gibbous (Bulan Cembung Akhir)", "Bakat alami sebagai Mentor. Anda merasa damai ketika bisa mendistribusikan ilmu.", "Berbagi pengalaman dan menjadi penengah yang bijak bagi sahabat.", "Menyombongkan kesuksesan masa lalu dan enggan beradaptasi."
+    elif p < 0.78: return "🌗 Last Quarter (Paruh Akhir)", "Berani mengambil keputusan ekstrem untuk membuang hal yang tidak lagi berguna.", "Membersihkan lingkaran pertemanan toxic dan merapikan hidup.", "Menyimpan dendam, terikat masa lalu, dan bernostalgia pada luka."
+    else: return "🌘 Waning Crescent (Bulan Sabit Akhir)", "Memancarkan energi 'Healer' intuitif. Sangat peka pada akhir dari sebuah siklus kehidupan.", "Merawat diri sendiri dan melepaskan ekspektasi berlebihan pada manusia.", "Memaksakan tubuh untuk bekerja ekstra keras mengejar ambisi materi semata."
 
 def get_daily_dynamic_sync():
     today = datetime.date.today()
@@ -250,6 +250,18 @@ def get_daily_dynamic_sync():
     lunations = days / 29.53058867
     p = lunations % 1
     energy_score = int(math.sin(p * math.pi) * 100)
+    
+    # PENJELASAN MAKNA FASE BULAN TRANSLASI
+    fase_info = {
+        "New Moon": ("🌑 New Moon (Bulan Baru)", "Energi semesta sedang kosong (Fase Awal). Waktu terbaik untuk merenung dan mereset niat."),
+        "Waxing Crescent": ("🌒 Waxing Crescent (Bulan Sabit Awal)", "Energi mulai bertumbuh (Fase Pembenihan). Bagus untuk eksekusi langkah awal."),
+        "First Quarter": ("🌓 First Quarter (Paruh Awal)", "Fase krisis dan aksi. Gesekan energi tinggi, butuh keberanian mengambil keputusan cepat."),
+        "Waxing Gibbous": ("🌔 Waxing Gibbous (Bulan Cembung Awal)", "Fase penyempurnaan dan evaluasi detail sebelum mencapai puncak target."),
+        "Full Moon": ("🌕 Full Moon (Bulan Purnama)", "Puncak energi emosional dan magnetis. Tarikan gravitasi semesta sedang berada di titik terkuat."),
+        "Waning Gibbous": ("🌖 Waning Gibbous (Bulan Cembung Akhir)", "Fase membagikan hasil (Distribusi). Waktu terbaik untuk berbagi dan mentoring orang lain."),
+        "Last Quarter": ("🌗 Last Quarter (Paruh Akhir)", "Fase pelepasan. Waktu yang sangat tepat untuk membuang beban batin dan kebiasaan buruk."),
+        "Waning Crescent": ("🌘 Waning Crescent (Bulan Sabit Akhir)", "Fase istirahat dan pemulihan sistem saraf secara total sebelum siklus bulan yang baru dimulai.")
+    }
     
     daily_do = {
         "New Moon": ["Reset niat dan susun blueprint jangka panjang hari ini.", "Waktu emas untuk merenung dan merencanakan target baru.", "Fokus ke dalam diri, matangkan strategi sebelum eksekusi."],
@@ -282,7 +294,8 @@ def get_daily_dynamic_sync():
     elif p < 0.78: k = "Last Quarter"
     else: k = "Waning Crescent"
     
-    return k, energy_score, random.choice(daily_do[k]), random.choice(daily_dont[k])
+    phase_emoji, phase_desc = fase_info[k]
+    return phase_emoji, phase_desc, energy_score, random.choice(daily_do[k]), random.choice(daily_dont[k])
 
 # --- MENU TABS ---
 tab1, tab2, tab3 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Sync", "🕸️ Audit Sistem Saraf"])
@@ -316,9 +329,8 @@ with tab1:
             zod = get_zodiak(tgl_input)
             ark_n = get_arketipe(angka_hasil)
             
-            # Panggil fungsi kelahirannya (STATIS) & hari ini (DINAMIS)
             m_phase, m_sifat, m_do, m_dont = get_birth_moon(tgl_input)
-            today_phase, today_energy, today_do, today_dont = get_daily_dynamic_sync()
+            today_phase, today_desc, today_energy, today_do, today_dont = get_daily_dynamic_sync()
             
             punchy = arketipe_punchy.get(angka_hasil)
             desk_ark = arketipe_deskripsi.get(angka_hasil)
@@ -333,7 +345,7 @@ with tab1:
             st.snow()
             st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {nama_user.upper()}</h3>", unsafe_allow_html=True)
             
-            # --- DAILY GUIDANCE KOSMIK (WARNA DINAMIS) ---
+            # --- DAILY GUIDANCE KOSMIK (WARNA DINAMIS + KETERANGAN FASE) ---
             if today_energy > 70: warna_baterai, glow = "#25D366", "rgba(37, 211, 102, 0.5)"
             elif today_energy > 40: warna_baterai, glow = "#FFD700", "rgba(255, 215, 0, 0.5)"
             else: warna_baterai, glow = "#ff4b4b", "rgba(255, 75, 75, 0.5)"
@@ -343,6 +355,10 @@ with tab1:
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; padding-bottom:10px; margin-bottom:10px;">
                     <span style="color:#888; font-size:12px; font-weight:bold; letter-spacing:1px;">DAILY SYNC (HARI INI)</span>
                     <span style="color:{warna_baterai}; font-weight:900; font-size:14px; text-shadow: 0 0 8px {warna_baterai};">BATERAI EMOSI: {today_energy}%</span>
+                </div>
+                <div style="font-size:14px; line-height:1.6; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #444;">
+                    <span style="color:#aaa;">Fase Semesta Hari Ini:</span> <b style="color:white; font-size:15px;">{today_phase}</b><br>
+                    <i style="color:#ccc; font-size:13px;">"{today_desc}"</i>
                 </div>
                 <div style="font-size:14px; line-height:1.6;">
                     <span style="color:#FFD700;">✅ <b>FOKUS HARI INI:</b></span> {today_do}<br>
@@ -385,7 +401,7 @@ with tab1:
             </ul>
             """, unsafe_allow_html=True)
             
-            # --- PENJELASAN FALAK KELAHIRAN (KEMBALI DIMUNCULKAN) ---
+            # --- PENJELASAN FALAK KELAHIRAN ---
             st.markdown("---")
             st.subheader("🌑 Energi Bawah Sadar (Fase Bulan Lahir)")
             st.write(f"Sistem kosmik mencatat Anda lahir pada fase **{m_phase}**. {m_sifat}")
@@ -412,7 +428,6 @@ with tab1:
             
             with c_share:
                 wa_share = f"Gila, akurat banget! Blueprint bawah sadar gue kebongkar semua. Cobain cek identitas kosmik lu di sini: https://lynk.id/neuronada"
-                # PERBAIKAN LINK SHARE (DIARAHKAN KE APLIKASI WA KLIEN)
                 st.markdown(f"<a href='https://api.whatsapp.com/send?text={urllib.parse.quote(wa_share)}' target='_blank'><div style='background-color:#333; color:white; padding:10px; text-align:center; border-radius:8px; font-weight:bold;'>📤 Bagikan ke Status / Teman</div></a>", unsafe_allow_html=True)
             with c_wa:
                 st.markdown(f"<a href='https://wa.me/628999771486?text={urllib.parse.quote(wa_text)}' target='_blank'><div style='background-color:#25D366; color:white; padding:10px; text-align:center; border-radius:8px; font-weight:bold;'>📲 Tanya Jadwal Private</div></a>", unsafe_allow_html=True)
@@ -548,7 +563,7 @@ for u in daftar_ulasan[:3]:
 with st.expander("💬 Bagikan Pengalaman Anda"):
     with st.form("form_review"):
         rn = st.text_input("Nama")
-        rr = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"], horizontal=True)
+        rr = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐"], horizontal=True)
         rk = st.text_area("Ulasan (Gimana akurasinya?)")
         if st.form_submit_button("Kirim Ulasan") and rn and rk:
             if kirim_ulasan(rn, rr, rk): st.success("Terkirim!"); time.sleep(1); st.rerun()
