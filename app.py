@@ -22,27 +22,17 @@ st.set_page_config(
 st.markdown(
     """<style>
     div.stButton > button {
-        background-color: #FFD700 !important;
-        color: #000000 !important;
-        font-weight: bold !important;
-        border: none !important;
-        padding: 12px 24px !important;
-        border-radius: 8px !important;
-        width: 100% !important;
-        font-size: 16px !important;
-        transition: 0.3s;
+        background-color: #FFD700 !important; color: #000000 !important;
+        font-weight: bold !important; border: none !important;
+        padding: 12px 24px !important; border-radius: 8px !important;
+        width: 100% !important; font-size: 16px !important; transition: 0.3s;
     }
-    div.stButton > button:hover {
-        background-color: #FFC107 !important;
-        color: #000000 !important;
-        transform: scale(1.02);
-    }
+    div.stButton > button:hover { transform: scale(1.02); background-color: #FFC107 !important; }
     .ulasan-box {
         background-color: #1e1e1e; padding: 15px; border-radius: 8px;
         border-left: 4px solid #FFD700; margin-bottom: 10px;
     }
-    </style>""", 
-    unsafe_allow_html=True
+    </style>""", unsafe_allow_html=True
 )
 
 # --- FUNGSI NYAWA: TYPEWRITER EFFECT ---
@@ -89,12 +79,9 @@ def kirim_ulasan(nama, rating, komentar):
 # --- SIDEBAR PROMOSI & VIDEO ---
 with st.sidebar:
     if os.path.exists("baru.jpg.png"):
-        try:
-            st.image("baru.jpg.png", use_container_width=True)
-            st.markdown("<br>", unsafe_allow_html=True) 
+        try: st.image("baru.jpg.png", use_container_width=True); st.markdown("<br>", unsafe_allow_html=True)
         except: pass
-    elif os.path.exists("baru.jpg"):
-        st.image("baru.jpg", use_container_width=True)
+    elif os.path.exists("baru.jpg"): st.image("baru.jpg", use_container_width=True)
 
     st.markdown(f"### {get_greeting()}")
     st.markdown("### 🎬 Hypno-Video Vault")
@@ -107,36 +94,33 @@ with st.sidebar:
     
     phone_number_sidebar = "628999771486"
     wa_text_sidebar = "Halo Coach Ahmad, saya tertarik untuk mengamankan jadwal Private Session Hypno-NLP. Apakah masih ada kuota?"
-    encoded_wa_sidebar = urllib.parse.quote(wa_text_sidebar)
-    wa_link_sidebar = f"https://wa.me/{phone_number_sidebar}?text={encoded_wa_sidebar}"
+    st.markdown(f"[👉 **Amankan Jadwal Anda**](https://wa.me/{phone_number_sidebar}?text={urllib.parse.quote(wa_text_sidebar)})")
     
-    st.markdown(f"[👉 **Amankan Jadwal Anda**]({wa_link_sidebar})")
     st.markdown("---")
     st.success("**📚 Seni Persuasi NLP**\n\nPelajari bagaimana bahasa bekerja di tingkat bawah sadar untuk meningkatkan pengaruh Anda.")
     st.markdown("[👉 **Akses Modul Lengkap**](https://lynk.id/neuronada/ebook-nlp)")
-    st.markdown("---")
     st.caption("© 2026 Ahmad Septian Dwi Cahyo")
 
 # --- INTERFACE UTAMA & BANNER ---
 if os.path.exists("banner.jpg"):
     try: st.image("banner.jpg", use_container_width=True)
-    except: st.write("🧠 Sedang memproses visual banner...")
+    except: pass
 
 st.markdown("<h1 style='text-align: center; margin-top: 10px;'>🧠 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center; font-size: 18px; color: #D4AF37;'>Sistem Pemetaan Bawah Sadar & Akselerasi Potensi Diri</p>", unsafe_allow_html=True)
 st.markdown("---")
 
-# --- DATA DICTIONARY (MENDALAM & MERAKYAT) ---
+# --- DATA DICTIONARY (UPGRADED: MENDALAM & DINAMIS) ---
 vibrasi_nama_dict = {
-    1: "Nama Anda memancarkan getaran KEMANDIRIAN & KEPEMIMPINAN. Orang melihat Anda sebagai sosok yang berani mengambil inisiatif.",
-    2: "Nama Anda memancarkan getaran DIPLOMASI & KEDAMAIAN. Orang merasa nyaman dan aman saat berinteraksi dengan Anda.",
-    3: "Nama Anda memancarkan getaran EKSPRESI & KECERIAAN. Anda memiliki daya tarik komunikasi yang membuat orang mudah menyukai Anda.",
-    4: "Nama Anda memancarkan getaran STRUKTUR & KEDISIPLINAN. Orang mempercayai Anda karena Anda terlihat solid dan bisa diandalkan.",
-    5: "Nama Anda memancarkan getaran KEBEBASAN & DINAMIKA. Aura Anda penuh dengan petualangan dan perubahan yang memikat orang lain.",
-    6: "Nama Anda memancarkan getaran TANGGUNG JAWAB & KASIH SAYANG. Anda memancarkan aura pengayom yang membuat orang ingin bersandar pada Anda.",
-    7: "Nama Anda memancarkan getaran KEDALAMAN & ANALISA. Orang melihat Anda sebagai sosok yang misterius, cerdas, dan pencari kebenaran.",
-    8: "Nama Anda memancarkan getaran OTORITAS & KESUKSESAN. Aura nama Anda sangat kuat dalam menarik kelimpahan dan kekuasaan.",
-    9: "Nama Anda memancarkan getaran KEMANUSIAAN & IDEALISME. Anda dilihat sebagai sosok berjiwa besar yang peduli pada banyak orang."
+    1: "Nama Anda memancarkan getaran **KEMANDIRIAN & KEPEMIMPINAN**. Orang sering melihat Anda sebagai sosok alfa yang tangguh dan selalu tahu arah. Namun, di sudut batin terdalam, Anda sebenarnya rindu memiliki satu tempat bersandar dimana Anda tidak perlu berpura-pura kuat.",
+    2: "Nama Anda memancarkan getaran **DIPLOMASI & KEDAMAIAN**. Anda bagaikan oase; orang merasa sangat nyaman menumpahkan keluh-kesah pada Anda. Tantangan terbesar Anda adalah: Anda sering menyerap 'sampah emosi' orang lain dan lupa membersihkan emosi Anda sendiri.",
+    3: "Nama Anda memancarkan getaran **EKSPRESI & KECERIAAN**. Anda memiliki daya tarik magnetis yang membuat suasana sekaku apapun menjadi cair. Di balik tawa dan keramahan itu, pikiran Anda sebenarnya sangat analitis dan tak henti-hentinya memutar berbagai skenario kehidupan.",
+    4: "Nama Anda memancarkan getaran **STRUKTUR & KEDISIPLINAN**. Orang mempercayai Anda karena Anda terlihat kokoh ibarat batu karang. Sisi yang jarang orang tahu: Anda menyimpan kerapuhan saat rencana besar Anda mendadak berantakan oleh hal di luar kendali.",
+    5: "Nama Anda memancarkan getaran **KEBEBASAN & DINAMIKA**. Aura Anda penuh kejutan, petualangan, dan sangat sulit ditebak. Sisi gelapnya: ketakutan tersembunyi akan komitmen panjang membuat Anda terkadang merasa kehilangan 'jangkar' yang pasti dalam hidup.",
+    6: "Nama Anda memancarkan getaran **TANGGUNG JAWAB & KASIH SAYANG**. Anda adalah pelindung natural. Seringkali Anda mengalah hanya agar orang di sekitar Anda bahagia. Hati-hati, cinta yang berlebihan tanpa batasan (*boundary*) akan menguras habis energi hidup Anda.",
+    7: "Nama Anda memancarkan getaran **KEDALAMAN & MISTERI**. Orang melihat Anda sebagai sosok yang cerdas dan sulit ditembus. Faktanya, Anda memang sangat selektif. Anda lebih memilih punya 2 sahabat yang sefrekuensi daripada 100 teman yang obrolannya hanya sebatas kulit luar.",
+    8: "Nama Anda memancarkan getaran **OTORITAS & KELIMPAHAN**. Aura Anda beresonansi kuat dengan kesuksesan material. Anda memiliki ketahanan mental layaknya baja. Satu hal yang Anda sembunyikan: rasa kesepian luar biasa ketika berada di puncak pencapaian.",
+    9: "Nama Anda memancarkan getaran **IDEALISME & KEMANUSIAAN**. Anda memiliki visi kehidupan yang melampaui ego pribadi. Anda seringkali dikecewakan oleh manusia lain, bukan karena Anda lemah, melainkan karena Anda selalu memberikan standar ketulusan yang terlalu tinggi."
 }
 
 data_analisa = {
@@ -152,60 +136,55 @@ data_analisa = {
 }
 
 tips_zodiak_nlp = {
-    "Aries": "Gunakan teknik 'Pacing' emosi yang lebih sabar.",
-    "Taurus": "Berikan ruang untuk 'Reframing' perbedaan pendapat.",
-    "Gemini": "Fokus pada 'Deep Rapport' daripada obrolan permukaan.",
-    "Cancer": "Hati-hati dengan pola 'Anchor' negatif dari masa lalu.",
-    "Leo": "Gunakan bahasa 'Appreciation' untuk pasangan.",
-    "Virgo": "Kurangi filter 'Detail', gunakan 'Chunk Up'.",
-    "Libra": "Pastikan 'Internal Reference' Anda kuat.",
-    "Scorpio": "Bangun 'Trust', hindari 'Mind Reading'.",
-    "Sagittarius": "Jaga komitmen melalui 'Value Alignment'.",
-    "Capricorn": "Seimbangkan karier dengan kehadiran emosional.",
-    "Aquarius": "Hubungkan visi idealis dengan realitas emosional.",
-    "Pisces": "Bedakan imajinasi dengan kenyataan."
+    "Aries": "**Teknik Pacing (Penyelarasan):** Jangan langsung membantah ego-nya. Dengarkan dan validasi dulu emosinya, baru perlahan 'Lead' (arahkan) pikiran mereka ke logika Anda.",
+    "Taurus": "**Teknik Reframing (Pembingkaian Ulang):** Mereka bukan keras kepala, tapi teguh. Jangan paksa mereka berubah cepat; berikan data logis, lalu biarkan mereka merasa itu adalah keputusannya sendiri.",
+    "Gemini": "**Teknik Modality Matching:** Ikuti ritme pikiran mereka yang cepat. Jika mereka pakai kata-kata visual ('Coba *lihat* ini'), balas dengan visual ('Iya, *kelihatan* bagus').",
+    "Cancer": "**Avoid Negative Anchors:** Mereka mengingat emosi masa lalu dengan sangat kuat. Berhati-hatilah dengan nada suara; bagi mereka *cara* Anda bicara lebih penting dari *isi* pembicaraan.",
+    "Leo": "**Teknik Appreciation:** Validasi adalah bahan bakar mereka. Sentuh egonya dengan pujian yang tulus sebelum Anda memberikan kritik atau masukan.",
+    "Virgo": "**Teknik Chunking Up:** Saat mereka terlalu rewel soal hal-hal kecil dan detail, tarik perhatian mereka untuk melihat 'Gambaran Besar' (Big Picture) dari masalah tersebut.",
+    "Libra": "**Strengthen Internal Reference:** Bantu mereka mengambil keputusan dengan menanyakan apa yang benar-benar *mereka* inginkan, bukan apa yang terbaik untuk orang lain.",
+    "Scorpio": "**Deep Rapport:** Jangan pernah menyembunyikan kebohongan kecil. Bangun kepercayaan di level terdalam; sekali mereka percaya, mereka akan loyal seumur hidup.",
+    "Sagittarius": "**Future Pacing:** Hubungkan setiap masalah saat ini dengan visi masa depan yang lebih baik. Mereka akan termotivasi jika melihat ujung jalan yang menjanjikan kebebasan.",
+    "Capricorn": "**Logic Bridge:** Mulailah semua pembicaraan dari sudut pandang rasional dan fungsional. Setelah logika mereka menerima, baru perlahan masuk ke ranah emosional.",
+    "Aquarius": "**Pattern Interrupt:** Saat mereka terlalu asyik dengan dunianya sendiri, berikan kejutan ide yang anti-mainstream untuk merangsang kembali minat intelektual mereka.",
+    "Pisces": "**Grounding:** Saat mereka mulai terlalu emosional atau berimajinasi ke arah negatif, tarik pelan-pelan pikiran mereka kembali ke fakta realita saat ini."
 }
 
 closing_brutal_dinamis = {
-    1: ["Terus menunda karena merasa 'belum sempurna' atau takut gagal", "Merasa sendirian memikul beban karena sulit percaya pada orang lain", "Punya ambisi besar, tapi stuck karena meng-sabotase diri sendiri"],
-    2: ["Terjebak memuaskan orang lain hingga mengorbankan diri sendiri", "Merasa lelah dan tidak dihargai, tapi takut untuk berkata 'TIDAK'", "Terus memendam emosi demi menghindari konflik"],
-    3: ["Memiliki banyak ide brilian, tapi jarang ada yang selesai", "Mudah teralihkan fokusnya dan cepat merasa bosan", "Menutupi kegelisahan sejati di balik candaan"],
-    4: ["Stres berat jika rencana berubah atau berhadapan ketidakpastian", "Stuck dalam rutinitas yang kaku dan takut mengambil risiko baru", "Sering dinilai kaku atau kurang empati karena terlalu logis"],
-    5: ["Terus berlari dari satu hal ke hal lain tanpa fondasi kuat", "Merasa cepat 'tercekik' oleh rutinitas dan komitmen", "Sulit fokus pada satu tujuan jangka panjang"],
-    6: ["Kehabisan energi karena selalu sibuk menyelamatkan orang lain", "Cenderung over-controlling karena rasa khawatir berlebihan", "Merasa bersalah jika harus memprioritaskan diri sendiri"],
-    7: ["Terjebak dalam Overthinking dan sulit bertindak nyata", "Merasa terisolasi karena tidak ada yang sefrekuensi", "Terlalu lama menganalisa tanpa eksekusi"],
-    8: ["Merasa hampa meskipun sudah mencapai target material", "Terlihat dingin dan menciptakan jarak emosional", "Burnout karena tekanan untuk selalu kuat"],
-    9: ["Sering kecewa karena standar moral terlalu tinggi", "Mengizinkan orang yang toksik menetap karena rasa kasihan", "Punya visi mulia, tapi kewalahan mengeksekusinya"]
+    1: ["Sering overthinking karena merasa hasil kerja 'belum sempurna'", "Memendam lelah sendirian karena gengsi minta tolong orang lain", "Membangun tembok pertahanan ego agar tidak terlihat lemah atau gagal"],
+    2: ["Terjebak memuaskan ekspektasi orang lain sampai lupa membahagiakan diri sendiri", "Sulit berkata 'TIDAK' dan memendam amarah yang berujung psikosomatis (sakit fisik)", "Terus mengalah hanya agar tidak terjadi keributan yang dibenci bawah sadarnya"],
+    3: ["Menyembunyikan rasa cemas dan gelisah yang intens di balik topeng senyuman", "Sangat gampang kehilangan motivasi jika rutinitas mulai terasa membosankan", "Pikiran yang terlalu penuh sering menyebabkan insomnia dan over-analisa di malam hari"],
+    4: ["Sangat rentan stres dan uring-uringan kalau rencana mendadak berubah di luar kendali", "Terjebak di rutinitas yang kaku karena *Amigdala* di otak takut mengambil resiko baru", "Sering dianggap kurang peka perasaannya oleh pasangan karena terlalu mengedepankan logika"],
+    5: ["Sindrom 'Cepat Bosan' yang membuat banyak potensi besar berhenti di tengah jalan", "Kelelahan saraf simpatik karena otak tidak pernah benar-benar diizinkan untuk diam", "Terkadang merasa hampa karena kehilangan pijakan hidup akibat terlalu sering 'berlari'"],
+    6: ["Kehabisan energi secara drastis (Burnout) karena terlalu sibuk menyelamatkan hidup orang lain", "Cenderung Over-Protective yang diam-diam mematikan ruang gerak pasangan/keluarga", "Merasa bersalah luar biasa saat memakai waktu atau uang murni untuk kesenangan pribadi"],
+    7: ["Terjebak dalam labirin analisa pikiran sendiri (Paralysis by Analysis) tanpa eksekusi nyata", "Sering merasa terasing dan merasa tidak ada yang benar-benar memahami kedalaman pikirannya", "Mencurigai niat baik orang lain akibat luka masa lalu yang menjadi *Anchor* negatif"],
+    8: ["Sering merasa hampa secara batin justru di saat target finansial atau tahta sudah tercapai", "Sangat sulit melepaskan kendali dan memaafkan kesalahan kecil (terutama pengkhianatan)", "Terus memaksa mesin tubuh bekerja, mengabaikan alarm alamiah demi sebuah ambisi"],
+    9: ["Terlalu sering memaklumi orang yang manipulatif dan toxic dengan alasan 'kasihan'", "Sering patah hati karena memproyeksikan ekspektasi kesempurnaan moral pada manusia biasa", "Kelelahan batin karena merasa menanggung beban emosional semesta yang bukan tanggung jawabnya"]
 }
 
 potensi_dinamis = {
-    1: "punya potensi kepemimpinan dan daya dobrak luar biasa besar jika ego-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... ambisi ini bisa jadi pola penjara mental yang membelenggu Anda dalam kelelahan kronis seumur hidup.",
-    2: "punya potensi penyembuhan dan diplomasi luar biasa besar jika filter 'Gak Enakan'-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... rasa empati ini bisa jadi pola penjara mental yang terus mengorbankan diri Anda seumur hidup.",
-    3: "punya potensi persuasi dan kreativitas luar biasa besar jika fokusnya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... ide-ide brilian ini bisa jadi pola penjara mental yang membuat Anda jalan di tempat seumur hidup.",
-    4: "punya potensi membangun mahakarya luar biasa besar jika filter kaku-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... perfeksionisme ini bisa jadi pola penjara mental yang membelenggu kebahagiaan Anda seumur hidup.",
-    5: "punya potensi inovasi dan pencapaian luar biasa besar jika filter kebosanannya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... energi petualang ini bisa jadi pola penjara mental yang membuat Anda kehilangan arah seumur hidup.",
-    6: "punya potensi mengayomi dan membina luar biasa besar jika filter 'Mind Reading'-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... pengorbanan buta ini bisa jadi pola penjara mental yang mencekik batin Anda seumur hidup.",
-    7: "punya potensi kebijaksanaan dan analisa luar biasa besar jika filter overthinking-nya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... isi kepala ini bisa jadi pola penjara mental yang mengisolasi Anda dari realita seumur hidup.",
-    8: "punya potensi eksekusi dan pencapaian luar biasa besar jika filter kontrolnya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... kekuatan ini bisa jadi pola penjara mental yang membuat Anda kesepian di puncak seumur hidup.",
-    9: "punya potensi kesadaran dan harmoni luar biasa besar jika filter ekspektasinya dibersihkan.\n\nTapi tanpa di-kalibrasi dan diarahkan... idealisme ini bisa jadi pola penjara mental yang penuh kekecewaan seumur hidup."
+    1: "memiliki potensi daya dobrak pencapaian yang fenomenal jika sumbatan egonya dilepas.",
+    2: "memiliki karunia negosiasi dan resonansi penyembuhan yang luar biasa jika filter *'Gak Enakan'* dicabut.",
+    3: "menyimpan daya persuasi dan jenius kreatif yang sangat langka jika loncatan fokusnya dikalibrasi.",
+    4: "mampu membangun kerajaan/mahakarya yang solid jika filter perfeksionisme-kaku di pikirannya diubah jadi fleksibel.",
+    5: "adalah inovator sejati yang tak terhentikan jika energinya dipusatkan pada satu 'jangkar' yang tepat.",
+    6: "mampu menjadi magnet kelimpahan keluarga yang luar biasa jika ia belajar mencintai dirinya sendiri terlebih dahulu.",
+    7: "menyimpan intuisi dan kebijaksanaan level tinggi yang siap meledak jika *overthinking*-nya direm.",
+    8: "adalah penakluk sejati yang akan memegang dunia di tangannya jika ia berhasil berdamai dengan sisi rapuh emosinya.",
+    9: "adalah pembawa cahaya yang luar biasa, jika ia berhenti berharap dunia ini sempurna dan mulai mengeksekusi visi nyatanya."
 }
 
 link_produk = {
-    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout",
-    2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
-    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout",
-    4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
-    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout",
-    6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
-    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout",
-    8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
+    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout", 2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
+    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout", 4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
+    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout", 6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
+    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout", 8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
     9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
 }
 
 # --- FUNGSI-FUNGSI LOGIKA MATEMATIKA ---
 def hitung_angka(tanggal):
-    tgl_str = tanggal.strftime("%d%m%Y")
-    total = sum(int(digit) for digit in tgl_str)
+    total = sum(int(digit) for digit in tanggal.strftime("%d%m%Y"))
     while total > 9: total = sum(int(digit) for digit in str(total))
     return total
 
@@ -219,28 +198,26 @@ def hitung_angka_nama(nama):
 def get_neptu_weton(tanggal):
     anchor_date = datetime.date(2000, 1, 1)
     selisih_hari = (tanggal - anchor_date).days
-    hari_masehi = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
-    pasaran_jawa = ["Pahing", "Pon", "Wage", "Kliwon", "Legi"]
-    hari = hari_masehi[tanggal.weekday()]
-    pasaran = pasaran_jawa[selisih_hari % 5]
-    neptu_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
-    neptu_pasaran = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
-    return neptu_hari[hari] + neptu_pasaran[pasaran], f"{hari} {pasaran}"
+    hari = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"][tanggal.weekday()]
+    pasaran = ["Pahing", "Pon", "Wage", "Kliwon", "Legi"][selisih_hari % 5]
+    n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
+    n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
+    return n_hari[hari] + n_pas[pasaran], f"{hari} {pasaran}"
 
 def get_zodiak(tanggal):
     d, m = tanggal.day, tanggal.month
-    if (m == 3 and d >= 21) or (m == 4 and d <= 19): return "Aries", "Keberanian & Eksekusi"
-    elif (m == 4 and d >= 20) or (m == 5 and d <= 20): return "Taurus", "Kestabilan & Ketekunan"
-    elif (m == 5 and d >= 21) or (m == 6 and d <= 20): return "Gemini", "Komunikasi & Fleksibilitas"
-    elif (m == 6 and d >= 21) or (m == 7 and d <= 22): return "Cancer", "Perasaan & Perlindungan"
-    elif (m == 7 and d >= 23) or (m == 8 and d <= 22): return "Leo", "Kharisma & Kepemimpinan"
-    elif (m == 8 and d >= 23) or (m == 9 and d <= 22): return "Virgo", "Analisa & Kesempurnaan"
-    elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra", "Keseimbangan & Harmoni"
-    elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio", "Intensitas & Ketajaman Insting"
-    elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius", "Kebebasan & Visi Luas"
-    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn", "Struktur & Kedisiplinan"
+    if (m == 3 and d >= 21) or (m == 4 and d <= 19): return "Aries", "Akselerasi & Keberanian"
+    elif (m == 4 and d >= 20) or (m == 5 and d <= 20): return "Taurus", "Kestabilan & Resiliensi"
+    elif (m == 5 and d >= 21) or (m == 6 and d <= 20): return "Gemini", "Agility (Ketangkasan Pikiran)"
+    elif (m == 6 and d >= 21) or (m == 7 and d <= 22): return "Cancer", "Proteksi & Intuisi Batin"
+    elif (m == 7 and d >= 23) or (m == 8 and d <= 22): return "Leo", "Kharisma & Ekspresi Alfa"
+    elif (m == 8 and d >= 23) or (m == 9 and d <= 22): return "Virgo", "Presisi & Filter Analitis"
+    elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra", "Ekuilibrium & Harmoni"
+    elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio", "Intensitas & Radar Emosi"
+    elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius", "Ekspansi & Visioner"
+    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn", "Sistem & Struktur Kuat"
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius", "Inovasi & Anti-Mainstream"
-    else: return "Pisces", "Empati & Imajinasi Kuat"
+    else: return "Pisces", "Empati & Visualisasi Kuantum"
 
 def bioritme_nlp(tanggal_lahir):
     hari_hidup = (datetime.date.today() - tanggal_lahir).days
@@ -248,19 +225,28 @@ def bioritme_nlp(tanggal_lahir):
     emosi = math.sin(2 * math.pi * (hari_hidup / 28)) * 100
     intelektual = math.sin(2 * math.pi * (hari_hidup / 33)) * 100
     
-    if emosi > 50 and intelektual > 50: state = "UPTIME STATE (Puncak Kreativitas & Sosial)"
-    elif emosi < -50 and fisik < -50: state = "DOWNTIME STATE (Butuh Me-Time & Refleksi)"
-    elif intelektual > 50 and fisik < 0: state = "ANALYTICAL STATE (Tajam untuk Perencanaan)"
-    else: state = "NEUTRAL STATE (Stabil & Seimbang)"
-    return int(fisik), int(emosi), int(intelektual), state
+    if emosi > 50 and intelektual > 50: 
+        state = "UPTIME STATE (Gelombang Puncak Kreativitas)"
+        saran = "Sistem saraf Anda sedang sangat reseptif. Manfaatkan momentum hari ini untuk mengambil keputusan krusial, berjejaring (networking), atau menyelesaikan tugas berat yang tertunda."
+    elif emosi < -50 and fisik < -50: 
+        state = "DOWNTIME STATE (Siklus Rest & Kalibrasi)"
+        saran = "Baterai alamiah Anda sedang low-bat. Izinkan pikiran Anda beristirahat. Hindari konflik atau adu argumen hari ini karena *Amigdala* Anda sangat mudah terpicu."
+    elif intelektual > 50 and fisik < 0: 
+        state = "ANALYTICAL STATE (Tajam untuk Perencanaan)"
+        saran = "Fisik Anda mungkin terasa malas bergerak, tapi ketajaman otak kiri Anda luar biasa hari ini. Pakai energi ini untuk menyusun strategi, riset data, atau evaluasi."
+    else: 
+        state = "NEUTRAL STATE (Ekuilibrium Stabil)"
+        saran = "Gelombang otak Anda berjalan konstan dan seimbang. Sangat pas untuk menjalankan rutinitas eksekusi dengan tenang tanpa *mood-swing*."
+        
+    return int(fisik), int(emosi), int(intelektual), state, saran
 
 def get_arketipe(angka):
     arketipe_dict = {
-        1: "The Leader (Sang Inisiator / Perintis)", 2: "The Mediator (Sang Penjaga / Penyelaras)",
-        3: "The Communicator (Sang Visioner / Ekspresif)", 4: "The Architect (Sang Alchemist / Transformator)",
-        5: "The Explorer (Sang Eksekutor / Penggerak)", 6: "The Nurturer (Sang Harmonizer / Penyeimbang)",
-        7: "The Analyst (Sang Legacy Builder / Pembangun Makna)", 8: "The Strategist (Sang Sovereign / Penguasa Diri)",
-        9: "The Humanist (Sang Ascended / Kesadaran Tinggi)"
+        1: "The Leader (Sang Perintis)", 2: "The Mediator (Sang Penyelaras)",
+        3: "The Communicator (Sang Visioner)", 4: "The Architect (Sang Transformator)",
+        5: "The Explorer (Sang Penggerak)", 6: "The Nurturer (Sang Harmonizer)",
+        7: "The Analyst (Sang Legacy Builder)", 8: "The Strategist (Sang Sovereign)",
+        9: "The Humanist (Sang Kesadaran Tinggi)"
     }
     return arketipe_dict.get(angka, "Pribadi Unik")
 
@@ -282,14 +268,14 @@ with tab1:
         elif tgl_input == tgl_today:
             st.error("🚨 Satpam NLP: Mohon masukkan tanggal lahir Anda yang valid, bukan hari ini.")
         else:
-            with st.spinner('Melakukan kalibrasi pola pikiran Anda...'):
-                time.sleep(1.5)
+            with st.spinner('Menyelaraskan gelombang otak dan membedah program bawah sadar...'):
+                time.sleep(2)
                 
                 angka_hasil = hitung_angka(tgl_input)
                 angka_nama = hitung_angka_nama(nama_user)
                 _, weton_hasil = get_neptu_weton(tgl_input)
                 zod_nama, zod_sifat = get_zodiak(tgl_input)
-                f, e, i, state_harian = bioritme_nlp(tgl_input)
+                f, e, i, state_harian, saran_harian = bioritme_nlp(tgl_input)
                 
                 insight = data_analisa.get(angka_hasil)
                 arketipe = get_arketipe(angka_hasil)
@@ -297,11 +283,12 @@ with tab1:
                 teks_potensi = potensi_dinamis.get(angka_hasil)
             
             st.balloons()
-            st.markdown(f"### 🪞 Hasil Mapping: {nama_user}")
+            st.markdown(f"### 🪞 Blueprint Bawah Sadar: {nama_user}")
             st.markdown("---")
             
-            st.success(f"🔋 **RADAR ENERGI HARI INI:** Anda sedang berada dalam **{state_harian}**.")
-            st.caption(f"Kapasitas Fisik: {f}% | Emosional: {e}% | Intelektual: {i}%")
+            st.success(f"🔋 **RADAR ENERGI HARI INI:** Anda berada dalam **{state_harian}**.")
+            st.caption(f"Fisik: {f}% | Emosional: {e}% | Intelektual: {i}%")
+            st.write(f"💡 **Saran NLP:** {saran_harian}")
             st.markdown("---")
             
             c1, c2, c3, c4 = st.columns(4)
@@ -311,53 +298,59 @@ with tab1:
             c4.metric("POLA ZODIAK", zod_nama)
             
             st.markdown("---")
-            st.subheader("🗣️ Vibrasi Identitas (Nama)")
+            st.subheader("🗣️ Vibrasi Identitas (Duality Level)")
             st.info(vibrasi_nama_dict.get(angka_nama, "Nama Anda memiliki resonansi energi yang unik."))
 
-            st.subheader("💡 Struktur Karakter & Mental")
-            sintesis = f"Halo **{nama_user}**, sistem mendeteksi filter utama pikiran Anda dipengaruhi pola **{zod_nama}** ({zod_sifat}) dengan pondasi energi weton **{weton_hasil}**. "
+            st.subheader("🧬 Struktur Karakter (Meta-Program)")
+            sintesis = f"Halo **{nama_user}**, sistem mendeteksi filter utama pikiran Anda dipengaruhi gelombang **{zod_nama}** ({zod_sifat}) yang berakar kuat pada frekuensi **{weton_hasil}**. "
             sintesis += insight['karakter']
             st.write(sintesis)
 
-            st.subheader("❤️ Pola Hubungan & Asmara")
-            st.warning(f"**Insight Asmara:** {insight['asmara']}")
-            st.info(f"**Tips Komunikasi NLP:** {tips_zodiak_nlp.get(zod_nama)}")
+            st.subheader("❤️ Kalibrasi Asmara")
+            st.warning(f"**Blind Spot Hubungan:** {insight['asmara']}")
+            st.info(f"💡 **Secret NLP Hack untuk Anda:** {tips_zodiak_nlp.get(zod_nama)}")
 
             st.markdown("---")
-            st.error(f"🚨 **PERHATIAN {nama_user.upper()}**\n\nPola arketipe **{arketipe}** Anda saat ini belum berjalan maksimal.")
-            st.markdown(f"**Karena hambatan mental (Shadow Self), Anda mungkin sering:**\n- {pain_points[0]}\n- {pain_points[1]}\n- {pain_points[2]}")
-            st.warning("🔄 **Mau tetap membiarkan pola merusak ini terjadi?** atau\n🚀 **Siap melakukan Re-Programming sekarang?**")
-            st.success(f"Arketipe **{arketipe}** {teks_potensi}")
-
-            # TOMBOL LYNK.ID SESUAI INSTRUKSI
+            st.markdown(f"""
+            <div style="background-color: #3b0000; padding: 20px; border-radius: 10px; border-left: 5px solid #ff4b4b;">
+                <h4 style="color: #ff4b4b; margin-top: 0;">🚨 PERINGATAN BAWAH SADAR (Shadow Self)</h4>
+                <p style="color: white; font-size: 15px;">Sistem mendeteksi adanya <b>Mental Block (Hambatan Tak Kasat Mata)</b> yang diam-diam menguras energi hidup Anda secara konstan. Jika Anda jujur pada diri sendiri, arketipe <b>{arketipe}</b> dalam diri Anda mungkin sedang mengalami sabotase ini:</p>
+                <ul style="color: #ffcccc; font-size: 15px;">
+                    <li>{pain_points[0]}</li>
+                    <li>{pain_points[1]}</li>
+                    <li>{pain_points[2]}</li>
+                </ul>
+                <p style="color: #FFD700; font-weight: bold; margin-bottom: 0;">Padahal, rancangan asli program Anda {teks_potensi}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("<br>", unsafe_allow_html=True)
             url_tujuan = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
             nama_panggilan = nama_user.split()[0] if nama_user else 'Sahabat'
             
-            st.markdown("---")
-            st.markdown(f"#### 🗝️ Keputusan Ada di Tangan Anda Sekarang, {nama_panggilan}.")
-            st.write("Modul ini bukan sekadar e-book, ini adalah **'Kunci Pas'** untuk membongkar mesin bawah sadar Anda. Jangan tunda lagi.")
+            st.write(f"Modul transformasi khusus **Kode {angka_hasil}** ini diciptakan khusus untuk mereset sumbatan mental di atas. Jangan biarkan *blind spot* Anda terus membatasi rezeki dan kebahagiaan Anda, {nama_panggilan}.")
             
             st.markdown(f"""
             <a href="{url_tujuan}" target="_blank" style="text-decoration: none;">
-                <div style="background-color: #d4af37; color: black; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; font-size: 16px;">
-                    🔓 YA! SAYA SIAP AMBIL MODUL KODE {angka_hasil}
+                <div style="background-color: #FFD700; color: black; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);">
+                    🔓 BONGKAR KUNCI MENTAL KODE {angka_hasil} SEKARANG
                 </div>
             </a>
             """, unsafe_allow_html=True)
 
             st.markdown("---")
             phone_number = "628999771486" 
-            wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya sudah baca hasil mapping Kode {angka_hasil} ({arketipe}) saya. Saya lelah terjebak di pola yang sama dan SIAP melakukan Re-Programming. Kapan jadwal Private Session terdekat yang masih kosong?"
+            wa_text = f"Halo Coach Ahmad, saya {nama_user}. Saya merinding baca hasil mapping Kode {angka_hasil} ({arketipe}). Saya capek jadi korban 'Shadow Self' saya sendiri dan SIAP kalibrasi ulang. Kapan jadwal Private Session terdekat yang masih kosong?"
             encoded_wa = urllib.parse.quote(wa_text)
             wa_link = f"https://wa.me/{phone_number}?text={encoded_wa}"
 
             st.markdown(f"""
-            <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #d4af37; border-radius: 10px;">
-                <h3 style="color: #d4af37; margin-bottom: 10px;">🧠 Siap Membongkar Mental Block Anda?</h3>
-                <p style="color: #f0f0f0; margin-bottom: 20px;">Teori tak mengubah realita. Cabut akar <i>mental block</i> Anda melalui kalibrasi bawah sadar.</p>
+            <div style="text-align: center; padding: 25px; background-color: #1a1a1a; border: 2px solid #25D366; border-radius: 10px;">
+                <h3 style="color: #25D366; margin-bottom: 10px;">🧠 Cabut Mental Block Hingga ke Akar</h3>
+                <p style="color: #f0f0f0; margin-bottom: 20px;">Membaca saja tidak merubah Nasib. Mari lakukan <i>Deep Re-Programming</i> langsung bersama Coach Ahmad Septian di ruang terapi privat.</p>
                 <a href="{wa_link}" target="_blank" style="text-decoration: none;">
                     <div style="background-color: #25D366; color: white; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px;">
-                        📲 Amankan Jadwal Sesi Saya
+                        📲 Konsultasi Jadwal Private Session
                     </div>
                 </a>
             </div>
@@ -368,9 +361,9 @@ with tab1:
             with st.expander("Bagaimana sistem ini membedah struktur pikiran saya?"):
                 st.write("Sistem **Persona-NLP Analis** menggunakan integrasi data kronologis sebagai pintu masuk untuk mengidentifikasi **Meta-Program** atau filter dominan dalam pikiran bawah sadar Anda.")
             with st.expander("Kenapa akurasinya terasa sangat personal?"):
-                st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh.")
+                st.write("Karena Coach **Ahmad Septian** menggabungkan tiga variabel fundamental: Kode Numerik, Energi Weton, dan Pola Zodiak menjadi satu profil psikografis yang utuh (Barnum Effect Precision).")
             with st.expander("Apa langkah selanjutnya setelah mengetahui 'Kode Program' ini?"):
-                st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi yang disediakan di atas atau melakukan sesi Deep Calibration secara Private.")
+                st.write("Langkah selanjutnya adalah **Re-Programming**. Anda bisa menggunakan modul transformasi PDF yang disediakan di atas atau mendaftar sesi Deep Calibration.")
 
             st.markdown("---")
             with st.expander("⚖️ Disclaimer & Batasan Layanan"):
@@ -533,7 +526,6 @@ st.markdown(marquee_html, unsafe_allow_html=True)
 
 st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Jejak Transformasi Terbaru</h3>", unsafe_allow_html=True)
 
-# Menarik data REAL-TIME dari Google Sheets
 daftar_ulasan = ambil_ulasan()
 
 if not daftar_ulasan:
