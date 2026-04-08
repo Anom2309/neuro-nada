@@ -394,4 +394,172 @@ with tab1:
 # ==========================================
 with tab2:
     st.subheader("Superior Couple Sync 👩‍❤️‍👨")
-    st.write("Sistem X-Ray
+    st.write("Sistem X-Ray hubungan tingkat tinggi memadukan Esoterik Nama, Astrologi, Primbon Betaljemur, dan Psikologi Bawah Sadar.")
+    
+    ca, cb = st.columns(2)
+    with ca: 
+        n1 = st.text_input("Nama Anda", key="n1")
+        d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), min_value=datetime.date(1940, 1, 1), max_value=tgl_today, key="d1")
+    with cb: 
+        n2 = st.text_input("Nama Pasangan", key="n2")
+        d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), min_value=datetime.date(1940, 1, 1), max_value=tgl_today, key="d2")
+        
+    if st.button("Jalankan Pemindaian Hubungan"):
+        if n1 and n2:
+            st.snow()
+            
+            # Ekstraksi Data
+            zod1 = get_zodiak(d1); ne_1, hari1, pas1 = get_neptu_weton(d1)
+            nj1 = hitung_nama_esoterik(n1); el1 = get_elemen_esoterik(nj1)
+            laku1, panca1, _ = get_betaljemur_data(ne_1, hari1)
+            
+            zod2 = get_zodiak(d2); ne_2, hari2, pas2 = get_neptu_weton(d2)
+            nj2 = hitung_nama_esoterik(n2); el2 = get_elemen_esoterik(nj2)
+            laku2, panca2, _ = get_betaljemur_data(ne_2, hari2)
+            
+            # TAMPILAN PREVIEW (GRATIS)
+            st.markdown("---")
+            st.markdown(f"""
+            <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap: wrap;">
+                <div class="cosmic-box" style="flex:1; padding:15px; min-width: 280px;">
+                    <h4 style="text-align:center; color:#D4AF37; margin-top:0; border-bottom:1px solid #4a4a8a; padding-bottom:8px;">{n1.upper()}</h4>
+                    <div style="font-size:14px; line-height:1.8;">
+                        <b>Nilai Esoterik:</b> {nj1} <br>
+                        <b>Elemen Jiwa:</b> {el1}<br>
+                        <b>Filter Zodiak:</b> {zod1}<br>
+                        <b>Energi Weton:</b> {hari1} {pas1} (Neptu {ne_1})
+                    </div>
+                </div>
+                <div class="cosmic-box" style="flex:1; padding:15px; min-width: 280px;">
+                    <h4 style="text-align:center; color:#D4AF37; margin-top:0; border-bottom:1px solid #4a4a8a; padding-bottom:8px;">{n2.upper()}</h4>
+                    <div style="font-size:14px; line-height:1.8;">
+                        <b>Nilai Esoterik:</b> {nj2} <br>
+                        <b>Elemen Jiwa:</b> {el2}<br>
+                        <b>Filter Zodiak:</b> {zod2}<br>
+                        <b>Energi Weton:</b> {hari2} {pas2} (Neptu {ne_2})
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            st.markdown("### 🧬 Lapis 1: Benturan Elemen Nama")
+            el_judul, el_desk = get_elemen_combo(el1, el2)
+            st.info(f"Menyatukan frekuensi nama **{el1}** dengan **{el2}** menciptakan resonansi:\n\n**{el_judul}**\n\n*{el_desk}*")
+            
+            # GATE PREMIUM KONDISIONAL
+            if not st.session_state.premium:
+                st.markdown(locked_html, unsafe_allow_html=True)
+            else:
+                # TAMPILAN PREMIUM
+                st.markdown("### 📜 Lapis 2: Resonansi Primbon (Siklus 8)")
+                total_neptu = ne_1 + ne_2
+                sisa_weton = total_neptu % 8
+                sisa_tampil = 8 if sisa_weton == 0 else sisa_weton
+                hasil_bagi = total_neptu // 8
+                
+                db_weton_dinamis = {
+                    1: [("💔 PEGAT", "Terdapat perbedaan mendasar dalam cara memproses emosi dan dominasi ego.", "Turunkan ego. Gunakan teknik Pacing.", "Mind-Reading dan mengungkit masa lalu.")],
+                    2: [("👑 RATU", "Penyatuan vibrasi ini memancarkan wibawa.", "Fokus pada apresiasi harian.", "Terjebak pencitraan eksternal.")],
+                    3: [("💞 JODOH", "Penerimaan bawah sadar luar biasa tinggi. Kalian seperti sudah saling mengenal lama.", "Ciptakan kejutan-kejutan spontan.", "Terjebak di zona nyaman.")],
+                    4: [("🌱 TOPO", "Awal hubungan butuh banyak kalibrasi, namun akan solid jika melewati badai.", "Kuasai teknik Reframing.", "Memaksakan standar nilai pribadi.")],
+                    5: [("💰 TINARI", "Vibrasi kalian jika disatukan akan menarik kelancaran finansial dan hoki.", "Bangun nilai spiritual bersama.", "Menjadikan materi perekat utama.")],
+                    6: [("⚡ PADU", "Sering terjadi letupan perdebatan karena beda cara filter informasi di otak.", "Validasi emosinya (Yes-Set).", "Konfrontasi langsung saat emosi tinggi.")],
+                    7: [("👁️ SUJANAN", "Ada kecenderungan muncul rasa insecure atau salah paham mendadak.", "Buka komunikasi transparan.", "Menggunakan bahasa generalisasi.")],
+                    8: [("🕊️ PESTHI", "Hubungan yang stabil, adem ayem, dan jauh dari drama.", "Rutin mencari hobi baru bersama.", "Saking damainya bisa terasa hambar.")]
+                }
+                
+                judul_weton, desk_weton, saran_do, saran_dont = random.choice(db_weton_dinamis.get(sisa_tampil, [("Analisa Unik", "Butuh kalibrasi", "Perbaiki komunikasi", "Jangan egois")]))
+                
+                st.markdown(f"""
+                <div style="background: linear-gradient(180deg, #111 0%, #000 100%); border: 1px solid #D4AF37; padding: 20px; border-radius: 12px; margin-bottom: 15px; text-align: center;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <div style="font-size: 18px; color: #FFF;">Neptu 1<br><span style="color: #D4AF37; font-size: 24px; font-weight: bold;">{ne_1}</span></div>
+                        <div style="font-size: 24px; font-weight: bold; color: #FF4B4B;">+</div>
+                        <div style="font-size: 18px; color: #FFF;">Neptu 2<br><span style="color: #D4AF37; font-size: 24px; font-weight: bold;">{ne_2}</span></div>
+                        <div style="font-size: 24px; font-weight: bold; color: #FF4B4B;">=</div>
+                        <div style="font-size: 18px; color: #FFF;">Total Fusi<br><span style="color: #25D366; font-size: 24px; font-weight: bold;">{total_neptu}</span></div>
+                    </div>
+                    <code style="font-size: 16px; color: #FFD700; background: none;">{total_neptu} ÷ 8 = {hasil_bagi} sisa <b style="font-size: 20px;">{sisa_tampil}</b></code>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                st.success(f"Alam bawah sadar hubungan kalian terkunci di frekuensi:\n\n**{judul_weton}**\n\n*{desk_weton}*")
+                
+                st.markdown("### 🧠 Lapis 3: Skor Meta-Program (NLP)")
+                sel = abs(hitung_angka(d1) - hitung_angka(d2))
+                if sel in [0, 3, 6, 9]: st.warning("💘 **SKOR NLP: 90% (Sangat Sinkron)**")
+                elif sel in [1, 2, 8]: st.warning("⚖️ **SKOR NLP: 70% (Dinamis)**")
+                else: st.error("🔥 **SKOR NLP: 50% (Rawan Gesekan)**")
+
+                c_do_c, c_dont_c = st.columns(2)
+                with c_do_c: st.success(f"✅ **LAKUKAN INI:**\n\n{saran_do}")
+                with c_dont_c: st.error(f"❌ **HINDARI INI:**\n\n{saran_dont}")
+
+# ==========================================
+# TAB 3: AUDIT SISTEM SARAF
+# ==========================================
+with tab3:
+    st.subheader("🕸️ Audit Sistem Saraf (Wheel of Life)")
+    st.info("**Apa itu Audit Sistem Saraf?**\n\nEnergi manusia mengalir layaknya jaring. Geser *slider* sejujur-jujurnya untuk melihat kebocoran energi Anda saat ini.")
+
+    kategori_label = ['Kesehatan Mental', 'Karir & Finansial', 'Asmara', 'Spiritual', 'Fisik']
+    sk = [st.slider(k, 1, 10, 5) for k in kategori_label]
+    
+    if st.button("Mulai Audit Radar"):
+        fig = go.Figure(data=go.Scatterpolar(
+            r=sk+[sk[0]], theta=['Mental','Karir','Asmara','Spiritual','Fisik','Mental'], 
+            fill='toself', fillcolor='rgba(212, 175, 55, 0.4)', line=dict(color='#D4AF37')
+        ))
+        st.plotly_chart(fig)
+        
+        # GATE PREMIUM KONDISIONAL
+        if not st.session_state.premium:
+            st.markdown(locked_html, unsafe_allow_html=True)
+        else:
+            avg = sum(sk)/5
+            if avg < 5: st.error("🚨 **KONDISI KRITIS (ALARM BERBUNYI)**\n\nSistem saraf Anda sedang kelelahan parah. Anda butuh 'Detoks Mental' secepatnya sebelum berujung pada psikosomatis.")
+            elif avg < 8: st.warning("🟡 **ZONA NYAMAN YANG MENIPU**\n\nSistem mendeteksi Anda memendam potensi besar yang tertahan. Selesaikan area terlemah Anda, dan lihat keajaiban terjadi.")
+            else: st.success("🔥 **PEAK STATE (GELOMBANG EMAS)**\n\nSinkronisasi otak dan tindakan Anda sangat sempurna. Ini momentum terbaik mengeksekusi visi Anda!")
+
+# ==========================================
+# SOCIAL PROOF (ULASAN DINAMIS)
+# ==========================================
+st.markdown("---")
+st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Jejak Transformasi</h3>", unsafe_allow_html=True)
+
+daftar_ulasan = ambil_ulasan()
+
+if daftar_ulasan:
+    pilihan_marquee = daftar_ulasan[:3]
+    marquee_content = " | ".join([f"<span style='color: #FFD700;'>{u.get('Rating', '⭐⭐⭐⭐⭐')}</span> <b>{u.get('Nama', 'User')}:</b> \"{u.get('Komentar', '')[:50]}...\"" for u in pilihan_marquee])
+    st.markdown(f"""
+    <div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+        <marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">{marquee_content}</marquee>
+    </div>
+    """, unsafe_allow_html=True)
+
+    for u in daftar_ulasan[:5]:
+        if u.get("Komentar", ""): 
+            st.markdown(f"""
+            <div class="ulasan-box">
+                <span style="color: #FFD700; font-size: 12px;">{u.get("Rating", "⭐⭐⭐⭐⭐")}</span><br>
+                <b>{u.get("Nama", "Jiwa Kosmik")}</b><br>
+                <i style="color: #ccc;">"{u.get("Komentar", "")}"</i>
+            </div>
+            """, unsafe_allow_html=True)
+else:
+    st.caption("<center>Belum ada ulasan terbaru.</center>", unsafe_allow_html=True)
+
+with st.expander("💬 Bagikan Pengalaman Anda"):
+    with st.form("form_review"):
+        rn = st.text_input("Nama")
+        rr = st.radio("Rating Bintang", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"], horizontal=True)
+        rk = st.text_area("Ulasan (Gimana akurasinya?)")
+        if st.form_submit_button("Kirim Ulasan") and rn and rk:
+            if kirim_ulasan(rn, rr, rk): 
+                st.success("Terkirim! Testimoni Anda akan muncul setelah refresh.")
+                time.sleep(1)
+                st.rerun()
+
+st.markdown("---")
+st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist © 2026</small></center>", unsafe_allow_html=True)
