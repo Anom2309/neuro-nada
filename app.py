@@ -182,31 +182,33 @@ st.markdown("---")
  
 tgl_today = datetime.date.today()
  
-# --- DATABASE ARKETIPE NLP & PRIMBON ---
+# --- DATABASE ARKETIPE NLP & PRIMBON (DINAMIS) ---
+def get_dynamic_arketipe(nama, angka):
+    data = {
+        1: f"Karena kalkulasi waktu lahir menyempit di **KODE 1**, sistem membaca bahwa **{nama}** secara genetik didesain untuk memimpin dan membuka jalan baru. **{nama}** memiliki dorongan internal yang kuat untuk mandiri secara absolut dan sangat benci jika didikte atau diatur. Anda adalah pengambil risiko yang berani, namun waspadai jebakan ego dan rasa kesepian karena selalu merasa harus memikul beban dunia sendirian.",
+        2: f"Angka lahir Anda mereduksi menjadi **KODE 2**. Ini menjadikan **{nama}** sebagai Sang Penyelaras sejati. Bakat alami Anda adalah seni mendengarkan dan menciptakan harmoni di sekeliling Anda. Sistem saraf **{nama}** sangat peka terhadap emosi orang lain. Namun tantangannya, Anda seringkali mengorbankan identitas dan kebahagiaan diri sendiri hanya karena terlalu sibuk menyenangkan ekspektasi orang lain.",
+        3: f"Matriks waktu Anda mengunci pada **KODE 3**. Pikiran **{nama}** bekerja layaknya kembang api; selalu dipenuhi warna dan ide kreatif tanpa henti. Anda adalah pembawa pesan dan magnet sosial yang ekspresif. Namun, musuh terbesar bagi seorang KODE 3 seperti **{nama}** adalah rasa bosan yang cepat datang, membuat Anda sering kesulitan menyelesaikan apa yang sudah Anda mulai dengan antusias.",
+        4: f"Dengan hasil **KODE 4**, sistem membaca **{nama}** sebagai Pembangun Sistem yang solid. Keamanan, keteraturan, dan detail adalah pondasi batin Anda. **{nama}** adalah sosok yang sangat bisa diandalkan dan praktis dalam bekerja. Sisi gelapnya: Anda rawan terkena stres parah atau kebingungan luar biasa jika rencana yang sudah disusun mendadak berubah di tengah jalan.",
+        5: f"Reduksi waktu lahir Anda menghasilkan **KODE 5**. Ini adalah DNA dari Sang Penggerak. **{nama}** adalah simbol kebebasan mutlak yang haus akan petualangan dan pengalaman baru. Otak Anda tercepat beradaptasi dibanding kode lainnya. Namun waspadai rasa hampa dan 'Sindrom Cepat Bosan' yang bisa mensabotase karya atau hubungan jangka panjang **{nama}**.",
+        6: f"Jatuh pada **KODE 6**, semesta merancang **{nama}** sebagai pengayom sejati. Fokus utama energi hidup Anda adalah melayani, merawat, dan melindungi lingkaran orang yang Anda cintai. Anda memegang standar tanggung jawab moral yang sangat tinggi. Bahayanya, **{nama}** sangat rentan terkena *burnout* (kelelahan mental parah) karena tidak punya batasan (boundaries) saat memberi kepada orang lain.",
+        7: f"Kalkulasi angka Anda adalah **KODE 7**. **{nama}** adalah pencari kebenaran esensial dengan intuisi spiritual yang tajam. Otak Anda tidak pernah puas dengan informasi yang hanya di permukaan; selalu menganalisa secara mendalam. Tantangan utama bagi **{nama}** adalah sering tanpa sadar mengisolasi diri, terjebak dalam labirin *overthinking*, dan merasa tidak ada yang bisa memahami frekuensi Anda.",
+        8: f"Dengan **KODE 8**, sistem mendeteksi DNA Sang Pemegang Kendali pada diri **{nama}**. Anda dianugerahi visi kerajaan dan insting bisnis/eksekusi yang sangat tajam. Fokus bawah sadar Anda ditarik menuju pencapaian material dan otoritas. Namun waspadai, **{nama}** seringkali terlalu memforsir tubuh dan sangat kesulitan melepaskan kendali emosional saat sedang beristirahat.",
+        9: f"KODE tertinggi **KODE 9**. Sistem mengidentifikasi **{nama}** sebagai 'Jiwa Tua' (Old Soul). Anda memandang masalah dunia dengan kacamata holistik dan penuh kebijaksanaan universal. Tingkat empati Anda melampaui kepentingan pribadi. Sisi gelapnya: **{nama}** rawan mengalami kelelahan batin dan patah hati hebat karena ekspektasi luhur Anda sering berbenturan dengan realitas manusia yang egois."
+    }
+    return data.get(angka, f"Karakter **{nama}** memiliki anomali energi yang kompleks dan misterius.")
+
 arketipe_punchy = {
-    1: {"inti": "Sang Perintis yang lahir untuk memimpin, benci didikte, dan selalu fokus pada tujuan masa depan.", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
-    2: {"inti": "Sang Penyelaras yang menjadi lem perekat hubungan, sangat peka membaca emosi lingkungan.", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
-    3: {"inti": "Sang Visioner dengan pikiran bak kembang api; kaya ide, ekspresif, dan magnetis.", "kekuatan": ["Komunikasi memikat", "Kreativitas tanpa batas", "Ahli mencairkan suasana"]},
-    4: {"inti": "Sang Transformator yang bertumpu pada struktur, detail, dan keteraturan hidup yang logis.", "kekuatan": ["Pola pikir sangat terstruktur", "Bisa diandalkan 100%", "Ketelitian tingkat dewa"]},
-    5: {"inti": "Sang Penggerak yang memuja kebebasan, haus petualangan, dan tercepat beradaptasi.", "kekuatan": ["Kelincahan berpikir", "Inovator pemecah kebuntuan", "Keberanian mengeksplorasi"]},
-    6: {"inti": "Sang Harmonizer yang menjadi pelindung natural, rela berkorban merawat lingkaran terdekatnya.", "kekuatan": ["Insting pengayom", "Tanggung jawab moral tinggi", "Loyalitas tanpa pamrih"]},
-    7: {"inti": "Sang Legacy Builder yang haus kebenaran, pemikir mendalam, dan intuisi spiritual tajam.", "kekuatan": ["Kemampuan analisa", "Intuisi sering akurat", "Sangat selektif menilai kualitas"]},
-    8: {"inti": "Sang Sovereign dengan visi kerajaan. Eksekutor ulung yang memancarkan otoritas.", "kekuatan": ["Tahan banting mental", "Insting bisnis tajam", "Kemampuan memegang kendali"]},
-    9: {"inti": "Sang Kesadaran Tinggi (Old Soul) yang memandang dunia secara holistik dengan idealisme luhur.", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
+    1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
+    2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
+    3: {"inti": "Sang Visioner (Kreator Ide & Komunikator Handal)", "kekuatan": ["Komunikasi memikat", "Kreativitas tanpa batas", "Ahli mencairkan suasana"]},
+    4: {"inti": "Sang Transformator (Ahli Strategi & Pembangun Sistem)", "kekuatan": ["Pola pikir sangat terstruktur", "Bisa diandalkan 100%", "Ketelitian tingkat dewa"]},
+    5: {"inti": "Sang Penggerak (Eksplorator & Pemecah Kebuntuan)", "kekuatan": ["Kelincahan berpikir", "Inovator pemecah kebuntuan", "Keberanian mengeksplorasi"]},
+    6: {"inti": "Sang Harmonizer (Pengayom & Pelindung Natural)", "kekuatan": ["Insting pengayom", "Tanggung jawab moral tinggi", "Loyalitas tanpa pamrih"]},
+    7: {"inti": "Sang Legacy Builder (Pemikir Analitik & Spiritualis)", "kekuatan": ["Kemampuan analisa", "Intuisi sering akurat", "Sangat selektif menilai kualitas"]},
+    8: {"inti": "Sang Sovereign (Eksekutor Otoritas & Magnet Material)", "kekuatan": ["Tahan banting mental", "Insting bisnis tajam", "Kemampuan memegang kendali"]},
+    9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
 }
- 
-arketipe_deskripsi = {
-    1: "Anda lahir untuk memimpin dan membuka jalan. Arketipe ini memiliki dorongan internal yang kuat untuk mandiri dan benci jika harus didikte. Anda adalah pengambil risiko yang berani, namun seringkali merasa kesepian karena merasa harus memikul tanggung jawab sendirian.",
-    2: "Anda adalah lem perekat dalam setiap hubungan. Bakat Anda adalah mendengarkan dan menciptakan harmoni. Arketipe ini sangat peka terhadap perasaan orang lain, namun seringkali kehilangan identitas diri karena terlalu sibuk menyenangkan orang lain.",
-    3: "Anda adalah pembawa pesan dan inspirasi. Pikiran Anda bekerja seperti kembang api; penuh warna dan ide kreatif. Anda pandai menarik perhatian, namun tantangan terbesar Anda adalah menyelesaikan apa yang sudah Anda mulai.",
-    4: "Anda adalah pembangun sistem. Keamanan, keteraturan, dan detail adalah nafas Anda. Anda sangat bisa diandalkan dan praktis. Namun, Arketipe ini sering terjebak dalam kekakuan dan stres luar biasa jika rencana mendadak berubah.",
-    5: "Anda adalah simbol kebebasan dan adaptasi. Arketipe ini haus akan pengalaman baru dan petualangan. Anda sangat cepat belajar hal baru, namun seringkali merasa hampa karena sulit menemukan 'rumah' jangka panjang.",
-    6: "Anda adalah pengayom sejati. Fokus hidup Anda adalah melayani dan merawat orang-orang yang Anda cintai. Anda memiliki standar moral yang tinggi. Sisi gelapnya: Anda sering merasa dieksploitasi karena memberi tanpa batasan.",
-    7: "Anda adalah pencari kebenaran dan makna terdalam. Pikiran Anda sangat tajam dan intuitif. Anda tidak puas dengan hal permukaan. Namun, Arketipe ini sering mengisolasi diri dan terjebak dalam labirin pikirannya sendiri.",
-    8: "Anda adalah figur otoritas dan kelimpahan. Arketipe ini memiliki visi besar untuk membangun kerajaan finansial atau pengaruh sosial. Anda sangat tangguh, namun tantangan terbesar Anda adalah berdamai dengan sisi emosional Anda.",
-    9: "Anda adalah jiwa tua yang bijaksana. Anda peduli pada kemanusiaan dan cinta universal. Anda memandang dunia dengan kacamata holistik. Tantangannya: Anda sering merasa patah hati melihat realitas dunia yang tak sesuai idealisme Anda."
-}
- 
+
 closing_brutal_dinamis = {
     1: ["Overthinking karena merasa hasil belum sempurna", "Gengsi minta tolong saat memikul beban", "Membangun tembok ego untuk menutupi sepi"],
     2: ["Mengorbankan kebahagiaan diri demi ekspektasi", "Sulit berkata TIDAK yang berujung kelelahan mental", "Memendam amarah demi menghindari konflik"],
@@ -265,15 +267,11 @@ def generate_dynamic_reading(total_jummal):
     while root_num > 9: root_num = sum(int(d) for d in str(root_num))
     
     root_dict = {
-        1: "Pencipta jalan baru (The Leader). Kebebasan bertindak adalah segalanya.",
-        2: "Penyelaras harmoni (The Peacemaker). Kuat di diplomasi dan seni mendengarkan.",
-        3: "Penyampai pesan (The Creator). Ekspresi verbal dan ide brilian adalah senjata utama.",
-        4: "Pembangun sistem (The Builder). Mencari keamanan melalui struktur dan logika.",
-        5: "Agen transformasi (The Explorer). Membenci rutinitas, haus pengalaman baru.",
-        6: "Pengayom sejati (The Caregiver). Tanggung jawab moral kuat pada lingkaran terdekat.",
-        7: "Pencari esensi (The Seeker). Pikiran selalu menggali makna di balik permukaan.",
-        8: "Pemegang kendali (The Executive). DNA dirancang untuk mengelola material dan otoritas.",
-        9: "Kesadaran universal (The Humanitarian). Visi melampaui kepentingan pribadi."
+        1: "Pencipta jalan baru (The Leader)", 2: "Penyelaras harmoni (The Peacemaker)",
+        3: "Penyampai pesan (The Creator)", 4: "Pembangun sistem (The Builder)",
+        5: "Agen transformasi (The Explorer)", 6: "Pengayom sejati (The Caregiver)",
+        7: "Pencari esensi (The Seeker)", 8: "Pemegang kendali (The Executive)",
+        9: "Kesadaran universal (The Humanitarian)"
     }
 
     master_note = ""
@@ -364,6 +362,21 @@ def get_safe_firstname(name_str, default="User"):
     stripped = str(name_str).strip()
     return stripped.split()[0].upper() if stripped else default
 
+# --- FUNGSI GENERATOR TEKS DINAMIS PASANGAN ---
+def get_dynamic_couple_persona(root_c, n1, n2):
+    couple_persona = {
+        1: ("THE POWER COUPLE", f"Karena angka vibrasi nama **{n1}** dan **{n2}** menghasilkan The Root 1, kalian secara alami memancarkan simbol Alpha dan Dominasi. Ketika bersatu, **{n1}** dan **{n2}** membentuk entitas yang mandiri, ambisius, dan punya daya dobrak tangguh. Fokus energi kalian tertuju pada kemajuan dan status."),
+        2: ("THE SOULMATES", f"Penyatuan vibrasi **{n1}** dan **{n2}** mengarah ke Root 2 (Energi Harmoni). Kalian berdua memiliki ibarat 'Wi-Fi' batin yang otomatis terhubung. Sangat mudah bagi **{n1}** untuk memahami luka atau kebahagiaan **{n2}** tanpa harus ada satu pun kata yang terucap."),
+        3: ("THE SOCIALITES", f"Hasil kalkulasi nama **{n1}** disilang dengan **{n2}** meledak di Root 3. Energi yang dihasilkan memancarkan aura sosial yang magnetis. Kalian adalah tipe pasangan yang menyenangkan, penuh ide spontan, dan kehadiran kalian selalu ditunggu untuk meramaikan suasana pergaulan."),
+        4: ("THE BUILDERS", f"Terkunci di Root 4, hubungan **{n1}** dan **{n2}** sangat berpijak pada bumi (solid dan logis). Fokus utama persatuan ini bukanlah drama percintaan, melainkan membangun keamanan masa depan, merapikan struktur finansial bersama, dan menjaga kesetiaan jangka panjang yang tak tergoyahkan."),
+        5: ("THE ADVENTURERS", f"Total vibrasi **{n1}** dan **{n2}** adalah Root 5 (Anti-Rutinitas). Hubungan kalian berdua dipenuhi energi kebebasan, *adrenaline*, dan petualangan. Kalian berdua akan layu jika hubungannya terlalu monoton. Kalian lebih suka tantangan dan hidup yang dipenuhi kejutan-kejutan seru."),
+        6: ("THE FAMILY FIRST", f"Energi dari nama **{n1}** dan **{n2}** menyatu sempurna di Root 6. Ini adalah simbol pengayoman tertinggi. Tingkat pengorbanan kalian berdua untuk merawat keutuhan rumah tangga, anak, atau menjembatani keluarga besar sungguh luar biasa mendalam dan penuh kasih."),
+        7: ("THE DEEP SEEKERS", f"Berdasarkan Hisab Jummal, penyatuan **{n1}** dan **{n2}** menghasilkan Root 7 yang tertutup dan eksklusif. Hubungan ini tidak dibangun atas dasar materi, melainkan koneksi intelektual dan pencarian spiritual. Kalian berdua cenderung lebih nyaman berada di zona privasi tinggi."),
+        8: ("THE EMPIRE", f"Root 8 adalah hasil akhir dari nama **{n1}** dan **{n2}**. Angka ini dikenal sebagai magnet kelimpahan. Penyatuan ego bawah sadar kalian seringkali secara otomatis memfokuskan energi untuk mengejar kesuksesan bisnis, akumulasi finansial, dan membangun kerajaan (aset) keluarga bersama."),
+        9: ("THE HEALERS", f"Disatukan dalam Root 9, hubungan **{n1}** dan **{n2}** berada di puncak kedewasaan empati. Interaksi kalian dipenuhi toleransi dan keikhlasan. Ketenangan batin dari kalian berdua sering menjadikan rumah atau kehadiran kalian berdua sebagai 'tempat bersandar' bagi teman dan kerabat yang terluka.")
+    }
+    return couple_persona.get(root_c, ("UNCHARTED SYNERGY", f"Kombinasi **{n1}** dan **{n2}** membentuk pola energi yang sangat unik dan terus beradaptasi dengan hukum alam."))
+
 def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
     if sisa == 1:
         judul = "💔 PEGAT (Ujian Ego)"
@@ -407,7 +420,7 @@ def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
         dont = f"Waspadai sikap *Take it for granted* (menggampangkan pasangan). Jangan biarkan cinta **{n1}** dan **{n2}** memudar cuma karena kalian merasa sudah pasti akan bersama selamanya."
     return judul, desc, do, dont
  
-# --- MENU TABS (DENGAN TAB 5 BARU) ---
+# --- MENU TABS ---
 tab1, tab2, tab5, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "⏱️ Quantum Engine", "🕸️ Radar Saraf", "📚 FAQ"])
  
 # ==========================================
@@ -450,7 +463,8 @@ with tab1:
                 n_laku, d_laku, n_panca, d_panca, arah_naga = get_betaljemur_data(nep, hari)
                 
                 punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
-                desk_ark = arketipe_deskripsi.get(angka_hasil, "Karakter Anda sangat kompleks dan unik.")
+                # MENGGUNAKAN TEKS ARKETIPE YANG DINAMIS
+                desk_ark_dinamis = get_dynamic_arketipe(safe_name, angka_hasil)
                 shadow = closing_brutal_dinamis.get(angka_hasil, ["Overthinking", "Menyembunyikan gelisah", "Sering memendam masalah"])
                 
                 st.snow()
@@ -470,16 +484,16 @@ with tab1:
 <div class="dynamic-reading-box">
 <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
 <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
-Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama Anda:<br>
+Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama <b>{safe_name}</b> adalah:<br>
 <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
 <ol style="margin-left: -15px; margin-bottom: 20px;">
-<li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, Anda berafiliasi dengan <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
-<li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar Anda adalah: <b>{r_desc}</b></li>
+<li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, **{safe_name}** berafiliasi dengan elemen <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
+<li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar **{safe_name}** adalah: <b>{r_desc}</b></li>
 </ol>
 <p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
 Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.strftime('%d-%m-%Y')}):<br>
 <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
-<span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak Anda memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan.</span></p>
+<span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak <b>{safe_name}</b> memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan.</span></p>
 {m_note}
 </div>
 """, unsafe_allow_html=True)
@@ -490,26 +504,26 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.s
 <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
 </div>
 <div style="font-size:15px; line-height:1.6; margin-bottom: 15px;">
-<span style="color:#aaa;">Sandi Pangarasan (Meta-Program Bawah Sadar):</span> <br>
+<span style="color:#aaa;">Berdasarkan perhitungan Primbon kuno (Neptu {nep}), sistem memetakan sandi Pangarasan (Karakter Bawah Sadar) milik <b>{safe_name}</b>, yaitu:</span> <br>
 <b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i>
 </div>
 <div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;">
 <span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br>
-<i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan meja kerja atau arah duduk Anda menghadap zona kejayaan di atas saat mengambil keputusan penting hari ini.</i>
+<i style="color:#888; font-size:13px;">*ACTIONABLE: Hari ini, posisikan meja kerja atau arah duduk <b>{safe_name}</b> menghadap zona kejayaan di atas saat mengambil keputusan penting.</i>
 </div>
 </div>
 """, unsafe_allow_html=True)
                 
-                st.markdown("### 👁️ Decode Kepribadian Inti")
-                st.info(f"Berdasarkan **KODE {angka_hasil}**, sistem mengkunci arketipe utama Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
-                st.write(desk_ark)
+                st.markdown(f"### 👁️ Decode Kepribadian Inti: {safe_name}")
+                st.info(f"Mengacu pada sinkronisasi **KODE {angka_hasil}**, arketipe utama **{safe_name}** dikunci sebagai:\n\n**{punchy['inti']}**")
+                st.write(desk_ark_dinamis)
                 
                 c_kekuatan, c_shadow = st.columns(2)
                 with c_kekuatan:
-                    st.markdown("🔥 **KEKUATAN DOMINAN:**")
+                    st.markdown(f"🔥 **KEKUATAN DOMINAN {safe_name}:**")
                     st.markdown(f"<ul class='list-punchy' style='color:#25D366;'><li>{punchy['kekuatan'][0]}</li><li>{punchy['kekuatan'][1]}</li><li>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
                 with c_shadow:
-                    st.markdown("⚠️ **SISI GELAP (SHADOW SELF):**")
+                    st.markdown(f"⚠️ **SISI GELAP (SHADOW) {safe_name}:**")
                     st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
@@ -558,19 +572,8 @@ with tab2:
                 root_c = total_couple
                 while root_c > 9: root_c = sum(int(d) for d in str(root_c))
                 
-                couple_persona = {
-                    1: ("THE POWER COUPLE", f"Angka 1 adalah simbol Alpha dan Dominasi. Ketika vibrasi **{safe_n1}** dan **{safe_n2}** disatukan, kalian membentuk entitas yang mandiri, ambisius, dan punya daya dobrak tangguh."),
-                    2: ("THE SOULMATES", f"Kalian berdua memiliki ibarat 'Wi-Fi' batin yang otomatis terhubung. Sangat mudah bagi **{safe_n1}** memahami perasaan **{safe_n2}** tanpa harus bicara panjang lebar."),
-                    3: ("THE SOCIALITES", f"Energi yang dihasilkan memancarkan aura magnetis. **{safe_n1}** dan **{safe_n2}** adalah tipe yang menyenangkan, penuh ide, dan kehadiran kalian selalu meramaikan suasana."),
-                    4: ("THE BUILDERS", f"Hubungan **{safe_n1}** dan **{safe_n2}** sangat solid dan logis. Fokus utama persatuan ini adalah membangun keamanan masa depan, merapikan finansial, dan menjaga kesetiaan jangka panjang."),
-                    5: ("THE ADVENTURERS", f"Anti-rutinitas. Hubungan **{safe_n1}** dan **{safe_n2}** dipenuhi kebebasan dan petualangan. Kalian suka tantangan dan hubungan ini selalu dipenuhi kejutan seru."),
-                    6: ("THE FAMILY FIRST", f"Simbol pengayoman sejati. Tingkat pengorbanan **{safe_n1}** dan **{safe_n2}** untuk merawat rumah tangga, anak, atau keluarga besar sungguh luar biasa mendalam."),
-                    7: ("THE DEEP SEEKERS", f"Koneksi **{safe_n1}** dan **{safe_n2}** tertutup dan eksklusif. Hubungan dibangun di atas koneksi intelektual. Kalian cenderung lebih suka privasi tinggi dari campur tangan orang luar."),
-                    8: ("THE EMPIRE", f"Penyatuan **{safe_n1}** dan **{safe_n2}** menciptakan magnet kelimpahan material. Fokus ego kalian seringkali bersatu padu mengejar kesuksesan finansial atau bisnis."),
-                    9: ("THE HEALERS", f"Puncak kedewasaan emosi. Hubungan **{safe_n1}** dan **{safe_n2}** dipenuhi keikhlasan. Ketenangan batin kalian sering menjadikan kalian tempat bersandar bagi banyak orang.")
-                }
-                c_title, c_desc = couple_persona.get(root_c, ("Uncharted", "Kombinasi adaptif dan misterius."))
-                
+                # MEMANGGIL FUNGSI TEKS PASANGAN DAN WETON KOMBO YANG DINAMIS
+                c_title, c_desc = get_dynamic_couple_persona(root_c, safe_n1, safe_n2)
                 judul_weton, desk_weton, saran_do, saran_dont = get_dynamic_weton_kombo(sisa_weton, safe_n1, safe_n2, zod1, zod2)
                 
                 st.markdown("---")
@@ -596,7 +599,7 @@ with tab2:
                 st.markdown(f"""
 <div class="dynamic-reading-box" style="border-left-color: #25D366;">
 <h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4>
-<p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br>
+<p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br><br>
 <i>{c_desc}</i></p>
 </div>
 """, unsafe_allow_html=True)
@@ -605,8 +608,8 @@ with tab2:
                 st.info(f"Ditambah algoritma probabilitas waktu (Neptu {ne_1} menyilang dengan Neptu {ne_2}), semesta mencatat takdir energi ini:\n\n{desk_weton}")
                 
                 if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental {safe_n1} dan {safe_n2} sangat mirip.")
-                elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - {safe_n1} dan {safe_n2} butuh toleransi dalam ambil keputusan.")
-                else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perdebatan sudut pandang antara kalian berdua.")
+                elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - {safe_n1} dan {safe_n2} butuh saling toleransi dalam mengambil keputusan.")
+                else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perdebatan sudut pandang antara {safe_n1} dan {safe_n2}.")
      
                 st.markdown("<br>", unsafe_allow_html=True)
                 c_do_c, c_dont_c = st.columns(2)
@@ -620,7 +623,7 @@ with tab2:
             st.warning("⚠️ Mohon isi kedua nama terlebih dahulu sebelum melakukan analisis.")
 
 # ==========================================
-# TAB 5: QUANTUM ENGINE (NEW FATE HACKING)
+# TAB 5: QUANTUM ENGINE (FATE HACKING)
 # ==========================================
 with tab5:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -648,13 +651,13 @@ with tab5:
             mod_harian = (jummal_qe + angka_hari_ini) % 7
             
             fase_harian = {
-                0: ("🔴 Rest & Reset", "Energi saraf di titik nadir. Bahaya mengambil keputusan keuangan/emosional. Lakukan hal repetitif saja."),
-                1: ("🟢 Inisiasi", "Momentum awal. Mulai proyek baru, hubungi prospek, lempar ide ke atasan!"),
-                2: ("🔵 Kolaborasi", "Jangan kerja sendiri. Cari rekan, negosiasi, atau minta bantuan. Pintu lewat orang lain sedang terbuka."),
-                3: ("🟡 Ekspresi", "Aura komunikasi sedang sangat terang. Update sosmed, bikin konten, presentasi, atau jual ide lo."),
-                4: ("🟤 Pondasi", "Fokus pada struktur. Rapikan meja, bereskan file admin yang tertunda, audit keuangan lo."),
-                5: ("🟠 Ekspansi & Risiko", "Insting tajam. Waktu yang tepat untuk mencoba rute baru, ambil risiko terkalkulasi, atau berpetualang."),
-                6: ("🟣 Pengayoman", "Energi di rumah/keluarga sangat tinggi. Selesaikan konflik batin dengan orang terdekat hari ini.")
+                0: ("🔴 Rest & Reset", f"Energi saraf {safe_qe} di titik nadir. Bahaya mengambil keputusan keuangan/emosional. Lakukan hal repetitif saja."),
+                1: ("🟢 Inisiasi", f"Momentum awal. Saatnya {safe_qe} mulai proyek baru, hubungi prospek, atau lempar ide ke atasan!"),
+                2: ("🔵 Kolaborasi", f"Jangan kerja sendiri. {safe_qe} wajib cari rekan, negosiasi, atau minta bantuan. Pintu peluang lewat orang lain sedang terbuka."),
+                3: ("🟡 Ekspresi", f"Aura komunikasi {safe_qe} sedang sangat terang. Update sosmed, bikin konten, presentasi, atau jual ide lo hari ini."),
+                4: ("🟤 Pondasi", f"Fokus pada struktur. Waktunya {safe_qe} merapikan meja, bereskan file admin yang tertunda, atau audit keuangan lo."),
+                5: ("🟠 Ekspansi & Risiko", f"Insting tajam. Waktu yang tepat untuk {safe_qe} mencoba rute baru, ambil risiko terkalkulasi, atau berpetualang ke tempat baru."),
+                6: ("🟣 Pengayoman", f"Energi perlindungan {safe_qe} sangat tinggi di rumah. Selesaikan konflik batin dengan orang terdekat atau keluarga hari ini.")
             }
             siklus_hari_ini, saran_siklus = fase_harian.get(mod_harian, fase_harian[0])
             
@@ -677,14 +680,14 @@ with tab5:
 <div class="live-engine-box">
 <h4 style="color: #00FFFF; margin-top:0;">⚡ TACTICAL ACTION PLAN (Untuk 1 Jam ke Depan)</h4>
 <p style="color: #ccc; font-size: 15px; line-height: 1.6;">
-Sistem mendeteksi siklus pribadi Anda hari ini berada di fase <b>{siklus_hari_ini}</b>. <br>
+Berdasarkan modulus angka nama dan kalender, sistem mendeteksi siklus pribadi <b>{safe_qe}</b> hari ini berada di fase <b>{siklus_hari_ini}</b>. <br>
 <i>Saran Sistem:</i> {saran_siklus}
 <br><br>
 Ditambah posisi matahari yang berada di fase <b>{sun_fase}</b> ({sun_desc}), dan Jam Planet yang saat ini dikuasai oleh <b>{planet_live}</b> ({planet_desc}).
 <br><br>
-<b>🎯 KESIMPULAN TINDAKAN ANDA SAAT INI:</b><br>
-Berdasarkan data langit saat ini, Anda <u>diwajibkan</u> memfokuskan energi Anda pada: <br>
-<b style="color: #FFD700; font-size: 16px;">➤ Manfaatkan energi {planet_live.split(' ')[0]} ini untuk mengeksekusi misi fase {siklus_hari_ini.split(' ')[1]} Anda. Jangan menunda, pergerakan energi ini akan berubah dalam waktu kurang dari 60 menit.</b>
+<b>🎯 KESIMPULAN TINDAKAN {safe_qe} SAAT INI:</b><br>
+Mengacu pada data langit saat ini, Anda <u>diwajibkan</u> memfokuskan energi pada: <br>
+<b style="color: #FFD700; font-size: 16px;">➤ Manfaatkan energi {planet_live.split(' ')[0]} ini untuk mengeksekusi misi fase {siklus_hari_ini.split(' ')[1]} Anda. Jangan ditunda, pergerakan energi ini akan bergeser dalam hitungan menit!</b>
 </p>
 </div>
 """, unsafe_allow_html=True)
