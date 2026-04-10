@@ -339,6 +339,51 @@ def get_zodiak(tanggal):
 def get_safe_firstname(name_str, default="User"):
     stripped = str(name_str).strip()
     return stripped.split()[0].upper() if stripped else default
+
+# --- FUNGSI GENERATOR TEKS DINAMIS WETON KOMBO ---
+def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
+    if sisa == 1:
+        judul = "💔 PEGAT (Ujian Ego)"
+        desc = f"Terdapat perbedaan mendasar dalam memproses emosi antara **{n1}** dan **{n2}**. Filter pikiran {z1} milikmu seringkali berbenturan dengan ego {z2} miliknya. Jika ada konflik, sering diwarnai adu argumen keras karena keduanya sama-sama merasa paling rasional dan benar."
+        do = f"Gunakan teknik **Pacing-Leading**: Validasi dulu perasaan {n2} ('Aku paham {n2} capek...') sebelum kamu mulai memasukkan solusi atau memaksakan argumen logismu."
+        dont = f"DILARANG KERAS melakukan *Mind-Reading* (menebak-nebak pikiran negatif {n2}) dan jangan pernah menjadikan masa lalunya sebagai senjata saat kalian berdebat."
+    elif sisa == 2:
+        judul = "👑 RATU (Kharisma & Harmoni)"
+        desc = f"Penyatuan vibrasi antara **{n1}** dan **{n2}** memancarkan kharisma yang sangat kuat. Orang lain dan keluarga besar sangat segan melihat kalian berdua. Energi kepemimpinan {z1} dan {z2} saling menopang satu sama lain."
+        do = f"Jadikan **{n2}** sebagai Partner Diskusi Strategis. Berikan afirmasi positif setiap kali dia berhasil melakukan pencapaian sekecil apapun di luar rumah. Itu bensin untuk egonya."
+        dont = f"Hindari jebakan pencitraan. Jangan sampai **{n1}** dan **{n2}** berpura-pura bahagia di luar hanya demi terlihat 'sempurna', tapi menyimpan bom waktu masalah di dalam rumah."
+    elif sisa == 3:
+        judul = "💞 JODOH (Sinkronisasi Alami)"
+        desc = f"Penerimaan bawah sadar antara **{n1}** dan **{n2}** luar biasa tinggi. Kalian menemukan kecocokan batin yang seringkali tidak bisa dijelaskan dengan logika. Seolah-olah frekuensi {z1} dan {z2} sudah kenal sejak lama sebelum kalian bertemu."
+        do = f"Ciptakan **Pattern Interrupt** (kejutan acak) secara rutin. Ajak **{n2}** kencan dadakan atau beri kejutan kecil agar hubungan kalian berdua tetap *spark* dan tidak terasa hambar dimakan rutinitas."
+        dont = f"Hati-hati dengan jebakan *Comfort Zone*. Sangat sering pasangan Jodoh seperti **{n1}** & **{n2}** mengalami kemandekan karir karena sudah merasa terlalu santai dan malas berjuang lagi di luar."
+    elif sisa == 4:
+        judul = "🌱 TOPO (Ujian Bertumbuh)"
+        desc = f"Fase awal hubungan antara **{n1}** dan **{n2}** pasti penuh dengan ujian adaptasi dan kesalahpahaman. Namun jika kolaborasi {z1} dan {z2} berhasil melewati kalibrasi ego ini, pondasi kalian tidak akan tertembus badai apapun."
+        do = f"Kuasai teknik **Reframing** (Bingkai Ulang). Saat ada masalah berat mendera hubungan kalian, paksa otak **{n1}** dan **{n2}** untuk mencari sudut pandang positif dari kejadian tersebut."
+        dont = f"Jangan pernah **{n1}** memaksakan *Map of the World* (standar kebenaran/gengsi pribadi) kepada **{n2}**. Belajarlah menurunkan ekspektasi demi kedamaian batin."
+    elif sisa == 5:
+        judul = "💰 TINARI (Magnet Rezeki)"
+        desc = f"Penyatuan energi **{n1}** dan **{n2}** adalah magnet rezeki murni. Pintu kelancaran finansial dan kemudahan urusan duniawi biasanya mendadak terbuka lebar setelah filter {z1} dan {z2} sepakat bersatu mengarungi hidup."
+        do = f"Sering-sering lakukan sesi *Goal Setting* (visi masa depan) berdua. Ketahuilah bahwa kedamaian emosi antara **{n1}** dan **{n2}** adalah kunci utama keran rezeki langit itu terbuka."
+        dont = f"Jangan jadikan uang sebagai satu-satunya perekat hubungan kalian. Pastikan cinta **{n1}** dan **{n2}** tetap utuh di saat kondisi saldo rekening sedang diuji oleh semesta."
+    elif sisa == 6:
+        judul = "⚡ PADU (Beda Frekuensi)"
+        desc = f"**{n1}** dan **{n2}** akan sering mengalami letupan perdebatan sepele. Ini terjadi murni karena perbedaan cara otak {z1} dan {z2} memfilter informasi. Kalian sering meributkan hal kecil yang sebenarnya tidak prinsipil."
+        do = f"Berikan *Space* (ruang sendiri) saat tensi mulai naik. Gunakan pola afirmasi ringan untuk menurunkan emosi **{n2}** secara perlahan sebelum melanjutkan diskusi."
+        dont = f"Jangan pernah **{n1}** menyerang harga diri **{n2}** secara frontal saat emosinya sedang di puncak. Jangan menggunakan nada tinggi atau kata-kata kasar untuk membalas dendam."
+    elif sisa == 7:
+        judul = "👁️ SUJANAN (Rawan Asumsi)"
+        desc = f"Hubungan **{n1}** dan **{n2}** sangat rawan miskomunikasi, curiga, dan cemburu buta. Seringkali terjadi salah paham dadakan akibat tumpukan asumsi bawah sadar antara energi {z1} dan {z2} yang tidak pernah diutarakan."
+        do = f"Biasakan komunikasi berbasis fakta (*Sensory Based*), bukan sekadar 'aku merasa'. Bicarakan apa yang terlihat dan terdengar saja. Jika **{n1}** ragu, langsung tanyakan pada **{n2}**."
+        dont = f"DILARANG memakai kata generalisasi absolut saat berantem! Contoh: '{n2} SELALU egois!' atau '{n2} TIDAK PERNAH peduli!'. Kata-kata itu akan merusak alam bawah sadarnya selamanya."
+    else:
+        judul = "🕊️ PESTHI (Damai & Rukun)"
+        desc = f"Hubungan antara **{n1}** dan **{n2}** sangat adem ayem, rukun, dan minim drama yang menguras energi. Kehadiran {z1} seringkali menetralisir stres yang dialami {z2}, begitu juga sebaliknya."
+        do = f"Pertahankan *Rapport* (kedekatan batin) dengan melakukan *Deep-Talk* rutin sebelum tidur. Sesekali **{n1}** dan **{n2}** wajib menjelajahi hobi baru bersama agar ada tantangan seru."
+        dont = f"Waspadai sikap *Take it for granted* (menggampangkan pasangan). Jangan biarkan cinta **{n1}** dan **{n2}** memudar cuma karena kalian merasa sudah pasti akan bersama selamanya."
+    
+    return judul, desc, do, dont
  
 # --- MENU TABS ---
 tab1, tab2, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "🕸️ Audit Sistem Saraf", "📚 FAQ & Disclaimer"])
@@ -389,7 +434,6 @@ with tab1:
                 st.snow()
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
                 
-# MULAI DARI SINI SEMUA HTML RATA KIRI AGAR TIDAK JADI MARKDOWN CODE BLOCK
                 st.markdown(f"""
 <div class="matrix-container">
 <div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
@@ -458,12 +502,12 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.s
                 st.error(f"Sistem gagal melakukan komputasi. Harap periksa kembali ejaan nama Anda. (Error Code: {e})")
  
 # ==========================================
-# TAB 2: COUPLE MATRIX (ULTIMATE UPGRADE)
+# TAB 2: COUPLE MATRIX (DYNAMIC UPGRADE)
 # ==========================================
 with tab2:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("Penyatuan Esoterik & Betaljemur (Couple Matrix)")
-    st.write("Analisis benturan ego dan peleburan frekuensi kosmik antara Anda dan pasangan secara mendalam.")
+    st.write("Analisis benturan ego dan peleburan frekuensi kosmik secara mendalam berdasarkan persilangan waktu lahir.")
     ca, cb = st.columns(2)
     with ca: 
         n1 = st.text_input("Nama Anda", key="n1")
@@ -477,8 +521,8 @@ with tab2:
         if str(n1).strip() and str(n2).strip():
             try:
                 st.snow()
-                safe_n1 = get_safe_firstname(n1, "P1")
-                safe_n2 = get_safe_firstname(n2, "P2")
+                safe_n1 = get_safe_firstname(n1, "A")
+                safe_n2 = get_safe_firstname(n2, "B")
                 
                 zod1 = get_zodiak(d1); ne_1, _, _ = get_neptu_weton(d1)
                 zod2 = get_zodiak(d2); ne_2, _, _ = get_neptu_weton(d2)
@@ -492,32 +536,21 @@ with tab2:
                 root_c = total_couple
                 while root_c > 9: root_c = sum(int(d) for d in str(root_c))
                 
-                # DATABASE PERSONA PASANGAN (SANGAT DETAIL)
                 couple_persona = {
-                    1: ("THE POWER COUPLE", "Angka 1 adalah simbol Alpha dan Dominasi. Ketika vibrasi kalian berdua disatukan, kalian membentuk entitas yang mandiri, berwibawa, dan punya daya dobrak besar. Jika kalian punya satu target bersama (bisnis atau aset), semesta seolah membuka jalan karena fokus kalian luar biasa."),
-                    2: ("THE SOULMATES", "Angka 2 adalah energi keharmonisan. Kalian berdua memiliki ibarat 'Wi-Fi' batin yang otomatis terhubung tanpa *password*. Sangat mudah memahami perasaan satu sama lain tanpa harus banyak bicara. Empati adalah perekat utama kalian."),
-                    3: ("THE SOCIALITES", "Angka 3 membawa energi ekspresif dan magnetis. Kalian adalah pasangan yang ceria, penuh ide spontan, dan biasanya asyik diajak ngobrol. Aura hubungan ini sangat disukai oleh lingkaran pergaulan kalian yang luas."),
-                    4: ("THE BUILDERS", "Angka 4 adalah fondasi murni. Hubungan kalian sangat solid, praktis, dan logis. Fokus utama persatuan ini adalah membangun keamanan masa depan, merapikan finansial, dan menjaga kesetiaan jangka panjang tanpa banyak drama."),
-                    5: ("THE ADVENTURERS", "Angka 5 benci rutinitas. Hubungan kalian dipenuhi energi kebebasan dan petualangan. Kalian anti-monoton, suka tantangan, dan hubungan ini selalu dipenuhi kejutan atau perubahan tak terduga."),
-                    6: ("THE FAMILY FIRST", "Angka 6 adalah simbol pengayoman sejati. Tingkat pengorbanan dan dedikasi kalian untuk membangun rumah tangga, merawat anak, dan menjaga kelestarian keluarga besar sungguh luar biasa. Rumah adalah segalanya."),
-                    7: ("THE DEEP SEEKERS", "Angka 7 memancarkan aura eksklusif. Koneksi kalian tidak cuma sebatas fisik atau materi, tapi sangat dalam secara intelektual dan spiritual. Kalian cenderung lebih suka privasi tinggi dan *quality time* jauh dari keramaian."),
-                    8: ("THE EMPIRE", "Angka 8 adalah magnet kelimpahan dan kontrol. Penyatuan ego kalian secara bawah sadar ditarik kuat menuju kesuksesan material, ekspansi bisnis, dan pencapaian status sosial yang lebih tinggi di masyarakat."),
-                    9: ("THE HEALERS", "Angka 9 adalah puncak toleransi. Hubungan kalian dipenuhi keikhlasan yang dalam. Seringkali, ketenangan batin dari kalian berdua menjadikan rumah kalian sebagai tempat bersandar/curhat bagi orang-orang di sekitar.")
+                    1: ("THE POWER COUPLE", f"Angka 1 adalah simbol Alpha dan Dominasi. Ketika vibrasi **{safe_n1}** dan **{safe_n2}** disatukan, kalian membentuk entitas yang mandiri, ambisius, dan punya daya dobrak tangguh."),
+                    2: ("THE SOULMATES", f"Kalian berdua memiliki ibarat 'Wi-Fi' batin yang otomatis terhubung. Sangat mudah bagi **{safe_n1}** memahami perasaan **{safe_n2}** tanpa harus bicara panjang lebar."),
+                    3: ("THE SOCIALITES", f"Energi yang dihasilkan memancarkan aura magnetis. **{safe_n1}** dan **{safe_n2}** adalah tipe yang menyenangkan, penuh ide, dan kehadiran kalian selalu meramaikan suasana."),
+                    4: ("THE BUILDERS", f"Hubungan **{safe_n1}** dan **{safe_n2}** sangat solid dan logis. Fokus utama persatuan ini adalah membangun keamanan masa depan, merapikan finansial, dan menjaga kesetiaan jangka panjang."),
+                    5: ("THE ADVENTURERS", f"Anti-rutinitas. Hubungan **{safe_n1}** dan **{safe_n2}** dipenuhi kebebasan dan petualangan. Kalian suka tantangan dan hubungan ini selalu dipenuhi kejutan seru."),
+                    6: ("THE FAMILY FIRST", f"Simbol pengayoman sejati. Tingkat pengorbanan **{safe_n1}** dan **{safe_n2}** untuk merawat rumah tangga, anak, atau keluarga besar sungguh luar biasa mendalam."),
+                    7: ("THE DEEP SEEKERS", f"Koneksi **{safe_n1}** dan **{safe_n2}** tertutup dan eksklusif. Hubungan dibangun di atas koneksi intelektual. Kalian cenderung lebih suka privasi tinggi dari campur tangan orang luar."),
+                    8: ("THE EMPIRE", f"Penyatuan **{safe_n1}** dan **{safe_n2}** menciptakan magnet kelimpahan material. Fokus ego kalian seringkali bersatu padu mengejar kesuksesan finansial atau bisnis."),
+                    9: ("THE HEALERS", f"Puncak kedewasaan emosi. Hubungan **{safe_n1}** dan **{safe_n2}** dipenuhi keikhlasan. Ketenangan batin kalian sering menjadikan kalian tempat bersandar bagi banyak orang.")
                 }
-                c_title, c_desc = couple_persona.get(root_c, ("Uncharted", "Kombinasi unik yang terus beradaptasi dengan waktu."))
+                c_title, c_desc = couple_persona.get(root_c, ("Uncharted", "Kombinasi adaptif dan misterius."))
                 
-                # DATABASE WETON KOMBO (DETAIL DO & DON'T)
-                hasil_weton_kombo = {
-                    1: ("💔 PEGAT (Ujian Ego)", "Sangat rawan terjadi adu argumen keras karena cara otak kalian memproses masalah dan emosi sangat bertolak belakang.", "Gunakan taktik **Pacing-Leading**: Validasi dulu perasaannya ('Aku paham kamu capek...') sebelum kamu mulai memberikan solusi atau argumen logismu.", "DILARANG KERAS melakukan *Mind-Reading* (menebak-nebak pikiran negatifnya sendiri) dan jangan pernah mengungkit kesalahan masa lalunya sebagai senjata."),
-                    2: ("👑 RATU (Kharisma & Harmoni)", "Penyatuan ini memancarkan kharisma yang kuat. Orang lain dan keluarga besar sangat segan dan menghormati posisi kalian berdua.", "Jadikan pasangan sebagai **Partner Diskusi Strategis**. Berikan afirmasi positif setiap kali ia berhasil melakukan pencapaian sekecil apapun di luar rumah.", "Hindari jebakan *Pencitraan*. Jangan berpura-pura bahagia di luar hanya demi terlihat 'sempurna', tapi menyimpan bom waktu di dalam rumah."),
-                    3: ("💞 JODOH (Sinkronisasi Alami)", "Kecocokan bawah sadar kalian berada di tingkat tertinggi. Penolakan ego sangat minim, ibarat kepingan *puzzle* yang langsung klik tanpa dipaksa.", "Ciptakan **Pattern Interrupt** (kejutan acak) secara rutin. Ajak kencan dadakan atau kasih kejutan kecil agar hubungan tetap *spark* dan tidak terasa hambar.", "Hati-hati dengan jebakan *Comfort Zone* (Zona Nyaman). Sangat sering pasangan berstatus Jodoh mengalami kemandekan karir karena sudah merasa terlalu santai dan malas berjuang lagi."),
-                    4: ("🌱 TOPO (Ujian Bertumbuh)", "Fase awal hubungan ini akan penuh ujian adaptasi. Tapi jika kalian berhasil melewati kalibrasi ego ini, pondasi kalian tidak akan tertembus.", "Kuasai teknik **Reframing** (*Bingkai Ulang*). Saat ada masalah berat, paksa diri kalian berdua untuk mencari sudut pandang positif dari kejadian tersebut.", "Jangan pernah memaksakan *Map of the World* (standar kebenaran/gengsi pribadimu) kepada pasangan. Belajarlah menurunkan ekspektasi."),
-                    5: ("💰 TINARI (Magnet Rezeki)", "Penyatuan ini adalah magnet rezeki. Pintu kelancaran finansial dan kemudahan urusan duniawi biasanya terbuka lebar setelah kalian bersatu.", "Sering-sering lakukan sesi *Goal Setting* (visi masa depan) berdua. Ketahuilah bahwa harmonisasi emosi di antara kalian adalah kunci utama keran rezeki itu terbuka.", "Jangan jadikan uang sebagai satu-satunya perekat hubungan kalian. Pastikan cinta kalian tetap utuh di saat kondisi dompet sedang diuji oleh semesta."),
-                    6: ("⚡ PADU (Beda Frekuensi)", "Kalian akan sering mengalami letupan perdebatan sepele. Ini terjadi murni karena perbedaan filter otak kalian dalam mencerna informasi yang masuk.", "Berikan *Space* (ruang sendiri) saat tensi mulai naik. Gunakan teknik **Yes-Set** (buat dia mengatakan kata 'Ya' 3 kali) untuk menurunkan emosinya secara perlahan.", "Jangan pernah menyerang harga dirinya secara frontal saat *state* emosinya sedang di puncak. Jangan menggunakan nada tinggi untuk membalas."),
-                    7: ("👁️ SUJANAN (Rawan Asumsi)", "Sangat rawan miskomunikasi, saling curiga, cemburu buta, atau salah paham dadakan yang diakibatkan oleh asumsi bawah sadar yang menumpuk.", "Biasakan komunikasi murni berbasis fakta objektif (*Sensory Based*), bukan sekadar 'katanya' atau 'aku merasa dia begitu'. Bicarakan apa yang terlihat dan terdengar saja.", "DILARANG memakai kata generalisasi absolut saat berantem, seperti: 'Kamu SELALU egois!' atau 'Kamu TIDAK PERNAH mengerti!'. Itu merusak alam bawah sadarnya."),
-                    0: ("🕊️ PESTHI (Damai & Rukun)", "Hubungan kalian adem ayem, rukun, stabil, dan sangat minim drama yang menguras energi saraf. Kehadiran masing-masing menetralisir stres.", "Pertahankan *Rapport* batin dengan melakukan *Deep-Talk* rutin sebelum tidur. Sesekali jelajahi hobi baru bersama agar ada tantangan seru di hidup kalian.", "Waspadai sikap *Take it for granted* (menggampangkan pasangan). Jangan biarkan api asmara padam cuma karena kalian merasa dia tidak akan ke mana-mana.")
-                }
-                judul_weton, desk_weton, saran_do, saran_dont = hasil_weton_kombo.get(sisa_weton, ("Analisa Unik", "Butuh kalibrasi ego yang mendalam", "Perbaiki pola komunikasi", "Jangan memaksakan kehendak"))
+                # MENGAMBIL TEXT DINAMIS YANG SUDAH DIBUAT DI ATAS
+                judul_weton, desk_weton, saran_do, saran_dont = get_dynamic_weton_kombo(sisa_weton, safe_n1, safe_n2, zod1, zod2)
                 
                 st.markdown("---")
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
@@ -548,11 +581,11 @@ with tab2:
 """, unsafe_allow_html=True)
                 
                 st.markdown(f"#### 📜 Titik Benturan Weton: {judul_weton}")
-                st.info(f"Menyatukan filter pikiran **{zod1}** dengan **{zod2}** ibarat menggabungkan dua elemen alam. Ditambah algoritma Primbon (Neptu {ne_1} disilang Neptu {ne_2}), menghasilkan takdir energi:\n\n{desk_weton}")
+                st.info(f"Ditambah algoritma probabilitas waktu (Neptu {ne_1} menyilang dengan Neptu {ne_2}), semesta mencatat takdir energi ini:\n\n{desk_weton}")
                 
-                if sel in [0, 3, 6, 9]: st.success("💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental kalian sangat mirip.")
-                elif sel in [1, 2, 8]: st.warning("⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - Butuh toleransi dalam mengambil keputusan.")
-                else: st.error("🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perbedaan sudut pandang.")
+                if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental {safe_n1} dan {safe_n2} sangat mirip.")
+                elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - {safe_n1} dan {safe_n2} butuh toleransi dalam ambil keputusan.")
+                else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perdebatan sudut pandang antara kalian berdua.")
      
                 st.markdown("<br>", unsafe_allow_html=True)
                 c_do_c, c_dont_c = st.columns(2)
