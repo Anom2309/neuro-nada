@@ -91,6 +91,12 @@ st.markdown(
         font-weight: 900; font-size: 14px; letter-spacing: 1px;
         display: inline-block; box-shadow: 0 4px 15px rgba(255,215,0,0.4);
     }
+
+    .info-metric-box {
+        background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.2);
+        padding: 15px; border-radius: 8px; font-size: 13px; color: #ccc;
+        margin-bottom: 20px; line-height: 1.5;
+    }
     </style>""", unsafe_allow_html=True
 )
  
@@ -425,7 +431,7 @@ with tab1:
             """, unsafe_allow_html=True)
  
 # ==========================================
-# TAB 2: COUPLE MATRIX (UPDATED)
+# TAB 2: COUPLE MATRIX (UPDATED DENGAN EXPLANATION)
 # ==========================================
 with tab2:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -443,18 +449,15 @@ with tab2:
     if st.button("Analisis Resonansi Pasangan"):
         if n1 and n2:
             st.snow()
-            # Kalkulasi Weton & NLP
             zod1 = get_zodiak(d1); ne_1, _, _ = get_neptu_weton(d1)
             zod2 = get_zodiak(d2); ne_2, _, _ = get_neptu_weton(d2)
             sel = abs(hitung_angka(d1) - hitung_angka(d2))
             sisa_weton = (ne_1 + ne_2) % 8
             
-            # Kalkulasi Jummal Couple
             jummal_1 = hitung_nama_esoterik(n1)
             jummal_2 = hitung_nama_esoterik(n2)
             total_couple = jummal_1 + jummal_2
             
-            # Root hitung untuk Persona Pasangan
             root_c = total_couple
             while root_c > 9: root_c = sum(int(d) for d in str(root_c))
             
@@ -486,7 +489,6 @@ with tab2:
             st.markdown("---")
             st.markdown(f"### 🔮 The Unified Resonance: {n1.split()[0].upper()} & {n2.split()[0].upper()}")
             
-            # THE COUPLE MATRIX BOX (NEW)
             st.markdown(f"""
             <div class="matrix-container">
                 <div class="matrix-item"><div class="matrix-label">Vibrasi {n1.split()[0]}</div><div class="matrix-value">{jummal_1}</div></div>
@@ -496,10 +498,19 @@ with tab2:
             </div>
             """, unsafe_allow_html=True)
             
+            # THE EXPLANATION BOX (NEW)
+            st.markdown("""
+            <div class="info-metric-box">
+                <b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
+                • <b style="color:white;">TOTAL ENERGI:</b> Ini adalah hasil penyatuan murni dari getaran Esoterik (Jummal) nama Anda berdua. Ibarat dua gelombang suara yang saling bertabrakan dan melebur, 'Total Energi' menciptakan satu frekuensi baru (The Unified Resonance). Angka inilah yang membentuk DNA atau <i>Persona Pasangan</i> kalian di mata semesta.<br>
+                • <b style="color:white;">WETON KOMBO:</b> Ini adalah kalkulasi matematis siklus waktu lahir (Neptu Jawa). Weton Kombo menganalisis titik temu ego bawah sadar. Angka ini memetakan rawan konflik (Shadow) dan potensi harmoni (Light) dalam cara kalian berdua memproses stimulus dan masalah sehari-hari.
+            </div>
+            """, unsafe_allow_html=True)
+            
             st.markdown(f"""
             <div class="dynamic-reading-box" style="border-left-color: #25D366;">
                 <h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4>
-                <p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan, ia menghasilkan resonansi root number <b>{root_c}</b>.<br>
+                <p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br>
                 <i>{c_desc}</i></p>
             </div>
             """, unsafe_allow_html=True)
