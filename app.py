@@ -303,18 +303,19 @@ def get_rincian_tanggal(tanggal):
         return "1 = 1"
  
 def get_neptu_weton(tanggal):
-    # FIXED: Menggunakan Anchor Date absolut 17 Agustus 1945 (Jumat Legi)
-    anchor_date = datetime.date(1945, 8, 17)
+    # FIXED: Akurasi Absolut menggunakan Anchor Date "23 September 1983 = Jumat Pon"
+    anchor_date = datetime.date(1983, 9, 23)
     selisih_hari = (tanggal - anchor_date).days
     
     hari_n = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
-    pasaran_n = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"]
+    pasaran_n = ["Pon", "Wage", "Kliwon", "Legi", "Pahing"]
     
     hari = hari_n[tanggal.weekday()]
     pasaran = pasaran_n[selisih_hari % 5]
     
     n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
     n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
+    
     return (n_hari[hari] + n_pas[pasaran]), hari, pasaran
  
 def get_betaljemur_data(neptu, hari):
@@ -382,7 +383,6 @@ def get_dynamic_couple_persona(root_c, n1, n2):
     return couple_persona.get(root_c, ("UNCHARTED SYNERGY", f"Kombinasi **{n1}** dan **{n2}** membentuk pola energi yang sangat unik dan terus beradaptasi dengan hukum alam."))
 
 def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
-    # FIXED: Menambahkan skenario sisa == 8 agar sesuai dengan hasil Modulo yang tepat
     if sisa == 1:
         judul = "💔 PEGAT (Ujian Ego)"
         desc = f"Terdapat perbedaan mendasar dalam memproses emosi antara **{n1}** dan **{n2}**. Filter pikiran {z1} milikmu seringkali berbenturan dengan ego {z2} miliknya. Jika ada konflik, sering diwarnai adu argumen keras karena keduanya sama-sama merasa paling rasional dan benar."
@@ -568,7 +568,7 @@ with tab2:
                 zod2 = get_zodiak(d2); ne_2, _, _ = get_neptu_weton(d2)
                 sel = abs(hitung_angka(d1) - hitung_angka(d2))
                 
-                # FIXED: Logika Modulo 8 (Mencegah Angka 0 dan merubahnya jadi 8 untuk Pesthi)
+                # FIXED: Modulo 8 handling untuk Pesthi
                 sisa_weton = (ne_1 + ne_2) % 8
                 if sisa_weton == 0:
                     sisa_weton = 8
