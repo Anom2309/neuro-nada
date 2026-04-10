@@ -146,45 +146,76 @@ def kirim_ulasan(nama, rating, komentar):
         return True
     except: return False
 
-# --- PROCEDURAL TEXT ENGINE (DYNAMIC GENERATOR) ---
+# --- PROCEDURAL TEXT ENGINE (HYPER-DYNAMIC GENERATOR) ---
 def generate_seed(base_str):
     return int(hashlib.md5(base_str.encode('utf-8')).hexdigest(), 16) % (10**8)
 
 def proc_arketipe(nama, angka, zodiak, neptu):
-    random.seed(generate_seed(f"ark_{nama}_{angka}_{zodiak}_{neptu}"))
+    random.seed(generate_seed(f"hyper_ark_{nama}_{angka}_{zodiak}_{neptu}"))
+    
     buka = random.choice([
-        f"Kalkulasi matriks waktu menyempit di **KODE {angka}**, sistem membaca bahwa **{nama}**",
-        f"Melalui persilangan elemen {zodiak} dan sandi lahirnya, **{nama}** teridentifikasi memancarkan getaran **KODE {angka}**, yang berarti Anda",
-        f"DNA numerologi Anda mengunci pada **KODE {angka}**. Secara genetik, alam bawah sadar **{nama}**"
+        f"Melalui persilangan matriks waktu dan elemen {zodiak}, DNA numerologi **{nama}** mengunci kuat pada **KODE {angka}**.",
+        f"Kalkulasi semesta menyempit di **KODE {angka}**. Ini menandakan bahwa sejak lahir, alam bawah sadar **{nama}**",
+        f"Sistem mendeteksi getaran **KODE {angka}** pada diri Anda. Secara genetik dan arsitektur mental, **{nama}**",
+        f"Hasil ekstraksi sandi lahir Anda bermuara pada **KODE {angka}**. Di mata semesta, **{nama}** teridentifikasi",
+        f"Berdasarkan algoritma kepribadian {zodiak} yang melebur dengan weton, cetak biru **{nama}** adalah **KODE {angka}**."
     ])
     
     inti = {
-        1: ["didesain untuk memimpin dan membuka jalan baru.", "memiliki dorongan internal yang luar biasa kuat untuk mandiri.", "adalah sosok pengambil risiko yang berani dan dominan."],
-        2: ["berfungsi sebagai Sang Penyelaras sejati di lingkungan Anda.", "memiliki radar empati tingkat tinggi untuk membaca emosi orang lain.", "adalah negosiator ulung yang selalu mencari jalan tengah."],
-        3: ["memiliki pikiran yang bekerja layaknya kembang api; penuh ide kreatif.", "adalah komunikator alami yang mampu memanipulasi suasana hati massa.", "selalu butuh ruang ekspresi bebas agar energi Anda tidak mati."],
-        4: ["merupakan arsitek sistem yang sangat mengutamakan keteraturan.", "sangat bisa diandalkan dan berpikir secara praktis, logis, serta membumi.", "adalah pondasi yang menjaga keamanan orang-orang di sekeliling Anda."],
-        5: ["adalah simbol kebebasan mutlak yang haus akan petualangan.", "memiliki otak yang sangat cepat beradaptasi dengan perubahan seekstrim apapun.", "merupakan agen transformasi yang ahli memecah kebuntuan."],
-        6: ["dirancang semesta sebagai pengayom dan pelindung sejati.", "memegang standar tanggung jawab moral yang sangat tinggi pada keluarga.", "menjadikan kebahagiaan orang yang dicintai sebagai bahan bakar utama."],
-        7: ["adalah pencari kebenaran esensial dengan intuisi spiritual tajam.", "tidak pernah puas dengan informasi permukaan dan selalu menganalisa secara mendalam.", "memiliki filter batin eksklusif yang sangat selektif menilai orang lain."],
-        8: ["dianugerahi insting eksekusi dan magnet material (bisnis) yang presisi.", "memiliki fokus bawah sadar yang ditarik kuat menuju pencapaian dan otoritas.", "adalah sosok pengendali yang sangat tangguh di bawah tekanan besar."],
-        9: ["diidentifikasi sebagai 'Jiwa Tua' dengan kebijaksanaan holistik.", "memandang dunia dengan tingkat empati yang melampaui kepentingan pribadi.", "selalu berusaha memberikan dampak atau *legacy* positif bagi sekelilingnya."]
+        1: ["sebagai sosok perintis yang didesain untuk memimpin dan menembus batas.", "memiliki dorongan mutlak untuk mandiri dan benci didikte.", "adalah entitas pengambil risiko yang berani berdiri sendiri."],
+        2: ["sebagai Sang Penyelaras yang mampu menetralisir konflik.", "memiliki radar empati tingkat dewa untuk membaca ruang dan emosi.", "berfungsi sebagai jangkar kedamaian bagi orang-orang di sekitar."],
+        3: ["sebagai komunikator handal dengan pikiran yang meletup-letup seperti kembang api.", "memiliki anugerah kreativitas tanpa batas yang tak bisa dikerangkeng.", "adalah magnet sosial yang kehadirannya selalu menghidupkan suasana."],
+        4: ["sebagai arsitek kehidupan yang sangat sistematis dan presisi.", "memiliki pola pikir logis yang menjadikannya pondasi kuat bagi keluarga.", "adalah sosok praktis yang sangat bisa diandalkan di masa krisis."],
+        5: ["sebagai simbol kebebasan yang menolak keras rutinitas monoton.", "memiliki kelincahan otak untuk beradaptasi dengan perubahan seekstrim apapun.", "adalah agen eksplorator yang selalu mencari sudut pandang dan pengalaman baru."],
+        6: ["sebagai pelindung sejati dengan insting pengayom yang luar biasa.", "memegang standar tanggung jawab moral yang sangat tinggi demi keluarga.", "menjadikan kebahagiaan orang yang dicintai sebagai bahan bakar utamanya."],
+        7: ["sebagai pencari kebenaran esensial dengan intuisi yang tajam.", "tidak pernah puas dengan jawaban dangkal dan selalu menganalisa hingga ke akar.", "memiliki filter batin eksklusif yang sangat selektif menilai kualitas seseorang."],
+        8: ["sebagai eksekutor tangguh dengan insting material yang sangat presisi.", "memiliki fokus bawah sadar yang ditarik kuat menuju puncak otoritas.", "adalah sosok pengendali yang tetap berdiri tegak meski ditekan badai besar."],
+        9: ["sebagai 'Jiwa Tua' yang memandang dunia dengan kacamata kebijaksanaan.", "memiliki tingkat kepedulian universal yang melampaui kepentingan egonya sendiri.", "selalu terdorong untuk memberikan *legacy* atau dampak positif bagi semesta."]
     }
     
-    sisi_gelap = {
-        1: ["Namun, waspadai jebakan ego tinggi dan rasa kesepian akibat gengsi minta tolong.", "Sisi gelapnya, Anda rawan terjebak sifat diktator jika ide Anda ditentang.", "Bahayanya, Anda sering memikul beban sendirian karena merasa tidak ada yang bisa diandalkan."],
-        2: ["Tantangannya, Anda sering mengorbankan diri sendiri demi menyenangkan ekspektasi orang lain.", "Waspadai kebiasaan memendam amarah yang bisa berujung pada ledakan emosi tak terduga.", "Bahayanya, identitas Anda sering memudar karena terlalu sibuk menyesuaikan diri."],
-        3: ["Musuh terbesar Anda adalah rasa bosan yang membuat Anda sering meninggalkan proyek setengah jalan.", "Waspadai jebakan menutupi luka batin dengan komedi atau senyuman palsu.", "Sisi gelapnya, Anda rentan mengalami *overthinking* akut di malam hari."],
-        4: ["Anda rawan terkena stres parah jika rencana yang sudah disusun rapi mendadak hancur.", "Bahayanya, kekakuan pola pikir Anda sering membuat Anda dinilai tidak peka oleh pasangan.", "Tantangannya adalah Anda terlalu takut keluar dari zona nyaman."],
-        5: ["Waspadai 'Sindrom Cepat Bosan' yang bisa mensabotase komitmen asmara maupun karir Anda.", "Sisi gelapnya, Anda sering merasa hampa saat rutinitas mulai mengikat kebebasan Anda.", "Bahayanya, saraf Anda gampang *burnout* karena otak yang tak pernah mau berhenti berpikir."],
-        6: ["Anda sangat rentan terkena *burnout* ekstrem karena tidak punya batasan (boundaries) saat memberi.", "Waspadai sifat *over-protective* yang justru mengekang kemerdekaan orang yang Anda cintai.", "Bahayanya, Anda sering dihinggapi rasa bersalah saat mencoba membahagiakan diri sendiri."],
-        7: ["Tantangan utamanya adalah Anda sering terjebak dalam labirin *Paralysis by Analysis* (terlalu banyak mikir, kurang aksi).", "Waspadai kecenderungan mengisolasi diri karena merasa tidak ada manusia yang sefrekuensi.", "Sisi gelapnya, luka masa lalu sering membuat Anda terlalu sinis pada niat baik orang lain."],
-        8: ["Sisi gelapnya, Anda sangat kesulitan melepaskan kendali emosional bahkan saat sedang beristirahat.", "Waspadai kecenderungan memforsir tubuh hingga titik ambruk tanpa sadar.", "Bahayanya, Anda rentan merasa kosong dan hampa justru saat berada di puncak kesuksesan."],
-        9: ["Sisi gelapnya, Anda rawan patah hati hebat karena ekspektasi luhur Anda berbenturan dengan realitas manusia yang egois.", "Waspadai kebiasaan memaklumi orang toxic murni karena alasan kasihan.", "Bahayanya, energi batin Anda gampang habis terkuras memikirkan penderitaan di luar kendali Anda."]
+    gaya = {
+        1: ["Dalam bekerja, Anda adalah inisiator cepat yang lebih suka bertindak daripada rapat.", "Gaya sosial Anda dominan; Anda memancarkan aura alpha kemanapun Anda pergi."],
+        2: ["Di lingkungan sosial, Anda adalah pendengar ulung tempat orang lain membuang keluh kesah.", "Gaya kerja Anda kolaboratif; Anda memastikan semua tim merasa dihargai."],
+        3: ["Anda memecahkan masalah dengan ide *out-of-the-box* yang tidak terpikirkan orang lain.", "Gaya sosial Anda ekspresif; Anda ahli mencairkan ketegangan lewat humor."],
+        4: ["Anda mengeksekusi visi dengan langkah demi langkah yang terukur dan tanpa cacat.", "Lingkungan melihat Anda sebagai sosok yang dingin namun selalu menyelesaikan tugas."],
+        5: ["Anda paling bersinar saat diletakkan di situasi *chaos* yang butuh pemecahan instan.", "Gaya hidup Anda nomaden secara mental; Anda mudah bosan jika terus di tempat yang sama."],
+        6: ["Anda memimpin dengan hati, seringkali bertindak layaknya orang tua bagi teman-teman Anda.", "Loyalitas Anda tidak perlu diragukan; Anda akan membela sirkel Anda mati-matian."],
+        7: ["Anda mengobservasi dalam diam sebelum mengambil keputusan strategis yang mematikan.", "Gaya sosial Anda misterius; tidak banyak yang benar-benar tahu apa isi kepala Anda."],
+        8: ["Anda mengorganisir sumber daya dan manusia dengan tangan besi yang elegan.", "Aura wibawa Anda sering membuat orang segan bahkan sebelum Anda berbicara."],
+        9: ["Anda merangkul keberagaman dan memimpin lewat contoh pengorbanan yang nyata.", "Orang sering datang kepada Anda untuk meminta nasihat karena kedewasaan batin Anda."]
     }
     
-    pilih_inti = random.sample(inti[angka], 2)
-    pilih_gelap = random.choice(sisi_gelap[angka])
-    return f"{buka} {pilih_inti[0]} Selain itu, {nama} {pilih_inti[1]} {pilih_gelap}"
+    shadow = {
+        1: ["Sisi gelapnya, Anda rawan terjebak sifat arogan jika ide Anda diremehkan.", "Bahayanya, gengsi Anda terlalu tinggi untuk sekadar meminta bantuan saat lelah.", "Waspadai rasa kesepian akibat ego yang membangun tembok pemisah dengan orang lain."],
+        2: ["Tantangannya, Anda sering kehilangan jati diri karena terlalu sibuk menyenangkan orang (People Pleaser).", "Waspadai memendam amarah terus-menerus yang bisa menjadi bom waktu.", "Bahayanya, Anda sering menyerap energi beracun (toxic) dari lingkungan luar."],
+        3: ["Musuh terbesar Anda adalah hilangnya fokus, membuat banyak ide brilian berakhir jadi wacana.", "Waspadai kecenderungan memakai topeng komedi untuk menutupi depresi atau luka batin.", "Sisi gelapnya, Anda rawan berbicara impulsif saat harga diri Anda tersinggung."],
+        4: ["Anda sangat rawan terkena stres parah jika rencana yang Anda susun mendadak gagal total.", "Bahayanya, Anda sering dinilai tidak punya perasaan karena terlalu kaku pada aturan.", "Waspadai sifat over-micromanaging (mengatur hal kecil) yang membuat orang di sekitar Anda gerah."],
+        5: ["Waspadai 'Sindrom Cepat Bosan' yang bisa mensabotase hubungan asmara atau karir jangka panjang.", "Sisi gelapnya, saraf Anda gampang *burnout* karena menolak untuk istirahat dari pencarian adrenalin.", "Bahayanya, Anda cenderung melarikan diri (escapism) saat dituntut tanggung jawab berat."],
+        6: ["Anda sangat rentan terkena *burnout* ekstrem akibat terlalu sering mengurus beban hidup orang lain.", "Waspadai sifat *over-protective* yang justru mengekang kebebasan anak atau pasangan.", "Bahayanya, Anda sering dihantui rasa bersalah yang tak masuk akal saat mencoba menikmati *me-time*."],
+        7: ["Tantangan utamanya adalah Anda sering terjebak *Paralysis by Analysis* (terlalu banyak overthinking, nol aksi).", "Waspadai kecenderungan mengisolasi diri secara total saat merasa tidak dihargai.", "Sisi gelapnya, sifat skeptis Anda sering membunuh pelan-pelan hubungan yang sebenarnya potensial."],
+        8: ["Sisi gelapnya, Anda sangat kesulitan melepaskan kendali (*letting go*) dan memaafkan pengkhianatan.", "Waspadai kebiasaan memforsir fisik tanpa ampun demi mengejar validasi kesuksesan.", "Bahayanya, Anda rentan mendominasi pasangan secara emosional tanpa Anda sadari."],
+        9: ["Sisi gelapnya, Anda rawan memaklumi parasit (*toxic people*) murni karena rasa kasihan.", "Waspadai rasa patah hati kronis karena ekspektasi luhur Anda berbenturan dengan realitas.", "Bahayanya, energi batin Anda gampang terkuras akibat terlalu memikirkan penderitaan dunia."]
+    }
+    
+    saran = {
+        1: "Pesan semesta: Belajarlah mendelegasikan tugas. Meminta tolong bukanlah tanda kelemahan, melainkan taktik kepemimpinan.",
+        2: "Pesan semesta: Berlatihlah mengatakan 'TIDAK' tanpa merasa bersalah. Anda tidak bisa menuangkan air dari teko yang kosong.",
+        3: "Pesan semesta: Berlatihlah seni penyelesaian. Paksa diri Anda menuntaskan satu proyek kecil hari ini sebelum melompat ke ide berikutnya.",
+        4: "Pesan semesta: Biarkan ruang untuk spontanitas. Sesekali, membiarkan segala sesuatunya berantakan adalah bentuk terapi batin.",
+        5: "Pesan semesta: Temukan kebebasan dalam komitmen. Kedalaman sebuah ilmu/hubungan seringkali lebih memuaskan daripada sekadar pindah haluan.",
+        6: "Pesan semesta: Buatlah batas (*boundaries*) yang tegas. Berhenti menyelamatkan orang yang memang tidak mau diselamatkan.",
+        7: "Pesan semesta: Turunkan ekspektasi Anda terhadap manusia. Terkadang ketidaksempurnaan adalah satu-satunya hal yang nyata di dunia ini.",
+        8: "Pesan semesta: Latih diri Anda untuk berserah diri di momen istirahat. Kesuksesan material tidak ada artinya jika sistem saraf Anda hancur.",
+        9: "Pesan semesta: Anda tidak diutus untuk memikul beban seluruh galaksi. Cintai diri Anda sendiri sebelum Anda mencintai umat manusia."
+    }
+    
+    pilih_inti = random.choice(inti[angka])
+    pilih_gaya = random.choice(gaya[angka])
+    pilih_shadow = random.choice(shadow[angka])
+    pilih_saran = saran[angka]
+    
+    hasil_dinamis = f"{buka} Anda didesain {pilih_inti} {pilih_gaya} {pilih_shadow} {pilih_saran}"
+    return hasil_dinamis
 
 def proc_shadow_list(nama, angka):
     random.seed(generate_seed(f"shd_{nama}_{angka}"))
@@ -352,7 +383,7 @@ def get_rincian_tanggal(tanggal):
     except:
         return "1 = 1"
 
-# --- NEW: BYPASS ENGINE (DIRECT WETON INPUT) ---
+# --- BYPASS ENGINE (DIRECT WETON INPUT) ---
 def hitung_neptu_langsung(hari, pasaran):
     n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
     n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
@@ -495,7 +526,6 @@ with tab1:
                 
                 el_nama, el_desc, p_reduk, s_reduk, r_num, r_desc, m_note = generate_dynamic_reading(nilai_jummal)
                 
-                # MENGGUNAKAN BYPASS ENGINE WETON
                 nep = hitung_neptu_langsung(hari_input, pasaran_input)
                 wet = f"{hari_input} {pasaran_input}"
                 zod = get_zodiak(tgl_input)
@@ -609,7 +639,6 @@ with tab2:
                 safe_n1 = get_safe_firstname(n1, "Pria")
                 safe_n2 = get_safe_firstname(n2, "Wanita")
                 
-                # MENGGUNAKAN BYPASS ENGINE
                 nep_1 = hitung_neptu_langsung(hc1, pc1)
                 nep_2 = hitung_neptu_langsung(hc2, pc2)
                     
