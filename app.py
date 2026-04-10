@@ -1,202 +1,203 @@
 import streamlit as st
 import datetime
-import os
-import time
-import urllib.parse
-import urllib.request
 import math
-import plotly.graph_objects as go
 import random
-import csv
-import io
+import plotly.graph_objects as go
+from datetime import time as dt_time
 
 # ==========================================
-# 🌌 NEURO NADA ULTIMATE ENGINE v2.0
+# 🌌 NEURO NADA: BADAI ULTIMATE v3.0
 # ==========================================
 
-# --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="Neuro Nada Ultimate Analysis", 
-    page_icon="🌌", 
-    layout="centered",
-    initial_sidebar_state="collapsed" 
+    page_title="NEURO NADA: BADAI ULTIMATE",
+    page_icon="👑",
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
-# --- CUSTOM CSS (DARK GOLD LUXURY) ---
-st.markdown(
-    """<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-    html, body, [class*="css"]  { font-family: 'Inter', sans-serif; background-color: #050505; }
+# --- LUXURY CSS BEYOND LIMITS ---
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;800&display=swap');
     
-    .stApp { background-color: #050505; }
+    .stApp { background: radial-gradient(circle at top, #1a1a2e 0%, #050505 100%); }
     
+    h1 { font-family: 'Orbitron', sans-serif; color: #FFD700; text-shadow: 0 0 20px rgba(255,215,0,0.5); }
+    
+    .ultimate-card {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        margin-bottom: 25px;
+    }
+    
+    .metric-box {
+        text-align: center;
+        padding: 15px;
+        border-right: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .status-badge {
+        background: linear-gradient(90deg, #D4AF37, #FFD700);
+        color: black;
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-weight: 900;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+
     div.stButton > button {
-        background: linear-gradient(90deg, #D4AF37 0%, #FFD700 100%) !important;
-        color: #000 !important; font-weight: 900 !important;
-        border: none !important; padding: 15px !important; border-radius: 12px !important;
-        transition: 0.3s; box-shadow: 0 4px 15px rgba(212,175,55,0.4);
+        background: linear-gradient(45deg, #B8860B 0%, #FFD700 100%) !important;
+        color: black !important; font-weight: 900 !important;
+        letter-spacing: 2px !important; border: none !important;
+        padding: 20px !important; border-radius: 50px !important;
+        transition: 0.5s ease;
     }
-    div.stButton > button:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(212,175,55,0.6); }
-
-    .matrix-container {
-        display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-        padding: 15px; background: rgba(20,20,20,0.8); border-radius: 12px;
-        border: 1px solid #333; margin-bottom: 25px;
-    }
-    .matrix-item { flex: 1; min-width: 90px; text-align: center; border-right: 1px solid #333; }
-    .matrix-item:last-child { border-right: none; }
-    .matrix-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-    .matrix-value { font-size: 18px; font-weight: 900; color: #FFD700; }
-
-    .primbon-box {
-        background: linear-gradient(135deg, #1a1202 0%, #2d1e00 100%);
-        padding: 25px; border-radius: 15px; border: 1px solid #D4AF37;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8); margin: 20px 0;
-    }
-    
-    .naga-dina-badge {
-        background: #D4AF37; color: #000; padding: 5px 12px;
-        border-radius: 20px; font-weight: 900; font-size: 12px;
-    }
-    </style>""", unsafe_allow_html=True
-)
+    div.stButton > button:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,215,0,0.4); }
+</style>
+""", unsafe_allow_html=True)
 
 # ==========================================
-# 🔢 CORE LOGIC: THE ANCIENT ALGORITHMS
+# 🧠 ULTIMATE LOGIC ENGINES
 # ==========================================
 
-# 1. HISAB JUMMAL (ILMU HURUF)
-def hitung_jummal(nama):
-    # Mapping Abjad Esoterik (Nilai Getaran)
-    abjad_values = {
-        'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
-        't': 9, 'y': 10, 'k': 20, 'l': 30, 'm': 40, 'n': 50, 
-        's': 60, 'f': 80, 'q': 100, 'r': 200, 'g': 1000, 'i': 10
-    }
-    nama_clean = ''.join(filter(str.isalpha, nama.lower()))
-    total = sum(abjad_values.get(h, 0) for h in nama_clean)
-    return total if total > 0 else 1
+def get_jummal(nama):
+    values = {'a':1, 'b':2, 'j':3, 'd':4, 'h':5, 'w':6, 'z':7, 't':9, 'y':10, 'k':20, 'l':30, 'm':40, 'n':50, 's':60, 'f':80, 'q':100, 'r':200, 'g':1000, 'i':10}
+    clean = ''.join(filter(str.isalpha, nama.lower()))
+    return sum(values.get(h, 0) for h in clean) if clean else 1
 
-# 2. BETALJEMUR ADAMMAKNA (WETON & PANGARASAN)
-def get_betaljemur_engine(tanggal):
-    anchor = datetime.date(2000, 1, 1) # Sabtu Legi
+def get_planetary_hour():
+    # Logika Jam Planet (Simplified for Real-time App)
+    planets = ["Matahari (Otoritas)", "Venus (Asmara/Uang)", "Merkurius (Komunikasi)", "Bulan (Intuisi)", "Saturnus (Disiplin/Karma)", "Yupiter (Ekspansi)", "Mars (Aksi)"]
+    now = datetime.datetime.now()
+    index = now.hour % 7
+    return planets[index]
+
+def get_betaljemur_full(tanggal):
+    anchor = datetime.date(1900, 1, 1) # Support sejak 1900
     diff = (tanggal - anchor).days
     
     hari_n = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
-    pasaran_n = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"]
+    pasaran_n = ["Pahing", "Pon", "Wage", "Kliwon", "Legi"] # Adjusted for 1900 anchor
     
-    hari = hari_n[tanggal.weekday()]
-    pasaran = pasaran_n[diff % 5]
+    h_idx = tanggal.weekday()
+    p_idx = diff % 5
     
-    n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
-    n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
+    n_hari = [4, 3, 7, 8, 6, 9, 5] # Sen, Sel, Rab, Kam, Jum, Sab, Min
+    n_pas = [9, 7, 4, 8, 5] # Pah, Pon, Wag, Kli, Leg
     
-    neptu = n_hari[hari] + n_pas[pasaran]
+    neptu = n_hari[h_idx] + n_pas[p_idx]
     
-    # Pangarasan (Meta-Program Jawa)
     lakuning = {
-        7: ("Lebu Katiup Angin", "Fokus mudah goyah, butuh anchoring kuat."),
-        8: ("Lakuning Geni", "Emosi meledak, punya daya dobrak besar."),
-        9: ("Lakuning Angin", "Sangat adaptif, namun mudah kena sugesti."),
-        10: ("Pandito Mbangun Teki", "Pola pikir Deep Structure, suka analisa."),
-        11: ("Macan Ketawan", "Otoritas tinggi, benci dikontrol orang."),
-        12: ("Lakuning Kembang", "Rapport natural, ahli diplomasi."),
-        13: ("Lakuning Lintang", "Kharisma misterius, suka menyendiri."),
-        14: ("Lakuning Rembulan", "Penenang batin, empati level tinggi."),
-        15: ("Lakuning Srengenge", "Logis, berwibawa, pencerah kegelapan."),
-        16: ("Lakuning Banyu", "Tenang tapi menghanyutkan, prinsip kuat."),
-        17: ("Lakuning Bumi", "Penyabar, pengayom, fondasi yang kokoh."),
-        18: ("Paripurna", "Otoritas mutlak, pemimpin para pemimpin.")
+        7: ("Lebu Katiup Angin", "Pikiran liar, butuh grounding."),
+        8: ("Lakuning Geni", "Energi api, cocok untuk eksekutor."),
+        9: ("Lakuning Angin", "Adaptif, mudah bergaul, gampang dipengaruhi."),
+        10: ("Pandito Mbangun Teki", "Jiwa guru, suka menolong, pemikir dalam."),
+        11: ("Macan Ketawan", "Garis pemimpin, tidak suka diperintah."),
+        12: ("Lakuning Kembang", "Magnetis, disukai banyak orang secara natural."),
+        13: ("Lakuning Lintang", "Kharisma misterius, kuat dalam kesunyian."),
+        14: ("Lakuning Rembulan", "Penenang, pembawa solusi, sangat empati."),
+        15: ("Lakuning Srengenge", "Wibawa matahari, logis, keras kepala."),
+        16: ("Lakuning Banyu", "Tenang tapi mampu menghancurkan rintangan."),
+        17: ("Lakuning Bumi", "Sangat stabil, tempat bersandar yang kuat."),
+        18: ("Paripurna", "Kekuatan utuh, visioner tingkat tinggi.")
     }
     
-    # Naga Dina (Arah Kejayaan - Fitur Gila lo, Bro)
-    naga_dina = {
-        "Minggu": "TIMUR (Kejayaan)", "Senin": "SELATAN (Kejayaan)",
-        "Selasa": "BARAT (Kejayaan)", "Rabu": "UTARA (Kejayaan)",
-        "Kamis": "TIMUR (Kejayaan)", "Jumat": "SELATAN (Kejayaan)",
-        "Sabtu": "SELATAN (Kejayaan)"
-    }
+    naga = ["TIMUR", "SELATAN", "BARAT", "UTARA", "TIMUR", "SELATAN", "SELATAN"][h_idx]
     
-    laku_nama, laku_desc = lakuning.get(neptu, ("Anomali", "Karakter unik"))
-    return neptu, f"{hari} {pasaran}", laku_nama, laku_desc, naga_dina.get(hari)
+    return neptu, f"{hari_n[h_idx]} {pasaran_n[p_idx]}", lakuning.get(neptu, ("Unik", "Kompleks")), naga
 
 # ==========================================
-# 🖥️ INTERFACE UTAMA
+# 🏗️ THE APP INTERFACE
 # ==========================================
 
-st.markdown("<h1 style='text-align: center; font-weight: 900; color: #FFD700;'>🌌 NEURO NADA ULTIMATE</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #888;'>Sistem Navigasi Takdir: Gematria, Betaljemur, & NLP Alignment</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>👑 NEURO NADA: BADAI ULTIMATE</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #D4AF37; letter-spacing: 5px; font-weight: bold;'>DECODE YOUR DESTINY ENGINE</p>", unsafe_allow_html=True)
 
-# INPUT DATA
-col_a, col_b = st.columns(2)
-with col_a:
-    nama = st.text_input("Nama Lengkap (Asli):", placeholder="Contoh: Ahmad Septian")
-with col_b:
-    dob = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1))
+# --- LIVE TRACKER BAR ---
+c1, c2, c3 = st.columns(3)
+with c1:
+    st.markdown(f"<div class='status-badge'>🕒 Jam Planet: {get_planetary_hour()}</div>", unsafe_allow_html=True)
+with c2:
+    st.markdown(f"<div class='status-badge'>📅 {datetime.datetime.now().strftime('%d %B %Y')}</div>", unsafe_allow_html=True)
+with c3:
+    st.markdown(f"<div class='status-badge'>🛰️ GPS: TANGERANG ALIGNED</div>", unsafe_allow_html=True)
 
-if st.button("RUN DEEP ANALYSIS"):
-    if nama:
-        # Jalankan Mesin
-        val_jummal = hitung_jummal(nama)
-        neptu, weton, laku_n, laku_d, arah = get_betaljemur_engine(dob)
-        elemen = {1: "🔥 API", 2: "🌍 TANAH", 3: "💨 UDARA", 0: "💧 AIR"}.get(val_jummal % 4)
+st.markdown("<br>", unsafe_allow_html=True)
+
+# --- INPUT AREA ---
+with st.container():
+    st.markdown("<div class='ultimate-card'>", unsafe_allow_html=True)
+    col_in1, col_in2 = st.columns(2)
+    with col_in1:
+        u_nama = st.text_input("NAMA LENGKAP", placeholder="Ketik nama Anda...")
+    with col_in2:
+        # TAHUN TERBUKA DARI 1900
+        u_dob = st.date_input("TANGGAL LAHIR", value=datetime.date(1990, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=datetime.date(2026, 12, 31))
+    
+    btn = st.button("EXECUTE SYSTEM SCAN")
+    st.markdown("</div>", unsafe_allow_html=True)
+
+if btn and u_nama:
+    with st.spinner("🌀 Meretas Frekuensi Alam Semesta..."):
+        # Processing
+        v_jum = get_jummal(u_nama)
+        v_nep, v_wet, v_laku, v_naga = get_betaljemur_full(u_dob)
+        v_elemen = ["💧 AIR", "🔥 API", "🌍 TANAH", "💨 UDARA"][v_jum % 4]
         
-        # --- 1. THE MATRIX METRICS ---
+        # --- OUTPUT AREA ---
+        st.balloons()
+        
+        # 1. THE MATRIX BOX
         st.markdown(f"""
-        <div class="matrix-container">
-            <div class="matrix-item"><div class="matrix-label">Vibrasi Nama</div><div class="matrix-value">{val_jummal}</div></div>
-            <div class="matrix-item"><div class="matrix-label">Elemen</div><div class="matrix-value">{elemen}</div></div>
-            <div class="matrix-item"><div class="matrix-label">Weton</div><div class="matrix-value">{weton}</div></div>
-            <div class="matrix-item"><div class="matrix-label">Neptu</div><div class="matrix-value">{neptu}</div></div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # --- 2. FITUR GILA: BETALJEMUR INSIGHT ---
-        st.markdown(f"""
-        <div class="primbon-box">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <span style="color: #D4AF37; font-weight: 900; letter-spacing: 1px;">📜 KODE BETALJEMUR ADAMMAKNA</span>
-                <span class="naga-dina-badge">🧭 ARAH HOKI: {arah}</span>
+        <div class='ultimate-card'>
+            <div style='display: flex; justify-content: space-around; flex-wrap: wrap;'>
+                <div class='metric-box'><small>VIBRASI NAMA</small><br><span style='font-size: 24px; font-weight: 900; color: #FFD700;'>{v_jum}</span></div>
+                <div class='metric-box'><small>WETON</small><br><span style='font-size: 24px; font-weight: 900;'>{v_wet}</span></div>
+                <div class='metric-box'><small>NEPTU</small><br><span style='font-size: 24px; font-weight: 900;'>{v_nep}</span></div>
+                <div class='metric-box' style='border:none;'><small>ELEMEN</small><br><span style='font-size: 24px; font-weight: 900; color: #FFD700;'>{v_elemen}</span></div>
             </div>
-            <h2 style="color: #FFF; margin: 0;">{laku_n}</h2>
-            <p style="color: #CCC; font-style: italic; font-size: 16px;">"{laku_d}"</p>
-            <hr style="border-color: #444;">
-            <p style="color: #AAA; font-size: 14px;">
-                <b>Strategi Usaha:</b> Berdasarkan Naga Dina hari lahir Anda, posisi terbaik saat melakukan negosiasi bisnis atau membangun toko adalah menghadap ke <b>{arah.split()[0]}</b>. Ini akan menyelaraskan bio-elektromagnetik tubuh Anda dengan energi bumi.
-            </p>
         </div>
         """, unsafe_allow_html=True)
-
-        # --- 3. AUDIT SISTEM SARAF (NLP WHEEL) ---
-        st.subheader("🕸️ Audit Resonansi Saat Ini")
-        kategori = ['Mental', 'Finansial', 'Asmara', 'Spiritual', 'Fisik']
-        values = [random.randint(5, 10) for _ in range(5)] # Placeholder Audit
         
-        fig = go.Figure(data=go.Scatterpolar(
-            r=values + [values[0]],
-            theta=kategori + [kategori[0]],
-            fill='toself',
-            fillcolor='rgba(212, 175, 55, 0.3)',
-            line=dict(color='#D4AF37')
-        ))
-        fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 10])), showlegend=False, paper_bgcolor="#050505", plot_bgcolor="#050505")
-        st.plotly_chart(fig)
-
-        # --- 4. CTA REPROGRAMMING ---
-        st.success(f"### Analisis Selesai, {nama.split()[0]}!")
-        st.write(f"Vibrasi nama Anda (**{val_jummal}**) menunjukkan potensi hambatan pada area komunikasi. Gunakan arah **{arah}** sebagai jangkar (anchor) saat memulai meditasi atau bekerja.")
+        # 2. THE DEEP INSIGHT
+        res_col1, res_col2 = st.columns([2, 1])
         
+        with res_col1:
+            st.markdown(f"""
+            <div class='ultimate-card'>
+                <h3 style='color:#FFD700;'>📜 Arketipe: {v_laku[0]}</h3>
+                <p style='font-size: 18px; line-height: 1.6;'>"{v_laku[1]}"</p>
+                <hr style='border: 0.5px solid rgba(212,175,55,0.2);'>
+                <p><b>ANALISIS NLP:</b> Nama Anda bergetar pada frekuensi <b>{v_jum}</b>. Dalam pola pikir bawah sadar, Anda cenderung <b>{v_laku[0]}</b>. Ini berarti saat Anda di bawah tekanan, sistem saraf Anda akan mencari keseimbangan melalui elemen <b>{v_elemen}</b>.</p>
+                <p style='color: #25D366;'><b>🧭 ARAH KEJAYAAN: {v_naga}</b></p>
+                <small>*Gunakan arah {v_naga} saat memulai bisnis atau menghadap meja kerja untuk sinkronisasi energi bumi.</small>
+            </div>
+            """, unsafe_allow_html=True)
+            
+        with res_col2:
+            st.markdown(f"""
+            <div class='ultimate-card' style='text-align: center;'>
+                <h4 style='color:#FFD700;'>MOMENTUM LIVE</h4>
+                <p>Saat ini adalah jam:</p>
+                <div style='background: #D4AF37; color: black; padding: 10px; border-radius: 10px; font-weight: 900;'>{get_planetary_hour().upper()}</div>
+                <p style='font-size: 12px; margin-top: 10px;'>Waktu terbaik untuk melakukan tindakan yang selaras dengan energi planet tersebut.</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        # 3. CALL TO ACTION BRUTAL
         st.markdown(f"""
-        <a href="https://wa.me/628999771486" target="_blank" style="text-decoration: none;">
-            <div style="background: linear-gradient(90deg, #ff4b4b 0%, #ff0000 100%); color: white; padding: 20px; text-align: center; border-radius: 12px; font-weight: 900; box-shadow: 0 6px 15px rgba(255, 75, 75, 0.4);">
-                🔥 KALIBRASI ULANG SISTEM SARAF ANDA (PRIVATE SESSION)
+        <a href="https://wa.me/628999771486?text=Coach%20Ahmad,%20saya%20siap%20bedah%20Kode%20{v_jum}%20dan%20Weton%20{v_wet}" target="_blank" style="text-decoration: none;">
+            <div style="background: linear-gradient(90deg, #ff4b4b, #8b0000); color: white; padding: 25px; text-align: center; border-radius: 15px; font-weight: 900; font-size: 20px; box-shadow: 0 10px 30px rgba(255,0,0,0.3);">
+                🚨 RE-PROGRAM ALAM BAWAH SADAR ANDA SEKARANG
             </div>
         </a>
         """, unsafe_allow_html=True)
 
-else:
-    st.info("Masukkan Nama dan Tanggal Lahir untuk meretas sandi takdir Anda.")
-
 # --- FOOTER ---
-st.markdown("---")
-st.markdown("<center><small>© 2026 Neuro Nada Ultimate | Crafted by Ahmad Septian</small></center>", unsafe_allow_html=True)
+st.markdown("<br><center><p style='color: #555;'>Neuro Nada BADAI ULTIMATE Engine © 2026<br>Designed for Ahmad Septian Dwi Cahyo</p></center>", unsafe_allow_html=True)
