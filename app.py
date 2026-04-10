@@ -11,7 +11,6 @@ import csv
 import io
  
 # --- PENGATURAN HALAMAN ---
-# Menggunakan layout="wide" untuk kesan dashboard kelas atas
 st.set_page_config(
     page_title="Neuro Nada Deep Analysis", 
     page_icon="🌌", 
@@ -19,7 +18,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed" 
 )
  
-# --- CUSTOM CSS (DITAMBAH EFEK GLASSMORPHISM & DARK THEME) ---
+# --- CUSTOM CSS ---
 st.markdown(
     """<style>
     html, body, [class*="css"]  { font-family: 'Inter', sans-serif; background-color: #050505; color: #e0e0e0; }
@@ -52,7 +51,6 @@ st.markdown(
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     
-    /* Container Transparan untuk Visual Mahal */
     .glass-container {
         background: rgba(25, 25, 25, 0.5); backdrop-filter: blur(12px);
         padding: 20px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2);
@@ -69,7 +67,7 @@ st.markdown(
     .matrix-container {
         display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap;
         padding: 15px; background: rgba(10,10,10,0.8); border-radius: 10px;
-        border: 1px solid #333; margin-bottom: 20px;
+        border: 1px solid #333; margin-bottom: 5px; /* Margin bawah dikurangi buat expander */
         box-shadow: inset 0 2px 15px rgba(0,0,0,0.6);
     }
     .matrix-item { flex: 1; min-width: 80px; text-align: center; padding: 5px; border-right: 1px solid #333; }
@@ -97,7 +95,6 @@ def get_greeting():
     elif hour < 18: return "Selamat Sore, Sang Pencari Makna"
     else: return "Selamat Malam, Pribadi yang Tenang"
 
-# --- FUNGSI LIVE PLANETARY CLOCK ---
 def get_planetary_hour():
     planets = ["Matahari (Otoritas) ☀️", "Venus (Asmara/Uang) 💖", "Merkurius (Komunikasi) 📝", "Bulan (Intuisi) 🌙", "Saturnus (Karma) 🪐", "Yupiter (Ekspansi) 🍀", "Mars (Aksi) ⚔️"]
     now = datetime.datetime.now()
@@ -142,7 +139,6 @@ with st.sidebar:
     st.caption("© 2026 Neuro Nada Academy")
  
 # --- INTERFACE UTAMA ---
-# Header Dinamis dengan Live Clock
 st.markdown(f"<div style='text-align: right;'><div class='live-badge'>🕒 LIVE PLANET: {get_planetary_hour().upper()}</div></div>", unsafe_allow_html=True)
 
 if os.path.exists("banner.jpg"):
@@ -215,18 +211,30 @@ def hitung_angka(tanggal):
     total = sum(int(digit) for digit in tanggal.strftime("%d%m%Y"))
     while total > 9: total = sum(int(digit) for digit in str(total))
     return total
- 
+
+# KAMUS ABJAD ESOTERIK
+KAMUS_ABJAD = {
+    'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
+    't': 9, 'y': 10, 'k': 20, 'l': 30, 'm': 40, 'n': 50, 
+    's': 60, 'f': 80, 'q': 100, 'r': 200, 'c': 3, 'e': 5,
+    'g': 1000, 'i': 10, 'o': 6, 'p': 80, 'u': 6, 'v': 6, 'x': 60
+}
+
 # MODUL 1: Esoteric Abjad (Hisab Jummal)
 def hitung_nama_esoterik(nama):
-    abjad_values = {
-        'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
-        't': 9, 'y': 10, 'k': 20, 'l': 30, 'm': 40, 'n': 50, 
-        's': 60, 'f': 80, 'q': 100, 'r': 200, 'c': 3, 'e': 5,
-        'g': 1000, 'i': 10, 'o': 6, 'p': 80, 'u': 6, 'v': 6, 'x': 60
-    }
     nama_clean = ''.join(filter(str.isalpha, nama.lower()))
-    total = sum(abjad_values.get(huruf, 0) for huruf in nama_clean)
+    total = sum(KAMUS_ABJAD.get(huruf, 0) for huruf in nama_clean)
     return total if total > 0 else 1
+
+# Fungsi Ekstra: Membuat rincian perhitungan Esoterik
+def get_rincian_esoterik(nama):
+    nama_clean = ''.join(filter(str.isalpha, nama.lower()))
+    rincian = []
+    for huruf in nama_clean:
+        nilai = KAMUS_ABJAD.get(huruf, 0)
+        if nilai > 0:
+            rincian.append(f"**{huruf.upper()}**({nilai})")
+    return " + ".join(rincian)
  
 def get_elemen_esoterik(nilai_jummal):
     mod = nilai_jummal % 4
@@ -234,7 +242,7 @@ def get_elemen_esoterik(nilai_jummal):
     elemen = {1: "🔥 Api", 2: "🌍 Tanah", 3: "💨 Udara", 4: "💧 Air"}
     return elemen.get(mod, "Unknown")
  
-# MODUL 2: Weton Kalibrasi Presisi (Berlaku mundur hingga 1900 secara matematis)
+# MODUL 2: Weton Kalibrasi Presisi
 def get_neptu_weton(tanggal):
     anchor_date = datetime.date(2000, 1, 1)
     selisih_hari = (tanggal - anchor_date).days
@@ -248,7 +256,6 @@ def get_neptu_weton(tanggal):
  
 # MODUL 3: EKSTRAKSI KITAB BETALJEMUR ADAMMAKNA
 def get_betaljemur_data(neptu, hari):
-    # 1. Ilmu Pangarasan (Lakuning Alam) - NLP Traits versi Jawa
     lakuning = {
         7: ("Lebu Katiup Angin", "Pikiran dinamis, mudah goyah, sering berpindah fokus."),
         8: ("Lakuning Geni", "Emosi meledak-ledak. Rentan abreaction, butuh teknik pacing tingkat tinggi."),
@@ -264,7 +271,6 @@ def get_betaljemur_data(neptu, hari):
         18: ("Paripurna", "Elemen kesempurnaan, memegang kendali otoritas dengan sangat bijak.")
     }
     
-    # 2. Pancasuda (Sisa Bagi 5) - Garis Nasib / Wheel of Life
     mod_panca = neptu % 5
     if mod_panca == 0: mod_panca = 5
     pancasuda = {
@@ -275,7 +281,6 @@ def get_betaljemur_data(neptu, hari):
         5: ("Pati (Rintangan)", "Sering menemui jalan buntu jika tidak menggunakan strategi kalibrasi mental.")
     }
     
-    # 3. Naga Dina (Arah Elektromagnetik Hari)
     naga_dina = {
         "Minggu": "Timur (Kejayaan) / Barat (Hindari)", 
         "Senin": "Selatan (Kejayaan) / Utara (Hindari)",
@@ -338,7 +343,6 @@ def get_daily_dynamic_sync():
     elif p < 0.78: k = "Last Quarter"
     else: k = "Waning Crescent"
     
-    # Simple dictionary for daily sync
     daily_do = {"New Moon": "Reset niat", "Waxing Crescent": "Langkah pertama", "First Quarter": "Pecahkan rintangan", "Waxing Gibbous": "Sempurnakan detail", "Full Moon": "Networking", "Waning Gibbous": "Mentoring", "Last Quarter": "Detoks", "Waning Crescent": "Healing batin"}
     daily_dont = {"New Moon": "Grasa-grusu", "Waxing Crescent": "Prokrastinasi", "First Quarter": "Menyerah", "Waxing Gibbous": "Perfeksionis buta", "Full Moon": "Debat kusir", "Waning Gibbous": "Pelit ilmu", "Last Quarter": "Nostalgia toxic", "Waning Crescent": "Kerja lembur"}
     
@@ -354,7 +358,6 @@ with tab1:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("Akses Blueprint Bawah Sadar Anda")
     nama_user = st.text_input("Nama Lengkap:", placeholder="Ketik nama asli Anda...", key="t1_nama")
-    # TAHUN FLEKSIBEL: Diubah dari 1920 menjadi 1900
     tgl_input = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
     st.markdown("</div>", unsafe_allow_html=True)
  
@@ -375,13 +378,13 @@ with tab1:
             
             angka_hasil = hitung_angka(tgl_input)
             nilai_jummal = hitung_nama_esoterik(nama_user)
+            rincian_jummal = get_rincian_esoterik(nama_user) # Memanggil detail perhitungan
             elemen_dasar = get_elemen_esoterik(nilai_jummal)
             nep, hari, pasaran = get_neptu_weton(tgl_input)
             wet = f"{hari} {pasaran}"
             zod = get_zodiak(tgl_input)
             ark_n = get_arketipe(angka_hasil)
             
-            # Betaljemur Extraction
             n_laku, d_laku, n_panca, d_panca, arah_naga = get_betaljemur_data(nep, hari)
             
             m_phase, m_sifat, m_do, m_dont = get_birth_moon(tgl_input)
@@ -405,6 +408,12 @@ with tab1:
             </div>
             """, unsafe_allow_html=True)
             
+            # --- EXPANDER: BEDAH NILAI ESOTERIK ---
+            with st.expander("🔍 Lihat Cara Perhitungan Nilai Esoterik (Hisab Jummal)"):
+                st.markdown(f"Setiap huruf memancarkan getaran resonansi spesifik berdasarkan ilmu huruf kuno (Hisab Al-Jumal). Nama **{nama_user.upper()}** dikonversi menjadi angka vibrasi dengan rincian berikut:")
+                st.info(f"{rincian_jummal} = **{nilai_jummal}**")
+                st.caption("*Catatan: Sistem ini mendeteksi resonansi aksara dan mengkalkulasinya menjadi kode sandi unik (blueprint) jiwa Anda.*")
+
             # --- ACTIONABLE INTELLIGENCE: BETALJEMUR BOX ---
             st.markdown(f"""
             <div class="primbon-box">
@@ -471,11 +480,9 @@ with tab2:
     ca, cb = st.columns(2)
     with ca: 
         n1 = st.text_input("Nama Anda", key="n1")
-        # TAHUN FLEKSIBEL: Diubah dari 1940 menjadi 1900
         d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, key="d1")
     with cb: 
         n2 = st.text_input("Nama Pasangan", key="n2")
-        # TAHUN FLEKSIBEL: Diubah dari 1940 menjadi 1900
         d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, key="d2")
     st.markdown("</div>", unsafe_allow_html=True)
         
