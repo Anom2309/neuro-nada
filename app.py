@@ -110,9 +110,9 @@ def get_planetary_hour():
         ("Venus 💖", "Waktu emas untuk negosiasi, asmara, dan melobi orang.", "#FF69B4"), 
         ("Merkurius 📝", "Eksekusi semua urusan email, naskah, dan komunikasi.", "#00FFFF"), 
         ("Bulan 🌙", "Waktu intuitif. Bagus untuk brainstorming atau istirahat.", "#F0F8FF"), 
-        ("Saturnus 🪐", "Energi berat. Fokus pada pekerjaan repetitif dan bayar hutang.", "#8B4513"), 
-        ("Yupiter 🍀", "Pintu rezeki terbuka. Lakukan pitching bisnis atau investasi.", "#32CD32"), 
-        ("Mars ⚔️", "Energi agresif tinggi. Waktu terbaik untuk olahraga atau berdebat.", "#FF4500")
+        ("Saturnus 🪐", "Energi berat. Fokus pada pekerjaan repetitif dan audit.", "#8B4513"), 
+        ("Yupiter 🍀", "Pintu rezeki terbuka. Waktu terbaik investasi/pitching.", "#32CD32"), 
+        ("Mars ⚔️", "Energi agresif tinggi. Cocok untuk olahraga/eksekusi berani.", "#FF4500")
     ]
     return planets[datetime.datetime.now().hour % 7]
 
@@ -168,7 +168,7 @@ def proc_arketipe(nama, angka, zodiak, neptu):
         4: ["sebagai arsitek kehidupan yang sangat sistematis dan presisi.", "memiliki pola pikir logis yang menjadikannya pondasi kuat bagi keluarga.", "adalah sosok praktis yang sangat bisa diandalkan di masa krisis."],
         5: ["sebagai simbol kebebasan yang menolak keras rutinitas monoton.", "memiliki kelincahan otak untuk beradaptasi dengan perubahan seekstrim apapun.", "adalah agen eksplorator yang selalu mencari sudut pandang dan pengalaman baru."],
         6: ["sebagai pelindung sejati dengan insting pengayom yang luar biasa.", "memegang standar tanggung jawab moral yang sangat tinggi demi keluarga.", "menjadikan kebahagiaan orang yang dicintai sebagai bahan bakar utamanya."],
-        7: ["sebagai pencari kebenaran esensial dengan intuisi yang tajam.", "tidak pernah puas dengan jawaban dangkal dan selalu menganalisa hingga ke akar.", "memiliki filter batin exclusif yang sangat selektif menilai kualitas seseorang."],
+        7: ["sebagai pencari kebenaran esensial dengan intuisi yang tajam.", "tidak pernah puas dengan jawaban dangkal dan selalu menganalisa hingga ke akar.", "memiliki filter batin eksklusif yang sangat selektif menilai kualitas seseorang."],
         8: ["sebagai eksekutor tangguh dengan insting material yang sangat presisi.", "memiliki fokus bawah sadar yang ditarik kuat menuju puncak otoritas.", "adalah sosok pengendali yang tetap berdiri tegak meski ditekan badai besar."],
         9: ["sebagai 'Jiwa Tua' yang memandang dunia dengan kacamata kebijaksanaan.", "memiliki tingkat kepedulian universal yang melampaui kepentingan egonya sendiri.", "selalu terdorong untuk memberikan *legacy* atau dampak positif bagi semesta."]
     }
@@ -269,7 +269,7 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
     dont_list = {
         1: [f"DILARANG keras *Mind-Reading* (menebak pikiran negatif) dan mengungkit masa lalu {n2}.", f"Jangan beradu argumen saat {n2} sedang lapar atau lelah secara fisik."],
         2: [f"Hindari jebakan pencitraan. Jangan sampai {n1} dan {n2} pura-pura bahagia di luar tapi hancur di dalam.", f"Jangan biarkan campur tangan sirkel pertemanan merusak wibawa hubungan kalian."],
-        3: [f"Hati-Audit Comfort Zone*. Pasangan Jodoh sering malas berjuang karir karena sudah terlalu nyaman.", f"Jangan mengabaikan perawatan diri (fisik/penampilan) hanya karena merasa sudah saling menerima."],
+        3: [f"Hati-hati jebakan *Comfort Zone*. Pasangan Jodoh sering malas berjuang karir karena sudah terlalu nyaman.", f"Jangan mengabaikan perawatan diri (fisik/penampilan) hanya karena merasa sudah saling menerima."],
         4: [f"Jangan pernah {n1} memaksakan standar pribadi (gengsi) kepada {n2}. Turunkan ekspektasi.", f"Pantang menyerah di 3 tahun pertama. Ujian berat di awal pantang diselesaikan dengan kata pisah."],
         5: [f"Jangan jadikan uang satu-satunya perekat. Pastikan cinta {n1} dan {n2} utuh saat saldo diuji.", f"Jangan sombong jika pintu rezeki sedang terbuka lebar akibat penyatuan weton ini."],
         6: [f"Jangan pernah {n1} menyerang harga diri {n2} secara frontal saat emosinya di puncak.", f"Dilarang menggunakan *Silent Treatment* (mendiamkan pasangan) selama lebih dari 24 jam."],
@@ -284,18 +284,16 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
         5: ("💰 TINARI (Magnet Rezeki)", f"Persilangan energi {z1} dan {z2} adalah magnet kelimpahan. Pintu kelancaran finansial dan kemudahan duniawi biasanya mendadak terbuka lebar setelah {n1} dan {n2} sepakat bersatu."),
         6: ("⚡ PADU (Beda Frekuensi)", f"Kalian akan sering mengalami letupan perdebatan. Ini terjadi murni karena perbedaan cara otak memfilter informasi. {n1} dan {n2} sering meributkan hal kecil yang sebenarnya tidak prinsipil."),
         7: ("👁️ SUJANAN (Rawan Asumsi)", f"Hubungan ini sangat rawan miskomunikasi dan cemburu buta. Tumpukan asumsi bawah sadar antara {z1} dan {z2} sering memicu salah paham dadakan jika tidak dikomunikasikan jernih."),
-        8: ("🕊️ PESTHI (Damai & Rukun)", f"Interaksi antara {n1} dan {n2} sangat adem ayem dan minim drama penguras energi. Kehadiran {z1} sering menetralisir stres {z2}, menciptakan ketenangan abadi.")
+        8: ("🕊️ PESTHI (Damai & Rukun)", f"Interaksi antara {n1} and {n2} sangat adem ayem dan minim drama penguras energi. Kehadiran {z1} sering menetralisir stres {z2}, menciptakan ketenangan abadi.")
     }
     judul, desc = hasil.get(sisa)
     do = random.choice(do_list[sisa])
     dont = random.choice(dont_list[sisa])
     return judul, desc, do, dont
 
-# --- NEW: PENJELASAN MATRIX DYNAMIC ENGINE V2 (FULL DYNAMIC) ---
 def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
     random.seed(generate_seed(f"pm_v2_{n1}_{n2}_{eso_val}_{nep_val}"))
     
-    # Generate Header Dinamis
     headers = [
         "⚙️ ARSITEKTUR ANALISA",
         "📡 DEKODE SINYAL KOSMIK",
@@ -304,7 +302,6 @@ def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
     ]
     header = random.choice(headers)
     
-    # Generate Penjelasan Esoterik Dinamis
     eso_start = [
         f"Fusi vibrasi nama <b>{n1}</b> & <b>{n2}</b>",
         f"Ekstraksi sandi <i>Hisab Jummal</i> kalian",
@@ -321,7 +318,6 @@ def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
         "Angka ini mengunci blueprint takdir yang akan mendominasi perjalanan interaksi kalian berdua."
     ]
     
-    # Generate Penjelasan Neptu Dinamis
     nep_start = [
         f"Kalkulasi sinkronisasi waktu (Total Neptu <b>{nep_val}</b>)",
         f"Analisa siklus rotasi lahir (Parameter <b>{nep_val}</b>)",
@@ -349,6 +345,7 @@ def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
 </div>
 """
 
+# --- DATABASE BLUEPRINT ---
 arketipe_punchy = {
     1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
     2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
@@ -524,8 +521,12 @@ with st.sidebar:
     st.caption("© 2026 Neuro Nada Academy")
  
 # --- INTERFACE UTAMA ---
-cur_planet, _, cur_color = get_planetary_hour()
-st.markdown(f"<div style='text-align: right;'><div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div></div>", unsafe_allow_html=True)
+cur_planet, cur_instr, cur_color = get_planetary_hour()
+st.markdown(f"""
+<div style='text-align: right;'>
+    <div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div>
+    <div style='font-size: 11px; color: #888; margin-top: 5px;'>{cur_instr}</div>
+</div>""", unsafe_allow_html=True)
 
 if os.path.exists("banner.jpg"):
     try: st.image("banner.jpg", use_container_width=True)
@@ -738,7 +739,6 @@ with tab2:
 </div>
 """, unsafe_allow_html=True)
                 
-                # MEMANGGIL FUNGSI PENJELASAN MATRIX FULL DINAMIS V2
                 st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2, total_couple, (nep_1+nep_2)), unsafe_allow_html=True)
                 
                 st.markdown(f"""
@@ -858,20 +858,34 @@ with tab3:
         else: st.success("🔥 **PEAK STATE (GELOMBANG EMAS)**\n\nSinkronisasi otak dan tindakan Anda sangat sempurna. Ini momentum terbaik mengeksekusi visi Anda!")
 
 # ==========================================
-# TAB 4: FAQ & DISCLAIMER
+# TAB 4: FAQ & DISCLAIMER (WISDOM UPDATE)
 # ==========================================
 with tab4:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-    st.subheader("📚 FAQ & Informasi Sistem")
+    st.subheader("📚 FAQ & Navigasi Energi")
     
-    with st.expander("🤔 1. Apa itu Hisab Jummal (Angka Esoterik)?"):
+    with st.expander("🤔 1. Apa itu Jam Planet (Planetary Hours)?"):
+        st.write("""
+        Berbeda dengan jam dinding biasa, **Jam Planet** adalah sistem pembagian waktu astronomi kuno yang membagi siang dan malam menjadi 12 fase energi. 
+        Setiap jam dikuasai oleh satu planet yang memengaruhi 'cuaca mental' manusia di bumi.
+        """)
+        st.markdown("""
+        | Planet | Karakter Energi | Tindakan Terbaik |
+        | :--- | :--- | :--- |
+        | **Matahari** | Otoritas & Fokus | Presentasi, negosiasi, memimpin. |
+        | **Venus** | Harmoni & Seni | Kencan, mediasi, mempercantik diri/karya. |
+        | **Merkurius** | Logika & Data | Menulis, belajar, kirim email penting. |
+        | **Bulan** | Intuisi & Emosi | Refleksi, mendengarkan klien, istirahat. |
+        | **Saturnus** | Disiplin & Beban | Beresin admin, audit, bayar hutang. |
+        | **Yupiter** | Ekspansi & Hoki | Launching bisnis, investasi, cari peluang. |
+        | **Mars** | Aksi & Keberanian | Olahraga, eksekusi tugas berat, debat. |
+        """)
+        
+    with st.expander("🤔 2. Apa itu Hisab Jummal (Angka Esoterik)?"):
         st.write("Hisab Jummal (Gematria Arab) adalah ilmu sains huruf kuno yang memberikan bobot matematika pada setiap aksara. Sistem ini meyakini bahwa nama yang diberikan sejak lahir membawa frekuensi atau getaran energi tertentu yang mempengaruhi sistem saraf dan karakter bawaan Anda.")
         
-    with st.expander("🤔 2. Apakah hasil ini 100% mutlak/ramalan pasti?"):
-        st.write("TIDAK. Neuro Nada bukan alat peramal nasib, melainkan **Alat Pemetaan Pola (Pattern Mapping)**. Sistem ini menggabungkan Metafisika Kuno (Primbon/Falak) dengan pendekatan Psikologi Modern (Neuro-Linguistic Programming). Tujuannya adalah untuk memberikan *Self-Awareness* agar Anda bisa memaksimalkan potensi dan mengatasi 'Shadow Self' (Sisi Gelap) Anda.")
-        
-    with st.expander("🤔 3. Bagaimana cara kerja Quantum Engine?"):
-        st.write("Fitur 'Live Cosmic Dashboard' memadukan algoritma Modulus, Hisab Jummal, dan Astro Clock. Sistem mengubah identitas Anda menjadi angka absolut, lalu membaginya dengan putaran waktu saat ini untuk mencari tahu di fase energi apa Anda berada sekarang, dan memberikan saran taktis langsung berdasarkan planet yang menguasai jam tersebut.")
+    with st.expander("🤔 3. Apakah hasil ini 100% mutlak/ramalan pasti?"):
+        st.write("TIDAK. Neuro Nada bukan alat peramal nasib, melainkan **Alat Pemetaan Pola (Pattern Mapping)**. Sistem ini menggabungkan Metafisika Kuno (Primbon/Falak) dengan pendekatan Psikologi Modern (Neuro-Linguistic Programming). Tujuannya adalah untuk memberikan *Self-Awareness*.")
         
     with st.expander("🤔 4. Bagaimana cara menggunakan info 'Arah Kejayaan'?"):
         st.write("Arah Naga Dina adalah kompas energi geomagnetik harian. Jika sistem mengarahkan Anda ke 'Timur', posisikan tempat duduk kerja, arah meja negoisasi, atau posisi Anda saat melakukan presentasi menghadap ke arah Timur untuk menyelaraskan gelombang otak Anda dengan energi alam hari tersebut.")
