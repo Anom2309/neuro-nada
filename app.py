@@ -613,23 +613,36 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Masehi Anda:<br>
                 st.error(f"Sistem gagal melakukan komputasi. Harap periksa kembali ejaan nama Anda. (Error Code: {e})")
  
 # ==========================================
-# TAB 2: COUPLE MATRIX
+# TAB 2: COUPLE MATRIX (DUAL-ENGINE)
 # ==========================================
 with tab2:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("Penyatuan Esoterik & Betaljemur (Couple Matrix)")
-    st.write("Pilih langsung Weton Anda dan Pasangan untuk mengunci takdir algoritma.")
+    st.write("Masukkan Data Masehi (untuk NLP) dan Weton (untuk Primbon) Anda dan Pasangan.")
+    
     ca, cb = st.columns(2)
     with ca: 
+        st.markdown("<div style='background: rgba(255,215,0,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,215,0,0.2);'>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#FFD700; margin-top:0;'>Data Pihak 1 (Pria)</h4>", unsafe_allow_html=True)
         n1 = st.text_input("Nama Anda", key="n1_c")
-        st.caption("Pilih Weton Pria:")
+        d1 = st.date_input("Tanggal Lahir Masehi", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="d1_c")
+        st.markdown("<hr style='margin: 10px 0; border-color: #333;'>", unsafe_allow_html=True)
+        st.caption("Pilih Weton Pihak 1:")
         hc1 = st.selectbox("Hari Pria", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="hc1")
         pc1 = st.selectbox("Pasaran Pria", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="pc1")
+        st.markdown("</div>", unsafe_allow_html=True)
+        
     with cb: 
+        st.markdown("<div style='background: rgba(255,105,180,0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,105,180,0.2);'>", unsafe_allow_html=True)
+        st.markdown("<h4 style='color:#FF69B4; margin-top:0;'>Data Pihak 2 (Wanita)</h4>", unsafe_allow_html=True)
         n2 = st.text_input("Nama Pasangan", key="n2_c")
-        st.caption("Pilih Weton Wanita:")
+        d2 = st.date_input("Tanggal Lahir Masehi", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="d2_c")
+        st.markdown("<hr style='margin: 10px 0; border-color: #333;'>", unsafe_allow_html=True)
+        st.caption("Pilih Weton Pihak 2:")
         hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=2, key="hc2")
         pc2 = st.selectbox("Pasaran Wanita", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=0, key="pc2")
+        st.markdown("</div>", unsafe_allow_html=True)
+        
     st.markdown("</div>", unsafe_allow_html=True)
         
     if st.button("Analisis Resonansi Pasangan"):
@@ -638,9 +651,13 @@ with tab2:
                 st.snow()
                 safe_n1 = get_safe_firstname(n1, "Pria")
                 safe_n2 = get_safe_firstname(n2, "Wanita")
+                zod1 = get_zodiak(d1)
+                zod2 = get_zodiak(d2)
                 
+                # MENGGUNAKAN BYPASS ENGINE WETON
                 nep_1 = hitung_neptu_langsung(hc1, pc1)
                 nep_2 = hitung_neptu_langsung(hc2, pc2)
+                sel = abs(hitung_angka(d1) - hitung_angka(d2)) # NLP Menggunakan data kalender Masehi
                     
                 jummal_1 = hitung_nama_esoterik(n1)
                 jummal_2 = hitung_nama_esoterik(n2)
@@ -650,7 +667,7 @@ with tab2:
                 while root_c > 9: root_c = sum(int(d) for d in str(root_c))
                 
                 c_title, c_desc = proc_couple_persona(root_c, safe_n1, safe_n2)
-                judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, "Karakter", "Ego")
+                judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
                 
                 st.markdown("---")
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
@@ -681,6 +698,11 @@ with tab2:
                 
                 st.markdown(f"#### 📜 Titik Benturan Weton: {judul_jodoh.split(' ')[1]}")
                 st.info(f"Semesta mencatat takdir persilangan energi (Neptu {nep_1} & {nep_2}) ini sebagai:\n\n**{judul_jodoh}**: {desk_jodoh}")
+                
+                # NLP LOGIC MENGGUNAKAN TANGGAL MASEHI
+                if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental {safe_n1} dan {safe_n2} sangat mirip.")
+                elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - {safe_n1} dan {safe_n2} butuh saling toleransi dalam mengambil keputusan.")
+                else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perdebatan sudut pandang antara {safe_n1} dan {safe_n2}.")
      
                 st.markdown("<br>", unsafe_allow_html=True)
                 c_do_c, c_dont_c = st.columns(2)
