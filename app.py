@@ -182,7 +182,7 @@ st.markdown("---")
  
 tgl_today = datetime.date.today()
  
-# --- DATABASE ARKETIPE NLP & PRIMBON (DINAMIS) ---
+# --- DATABASE ARKETIPE NLP & PRIMBON ---
 def get_dynamic_arketipe(nama, angka):
     data = {
         1: f"Karena kalkulasi waktu lahir menyempit di **KODE 1**, sistem membaca bahwa **{nama}** secara genetik didesain untuk memimpin dan membuka jalan baru. **{nama}** memiliki dorongan internal yang kuat untuk mandiri secara absolut dan sangat benci jika didikte atau diatur. Anda adalah pengambil risiko yang berani, namun waspadai jebakan ego dan rasa kesepian karena selalu merasa harus memikul beban dunia sendirian.",
@@ -303,30 +303,35 @@ def get_rincian_tanggal(tanggal):
         return "1 = 1"
  
 def get_neptu_weton(tanggal):
-    anchor_date = datetime.date(2000, 1, 1)
+    # FIXED: Menggunakan Anchor Date absolut 17 Agustus 1945 (Jumat Legi)
+    anchor_date = datetime.date(1945, 8, 17)
     selisih_hari = (tanggal - anchor_date).days
+    
     hari_n = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
     pasaran_n = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"]
+    
     hari = hari_n[tanggal.weekday()]
     pasaran = pasaran_n[selisih_hari % 5]
+    
     n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
     n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
     return (n_hari[hari] + n_pas[pasaran]), hari, pasaran
  
 def get_betaljemur_data(neptu, hari):
+    # FIXED: Perbaikan total algoritma Pangarasan sesuai Kitab Primbon Asli
     lakuning = {
         7: ("Lebu Katiup Angin", "Pikiran dinamis, mudah goyah, sering berpindah fokus."),
         8: ("Lakuning Geni", "Emosi meledak-ledak. Rentan abreaction, butuh teknik pacing tinggi."),
         9: ("Lakuning Angin", "Gampang dipengaruhi sugesti eksternal, adaptif namun labil."),
-        10: ("Pandito Mbangun Teki", "Introspektif, suka menasihati, pola pikir deep structure."),
-        11: ("Macan Ketawan", "Aura pemimpin tajam, pemberani, ego dominan saat dikritik."),
-        12: ("Lakuning Kembang", "Menebar pesona, cinta damai, rapport natural sangat mudah."),
+        10: ("Pandito Mbangun Teki", "Introspektif, cerdas, suka menasihati, pola pikir deep structure."),
+        11: ("Aras Tuding", "Sering menjadi telunjuk/perhatian, selalu ditunjuk untuk peluang, pemberani."),
+        12: ("Aras Kembang", "Menebar pesona, cinta damai, rapport natural sangat mudah."),
         13: ("Lakuning Lintang", "Suka menyendiri, memancarkan pesona magnetis tanpa banyak bicara."),
         14: ("Lakuning Rembulan", "Penenang batin, pendengar ulung, jangkar emosi bagi orang lain."),
         15: ("Lakuning Srengenge", "Pencerah, berwibawa, sangat logis dan tidak mudah dihipnotis."),
         16: ("Lakuning Banyu", "Kelihatan tenang di permukaan, mematikan jika batasnya dilanggar."),
         17: ("Lakuning Bumi", "Sangat sabar, pengayom, membumi, dan tidak terburu-buru."),
-        18: ("Paripurna", "Elemen kesempurnaan, memegang kendali otoritas dengan sangat bijak.")
+        18: ("Lakuning Paripurna", "Elemen kesempurnaan, memegang kendali otoritas dengan sangat bijak.")
     }
     mod_panca = neptu % 5 if neptu % 5 != 0 else 5
     pancasuda = {
@@ -362,7 +367,6 @@ def get_safe_firstname(name_str, default="User"):
     stripped = str(name_str).strip()
     return stripped.split()[0].upper() if stripped else default
 
-# --- FUNGSI GENERATOR TEKS DINAMIS PASANGAN ---
 def get_dynamic_couple_persona(root_c, n1, n2):
     couple_persona = {
         1: ("THE POWER COUPLE", f"Karena angka vibrasi nama **{n1}** dan **{n2}** menghasilkan The Root 1, kalian secara alami memancarkan simbol Alpha dan Dominasi. Ketika bersatu, **{n1}** dan **{n2}** membentuk entitas yang mandiri, ambisius, dan punya daya dobrak tangguh. Fokus energi kalian tertuju pada kemajuan dan status."),
@@ -378,6 +382,7 @@ def get_dynamic_couple_persona(root_c, n1, n2):
     return couple_persona.get(root_c, ("UNCHARTED SYNERGY", f"Kombinasi **{n1}** dan **{n2}** membentuk pola energi yang sangat unik dan terus beradaptasi dengan hukum alam."))
 
 def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
+    # FIXED: Menambahkan skenario sisa == 8 agar sesuai dengan hasil Modulo yang tepat
     if sisa == 1:
         judul = "💔 PEGAT (Ujian Ego)"
         desc = f"Terdapat perbedaan mendasar dalam memproses emosi antara **{n1}** dan **{n2}**. Filter pikiran {z1} milikmu seringkali berbenturan dengan ego {z2} miliknya. Jika ada konflik, sering diwarnai adu argumen keras karena keduanya sama-sama merasa paling rasional dan benar."
@@ -463,7 +468,6 @@ with tab1:
                 n_laku, d_laku, n_panca, d_panca, arah_naga = get_betaljemur_data(nep, hari)
                 
                 punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
-                # MENGGUNAKAN TEKS ARKETIPE YANG DINAMIS
                 desk_ark_dinamis = get_dynamic_arketipe(safe_name, angka_hasil)
                 shadow = closing_brutal_dinamis.get(angka_hasil, ["Overthinking", "Menyembunyikan gelisah", "Sering memendam masalah"])
                 
@@ -563,8 +567,12 @@ with tab2:
                 zod1 = get_zodiak(d1); ne_1, _, _ = get_neptu_weton(d1)
                 zod2 = get_zodiak(d2); ne_2, _, _ = get_neptu_weton(d2)
                 sel = abs(hitung_angka(d1) - hitung_angka(d2))
-                sisa_weton = (ne_1 + ne_2) % 8
                 
+                # FIXED: Logika Modulo 8 (Mencegah Angka 0 dan merubahnya jadi 8 untuk Pesthi)
+                sisa_weton = (ne_1 + ne_2) % 8
+                if sisa_weton == 0:
+                    sisa_weton = 8
+                    
                 jummal_1 = hitung_nama_esoterik(n1)
                 jummal_2 = hitung_nama_esoterik(n2)
                 total_couple = jummal_1 + jummal_2
@@ -572,7 +580,6 @@ with tab2:
                 root_c = total_couple
                 while root_c > 9: root_c = sum(int(d) for d in str(root_c))
                 
-                # MEMANGGIL FUNGSI TEKS PASANGAN DAN WETON KOMBO YANG DINAMIS
                 c_title, c_desc = get_dynamic_couple_persona(root_c, safe_n1, safe_n2)
                 judul_weton, desk_weton, saran_do, saran_dont = get_dynamic_weton_kombo(sisa_weton, safe_n1, safe_n2, zod1, zod2)
                 
@@ -642,11 +649,7 @@ with tab5:
             st.snow()
             safe_qe = get_safe_firstname(qe_nama)
             
-            # Pilar 1: Adad & Hisab Jummal (Modulus 9 / Loop Karakter)
             jummal_qe = hitung_nama_esoterik(qe_nama)
-            
-            # Pilar 2: Modulus Calculator & Kalender (Bioritme Harian)
-            # Menyilangkan nilai nama dengan hari kalender hari ini (Loop 7 Fase)
             angka_hari_ini = sum(int(d) for d in tgl_today.strftime("%d%m%Y"))
             mod_harian = (jummal_qe + angka_hari_ini) % 7
             
@@ -661,7 +664,6 @@ with tab5:
             }
             siklus_hari_ini, saran_siklus = fase_harian.get(mod_harian, fase_harian[0])
             
-            # Pilar 3: Astro Clock, SunCalc, Planetary Hour
             sun_fase, sun_desc = get_sun_phase()
             planet_live, planet_desc, planet_color = get_planetary_hour()
             
