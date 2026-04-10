@@ -267,6 +267,17 @@ def hitung_angka(tanggal):
     total = sum(int(digit) for digit in tanggal.strftime("%d%m%Y"))
     while total > 9: total = sum(int(digit) for digit in str(total))
     return total
+
+def get_rincian_tanggal(tanggal):
+    tgl_str = tanggal.strftime("%d%m%Y")
+    rincian_awal = " + ".join(list(tgl_str))
+    total = sum(int(digit) for digit in tgl_str)
+    proses = f"{rincian_awal} = {total}"
+    while total > 9:
+        rincian_lanjut = " + ".join(list(str(total)))
+        total = sum(int(digit) for digit in str(total))
+        proses += f" ➡ {rincian_lanjut} = {total}"
+    return proses
  
 def get_neptu_weton(tanggal):
     anchor_date = datetime.date(2000, 1, 1)
@@ -351,6 +362,8 @@ with tab1:
             status_text.empty()
             
             angka_hasil = hitung_angka(tgl_input)
+            rincian_tgl = get_rincian_tanggal(tgl_input) # Ekstraksi proses hitung tgl lahir
+            
             nilai_jummal = hitung_nama_esoterik(nama_user)
             rincian_jummal = get_rincian_esoterik(nama_user)
             
@@ -379,15 +392,23 @@ with tab1:
             </div>
             """, unsafe_allow_html=True)
             
+            # THE NEW EXPLANATION BOX (NAMA & TANGGAL LAHIR)
             st.markdown(f"""
             <div class="dynamic-reading-box">
-                <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka Anda</h4>
-                <p>Secara arsitektur Gematria Kuno (Hisab Jummal), total nilai getaran aksara nama Anda adalah: <br>
+                <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
+                
+                <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
+                Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama Anda:<br>
                 <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
-                <ol style="margin-left: -15px;">
+                <ol style="margin-left: -15px; margin-bottom: 20px;">
                     <li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, Anda berafiliasi dengan <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
                     <li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar Anda adalah: <b>{r_desc}</b></li>
                 </ol>
+                
+                <p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
+                Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.strftime('%d-%m-%Y')}):<br>
+                <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
+                <span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak Anda memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan (Yang membentuk Identitas Inti Anda di bawah).</span></p>
                 {m_note}
             </div>
             """, unsafe_allow_html=True)
@@ -409,7 +430,7 @@ with tab1:
             """, unsafe_allow_html=True)
             
             st.markdown("### 👁️ Decode Kepribadian Inti")
-            st.info(f"Sistem mengkunci arketipe utama Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
+            st.info(f"Berdasarkan **KODE {angka_hasil}**, sistem mengkunci arketipe utama Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
             st.write(desk_ark)
             
             c_kekuatan, c_shadow = st.columns(2)
@@ -431,7 +452,7 @@ with tab1:
             """, unsafe_allow_html=True)
  
 # ==========================================
-# TAB 2: COUPLE MATRIX (UPDATED DENGAN EXPLANATION)
+# TAB 2: COUPLE MATRIX 
 # ==========================================
 with tab2:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -498,7 +519,6 @@ with tab2:
             </div>
             """, unsafe_allow_html=True)
             
-            # THE EXPLANATION BOX (NEW)
             st.markdown("""
             <div class="info-metric-box">
                 <b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
