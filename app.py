@@ -168,7 +168,7 @@ def proc_arketipe(nama, angka, zodiak, neptu):
         4: ["sebagai arsitek kehidupan yang sangat sistematis dan presisi.", "memiliki pola pikir logis yang menjadikannya pondasi kuat bagi keluarga.", "adalah sosok praktis yang sangat bisa diandalkan di masa krisis."],
         5: ["sebagai simbol kebebasan yang menolak keras rutinitas monoton.", "memiliki kelincahan otak untuk beradaptasi dengan perubahan seekstrim apapun.", "adalah agen eksplorator yang selalu mencari sudut pandang dan pengalaman baru."],
         6: ["sebagai pelindung sejati dengan insting pengayom yang luar biasa.", "memegang standar tanggung jawab moral yang sangat tinggi demi keluarga.", "menjadikan kebahagiaan orang yang dicintai sebagai bahan bakar utamanya."],
-        7: ["sebagai pencari kebenaran esensial dengan intuisi yang tajam.", "tidak pernah puas dengan jawaban dangkal dan selalu menganalisa hingga ke akar.", "memiliki filter batin eksklusif yang sangat selektif menilai kualitas seseorang."],
+        7: ["sebagai pencari kebenaran esensial dengan intuisi yang tajam.", "tidak pernah puas dengan jawaban dangkal dan selalu menganalisa hingga ke akar.", "memiliki filter batin exclusif yang sangat selektif menilai kualitas seseorang."],
         8: ["sebagai eksekutor tangguh dengan insting material yang sangat presisi.", "memiliki fokus bawah sadar yang ditarik kuat menuju puncak otoritas.", "adalah sosok pengendali yang tetap berdiri tegak meski ditekan badai besar."],
         9: ["sebagai 'Jiwa Tua' yang memandang dunia dengan kacamata kebijaksanaan.", "memiliki tingkat kepedulian universal yang melampaui kepentingan egonya sendiri.", "selalu terdorong untuk memberikan *legacy* atau dampak positif bagi semesta."]
     }
@@ -193,7 +193,7 @@ def proc_arketipe(nama, angka, zodiak, neptu):
         5: ["Waspadai 'Sindrom Cepat Bosan' yang bisa mensabotase hubungan asmara atau karir jangka panjang.", "Sisi gelapnya, saraf Anda gampang *burnout* karena menolak untuk istirahat dari pencarian adrenalin.", "Bahayanya, Anda cenderung melarikan diri (escapism) saat dituntut tanggung jawab berat."],
         6: ["Anda sangat rentan terkena *burnout* ekstrem akibat terlalu sering mengurus beban hidup orang lain.", "Waspadai sifat *over-protective* yang justru mengekang kebebasan anak atau pasangan.", "Bahayanya, Anda sering dihantui rasa bersalah yang tak masuk akal saat mencoba menikmati *me-time*."],
         7: ["Tantangan utamanya adalah Anda sering terjebak *Paralysis by Analysis* (terlalu banyak overthinking, nol aksi).", "Waspadai kecenderungan mengisolasi diri secara total saat merasa tidak dihargai.", "Sisi gelapnya, sifat skeptis Anda sering membunuh pelan-pelan hubungan yang sebenarnya potensial."],
-        8: ["Sisi gelapnya, Anda sangat kesulitan melepaskan kendali (*letting go*) dan memaafkan pengkhianatan.", "Waspadai kebiasaan memforsir fisik tanpa ampun demi mengejar validasi kesuksesan.", "Bahayanya, Anda rentan mendominasi pasangan secara emosional tanpa Anda sadari."],
+        8: ["Sisi gelapnya, Anda sangat kesulitan melepaskan kendali (*letting go*) and memaafkan pengkhianatan.", "Waspadai kebiasaan memforsir fisik tanpa ampun demi mengejar validasi kesuksesan.", "Bahayanya, Anda rentan mendominasi pasangan secara emosional tanpa Anda sadari."],
         9: ["Sisi gelapnya, Anda rawan memaklumi parasit (*toxic people*) murni karena rasa kasihan.", "Waspadai rasa patah hati kronis karena ekspektasi luhur Anda berbenturan dengan realitas.", "Bahayanya, energi batin Anda gampang terkuras akibat terlalu memikirkan penderitaan dunia."]
     }
     
@@ -248,7 +248,7 @@ def proc_couple_persona(root_c, n1, n2):
         5: ("THE ADVENTURERS", f"Hubungan kalian dipenuhi energi kebebasan dan petualangan. Baik {n1} maupun {n2} akan layu jika hubungannya monoton. Kalian butuh kejutan, eksplorasi hal baru, dan tantangan agar api asmara tetap menyala."),
         6: ("THE FAMILY FIRST", f"Ini adalah simbol pengayoman tertinggi. Tingkat pengorbanan {n1} dan {n2} untuk merawat keutuhan rumah tangga, anak, atau menjembatani keluarga besar sungguh luar biasa mendalam. Rumah kalian adalah tempat berpulang ternyaman."),
         7: ("THE DEEP SEEKERS", f"Hubungan ini cenderung tertutup dan eksklusif. {n1} dan {n2} tidak membangun cinta atas dasar materi semata, melainkan koneksi intelektual dan pencarian spiritual. Kalian berdua memiliki benteng privasi yang sulit ditembus orang luar."),
-        8: ("THE EMPIRE", f"Angka ini adalah magnet kelimpahan mutlak. Penyatuan ego {n1} dan {n2} secara otomatis memfokuskan energi untuk mengejar kesuksesan bisnis, penumpukan finansial, dan membangun kerajaan keluarga bersama yang tak tertandingi."),
+        8: ("THE EMPIRE", f"Angka ini adalah magnet kelimpahan mutlak. Penyatuan ego {n1} dan {n2} secara otomatis memfokuskan energi untuk mengejar kesuksesan bisnis, penumpukan finansial, dan membangun kerajaan keluarga bersama yang tak terhitung."),
         9: ("THE HEALERS", f"Hubungan kalian berada di puncak kedewasaan empati. Interaksi {n1} dan {n2} dipenuhi toleransi. Ketenangan batin kalian berdua sering menjadikan rumah kalian sebagai 'tempat penyembuhan' bagi sirkel yang sedang terluka.")
     }
     gelar, penjelasan = desc.get(root_c, ("UNCHARTED SYNERGY", f"Kombinasi energi {n1} dan {n2} membentuk anomali yang sangat unik dan tak tertebak."))
@@ -269,7 +269,7 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
     dont_list = {
         1: [f"DILARANG keras *Mind-Reading* (menebak pikiran negatif) dan mengungkit masa lalu {n2}.", f"Jangan beradu argumen saat {n2} sedang lapar atau lelah secara fisik."],
         2: [f"Hindari jebakan pencitraan. Jangan sampai {n1} dan {n2} pura-pura bahagia di luar tapi hancur di dalam.", f"Jangan biarkan campur tangan sirkel pertemanan merusak wibawa hubungan kalian."],
-        3: [f"Hati-hati jebakan *Comfort Zone*. Pasangan Jodoh sering malas berjuang karir karena sudah terlalu nyaman.", f"Jangan mengabaikan perawatan diri (fisik/penampilan) hanya karena merasa sudah saling menerima."],
+        3: [f"Hati-Audit Comfort Zone*. Pasangan Jodoh sering malas berjuang karir karena sudah terlalu nyaman.", f"Jangan mengabaikan perawatan diri (fisik/penampilan) hanya karena merasa sudah saling menerima."],
         4: [f"Jangan pernah {n1} memaksakan standar pribadi (gengsi) kepada {n2}. Turunkan ekspektasi.", f"Pantang menyerah di 3 tahun pertama. Ujian berat di awal pantang diselesaikan dengan kata pisah."],
         5: [f"Jangan jadikan uang satu-satunya perekat. Pastikan cinta {n1} dan {n2} utuh saat saldo diuji.", f"Jangan sombong jika pintu rezeki sedang terbuka lebar akibat penyatuan weton ini."],
         6: [f"Jangan pernah {n1} menyerang harga diri {n2} secara frontal saat emosinya di puncak.", f"Dilarang menggunakan *Silent Treatment* (mendiamkan pasangan) selama lebih dari 24 jam."],
@@ -278,7 +278,7 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
     }
     hasil = {
         1: ("💔 PEGAT (Ujian Ego)", f"Terdapat perbedaan fundamental dalam memproses emosi. Filter {z1} milikmu rawan bentrok dengan {z2} miliknya. Jika ada konflik, sering diwarnai adu argumen keras karena {n1} dan {n2} sama-sama merasa paling rasional dan benar."),
-        2: ("👑 RATU (Kharisma Pasangan)", f"Penyatuan vibrasi ini memancarkan wibawa. Orang lain dan keluarga sangat segan melihat kalian berdua. Energi {z1} dan {z2} saling menopang satu sama lain dengan sempurna."),
+        2: ("👑 RATU (Kharisma Pasangan)", f"Penyatuan vibrasi ini memancarkan wibawa. Orang lain dan keluarga sangat segan melihat kalian berdua. Energi {z1} and {z2} saling menopang satu sama lain dengan sempurna."),
         3: ("💞 JODOH (Sinkronisasi Alami)", f"Penerimaan bawah sadar luar biasa tinggi. Seolah frekuensi {z1} milik {n1} dan {z2} milik {n2} sudah terhubung sejak di kehidupan sebelumnya. Sinkronisasi batin yang kuat."),
         4: ("🌱 TOPO (Ujian Bertumbuh)", f"Fase awal kolaborasi {z1} dan {z2} pasti penuh ujian adaptasi berat. Namun setelah {n1} dan {n2} berhasil melewati masa kritis peleburan ego ini, pondasi kalian takkan tertembus badai apapun."),
         5: ("💰 TINARI (Magnet Rezeki)", f"Persilangan energi {z1} dan {z2} adalah magnet kelimpahan. Pintu kelancaran finansial dan kemudahan duniawi biasanya mendadak terbuka lebar setelah {n1} dan {n2} sepakat bersatu."),
@@ -291,29 +291,61 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
     dont = random.choice(dont_list[sisa])
     return judul, desc, do, dont
 
-# --- NEW: PENJELASAN MATRIX DYNAMIC ENGINE ---
-def proc_penjelasan_matriks(n1, n2):
-    random.seed(generate_seed(f"pm_{n1}_{n2}"))
+# --- NEW: PENJELASAN MATRIX DYNAMIC ENGINE V2 (FULL DYNAMIC) ---
+def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
+    random.seed(generate_seed(f"pm_v2_{n1}_{n2}_{eso_val}_{nep_val}"))
     
-    judul = random.choice(["💡 PENJELASAN MATRIKS", "🔍 DECODE DATA", "⚙️ CARA KERJA MESIN"])
+    # Generate Header Dinamis
+    headers = [
+        "⚙️ ARSITEKTUR ANALISA",
+        "📡 DEKODE SINYAL KOSMIK",
+        "📜 LOGIKA MESIN NEURO",
+        "🔍 BEDAH PARAMETER SINERGI"
+    ]
+    header = random.choice(headers)
     
-    eso = random.choice([
-        f"Hasil penyatuan murni dari getaran nama <b>{n1}</b> dan <b>{n2}</b> (Jummal) yang membentuk DNA atau <i>Persona Pasangan</i> di mata semesta.",
-        f"Akumulasi frekuensi dari aksara <b>{n1}</b> dan <b>{n2}</b>. Angka ini mengunci blueprint spiritual dan identitas sejati hubungan kalian.",
-        f"Resonansi esoterik yang membaca fusi energi kalian. Ini adalah karakter dominan yang muncul saat <b>{n1}</b> dan <b>{n2}</b> bersatu."
-    ])
+    # Generate Penjelasan Esoterik Dinamis
+    eso_start = [
+        f"Fusi vibrasi nama <b>{n1}</b> & <b>{n2}</b>",
+        f"Ekstraksi sandi <i>Hisab Jummal</i> kalian",
+        f"Penyatuan resonansi aksara <b>{n1}</b> dan <b>{n2}</b>"
+    ]
+    eso_mid = [
+        f"menghasilkan angka esoterik <b>{eso_val}</b>.",
+        f"mengunci pada frekuensi absolut <b>{eso_val}</b>.",
+        f"berhenti di titik koordinat spiritual <b>{eso_val}</b>."
+    ]
+    eso_end = [
+        "Ini adalah 'Wajah' hubungan kalian di mata semesta; mendefinisikan persona yang muncul saat kalian bersama.",
+        "Sandi ini menentukan bagaimana kalian berdua dipandang sebagai satu entitas oleh lingkungan luar.",
+        "Angka ini mengunci blueprint takdir yang akan mendominasi perjalanan interaksi kalian berdua."
+    ]
     
-    nep = random.choice([
-        "Kalkulasi matematis siklus waktu lahir (Modulo 8). Menganalisis titik temu ego bawah sadar, memetakan rawan konflik dan potensi harmoni.",
-        f"Sandi matematis dari hari pasaran kalian berdua. Berfungsi sebagai radar pendeteksi letupan ego antara <b>{n1}</b> dan <b>{n2}</b>.",
-        "Diambil dari silangan algoritma waktu lahir kuno. Siklus ini membedah benturan watak bawaan sekaligus peluang kemakmuran bersama."
-    ])
+    # Generate Penjelasan Neptu Dinamis
+    nep_start = [
+        f"Kalkulasi sinkronisasi waktu (Total Neptu <b>{nep_val}</b>)",
+        f"Analisa siklus rotasi lahir (Parameter <b>{nep_val}</b>)",
+        f"Metode <i>modulo 8</i> pada nilai neptu <b>{nep_val}</b>"
+    ]
+    nep_mid = [
+        "digunakan untuk memetakan dinamika ego bawah sadar.",
+        "menjadi radar pengukur stabilitas emosional kalian.",
+        "berfungsi sebagai mitigasi benturan watak harian."
+    ]
+    nep_end = [
+        "Sistem menggunakan data ini untuk mendeteksi area rawan konflik sekaligus pintu masuk rezeki bersama.",
+        "Parameter ini krusial untuk menjaga harmoni agar riak kecil tidak menjadi badai dalam rumah tangga.",
+        "Lewat sandi ini, kita bisa melihat 'Jangkar' apa yang paling kuat mengikat batin kalian saat ini."
+    ]
+    
+    final_eso = f"{random.choice(eso_start)} {random.choice(eso_mid)} {random.choice(eso_end)}"
+    final_nep = f"{random.choice(nep_start)} {random.choice(nep_mid)} {random.choice(nep_end)}"
     
     return f"""
 <div class="info-metric-box">
-<b style="color:#FFD700; font-size:14px;">{judul}:</b><br>
-• <b style="color:white;">TOTAL ESOTERIK:</b> {eso}<br>
-• <b style="color:white;">TOTAL NEPTU:</b> {nep}
+<b style="color:#FFD700; font-size:14px;">{header}:</b><br>
+• <b style="color:white;">TOTAL ESOTERIK:</b> {final_eso}<br>
+• <b style="color:white;">TOTAL NEPTU:</b> {final_nep}
 </div>
 """
 
@@ -706,8 +738,8 @@ with tab2:
 </div>
 """, unsafe_allow_html=True)
                 
-                # MEMANGGIL FUNGSI PENJELASAN MATRIX DINAMIS
-                st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2), unsafe_allow_html=True)
+                # MEMANGGIL FUNGSI PENJELASAN MATRIX FULL DINAMIS V2
+                st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2, total_couple, (nep_1+nep_2)), unsafe_allow_html=True)
                 
                 st.markdown(f"""
 <div class="dynamic-reading-box" style="border-left-color: #25D366;">
