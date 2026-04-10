@@ -336,7 +336,6 @@ def get_zodiak(tanggal):
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
     else: return "Pisces"
 
-# Safely extract first word from string to prevent IndexError
 def get_safe_firstname(name_str, default="User"):
     stripped = str(name_str).strip()
     return stripped.split()[0].upper() if stripped else default
@@ -390,51 +389,50 @@ with tab1:
                 st.snow()
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
                 
+# MULAI DARI SINI SEMUA HTML RATA KIRI AGAR TIDAK JADI MARKDOWN CODE BLOCK
                 st.markdown(f"""
-                <div class="matrix-container">
-                    <div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
-                    <div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div>
-                    <div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div>
-                    <div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div>
-                    <div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} (Neptu {nep})</div></div>
-                </div>
-                """, unsafe_allow_html=True)
+<div class="matrix-container">
+<div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
+<div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div>
+<div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div>
+<div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div>
+<div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} (Neptu {nep})</div></div>
+</div>
+""", unsafe_allow_html=True)
                 
                 st.markdown(f"""
-                <div class="dynamic-reading-box">
-                    <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
-                    
-                    <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
-                    Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama Anda:<br>
-                    <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
-                    <ol style="margin-left: -15px; margin-bottom: 20px;">
-                        <li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, Anda berafiliasi dengan <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
-                        <li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar Anda adalah: <b>{r_desc}</b></li>
-                    </ol>
-                    
-                    <p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
-                    Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.strftime('%d-%m-%Y')}):<br>
-                    <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
-                    <span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak Anda memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan.</span></p>
-                    {m_note}
-                </div>
-                """, unsafe_allow_html=True)
+<div class="dynamic-reading-box">
+<h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
+<p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
+Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama Anda:<br>
+<code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
+<ol style="margin-left: -15px; margin-bottom: 20px;">
+<li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, Anda berafiliasi dengan <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
+<li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar Anda adalah: <b>{r_desc}</b></li>
+</ol>
+<p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
+Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.strftime('%d-%m-%Y')}):<br>
+<code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
+<span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak Anda memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan.</span></p>
+{m_note}
+</div>
+""", unsafe_allow_html=True)
 
                 st.markdown(f"""
-                <div class="primbon-box">
-                    <div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;">
-                        <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
-                    </div>
-                    <div style="font-size:15px; line-height:1.6; margin-bottom: 15px;">
-                        <span style="color:#aaa;">Sandi Pangarasan (Meta-Program Bawah Sadar):</span> <br>
-                        <b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i>
-                    </div>
-                    <div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;">
-                        <span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br>
-                        <i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan meja kerja atau arah duduk Anda menghadap zona kejayaan di atas saat mengambil keputusan penting hari ini.</i>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
+<div class="primbon-box">
+<div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;">
+<span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
+</div>
+<div style="font-size:15px; line-height:1.6; margin-bottom: 15px;">
+<span style="color:#aaa;">Sandi Pangarasan (Meta-Program Bawah Sadar):</span> <br>
+<b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i>
+</div>
+<div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;">
+<span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br>
+<i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan meja kerja atau arah duduk Anda menghadap zona kejayaan di atas saat mengambil keputusan penting hari ini.</i>
+</div>
+</div>
+""", unsafe_allow_html=True)
                 
                 st.markdown("### 👁️ Decode Kepribadian Inti")
                 st.info(f"Berdasarkan **KODE {angka_hasil}**, sistem mengkunci arketipe utama Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
@@ -451,12 +449,10 @@ with tab1:
                 st.markdown("<br>", unsafe_allow_html=True)
                 url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
                 st.markdown(f"""
-                <a href="{url_t}" target="_blank" style="text-decoration: none;">
-                    <div class="cta-button">
-                        ⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA
-                    </div>
-                </a>
-                """, unsafe_allow_html=True)
+<a href="{url_t}" target="_blank" style="text-decoration: none;">
+<div class="cta-button">⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA</div>
+</a>
+""", unsafe_allow_html=True)
                 
             except Exception as e:
                 st.error(f"Sistem gagal melakukan komputasi. Harap periksa kembali ejaan nama Anda. (Error Code: {e})")
@@ -525,29 +521,29 @@ with tab2:
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
                 
                 st.markdown(f"""
-                <div class="matrix-container">
-                    <div class="matrix-item"><div class="matrix-label">Vibrasi {safe_n1}</div><div class="matrix-value">{jummal_1}</div></div>
-                    <div class="matrix-item"><div class="matrix-label">Vibrasi {safe_n2}</div><div class="matrix-value">{jummal_2}</div></div>
-                    <div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL ENERGI</div><div class="matrix-value matrix-value-special">{total_couple}</div></div>
-                    <div class="matrix-item"><div class="matrix-label">Weton Kombo</div><div class="matrix-value">{sisa_weton}</div></div>
-                </div>
-                """, unsafe_allow_html=True)
+<div class="matrix-container">
+<div class="matrix-item"><div class="matrix-label">Vibrasi {safe_n1}</div><div class="matrix-value">{jummal_1}</div></div>
+<div class="matrix-item"><div class="matrix-label">Vibrasi {safe_n2}</div><div class="matrix-value">{jummal_2}</div></div>
+<div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL ENERGI</div><div class="matrix-value matrix-value-special">{total_couple}</div></div>
+<div class="matrix-item"><div class="matrix-label">Weton Kombo</div><div class="matrix-value">{sisa_weton}</div></div>
+</div>
+""", unsafe_allow_html=True)
                 
                 st.markdown("""
-                <div class="info-metric-box">
-                    <b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
-                    • <b style="color:white;">TOTAL ENERGI:</b> Hasil penyatuan murni dari getaran Esoterik (Jummal) nama Anda berdua. Ibarat dua gelombang suara yang saling bertabrakan, 'Total Energi' menciptakan satu frekuensi baru. Angka inilah yang membentuk DNA atau <i>Persona Pasangan</i> kalian di mata semesta.<br>
-                    • <b style="color:white;">WETON KOMBO:</b> Kalkulasi matematis siklus waktu lahir (Neptu Jawa). Weton Kombo menganalisis titik temu ego bawah sadar, memetakan rawan konflik (Shadow) dan potensi harmoni (Light) dalam memproses stimulus sehari-hari.
-                </div>
-                """, unsafe_allow_html=True)
+<div class="info-metric-box">
+<b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
+• <b style="color:white;">TOTAL ENERGI:</b> Hasil penyatuan murni dari getaran Esoterik (Jummal) nama Anda berdua. Ibarat dua gelombang suara yang saling bertabrakan, 'Total Energi' menciptakan satu frekuensi baru. Angka inilah yang membentuk DNA atau <i>Persona Pasangan</i> kalian di mata semesta.<br>
+• <b style="color:white;">WETON KOMBO:</b> Kalkulasi matematis siklus waktu lahir (Neptu Jawa). Weton Kombo menganalisis titik temu ego bawah sadar, memetakan rawan konflik (Shadow) dan potensi harmoni (Light) dalam memproses stimulus sehari-hari.
+</div>
+""", unsafe_allow_html=True)
                 
                 st.markdown(f"""
-                <div class="dynamic-reading-box" style="border-left-color: #25D366;">
-                    <h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4>
-                    <p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br>
-                    <i>{c_desc}</i></p>
-                </div>
-                """, unsafe_allow_html=True)
+<div class="dynamic-reading-box" style="border-left-color: #25D366;">
+<h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4>
+<p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br>
+<i>{c_desc}</i></p>
+</div>
+""", unsafe_allow_html=True)
                 
                 st.markdown(f"#### 📜 Titik Benturan Weton: {judul_weton}")
                 st.info(f"Menyatukan filter pikiran **{zod1}** dengan **{zod2}** ibarat menggabungkan dua elemen alam. Ditambah algoritma Primbon (Neptu {ne_1} disilang Neptu {ne_2}), menghasilkan takdir:\n\n{desk_weton}")
@@ -629,20 +625,20 @@ if daftar_ulasan:
     pilihan_marquee = daftar_ulasan[:3]
     marquee_content = " | ".join([f"<span style='color: #FFD700;'>{u.get('Rating', '⭐⭐⭐⭐⭐')}</span> <b>{u.get('Nama', 'User')}:</b> \"{u.get('Komentar', '')[:50]}...\"" for u in pilihan_marquee])
     st.markdown(f"""
-    <div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
-        <marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">{marquee_content}</marquee>
-    </div>
-    """, unsafe_allow_html=True)
+<div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;">
+<marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">{marquee_content}</marquee>
+</div>
+""", unsafe_allow_html=True)
  
     for u in daftar_ulasan[:5]:
         if u.get("Komentar", ""): 
             st.markdown(f"""
-            <div class="ulasan-box">
-                <span style="color: #FFD700; font-size: 12px;">{u.get("Rating", "⭐⭐⭐⭐⭐")}</span><br>
-                <b>{u.get("Nama", "Jiwa Kosmik")}</b><br>
-                <i style="color: #ccc;">"{u.get("Komentar", "")}"</i>
-            </div>
-            """, unsafe_allow_html=True)
+<div class="ulasan-box">
+<span style="color: #FFD700; font-size: 12px;">{u.get("Rating", "⭐⭐⭐⭐⭐")}</span><br>
+<b>{u.get("Nama", "Jiwa Kosmik")}</b><br>
+<i style="color: #ccc;">"{u.get("Komentar", "")}"</i>
+</div>
+""", unsafe_allow_html=True)
 else:
     st.caption("<center>Belum ada ulasan terbaru.</center>", unsafe_allow_html=True)
  
@@ -659,4 +655,3 @@ with st.expander("💬 Bagikan Pengalaman Anda"):
  
 st.markdown("---")
 st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist © 2026</small></center>", unsafe_allow_html=True)
-             
