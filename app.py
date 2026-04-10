@@ -93,6 +93,12 @@ st.markdown(
         padding: 15px; border-radius: 8px; font-size: 13px; color: #ccc;
         margin-bottom: 20px; line-height: 1.5;
     }
+    
+    .live-engine-box {
+        background: linear-gradient(135deg, #0a0f1c 0%, #1a1025 100%);
+        border: 1px solid #6a0dad; box-shadow: 0 0 20px rgba(106, 13, 173, 0.4);
+        padding: 25px; border-radius: 12px; margin-top: 15px;
+    }
     </style>""", unsafe_allow_html=True
 )
  
@@ -104,8 +110,25 @@ def get_greeting():
     else: return "Selamat Malam, Pribadi yang Tenang"
 
 def get_planetary_hour():
-    planets = ["Matahari (Otoritas) ☀️", "Venus (Asmara/Uang) 💖", "Merkurius (Komunikasi) 📝", "Bulan (Intuisi) 🌙", "Saturnus (Karma) 🪐", "Yupiter (Ekspansi) 🍀", "Mars (Aksi) ⚔️"]
+    planets = [
+        ("Matahari ☀️", "Fokus pada otoritas, presentasi, dan mengambil kendali.", "#FFD700"), 
+        ("Venus 💖", "Waktu emas untuk negosiasi, asmara, dan melobi orang.", "#FF69B4"), 
+        ("Merkurius 📝", "Eksekusi semua urusan email, naskah, dan komunikasi.", "#00FFFF"), 
+        ("Bulan 🌙", "Waktu intuitif. Bagus untuk brainstorming atau istirahat.", "#F0F8FF"), 
+        ("Saturnus 🪐", "Energi berat. Fokus pada pekerjaan repetitif dan bayar hutang.", "#8B4513"), 
+        ("Yupiter 🍀", "Pintu rezeki terbuka. Lakukan pitching bisnis atau investasi.", "#32CD32"), 
+        ("Mars ⚔️", "Energi agresif tinggi. Waktu terbaik untuk olahraga atau berdebat.", "#FF4500")
+    ]
     return planets[datetime.datetime.now().hour % 7]
+
+def get_sun_phase():
+    hour = datetime.datetime.now().hour
+    if 5 <= hour < 8: return "Sunrise (Inisiasi)", "Gelombang otak beralih ke Alpha. Ideal untuk setting niat harian."
+    elif 8 <= hour < 12: return "Morning (Akselerasi)", "Energi memuncak. Eksekusi tugas paling sulit sekarang."
+    elif 12 <= hour < 15: return "Zenith (Konsolidasi)", "Matahari di puncak. Waktu untuk evaluasi dan re-kalibrasi."
+    elif 15 <= hour < 18: return "Golden Hour (Refleksi)", "Waktu terbaik untuk kreativitas dan menyelesaikan urusan harian."
+    elif 18 <= hour < 20: return "Sunset (Pelepasan)", "Tutup sistem saraf Anda dari beban kerja."
+    else: return "Night Void (Regenerasi)", "Fase Delta. Dilarang mengambil keputusan besar di jam ini."
  
 # ==========================================
 # DATABASE CLOUD: GOOGLE SHEETS
@@ -130,7 +153,7 @@ def kirim_ulasan(nama, rating, komentar):
         return True
     except: return False
  
-# --- SIDEBAR PROMOSI & VIDEO ---
+# --- SIDEBAR PROMOSI ---
 with st.sidebar:
     if os.path.exists("baru.jpg.png"):
         try: st.image("baru.jpg.png", use_container_width=True); st.markdown("<br>", unsafe_allow_html=True)
@@ -146,7 +169,8 @@ with st.sidebar:
     st.caption("© 2026 Neuro Nada Academy")
  
 # --- INTERFACE UTAMA ---
-st.markdown(f"<div style='text-align: right;'><div class='live-badge'>🕒 LIVE PLANET: {get_planetary_hour().upper()}</div></div>", unsafe_allow_html=True)
+cur_planet, _, cur_color = get_planetary_hour()
+st.markdown(f"<div style='text-align: right;'><div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div></div>", unsafe_allow_html=True)
 
 if os.path.exists("banner.jpg"):
     try: st.image("banner.jpg", use_container_width=True)
@@ -340,7 +364,6 @@ def get_safe_firstname(name_str, default="User"):
     stripped = str(name_str).strip()
     return stripped.split()[0].upper() if stripped else default
 
-# --- FUNGSI GENERATOR TEKS DINAMIS WETON KOMBO ---
 def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
     if sisa == 1:
         judul = "💔 PEGAT (Ujian Ego)"
@@ -382,11 +405,10 @@ def get_dynamic_weton_kombo(sisa, n1, n2, z1, z2):
         desc = f"Hubungan antara **{n1}** dan **{n2}** sangat adem ayem, rukun, dan minim drama yang menguras energi. Kehadiran {z1} seringkali menetralisir stres yang dialami {z2}, begitu juga sebaliknya."
         do = f"Pertahankan *Rapport* (kedekatan batin) dengan melakukan *Deep-Talk* rutin sebelum tidur. Sesekali **{n1}** dan **{n2}** wajib menjelajahi hobi baru bersama agar ada tantangan seru."
         dont = f"Waspadai sikap *Take it for granted* (menggampangkan pasangan). Jangan biarkan cinta **{n1}** dan **{n2}** memudar cuma karena kalian merasa sudah pasti akan bersama selamanya."
-    
     return judul, desc, do, dont
  
-# --- MENU TABS ---
-tab1, tab2, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "🕸️ Audit Sistem Saraf", "📚 FAQ & Disclaimer"])
+# --- MENU TABS (DENGAN TAB 5 BARU) ---
+tab1, tab2, tab5, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "⏱️ Quantum Engine", "🕸️ Radar Saraf", "📚 FAQ"])
  
 # ==========================================
 # TAB 1: IDENTITAS KOSMIK & BETALJEMUR
@@ -502,7 +524,7 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.s
                 st.error(f"Sistem gagal melakukan komputasi. Harap periksa kembali ejaan nama Anda. (Error Code: {e})")
  
 # ==========================================
-# TAB 2: COUPLE MATRIX (DYNAMIC UPGRADE)
+# TAB 2: COUPLE MATRIX
 # ==========================================
 with tab2:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -549,7 +571,6 @@ with tab2:
                 }
                 c_title, c_desc = couple_persona.get(root_c, ("Uncharted", "Kombinasi adaptif dan misterius."))
                 
-                # MENGAMBIL TEXT DINAMIS YANG SUDAH DIBUAT DI ATAS
                 judul_weton, desk_weton, saran_do, saran_dont = get_dynamic_weton_kombo(sisa_weton, safe_n1, safe_n2, zod1, zod2)
                 
                 st.markdown("---")
@@ -597,6 +618,78 @@ with tab2:
                 st.error(f"Sistem gagal membaca resonansi. Mohon ketik nama dengan benar. (Kode Error: {e})")
         else:
             st.warning("⚠️ Mohon isi kedua nama terlebih dahulu sebelum melakukan analisis.")
+
+# ==========================================
+# TAB 5: QUANTUM ENGINE (NEW FATE HACKING)
+# ==========================================
+with tab5:
+    st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
+    st.subheader("⏱️ Live Cosmic Dashboard (Fate Hacking)")
+    st.write("Sistem menyinkronkan data numerologi Anda dengan kalender rotasi planet dan matahari hari ini. Dapatkan taktik tindakan presisi detik ini juga.")
+    
+    col_qe1, col_qe2 = st.columns(2)
+    with col_qe1: 
+        qe_nama = st.text_input("Nama Panggilan:", key="qe_n")
+    with col_qe2: 
+        qe_tgl = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, key="qe_t")
+    st.markdown("</div>", unsafe_allow_html=True)
+    
+    if st.button("Hack My Reality Now"):
+        if qe_nama:
+            st.snow()
+            safe_qe = get_safe_firstname(qe_nama)
+            
+            # Pilar 1: Adad & Hisab Jummal (Modulus 9 / Loop Karakter)
+            jummal_qe = hitung_nama_esoterik(qe_nama)
+            
+            # Pilar 2: Modulus Calculator & Kalender (Bioritme Harian)
+            # Menyilangkan nilai nama dengan hari kalender hari ini (Loop 7 Fase)
+            angka_hari_ini = sum(int(d) for d in tgl_today.strftime("%d%m%Y"))
+            mod_harian = (jummal_qe + angka_hari_ini) % 7
+            
+            fase_harian = {
+                0: ("🔴 Rest & Reset", "Energi saraf di titik nadir. Bahaya mengambil keputusan keuangan/emosional. Lakukan hal repetitif saja."),
+                1: ("🟢 Inisiasi", "Momentum awal. Mulai proyek baru, hubungi prospek, lempar ide ke atasan!"),
+                2: ("🔵 Kolaborasi", "Jangan kerja sendiri. Cari rekan, negosiasi, atau minta bantuan. Pintu lewat orang lain sedang terbuka."),
+                3: ("🟡 Ekspresi", "Aura komunikasi sedang sangat terang. Update sosmed, bikin konten, presentasi, atau jual ide lo."),
+                4: ("🟤 Pondasi", "Fokus pada struktur. Rapikan meja, bereskan file admin yang tertunda, audit keuangan lo."),
+                5: ("🟠 Ekspansi & Risiko", "Insting tajam. Waktu yang tepat untuk mencoba rute baru, ambil risiko terkalkulasi, atau berpetualang."),
+                6: ("🟣 Pengayoman", "Energi di rumah/keluarga sangat tinggi. Selesaikan konflik batin dengan orang terdekat hari ini.")
+            }
+            siklus_hari_ini, saran_siklus = fase_harian.get(mod_harian, fase_harian[0])
+            
+            # Pilar 3: Astro Clock, SunCalc, Planetary Hour
+            sun_fase, sun_desc = get_sun_phase()
+            planet_live, planet_desc, planet_color = get_planetary_hour()
+            
+            st.markdown("---")
+            st.markdown(f"### 📡 Live Dashboard: {safe_qe}")
+            
+            st.markdown(f"""
+<div class="matrix-container">
+<div class="matrix-item"><div class="matrix-label">Fase Bioritme Harian</div><div class="matrix-value">{siklus_hari_ini.split(' ')[1]}</div></div>
+<div class="matrix-item"><div class="matrix-label">Posisi Matahari</div><div class="matrix-value matrix-value-special">{sun_fase.split(' ')[0]}</div></div>
+<div class="matrix-item" style="border-bottom: 2px solid {planet_color};"><div class="matrix-label">Jam Planet Saat Ini</div><div class="matrix-value" style="color:{planet_color};">{planet_live}</div></div>
+</div>
+""", unsafe_allow_html=True)
+            
+            st.markdown(f"""
+<div class="live-engine-box">
+<h4 style="color: #00FFFF; margin-top:0;">⚡ TACTICAL ACTION PLAN (Untuk 1 Jam ke Depan)</h4>
+<p style="color: #ccc; font-size: 15px; line-height: 1.6;">
+Sistem mendeteksi siklus pribadi Anda hari ini berada di fase <b>{siklus_hari_ini}</b>. <br>
+<i>Saran Sistem:</i> {saran_siklus}
+<br><br>
+Ditambah posisi matahari yang berada di fase <b>{sun_fase}</b> ({sun_desc}), dan Jam Planet yang saat ini dikuasai oleh <b>{planet_live}</b> ({planet_desc}).
+<br><br>
+<b>🎯 KESIMPULAN TINDAKAN ANDA SAAT INI:</b><br>
+Berdasarkan data langit saat ini, Anda <u>diwajibkan</u> memfokuskan energi Anda pada: <br>
+<b style="color: #FFD700; font-size: 16px;">➤ Manfaatkan energi {planet_live.split(' ')[0]} ini untuk mengeksekusi misi fase {siklus_hari_ini.split(' ')[1]} Anda. Jangan menunda, pergerakan energi ini akan berubah dalam waktu kurang dari 60 menit.</b>
+</p>
+</div>
+""", unsafe_allow_html=True)
+        else:
+            st.warning("⚠️ Ketik nama panggilan Anda untuk mensinkronisasi radar harian.")
  
 # ==========================================
 # TAB 3: AUDIT SISTEM SARAF
@@ -634,8 +727,8 @@ with tab4:
     with st.expander("🤔 2. Apakah hasil ini 100% mutlak/ramalan pasti?"):
         st.write("TIDAK. Neuro Nada bukan alat peramal nasib, melainkan **Alat Pemetaan Pola (Pattern Mapping)**. Sistem ini menggabungkan Metafisika Kuno (Primbon/Falak) dengan pendekatan Psikologi Modern (Neuro-Linguistic Programming). Tujuannya adalah untuk memberikan *Self-Awareness* agar Anda bisa memaksimalkan potensi dan mengatasi 'Shadow Self' (Sisi Gelap) Anda.")
         
-    with st.expander("🤔 3. Kenapa saya harus pakai Nama Asli/KTP?"):
-        st.write("Frekuensi energi paling fundamental terikat pada niat dan getaran nama pertama yang disematkan oleh orang tua Anda saat lahir. Nama panggilan hanya mencerminkan 'Topeng Sosial' (Persona) Anda, bukan cetak biru (Blueprint) jiwa Anda yang sebenarnya.")
+    with st.expander("🤔 3. Bagaimana cara kerja Quantum Engine?"):
+        st.write("Fitur 'Live Cosmic Dashboard' memadukan algoritma Modulus, Hisab Jummal, dan Astro Clock. Sistem mengubah identitas Anda menjadi angka absolut, lalu membaginya dengan putaran waktu saat ini untuk mencari tahu di fase energi apa Anda berada sekarang, dan memberikan saran taktis langsung berdasarkan planet yang menguasai jam tersebut.")
         
     with st.expander("🤔 4. Bagaimana cara menggunakan info 'Arah Kejayaan'?"):
         st.write("Arah Naga Dina adalah kompas energi geomagnetik harian. Jika sistem mengarahkan Anda ke 'Timur', posisikan tempat duduk kerja, arah meja negoisasi, atau posisi Anda saat melakukan presentasi menghadap ke arah Timur untuk menyelaraskan gelombang otak Anda dengan energi alam hari tersebut.")
