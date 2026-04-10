@@ -148,12 +148,10 @@ def kirim_ulasan(nama, rating, komentar):
 
 # --- PROCEDURAL TEXT ENGINE (DYNAMIC GENERATOR) ---
 def generate_seed(base_str):
-    """Menghasilkan seed statis per user agar randomisasinya konsisten untuk orang yang sama."""
     return int(hashlib.md5(base_str.encode('utf-8')).hexdigest(), 16) % (10**8)
 
 def proc_arketipe(nama, angka, zodiak, neptu):
     random.seed(generate_seed(f"ark_{nama}_{angka}_{zodiak}_{neptu}"))
-    
     buka = random.choice([
         f"Kalkulasi matriks waktu menyempit di **KODE {angka}**, sistem membaca bahwa **{nama}**",
         f"Melalui persilangan elemen {zodiak} dan sandi lahirnya, **{nama}** teridentifikasi memancarkan getaran **KODE {angka}**, yang berarti Anda",
@@ -186,7 +184,6 @@ def proc_arketipe(nama, angka, zodiak, neptu):
     
     pilih_inti = random.sample(inti[angka], 2)
     pilih_gelap = random.choice(sisi_gelap[angka])
-    
     return f"{buka} {pilih_inti[0]} Selain itu, {nama} {pilih_inti[1]} {pilih_gelap}"
 
 def proc_shadow_list(nama, angka):
@@ -206,7 +203,6 @@ def proc_shadow_list(nama, angka):
 
 def proc_couple_persona(root_c, n1, n2):
     random.seed(generate_seed(f"cp_{n1}_{n2}_{root_c}"))
-    
     buka = random.choice([
         f"Ketika vibrasi nama **{n1}** dan **{n2}** dilebur, hasilnya mengunci di **Root {root_c}**.",
         f"Penyatuan kalkulasi esoterik **{n1}** disilang dengan **{n2}** meledak di **Root {root_c}**.",
@@ -224,13 +220,11 @@ def proc_couple_persona(root_c, n1, n2):
         8: ("THE EMPIRE", f"Angka ini adalah magnet kelimpahan mutlak. Penyatuan ego {n1} dan {n2} secara otomatis memfokuskan energi untuk mengejar kesuksesan bisnis, penumpukan finansial, dan membangun kerajaan keluarga bersama yang tak tertandingi."),
         9: ("THE HEALERS", f"Hubungan kalian berada di puncak kedewasaan empati. Interaksi {n1} dan {n2} dipenuhi toleransi. Ketenangan batin kalian berdua sering menjadikan rumah kalian sebagai 'tempat penyembuhan' bagi sirkel yang sedang terluka.")
     }
-    
     gelar, penjelasan = desc.get(root_c, ("UNCHARTED SYNERGY", f"Kombinasi energi {n1} dan {n2} membentuk anomali yang sangat unik dan tak tertebak."))
     return gelar, f"{buka} {penjelasan}"
 
 def proc_weton_kombo(sisa, n1, n2, z1, z2):
     random.seed(generate_seed(f"wt_{n1}_{n2}_{sisa}_{z1}_{z2}"))
-    
     do_list = {
         1: [f"Gunakan teknik *Pacing-Leading*: Validasi dulu perasaan {n2} sebelum memasukkan solusi logis.", f"Beri jeda waktu jika argumen mulai memanas. Biarkan ego {z1} dan {z2} reda dulu."],
         2: [f"Jadikan {n2} sebagai Partner Diskusi Strategis. Berikan pujian tulus saat dia mencapai sesuatu.", f"Bangun kebiasaan diskusi karir bersama, energi {z1} milikmu akan memompa semangat {n2}."],
@@ -241,7 +235,6 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
         7: [f"Biasakan komunikasi berbasis fakta (*Sensory Based*). Bicarakan apa yang terlihat/terdengar, bukan asumsi.", f"Validasi ulang setiap instruksi atau ucapan untuk menghindari salah paham fatal."],
         8: [f"Pertahankan *Rapport* dengan menjelajahi hobi baru berdua agar ada tantangan seru.", f"Sesekali keluar dari zona nyaman agar rukunnya hubungan tidak berujung pada kebosanan."]
     }
-    
     dont_list = {
         1: [f"DILARANG keras *Mind-Reading* (menebak pikiran negatif) dan mengungkit masa lalu {n2}.", f"Jangan beradu argumen saat {n2} sedang lapar atau lelah secara fisik."],
         2: [f"Hindari jebakan pencitraan. Jangan sampai {n1} dan {n2} pura-pura bahagia di luar tapi hancur di dalam.", f"Jangan biarkan campur tangan sirkel pertemanan merusak wibawa hubungan kalian."],
@@ -252,7 +245,6 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
         7: [f"DILARANG memakai kata absolut seperti '{n2} SELALU egois!' atau '{n2} TIDAK PERNAH peduli!'.", f"Jangan mengintai privasi digital pasangan secara diam-diam, itu akan menghancurkan *trust*."],
         8: [f"Waspadai sikap *Take it for granted* (menggampangkan pasangan) karena merasa pasti bersama.", f"Jangan biarkan rutinitas mematikan romantisme masa muda {n1} dan {n2}."]
     }
-    
     hasil = {
         1: ("💔 PEGAT (Ujian Ego)", f"Terdapat perbedaan fundamental dalam memproses emosi. Filter {z1} milikmu rawan bentrok dengan {z2} miliknya. Jika ada konflik, sering diwarnai adu argumen keras karena {n1} dan {n2} sama-sama merasa paling rasional dan benar."),
         2: ("👑 RATU (Kharisma Pasangan)", f"Penyatuan vibrasi ini memancarkan wibawa. Orang lain dan keluarga sangat segan melihat kalian berdua. Energi {z1} dan {z2} saling menopang satu sama lain dengan sempurna."),
@@ -263,11 +255,9 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
         7: ("👁️ SUJANAN (Rawan Asumsi)", f"Hubungan ini sangat rawan miskomunikasi dan cemburu buta. Tumpukan asumsi bawah sadar antara {z1} dan {z2} sering memicu salah paham dadakan jika tidak dikomunikasikan jernih."),
         8: ("🕊️ PESTHI (Damai & Rukun)", f"Interaksi antara {n1} dan {n2} sangat adem ayem dan minim drama penguras energi. Kehadiran {z1} sering menetralisir stres {z2}, menciptakan ketenangan abadi.")
     }
-    
     judul, desc = hasil.get(sisa)
     do = random.choice(do_list[sisa])
     dont = random.choice(dont_list[sisa])
-    
     return judul, desc, do, dont
 
 arketipe_punchy = {
@@ -362,20 +352,11 @@ def get_rincian_tanggal(tanggal):
     except:
         return "1 = 1"
 
-def get_neptu_weton(tanggal, is_after_sunset=False, kalibrasi_pasaran=0):
-    if is_after_sunset: tanggal = tanggal + datetime.timedelta(days=1)
-    anchor_date = datetime.date(2000, 1, 1)
-    selisih_hari = (tanggal - anchor_date).days
-    
-    hari_n = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
-    pasaran_n = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"]
-    
-    hari = hari_n[(5 + selisih_hari) % 7]
-    pasaran = pasaran_n[(selisih_hari + kalibrasi_pasaran) % 5]
-    
+# --- NEW: BYPASS ENGINE (DIRECT WETON INPUT) ---
+def hitung_neptu_langsung(hari, pasaran):
     n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
     n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
-    return (n_hari[hari] + n_pas[pasaran]), hari, pasaran
+    return n_hari.get(hari, 0) + n_pas.get(pasaran, 0)
  
 def get_betaljemur_data(neptu, hari):
     lakuning = {
@@ -477,21 +458,25 @@ with tab1:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("Akses Blueprint Bawah Sadar Anda")
     nama_user = st.text_input("Nama Lengkap:", placeholder="Ketik nama asli Anda...", key="t1_nama")
-    tgl_input = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
     
-    st.info("💡 **Kalibrasi Presisi (Opsional):** Sesuaikan jika data Weton berbeda dengan keyakinan.")
-    col_a, col_b = st.columns(2)
-    with col_a:
-        is_maghrib = st.checkbox("🌙 Lahir Setelah Maghrib (18:00+)?", key="m_t1")
-    with col_b:
-        kalibrasi_p = st.number_input("⚙️ Koreksi Pasaran (Geser Hari)", min_value=-2, max_value=2, value=0, key="k_t1")
+    st.markdown("<hr style='margin: 10px 0;'>", unsafe_allow_html=True)
+    st.write("📅 **Data Masehi (Untuk Zodiak & Kode NLP):**")
+    tgl_input = st.date_input("Tanggal Lahir:", value=datetime.date(1983, 9, 23), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
+    
+    st.markdown("<hr style='margin: 10px 0;'>", unsafe_allow_html=True)
+    st.write("📜 **Data Weton Langsung (Akurasi Primbon 100%):**")
+    st.caption("Pilih langsung Weton Anda tanpa konversi kalender Masehi.")
+    col_h, col_p = st.columns(2)
+    with col_h:
+        hari_input = st.selectbox("Hari Lahir", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="h_t1")
+    with col_p:
+        pasaran_input = st.selectbox("Pasaran Lahir", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="p_t1")
+        
     st.markdown("</div>", unsafe_allow_html=True)
  
     if st.button("Kalkulasi Blueprint (Mulai)"):
         if not nama_user or len(nama_user.strip()) < 3: 
             st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi vibrasi.")
-        elif tgl_input == tgl_today: 
-            st.error("🚨 Tanggal lahir tidak valid. Silakan pilih tanggal lahir Anda yang sebenarnya.")
         else:
             try:
                 status_text = st.empty()
@@ -510,11 +495,12 @@ with tab1:
                 
                 el_nama, el_desc, p_reduk, s_reduk, r_num, r_desc, m_note = generate_dynamic_reading(nilai_jummal)
                 
-                nep, hari, pasaran = get_neptu_weton(tgl_input, is_maghrib, kalibrasi_p)
-                wet = f"{hari} {pasaran}"
+                # MENGGUNAKAN BYPASS ENGINE WETON
+                nep = hitung_neptu_langsung(hari_input, pasaran_input)
+                wet = f"{hari_input} {pasaran_input}"
                 zod = get_zodiak(tgl_input)
                 
-                n_laku, d_laku, arah_naga = get_betaljemur_data(nep, hari)
+                n_laku, d_laku, arah_naga = get_betaljemur_data(nep, hari_input)
                 rezeki_data, usaha_data = get_rezeki_usaha(nep)
                 
                 punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
@@ -545,7 +531,7 @@ Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama 
 <li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar **{safe_name}** adalah: <b>{r_desc}</b></li>
 </ol>
 <p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
-Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda:<br>
+Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Masehi Anda:<br>
 <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
 <span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak <b>{safe_name}</b> memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan.</span></p>
 {m_note}
@@ -558,7 +544,7 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda:<br>
 <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
 </div>
 <div style="font-size:15px; line-height:1.6; margin-bottom: 15px;">
-<span style="color:#aaa;">Berdasarkan perhitungan Primbon kuno (Neptu {nep}), sistem memetakan sandi Pangarasan (Karakter Bawah Sadar) milik <b>{safe_name}</b>, yaitu:</span> <br>
+<span style="color:#aaa;">Berdasarkan weton <b>{wet} (Neptu {nep})</b>, sistem memetakan sandi Pangarasan (Karakter Bawah Sadar) milik <b>{safe_name}</b>, yaitu:</span> <br>
 <b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i>
 </div>
 <div style="font-size:15px; line-height:1.6; margin-bottom: 15px; border-top: 1px dashed #555; padding-top: 10px;">
@@ -567,7 +553,7 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda:<br>
 • <b>Usaha (<span style="color:#25D366;">{usaha_data[0]}</span>):</b> <i style="color:#ccc;">{usaha_data[1]}</i>
 </div>
 <div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;">
-<span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari}):</b></span> <b style="font-size: 16px;">{arah_naga} (Zona Taktis)</b><br>
+<span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari_input}):</b></span> <b style="font-size: 16px;">{arah_naga} (Zona Taktis)</b><br>
 <i style="color:#888; font-size:13px;">*ACTIONABLE: Hari ini, posisikan meja kerja atau arah duduk <b>{safe_name}</b> menghadap zona kejayaan di atas saat mengambil keputusan penting.</i>
 </div>
 </div>
@@ -602,32 +588,30 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda:<br>
 with tab2:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("Penyatuan Esoterik & Betaljemur (Couple Matrix)")
-    st.write("Analisis benturan ego dan peleburan frekuensi kosmik secara mendalam berdasarkan persilangan waktu lahir.")
+    st.write("Pilih langsung Weton Anda dan Pasangan untuk mengunci takdir algoritma.")
     ca, cb = st.columns(2)
     with ca: 
-        n1 = st.text_input("Nama Anda", key="n1")
-        d1 = st.date_input("Lahir Anda", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, key="d1")
-        m1 = st.checkbox("🌙 Lahir Setelah Maghrib?", key="m1_c")
-        k1 = st.number_input("⚙️ Koreksi Pasaran", min_value=-2, max_value=2, value=0, key="k1_c")
+        n1 = st.text_input("Nama Anda", key="n1_c")
+        st.caption("Pilih Weton Pria:")
+        hc1 = st.selectbox("Hari Pria", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="hc1")
+        pc1 = st.selectbox("Pasaran Pria", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="pc1")
     with cb: 
-        n2 = st.text_input("Nama Pasangan", key="n2")
-        d2 = st.date_input("Lahir Pasangan", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, key="d2")
-        m2 = st.checkbox("🌙 Lahir Setelah Maghrib?", key="m2_c")
-        k2 = st.number_input("⚙️ Koreksi Pasaran", min_value=-2, max_value=2, value=0, key="k2_c")
+        n2 = st.text_input("Nama Pasangan", key="n2_c")
+        st.caption("Pilih Weton Wanita:")
+        hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=2, key="hc2")
+        pc2 = st.selectbox("Pasaran Wanita", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=0, key="pc2")
     st.markdown("</div>", unsafe_allow_html=True)
         
     if st.button("Analisis Resonansi Pasangan"):
         if str(n1).strip() and str(n2).strip():
             try:
                 st.snow()
-                safe_n1 = get_safe_firstname(n1, "A")
-                safe_n2 = get_safe_firstname(n2, "B")
-                zod1 = get_zodiak(d1)
-                zod2 = get_zodiak(d2)
+                safe_n1 = get_safe_firstname(n1, "Pria")
+                safe_n2 = get_safe_firstname(n2, "Wanita")
                 
-                nep_1, hari1, pas1 = get_neptu_weton(d1, m1, k1)
-                nep_2, hari2, pas2 = get_neptu_weton(d2, m2, k2)
-                sel = abs(hitung_angka(d1) - hitung_angka(d2))
+                # MENGGUNAKAN BYPASS ENGINE
+                nep_1 = hitung_neptu_langsung(hc1, pc1)
+                nep_2 = hitung_neptu_langsung(hc2, pc2)
                     
                 jummal_1 = hitung_nama_esoterik(n1)
                 jummal_2 = hitung_nama_esoterik(n2)
@@ -637,15 +621,15 @@ with tab2:
                 while root_c > 9: root_c = sum(int(d) for d in str(root_c))
                 
                 c_title, c_desc = proc_couple_persona(root_c, safe_n1, safe_n2)
-                judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
+                judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, "Karakter", "Ego")
                 
                 st.markdown("---")
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
                 
                 st.markdown(f"""
 <div class="matrix-container">
-<div class="matrix-item"><div class="matrix-label">Neptu {safe_n1}</div><div class="matrix-value">{hari1} {pas1} ({nep_1})</div></div>
-<div class="matrix-item"><div class="matrix-label">Neptu {safe_n2}</div><div class="matrix-value">{hari2} {pas2} ({nep_2})</div></div>
+<div class="matrix-item"><div class="matrix-label">Neptu {safe_n1}</div><div class="matrix-value">{hc1} {pc1} ({nep_1})</div></div>
+<div class="matrix-item"><div class="matrix-label">Neptu {safe_n2}</div><div class="matrix-value">{hc2} {pc2} ({nep_2})</div></div>
 <div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL NEPTU</div><div class="matrix-value matrix-value-special">{nep_1 + nep_2}</div></div>
 <div class="matrix-item"><div class="matrix-label">Total Esoterik</div><div class="matrix-value">{total_couple}</div></div>
 </div>
@@ -668,10 +652,6 @@ with tab2:
                 
                 st.markdown(f"#### 📜 Titik Benturan Weton: {judul_jodoh.split(' ')[1]}")
                 st.info(f"Semesta mencatat takdir persilangan energi (Neptu {nep_1} & {nep_2}) ini sebagai:\n\n**{judul_jodoh}**: {desk_jodoh}")
-                
-                if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental {safe_n1} dan {safe_n2} sangat mirip.")
-                elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - {safe_n1} dan {safe_n2} butuh saling toleransi dalam mengambil keputusan.")
-                else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perdebatan sudut pandang antara {safe_n1} dan {safe_n2}.")
      
                 st.markdown("<br>", unsafe_allow_html=True)
                 c_do_c, c_dont_c = st.columns(2)
@@ -697,7 +677,7 @@ with tab5:
     with col_qe1: 
         qe_nama = st.text_input("Nama Panggilan:", key="qe_n")
     with col_qe2: 
-        qe_tgl = st.date_input("Tanggal Lahir:", value=datetime.date(1995, 1, 1), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, key="qe_t")
+        st.write(" ")
     st.markdown("</div>", unsafe_allow_html=True)
     
     if st.button("Hack My Reality Now"):
