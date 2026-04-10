@@ -18,11 +18,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed" 
 )
  
-# --- CUSTOM CSS (GLASSMORPHISM & DARK GOLD) ---
+# --- CUSTOM CSS ---
 st.markdown(
     """<style>
     html, body, [class*="css"]  { font-family: 'Inter', sans-serif; background-color: #050505; color: #e0e0e0; }
-    
     .stApp { background: radial-gradient(circle at top, #111 0%, #000 100%); }
     
     div.stButton > button {
@@ -39,16 +38,14 @@ st.markdown(
         color: white !important; padding: 15px; text-align: center; 
         border-radius: 8px; font-weight: 900; font-size: 16px; 
         box-shadow: 0 6px 15px rgba(255, 75, 75, 0.4);
-        text-transform: uppercase; letter-spacing: 1px;
-        transition: 0.3s;
+        text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
     }
     .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 75, 75, 0.6); }
  
     .ulasan-box {
         background: rgba(30, 30, 30, 0.6); backdrop-filter: blur(10px);
-        padding: 15px; border-radius: 8px;
-        border-left: 4px solid #FFD700; margin-bottom: 12px; font-size: 14px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        padding: 15px; border-radius: 8px; border-left: 4px solid #FFD700; 
+        margin-bottom: 12px; font-size: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     
     .glass-container {
@@ -59,9 +56,9 @@ st.markdown(
     
     .primbon-box {
         background: linear-gradient(135deg, rgba(43,27,5,0.8) 0%, rgba(74,48,0,0.8) 100%);
-        backdrop-filter: blur(10px);
-        padding: 25px; border-radius: 12px; border: 1px solid #D4AF37;
-        box-shadow: 0 8px 25px rgba(212,175,55,0.3); margin-top: 20px; margin-bottom: 20px;
+        backdrop-filter: blur(10px); padding: 25px; border-radius: 12px; 
+        border: 1px solid #D4AF37; box-shadow: 0 8px 25px rgba(212,175,55,0.3); 
+        margin-top: 20px; margin-bottom: 20px;
     }
 
     .dynamic-reading-box {
@@ -73,8 +70,7 @@ st.markdown(
     .matrix-container {
         display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap;
         padding: 15px; background: rgba(10,10,10,0.8); border-radius: 10px;
-        border: 1px solid #333; margin-bottom: 5px;
-        box-shadow: inset 0 2px 15px rgba(0,0,0,0.6);
+        border: 1px solid #333; margin-bottom: 5px; box-shadow: inset 0 2px 15px rgba(0,0,0,0.6);
     }
     .matrix-item { flex: 1; min-width: 80px; text-align: center; padding: 5px; border-right: 1px solid #333; }
     .matrix-item:last-child { border-right: none; }
@@ -109,8 +105,7 @@ def get_greeting():
 
 def get_planetary_hour():
     planets = ["Matahari (Otoritas) ☀️", "Venus (Asmara/Uang) 💖", "Merkurius (Komunikasi) 📝", "Bulan (Intuisi) 🌙", "Saturnus (Karma) 🪐", "Yupiter (Ekspansi) 🍀", "Mars (Aksi) ⚔️"]
-    now = datetime.datetime.now()
-    return planets[now.hour % 7]
+    return planets[datetime.datetime.now().hour % 7]
  
 # ==========================================
 # DATABASE CLOUD: GOOGLE SHEETS
@@ -208,7 +203,6 @@ link_produk = {
     9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
 }
 
-# --- KAMUS ESOTERIK & FUNGSI DYNAMIC READING ---
 KAMUS_ABJAD = {
     'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
     't': 9, 'y': 10, 'k': 20, 'l': 30, 'm': 40, 'n': 50, 
@@ -216,18 +210,19 @@ KAMUS_ABJAD = {
     'g': 1000, 'i': 10, 'o': 6, 'p': 80, 'u': 6, 'v': 6, 'x': 60
 }
 
+# --- ERROR-PROOF FUNCTIONS ---
 def hitung_nama_esoterik(nama):
-    nama_clean = ''.join(filter(str.isalpha, nama.lower()))
+    nama_clean = ''.join(filter(str.isalpha, str(nama).lower()))
     total = sum(KAMUS_ABJAD.get(huruf, 0) for huruf in nama_clean)
     return total if total > 0 else 1
 
 def get_rincian_esoterik(nama):
-    nama_clean = ''.join(filter(str.isalpha, nama.lower()))
+    nama_clean = ''.join(filter(str.isalpha, str(nama).lower()))
     rincian = []
     for huruf in nama_clean:
         nilai = KAMUS_ABJAD.get(huruf, 0)
         if nilai > 0: rincian.append(f"{huruf.upper()}({nilai})")
-    return " + ".join(rincian)
+    return " + ".join(rincian) if rincian else "0"
 
 def generate_dynamic_reading(total_jummal):
     mod = total_jummal % 4 if total_jummal % 4 != 0 else 4
@@ -237,11 +232,11 @@ def generate_dynamic_reading(total_jummal):
         3: ("💨 UDARA (Hawa)", "Anda adalah Sang Komunikator & Konseptor. Otak Anda memproduksi ide tanpa henti. Karena udara tak bisa digenggam, waspadai energi saraf yang gampang *burnout* akibat *Overthinking*."),
         4: ("💧 AIR (Ma')", "Sistem emosional Anda paling peka. Anda punya empati tinggi untuk beradaptasi dan membaca perasaan orang lain. Waspadai menyerap toxic dari lingkungan luar.")
     }
-    el_nama, el_desc = elemen_dict[mod]
+    el_nama, el_desc = elemen_dict.get(mod, ("Anomali", "Karakter tidak terdefinisi"))
 
     str_jummal = str(total_jummal)
     proses_reduksi = " + ".join(list(str_jummal))
-    sum_reduksi = sum(int(d) for d in str_jummal)
+    sum_reduksi = sum(int(d) for d in str_jummal) if str_jummal.isdigit() else 1
     root_num = sum_reduksi
     while root_num > 9: root_num = sum(int(d) for d in str(root_num))
     
@@ -261,23 +256,29 @@ def generate_dynamic_reading(total_jummal):
     if any(m in str_jummal for m in ["11", "22", "33"]):
         master_note = f"<div style='background:rgba(212,175,55,0.1); padding:10px; border-radius:5px; margin-top:10px;'><span style='color:#FFD700;'>⚡ <b>KODE MASTER TERDETEKSI:</b></span> Di dalam komposisi angka Anda terdapat repetisi sakral. Ini menandakan <b>Intuisi Spiritual Tingkat Tinggi</b>. Anda sering kali bisa 'membaca' karakter orang sebelum mereka berbicara (Rapport Otomatis).</div>"
 
-    return el_nama, el_desc, proses_reduksi, sum_reduksi, root_num, root_dict[root_num], master_note
+    return el_nama, el_desc, proses_reduksi, sum_reduksi, root_num, root_dict.get(root_num, "Anomali"), master_note
 
 def hitung_angka(tanggal):
-    total = sum(int(digit) for digit in tanggal.strftime("%d%m%Y"))
-    while total > 9: total = sum(int(digit) for digit in str(total))
-    return total
+    try:
+        total = sum(int(digit) for digit in tanggal.strftime("%d%m%Y"))
+        while total > 9: total = sum(int(digit) for digit in str(total))
+        return total
+    except:
+        return 1
 
 def get_rincian_tanggal(tanggal):
-    tgl_str = tanggal.strftime("%d%m%Y")
-    rincian_awal = " + ".join(list(tgl_str))
-    total = sum(int(digit) for digit in tgl_str)
-    proses = f"{rincian_awal} = {total}"
-    while total > 9:
-        rincian_lanjut = " + ".join(list(str(total)))
-        total = sum(int(digit) for digit in str(total))
-        proses += f" ➡ {rincian_lanjut} = {total}"
-    return proses
+    try:
+        tgl_str = tanggal.strftime("%d%m%Y")
+        rincian_awal = " + ".join(list(tgl_str))
+        total = sum(int(digit) for digit in tgl_str)
+        proses = f"{rincian_awal} = {total}"
+        while total > 9:
+            rincian_lanjut = " + ".join(list(str(total)))
+            total = sum(int(digit) for digit in str(total))
+            proses += f" ➡ {rincian_lanjut} = {total}"
+        return proses
+    except:
+        return "1 = 1"
  
 def get_neptu_weton(tanggal):
     anchor_date = datetime.date(2000, 1, 1)
@@ -318,7 +319,7 @@ def get_betaljemur_data(neptu, hari):
         "Selasa": "Barat (Kejayaan)", "Rabu": "Utara (Kejayaan)",
         "Kamis": "Timur (Kejayaan)", "Jumat": "Selatan (Kejayaan)", "Sabtu": "Selatan (Kejayaan)"
     }
-    return lakuning.get(neptu, ("Anomali", "Karakter kompleks"))[0], lakuning.get(neptu, ("Anomali", "Karakter kompleks"))[1], pancasuda.get(mod_panca)[0], pancasuda.get(mod_panca)[1], naga_dina.get(hari)
+    return lakuning.get(neptu, ("Anomali", "Karakter kompleks"))[0], lakuning.get(neptu, ("Anomali", "Karakter kompleks"))[1], pancasuda.get(mod_panca, ("Anomali", "Karakter kompleks"))[0], pancasuda.get(mod_panca, ("Anomali", "Karakter kompleks"))[1], naga_dina.get(hari, "Arah Netral")
  
 def get_zodiak(tanggal):
     d, m = tanggal.day, tanggal.month
@@ -334,6 +335,11 @@ def get_zodiak(tanggal):
     elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn"
     elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
     else: return "Pisces"
+
+# Safely extract first word from string to prevent IndexError
+def get_safe_firstname(name_str, default="User"):
+    stripped = str(name_str).strip()
+    return stripped.split()[0].upper() if stripped else default
  
 # --- MENU TABS ---
 tab1, tab2, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "🕸️ Audit Sistem Saraf", "📚 FAQ & Disclaimer"])
@@ -350,106 +356,110 @@ with tab1:
  
     if st.button("Kalkulasi Blueprint (Mulai)"):
         if not nama_user or len(nama_user.strip()) < 3: 
-            st.error("🚨 Mohon ketik nama lengkap untuk sinkronisasi vibrasi.")
+            st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi vibrasi.")
         elif tgl_input == tgl_today: 
-            st.error("🚨 Tanggal lahir tidak valid.")
+            st.error("🚨 Tanggal lahir tidak valid. Silakan pilih tanggal lahir Anda yang sebenarnya.")
         else:
-            status_text = st.empty()
-            status_text.markdown("⏳ *Mengekstraksi sandi Hisab Jummal (Ilmu Huruf)...*")
-            time.sleep(0.5)
-            status_text.markdown("⏳ *Membuka segel Kitab Betaljemur Adammakna...*")
-            time.sleep(0.5)
-            status_text.empty()
-            
-            angka_hasil = hitung_angka(tgl_input)
-            rincian_tgl = get_rincian_tanggal(tgl_input) # Ekstraksi proses hitung tgl lahir
-            
-            nilai_jummal = hitung_nama_esoterik(nama_user)
-            rincian_jummal = get_rincian_esoterik(nama_user)
-            
-            el_nama, el_desc, p_reduk, s_reduk, r_num, r_desc, m_note = generate_dynamic_reading(nilai_jummal)
-            
-            nep, hari, pasaran = get_neptu_weton(tgl_input)
-            wet = f"{hari} {pasaran}"
-            zod = get_zodiak(tgl_input)
-            
-            n_laku, d_laku, n_panca, d_panca, arah_naga = get_betaljemur_data(nep, hari)
-            
-            punchy = arketipe_punchy.get(angka_hasil)
-            desk_ark = arketipe_deskripsi.get(angka_hasil)
-            shadow = closing_brutal_dinamis.get(angka_hasil)
-            
-            st.snow()
-            st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {nama_user.upper()}</h3>", unsafe_allow_html=True)
-            
-            st.markdown(f"""
-            <div class="matrix-container">
-                <div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
-                <div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1]}</div></div>
-                <div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div>
-                <div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div>
-                <div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} (Neptu {nep})</div></div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # THE NEW EXPLANATION BOX (NAMA & TANGGAL LAHIR)
-            st.markdown(f"""
-            <div class="dynamic-reading-box">
-                <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
+            try:
+                status_text = st.empty()
+                status_text.markdown("⏳ *Mengekstraksi sandi Hisab Jummal (Ilmu Huruf)...*")
+                time.sleep(0.5)
+                status_text.markdown("⏳ *Membuka segel Kitab Betaljemur Adammakna...*")
+                time.sleep(0.5)
+                status_text.empty()
                 
-                <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
-                Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama Anda:<br>
-                <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
-                <ol style="margin-left: -15px; margin-bottom: 20px;">
-                    <li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, Anda berafiliasi dengan <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
-                    <li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar Anda adalah: <b>{r_desc}</b></li>
-                </ol>
+                safe_name = get_safe_firstname(nama_user)
+                angka_hasil = hitung_angka(tgl_input)
+                rincian_tgl = get_rincian_tanggal(tgl_input)
                 
-                <p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
-                Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.strftime('%d-%m-%Y')}):<br>
-                <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
-                <span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak Anda memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan (Yang membentuk Identitas Inti Anda di bawah).</span></p>
-                {m_note}
-            </div>
-            """, unsafe_allow_html=True)
+                nilai_jummal = hitung_nama_esoterik(nama_user)
+                rincian_jummal = get_rincian_esoterik(nama_user)
+                
+                el_nama, el_desc, p_reduk, s_reduk, r_num, r_desc, m_note = generate_dynamic_reading(nilai_jummal)
+                
+                nep, hari, pasaran = get_neptu_weton(tgl_input)
+                wet = f"{hari} {pasaran}"
+                zod = get_zodiak(tgl_input)
+                
+                n_laku, d_laku, n_panca, d_panca, arah_naga = get_betaljemur_data(nep, hari)
+                
+                punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
+                desk_ark = arketipe_deskripsi.get(angka_hasil, "Karakter Anda sangat kompleks dan unik.")
+                shadow = closing_brutal_dinamis.get(angka_hasil, ["Overthinking", "Menyembunyikan gelisah", "Sering memendam masalah"])
+                
+                st.snow()
+                st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
+                
+                st.markdown(f"""
+                <div class="matrix-container">
+                    <div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
+                    <div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div>
+                    <div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div>
+                    <div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div>
+                    <div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} (Neptu {nep})</div></div>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                st.markdown(f"""
+                <div class="dynamic-reading-box">
+                    <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
+                    
+                    <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
+                    Secara arsitektur Gematria Kuno, total nilai getaran resonansi dari aksara nama Anda:<br>
+                    <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
+                    <ol style="margin-left: -15px; margin-bottom: 20px;">
+                        <li><b>Elemen Bawah Sadar:</b> Nilai {nilai_jummal} direduksi menjadi 4 pilar alam semesta, Anda berafiliasi dengan <b>{el_nama}</b>.<br><i style="color:#aaa;">{el_desc}</i></li>
+                        <li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b>.<br>Angka {r_num} adalah sandi bahwa secara sadar/bawah sadar Anda adalah: <b>{r_desc}</b></li>
+                    </ol>
+                    
+                    <p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br>
+                    Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Anda ({tgl_input.strftime('%d-%m-%Y')}):<br>
+                    <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
+                    <span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> cara otak Anda memproses informasi, mengambil keputusan, dan bereaksi terhadap tekanan.</span></p>
+                    {m_note}
+                </div>
+                """, unsafe_allow_html=True)
 
-            st.markdown(f"""
-            <div class="primbon-box">
-                <div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;">
-                    <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
+                st.markdown(f"""
+                <div class="primbon-box">
+                    <div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;">
+                        <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
+                    </div>
+                    <div style="font-size:15px; line-height:1.6; margin-bottom: 15px;">
+                        <span style="color:#aaa;">Sandi Pangarasan (Meta-Program Bawah Sadar):</span> <br>
+                        <b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i>
+                    </div>
+                    <div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;">
+                        <span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br>
+                        <i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan meja kerja atau arah duduk Anda menghadap zona kejayaan di atas saat mengambil keputusan penting hari ini.</i>
+                    </div>
                 </div>
-                <div style="font-size:15px; line-height:1.6; margin-bottom: 15px;">
-                    <span style="color:#aaa;">Sandi Pangarasan (Meta-Program Bawah Sadar):</span> <br>
-                    <b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i>
-                </div>
-                <div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;">
-                    <span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br>
-                    <i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan meja kerja atau arah duduk Anda menghadap zona kejayaan di atas saat mengambil keputusan penting hari ini.</i>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown("### 👁️ Decode Kepribadian Inti")
-            st.info(f"Berdasarkan **KODE {angka_hasil}**, sistem mengkunci arketipe utama Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
-            st.write(desk_ark)
-            
-            c_kekuatan, c_shadow = st.columns(2)
-            with c_kekuatan:
-                st.markdown("🔥 **KEKUATAN DOMINAN:**")
-                st.markdown(f"<ul class='list-punchy' style='color:#25D366;'><li>{punchy['kekuatan'][0]}</li><li>{punchy['kekuatan'][1]}</li><li>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
-            with c_shadow:
-                st.markdown("⚠️ **SISI GELAP (SHADOW SELF):**")
-                st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
-            
-            st.markdown("<br>", unsafe_allow_html=True)
-            url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
-            st.markdown(f"""
-            <a href="{url_t}" target="_blank" style="text-decoration: none;">
-                <div class="cta-button">
-                    ⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA
-                </div>
-            </a>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
+                
+                st.markdown("### 👁️ Decode Kepribadian Inti")
+                st.info(f"Berdasarkan **KODE {angka_hasil}**, sistem mengkunci arketipe utama Anda:\n\n**IDENTITAS INTI:** {punchy['inti']}")
+                st.write(desk_ark)
+                
+                c_kekuatan, c_shadow = st.columns(2)
+                with c_kekuatan:
+                    st.markdown("🔥 **KEKUATAN DOMINAN:**")
+                    st.markdown(f"<ul class='list-punchy' style='color:#25D366;'><li>{punchy['kekuatan'][0]}</li><li>{punchy['kekuatan'][1]}</li><li>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
+                with c_shadow:
+                    st.markdown("⚠️ **SISI GELAP (SHADOW SELF):**")
+                    st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
+                
+                st.markdown("<br>", unsafe_allow_html=True)
+                url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
+                st.markdown(f"""
+                <a href="{url_t}" target="_blank" style="text-decoration: none;">
+                    <div class="cta-button">
+                        ⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA
+                    </div>
+                </a>
+                """, unsafe_allow_html=True)
+                
+            except Exception as e:
+                st.error(f"Sistem gagal melakukan komputasi. Harap periksa kembali ejaan nama Anda. (Error Code: {e})")
  
 # ==========================================
 # TAB 2: COUPLE MATRIX 
@@ -468,86 +478,94 @@ with tab2:
     st.markdown("</div>", unsafe_allow_html=True)
         
     if st.button("Analisis Resonansi Pasangan"):
-        if n1 and n2:
-            st.snow()
-            zod1 = get_zodiak(d1); ne_1, _, _ = get_neptu_weton(d1)
-            zod2 = get_zodiak(d2); ne_2, _, _ = get_neptu_weton(d2)
-            sel = abs(hitung_angka(d1) - hitung_angka(d2))
-            sisa_weton = (ne_1 + ne_2) % 8
-            
-            jummal_1 = hitung_nama_esoterik(n1)
-            jummal_2 = hitung_nama_esoterik(n2)
-            total_couple = jummal_1 + jummal_2
-            
-            root_c = total_couple
-            while root_c > 9: root_c = sum(int(d) for d in str(root_c))
-            
-            couple_persona = {
-                1: ("THE POWER COUPLE", "Penyatuan dua nama ini menghasilkan vibrasi dominan. Kalian adalah entitas yang mandiri, ambisius, dan selalu ingin menjadi yang terdepan."),
-                2: ("THE SOULMATES", "Vibrasi yang terbentuk sangat harmonis. Masing-masing pihak tahu cara melengkapi dan membaca perasaan pasangannya tanpa harus bicara."),
-                3: ("THE SOCIALITES", "Energi yang dihasilkan memancarkan aura ekspresif. Kalian adalah pasangan yang menyenangkan, penuh ide, dan punya circle pergaulan yang luas."),
-                4: ("THE BUILDERS", "Penyatuan nama menciptakan vibrasi yang solid dan struktural. Fokus hubungan ini adalah fondasi yang kuat, kesetiaan, dan pembangunan aset masa depan."),
-                5: ("THE ADVENTURERS", "Vibrasi kebebasan sangat pekat. Pasangan yang anti-monoton, suka pengalaman baru, dan hubungan kalian penuh dengan kejutan tak terduga."),
-                6: ("THE FAMILY FIRST", "Energi yang dihasilkan murni berpusat pada rumah dan kasih sayang. Tingkat pengorbanan kalian terhadap kelestarian keluarga sangat luar biasa."),
-                7: ("THE DEEP SEEKERS", "Vibrasi eksklusif dan tertutup. Hubungan kalian dibangun di atas koneksi intelektual dan spiritual. Kalian seringkali lebih suka privasi tinggi."),
-                8: ("THE EMPIRE", "Penyatuan dua nama ini menciptakan magnet kelimpahan. Fokus energi kalian secara bawah sadar ditarik menuju kesuksesan finansial dan kekuasaan."),
-                9: ("THE HEALERS", "Energi toleransi level tertinggi. Hubungan kalian mengedepankan keikhlasan dan sering menjadi tempat curhat/sandaran bagi orang lain di sekitar kalian.")
-            }
-            c_title, c_desc = couple_persona.get(root_c, ("Uncharted", "Kombinasi unik yang terus beradaptasi."))
-            
-            hasil_weton_kombo = {
-                1: ("💔 PEGAT (Ujian Ego)", "Terdapat perbedaan mendasar dalam memproses emosi. Jika ada konflik, seringkali diwarnai adu argumen keras.", "Gunakan teknik **Pacing-Leading**: Validasi dulu perasaannya ('Aku ngerti kamu kesal...') sebelum memasukkan argumen/solusi logis Anda.", "DILARANG keras melakukan *Mind-Reading* (menebak-nebak pikiran negatif) dan jangan pernah mengungkit kesalahan masa lalunya."),
-                2: ("👑 RATU (Kharisma & Harmoni)", "Penyatuan vibrasi ini memancarkan wibawa dan respek dari lingkungan sekitar. Energi kepemimpinannya saling mendukung.", "Jadikan pasangan sebagai *Partner Diskusi Strategis*. Berikan afirmasi positif setiap kali dia berhasil melakukan pencapaian kecil.", "Hindari terjebak pada pencitraan eksternal. Jangan menyembunyikan masalah nyata hanya demi terlihat 'sempurna' di mata orang lain."),
-                3: ("💞 JODOH (Sinkronisasi Alami)", "Penerimaan bawah sadar luar biasa tinggi. Kalian menemukan kecocokan yang tidak bisa dijelaskan secara logis.", "Ciptakan **Pattern Interrupt** (kejutan kecil/hal tak terduga) secara rutin agar hubungan tetap *spark* dan tidak terasa membosankan.", "Jangan jadikan kecocokan ini sebagai alasan kemalasan (*Comfort Zone*). Seringkali pasangan Jodoh mandek secara karir karena terlalu santai."),
-                4: ("🌱 TOPO (Ujian Bertumbuh)", "Fase awal penuh gesekan dan kesalahpahaman. Namun jika berhasil melewati kalibrasi awal, hubungannya sangat kokoh.", "Kuasai teknik **Reframing** saat krisis. Temukan hikmah atau sudut pandang positif di setiap masalah yang mendera hubungan kalian.", "Hindari memaksakan *Map of the World* (standar nilai pribadi/gengsi) Anda kepada pasangan. Belajarlah menurunkan ego masing-masing."),
-                5: ("💰 TINARI (Magnet Rezeki)", "Penyatuan vibrasi nama dan waktu lahir ini menarik kelancaran energi material. Pintu rezeki terbuka lebar setelah bersatu.", "Fokuskan komunikasi pada perencanaan visi masa depan dan *Goal Setting* bersama. Harmonisasi kalian adalah kunci kelancaran finansial.", "Jangan menjadikan uang/materi sebagai satu-satunya perekat hubungan. Jika salah satu bangkrut, hubungan bisa sangat rentan bubar."),
-                6: ("⚡ PADU (Beda Frekuensi)", "Kerap terjadi letupan perdebatan karena beda filter informasi. Cara otak memproses stimulus sangat berbeda.", "Berikan ruang (Space) saat emosi memuncak. Gunakan teknik **Yes-Set** (membuat pasangan berkata 'Ya' 3x) untuk meredakan tensinya.", "Hindari konfrontasi langsung saat *state* emosinya sedang tinggi. Jangan gunakan kalimat provokatif yang menyerang harga dirinya."),
-                7: ("👁️ SUJANAN (Rawan Asumsi)", "Ada kecenderungan kecemburuan atau salah paham mendadak karena miskomunikasi bawah sadar yang sering menumpuk.", "Biasakan komunikasi murni berbasis *Sensory Based* (Fakta yang terlihat/terdengar), bukan berdasarkan asumsi atau 'perasaan' semata.", "DILARANG keras menggunakan bahasa *Generalisasi* seperti: 'Kamu SELALU begini!', 'Kamu TIDAK PERNAH peduli!'. Itu merusak alam bawah sadarnya."),
-                0: ("🕊️ PESTHI (Damai & Rukun)", "Hubungan yang stabil, adem ayem, rukun, dan minim drama. Energi kalian menetralisir stres satu sama lain.", "Pertahankan *Rapport* (kedekatan batin) dengan deep-talk rutin. Eksplorasi hobi baru bersama untuk menjaga gairah kehidupan.", "Jangan membiarkan api asmara padam karena hubungan terasa terlalu hambar/lurus-lurus saja. Hindari sikap *Take it for granted* (meremehkan).")
-            }
-            judul_weton, desk_weton, saran_do, saran_dont = hasil_weton_kombo.get(sisa_weton, ("Analisa Unik", "Butuh kalibrasi", "Perbaiki komunikasi", "Jangan egois"))
-            
-            st.markdown("---")
-            st.markdown(f"### 🔮 The Unified Resonance: {n1.split()[0].upper()} & {n2.split()[0].upper()}")
-            
-            st.markdown(f"""
-            <div class="matrix-container">
-                <div class="matrix-item"><div class="matrix-label">Vibrasi {n1.split()[0]}</div><div class="matrix-value">{jummal_1}</div></div>
-                <div class="matrix-item"><div class="matrix-label">Vibrasi {n2.split()[0]}</div><div class="matrix-value">{jummal_2}</div></div>
-                <div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL ENERGI</div><div class="matrix-value matrix-value-special">{total_couple}</div></div>
-                <div class="matrix-item"><div class="matrix-label">Weton Kombo</div><div class="matrix-value">{sisa_weton}</div></div>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown("""
-            <div class="info-metric-box">
-                <b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
-                • <b style="color:white;">TOTAL ENERGI:</b> Ini adalah hasil penyatuan murni dari getaran Esoterik (Jummal) nama Anda berdua. Ibarat dua gelombang suara yang saling bertabrakan dan melebur, 'Total Energi' menciptakan satu frekuensi baru (The Unified Resonance). Angka inilah yang membentuk DNA atau <i>Persona Pasangan</i> kalian di mata semesta.<br>
-                • <b style="color:white;">WETON KOMBO:</b> Ini adalah kalkulasi matematis siklus waktu lahir (Neptu Jawa). Weton Kombo menganalisis titik temu ego bawah sadar. Angka ini memetakan rawan konflik (Shadow) dan potensi harmoni (Light) dalam cara kalian berdua memproses stimulus dan masalah sehari-hari.
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown(f"""
-            <div class="dynamic-reading-box" style="border-left-color: #25D366;">
-                <h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4>
-                <p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br>
-                <i>{c_desc}</i></p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            st.markdown(f"#### 📜 Titik Benturan Weton: {judul_weton}")
-            st.info(f"Menyatukan filter pikiran **{zod1}** dengan **{zod2}** ibarat menggabungkan dua elemen alam. Ditambah algoritma Primbon (Neptu {ne_1} disilang Neptu {ne_2}), menghasilkan takdir:\n\n{desk_weton}")
-            
-            if sel in [0, 3, 6, 9]: st.success("💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental kalian sangat mirip.")
-            elif sel in [1, 2, 8]: st.warning("⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - Butuh toleransi dalam mengambil keputusan.")
-            else: st.error("🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perbedaan *Point of View*.")
- 
-            st.markdown("<br>", unsafe_allow_html=True)
-            c_do_c, c_dont_c = st.columns(2)
-            with c_do_c: 
-                st.markdown(f"<div style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366;'>✅ <b>LAKUKAN INI (NLP TACTICS):</b><br><br>{saran_do}</div>", unsafe_allow_html=True)
-            with c_dont_c: 
-                st.markdown(f"<div style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b;'>❌ <b>HINDARI INI (FATAL ERRORS):</b><br><br>{saran_dont}</div>", unsafe_allow_html=True)
+        if str(n1).strip() and str(n2).strip():
+            try:
+                st.snow()
+                safe_n1 = get_safe_firstname(n1, "P1")
+                safe_n2 = get_safe_firstname(n2, "P2")
+                
+                zod1 = get_zodiak(d1); ne_1, _, _ = get_neptu_weton(d1)
+                zod2 = get_zodiak(d2); ne_2, _, _ = get_neptu_weton(d2)
+                sel = abs(hitung_angka(d1) - hitung_angka(d2))
+                sisa_weton = (ne_1 + ne_2) % 8
+                
+                jummal_1 = hitung_nama_esoterik(n1)
+                jummal_2 = hitung_nama_esoterik(n2)
+                total_couple = jummal_1 + jummal_2
+                
+                root_c = total_couple
+                while root_c > 9: root_c = sum(int(d) for d in str(root_c))
+                
+                couple_persona = {
+                    1: ("THE POWER COUPLE", "Penyatuan dua nama ini menghasilkan vibrasi dominan. Kalian adalah entitas yang mandiri, ambisius, dan selalu ingin menjadi yang terdepan."),
+                    2: ("THE SOULMATES", "Vibrasi yang terbentuk sangat harmonis. Masing-masing pihak tahu cara melengkapi dan membaca perasaan pasangannya tanpa harus bicara."),
+                    3: ("THE SOCIALITES", "Energi yang dihasilkan memancarkan aura ekspresif. Kalian adalah pasangan yang menyenangkan, penuh ide, dan punya circle pergaulan yang luas."),
+                    4: ("THE BUILDERS", "Penyatuan nama menciptakan vibrasi yang solid dan struktural. Fokus hubungan ini adalah fondasi yang kuat, kesetiaan, dan pembangunan aset masa depan."),
+                    5: ("THE ADVENTURERS", "Vibrasi kebebasan sangat pekat. Pasangan yang anti-monoton, suka pengalaman baru, dan hubungan kalian penuh dengan kejutan tak terduga."),
+                    6: ("THE FAMILY FIRST", "Energi yang dihasilkan murni berpusat pada rumah dan kasih sayang. Tingkat pengorbanan kalian terhadap kelestarian keluarga sangat luar biasa."),
+                    7: ("THE DEEP SEEKERS", "Vibrasi eksklusif dan tertutup. Hubungan kalian dibangun di atas koneksi intelektual dan spiritual. Kalian seringkali lebih suka privasi tinggi."),
+                    8: ("THE EMPIRE", "Penyatuan dua nama ini menciptakan magnet kelimpahan. Fokus energi kalian secara bawah sadar ditarik menuju kesuksesan finansial dan kekuasaan."),
+                    9: ("THE HEALERS", "Energi toleransi level tertinggi. Hubungan kalian mengedepankan keikhlasan dan sering menjadi tempat curhat/sandaran bagi orang lain di sekitar kalian.")
+                }
+                c_title, c_desc = couple_persona.get(root_c, ("Uncharted", "Kombinasi unik yang terus beradaptasi."))
+                
+                hasil_weton_kombo = {
+                    1: ("💔 PEGAT (Ujian Ego)", "Terdapat perbedaan mendasar dalam memproses emosi. Jika ada konflik, seringkali diwarnai adu argumen keras.", "Gunakan teknik **Pacing-Leading**: Validasi dulu perasaannya ('Aku ngerti kamu kesal...') sebelum memasukkan argumen/solusi logis Anda.", "DILARANG keras melakukan *Mind-Reading* (menebak-nebak pikiran negatif) dan jangan pernah mengungkit kesalahan masa lalunya."),
+                    2: ("👑 RATU (Kharisma & Harmoni)", "Penyatuan vibrasi ini memancarkan wibawa dan respek dari lingkungan sekitar. Energi kepemimpinannya saling mendukung.", "Jadikan pasangan sebagai *Partner Diskusi Strategis*. Berikan afirmasi positif setiap kali dia berhasil melakukan pencapaian kecil.", "Hindari terjebak pada pencitraan eksternal. Jangan menyembunyikan masalah nyata hanya demi terlihat 'sempurna' di mata orang lain."),
+                    3: ("💞 JODOH (Sinkronisasi Alami)", "Penerimaan bawah sadar luar biasa tinggi. Kalian menemukan kecocokan yang tidak bisa dijelaskan secara logis.", "Ciptakan **Pattern Interrupt** (kejutan kecil/hal tak terduga) secara rutin agar hubungan tetap *spark* dan tidak terasa membosankan.", "Jangan jadikan kecocokan ini sebagai alasan kemalasan (*Comfort Zone*). Seringkali pasangan Jodoh mandek secara karir karena terlalu santai."),
+                    4: ("🌱 TOPO (Ujian Bertumbuh)", "Fase awal penuh gesekan dan kesalahpahaman. Namun jika berhasil melewati kalibrasi awal, hubungannya sangat kokoh.", "Kuasai teknik **Reframing** saat krisis. Temukan hikmah atau sudut pandang positif di setiap masalah yang mendera hubungan kalian.", "Hindari memaksakan *Map of the World* (standar nilai pribadi/gengsi) Anda kepada pasangan. Belajarlah menurunkan ego masing-masing."),
+                    5: ("💰 TINARI (Magnet Rezeki)", "Penyatuan vibrasi nama dan waktu lahir ini menarik kelancaran energi material. Pintu rezeki terbuka lebar setelah bersatu.", "Fokuskan komunikasi pada perencanaan visi masa depan dan *Goal Setting* bersama. Harmonisasi kalian adalah kunci kelancaran finansial.", "Jangan menjadikan uang/materi sebagai satu-satunya perekat hubungan. Jika salah satu bangkrut, hubungan bisa sangat rentan bubar."),
+                    6: ("⚡ PADU (Beda Frekuensi)", "Kerap terjadi letupan perdebatan karena beda filter informasi. Cara otak memproses stimulus sangat berbeda.", "Berikan ruang (Space) saat emosi memuncak. Gunakan teknik **Yes-Set** (membuat pasangan berkata 'Ya' 3x) untuk meredakan tensinya.", "Hindari konfrontasi langsung saat *state* emosinya sedang tinggi. Jangan gunakan kalimat provokatif yang menyerang harga dirinya."),
+                    7: ("👁️ SUJANAN (Rawan Asumsi)", "Ada kecenderungan kecemburuan atau salah paham mendadak karena miskomunikasi bawah sadar yang sering menumpuk.", "Biasakan komunikasi murni berbasis *Sensory Based* (Fakta yang terlihat/terdengar), bukan berdasarkan asumsi atau 'perasaan' semata.", "DILARANG keras menggunakan bahasa *Generalisasi* seperti: 'Kamu SELALU begini!', 'Kamu TIDAK PERNAH peduli!'. Itu merusak alam bawah sadarnya."),
+                    0: ("🕊️ PESTHI (Damai & Rukun)", "Hubungan yang stabil, adem ayem, rukun, dan minim drama. Energi kalian menetralisir stres satu sama lain.", "Pertahankan *Rapport* (kedekatan batin) dengan deep-talk rutin. Eksplorasi hobi baru bersama untuk menjaga gairah kehidupan.", "Jangan membiarkan api asmara padam karena hubungan terasa terlalu hambar/lurus-lurus saja. Hindari sikap *Take it for granted* (meremehkan).")
+                }
+                judul_weton, desk_weton, saran_do, saran_dont = hasil_weton_kombo.get(sisa_weton, ("Analisa Unik", "Butuh kalibrasi", "Perbaiki komunikasi", "Jangan egois"))
+                
+                st.markdown("---")
+                st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
+                
+                st.markdown(f"""
+                <div class="matrix-container">
+                    <div class="matrix-item"><div class="matrix-label">Vibrasi {safe_n1}</div><div class="matrix-value">{jummal_1}</div></div>
+                    <div class="matrix-item"><div class="matrix-label">Vibrasi {safe_n2}</div><div class="matrix-value">{jummal_2}</div></div>
+                    <div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL ENERGI</div><div class="matrix-value matrix-value-special">{total_couple}</div></div>
+                    <div class="matrix-item"><div class="matrix-label">Weton Kombo</div><div class="matrix-value">{sisa_weton}</div></div>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                st.markdown("""
+                <div class="info-metric-box">
+                    <b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
+                    • <b style="color:white;">TOTAL ENERGI:</b> Hasil penyatuan murni dari getaran Esoterik (Jummal) nama Anda berdua. Ibarat dua gelombang suara yang saling bertabrakan, 'Total Energi' menciptakan satu frekuensi baru. Angka inilah yang membentuk DNA atau <i>Persona Pasangan</i> kalian di mata semesta.<br>
+                    • <b style="color:white;">WETON KOMBO:</b> Kalkulasi matematis siklus waktu lahir (Neptu Jawa). Weton Kombo menganalisis titik temu ego bawah sadar, memetakan rawan konflik (Shadow) dan potensi harmoni (Light) dalam memproses stimulus sehari-hari.
+                </div>
+                """, unsafe_allow_html=True)
+                
+                st.markdown(f"""
+                <div class="dynamic-reading-box" style="border-left-color: #25D366;">
+                    <h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4>
+                    <p>Ketika nilai esoterik <b>{jummal_1}</b> dan <b>{jummal_2}</b> disatukan menjadi <b>{total_couple}</b>, ia menghasilkan resonansi inti (root number) <b>{root_c}</b>.<br>
+                    <i>{c_desc}</i></p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                st.markdown(f"#### 📜 Titik Benturan Weton: {judul_weton}")
+                st.info(f"Menyatukan filter pikiran **{zod1}** dengan **{zod2}** ibarat menggabungkan dua elemen alam. Ditambah algoritma Primbon (Neptu {ne_1} disilang Neptu {ne_2}), menghasilkan takdir:\n\n{desk_weton}")
+                
+                if sel in [0, 3, 6, 9]: st.success("💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental kalian sangat mirip.")
+                elif sel in [1, 2, 8]: st.warning("⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - Butuh toleransi dalam mengambil keputusan.")
+                else: st.error("🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perbedaan *Point of View*.")
+     
+                st.markdown("<br>", unsafe_allow_html=True)
+                c_do_c, c_dont_c = st.columns(2)
+                with c_do_c: 
+                    st.markdown(f"<div style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366;'>✅ <b>LAKUKAN INI (NLP TACTICS):</b><br><br>{saran_do}</div>", unsafe_allow_html=True)
+                with c_dont_c: 
+                    st.markdown(f"<div style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b;'>❌ <b>HINDARI INI (FATAL ERRORS):</b><br><br>{saran_dont}</div>", unsafe_allow_html=True)
+            except Exception as e:
+                st.error(f"Sistem gagal membaca resonansi. Mohon ketik nama dengan benar dan hindari spasi berlebih. (Kode Error: {e})")
+        else:
+            st.warning("⚠️ Mohon isi kedua nama terlebih dahulu sebelum melakukan analisis.")
  
 # ==========================================
 # TAB 3: AUDIT SISTEM SARAF
@@ -641,3 +659,4 @@ with st.expander("💬 Bagikan Pengalaman Anda"):
  
 st.markdown("---")
 st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist © 2026</small></center>", unsafe_allow_html=True)
+             
