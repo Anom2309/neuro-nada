@@ -291,6 +291,32 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
     dont = random.choice(dont_list[sisa])
     return judul, desc, do, dont
 
+# --- NEW: PENJELASAN MATRIX DYNAMIC ENGINE ---
+def proc_penjelasan_matriks(n1, n2):
+    random.seed(generate_seed(f"pm_{n1}_{n2}"))
+    
+    judul = random.choice(["💡 PENJELASAN MATRIKS", "🔍 DECODE DATA", "⚙️ CARA KERJA MESIN"])
+    
+    eso = random.choice([
+        f"Hasil penyatuan murni dari getaran nama <b>{n1}</b> dan <b>{n2}</b> (Jummal) yang membentuk DNA atau <i>Persona Pasangan</i> di mata semesta.",
+        f"Akumulasi frekuensi dari aksara <b>{n1}</b> dan <b>{n2}</b>. Angka ini mengunci blueprint spiritual dan identitas sejati hubungan kalian.",
+        f"Resonansi esoterik yang membaca fusi energi kalian. Ini adalah karakter dominan yang muncul saat <b>{n1}</b> dan <b>{n2}</b> bersatu."
+    ])
+    
+    nep = random.choice([
+        "Kalkulasi matematis siklus waktu lahir (Modulo 8). Menganalisis titik temu ego bawah sadar, memetakan rawan konflik dan potensi harmoni.",
+        f"Sandi matematis dari hari pasaran kalian berdua. Berfungsi sebagai radar pendeteksi letupan ego antara <b>{n1}</b> dan <b>{n2}</b>.",
+        "Diambil dari silangan algoritma waktu lahir kuno. Siklus ini membedah benturan watak bawaan sekaligus peluang kemakmuran bersama."
+    ])
+    
+    return f"""
+<div class="info-metric-box">
+<b style="color:#FFD700; font-size:14px;">{judul}:</b><br>
+• <b style="color:white;">TOTAL ESOTERIK:</b> {eso}<br>
+• <b style="color:white;">TOTAL NEPTU:</b> {nep}
+</div>
+"""
+
 arketipe_punchy = {
     1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
     2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
@@ -654,10 +680,9 @@ with tab2:
                 zod1 = get_zodiak(d1)
                 zod2 = get_zodiak(d2)
                 
-                # MENGGUNAKAN BYPASS ENGINE WETON
                 nep_1 = hitung_neptu_langsung(hc1, pc1)
                 nep_2 = hitung_neptu_langsung(hc2, pc2)
-                sel = abs(hitung_angka(d1) - hitung_angka(d2)) # NLP Menggunakan data kalender Masehi
+                sel = abs(hitung_angka(d1) - hitung_angka(d2))
                     
                 jummal_1 = hitung_nama_esoterik(n1)
                 jummal_2 = hitung_nama_esoterik(n2)
@@ -681,13 +706,8 @@ with tab2:
 </div>
 """, unsafe_allow_html=True)
                 
-                st.markdown("""
-<div class="info-metric-box">
-<b style="color:#FFD700; font-size:14px;">💡 PENJELASAN MATRIKS:</b><br>
-• <b style="color:white;">TOTAL ESOTERIK:</b> Hasil penyatuan murni dari getaran nama Anda berdua (Jummal) yang membentuk DNA atau <i>Persona Pasangan</i> di mata semesta.<br>
-• <b style="color:white;">TOTAL NEPTU:</b> Kalkulasi matematis siklus waktu lahir (Modulo 8). Menganalisis titik temu ego bawah sadar, memetakan rawan konflik dan potensi harmoni.
-</div>
-""", unsafe_allow_html=True)
+                # MEMANGGIL FUNGSI PENJELASAN MATRIX DINAMIS
+                st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2), unsafe_allow_html=True)
                 
                 st.markdown(f"""
 <div class="dynamic-reading-box" style="border-left-color: #25D366;">
@@ -699,7 +719,6 @@ with tab2:
                 st.markdown(f"#### 📜 Titik Benturan Weton: {judul_jodoh.split(' ')[1]}")
                 st.info(f"Semesta mencatat takdir persilangan energi (Neptu {nep_1} & {nep_2}) ini sebagai:\n\n**{judul_jodoh}**: {desk_jodoh}")
                 
-                # NLP LOGIC MENGGUNAKAN TANGGAL MASEHI
                 if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): 90% (Sangat Sinkron)** - Peta mental {safe_n1} dan {safe_n2} sangat mirip.")
                 elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): 70% (Dinamis)** - {safe_n1} dan {safe_n2} butuh saling toleransi dalam mengambil keputusan.")
                 else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): 50% (Rawan Gesekan)** - Sering terjadi perdebatan sudut pandang antara {safe_n1} dan {safe_n2}.")
