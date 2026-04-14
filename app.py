@@ -759,7 +759,7 @@ with tab1:
                     st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
                     st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
                 
-                # Menggunakan link_produk asli milik lo Bro
+                # Link Produk Jualan Bro Ahmad aman terkendali di Tab 1
                 st.markdown("<br>", unsafe_allow_html=True)
                 url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
                 st.markdown(f"""
@@ -885,20 +885,21 @@ with tab3:
     
     if st.button("Aktivasi Anchor Spiritual"):
         if nama_ruhani and len(nama_ruhani.strip()) >= 3:
-            with st.spinner('Mengekstrak sandi penyembuhan Anda...'):
-                time.sleep(1.5)
+            try:
+                with st.spinner('Mengekstrak sandi penyembuhan Anda...'):
+                    time.sleep(1.5)
+                    
+                safe_nr = get_safe_firstname(nama_ruhani)
+                nilai_jummal_r = hitung_nama_esoterik(nama_ruhani)
                 
-            safe_nr = get_safe_firstname(nama_ruhani)
-            nilai_jummal_r = hitung_nama_esoterik(nama_ruhani)
-            
-            r_num_r = nilai_jummal_r
-            while r_num_r > 9: r_num_r = sum(int(d) for d in str(r_num_r))
-            
-            asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal_r, r_num_r, safe_nr)
-            protokol_nlp = get_protokol_terapi(r_num_r, safe_nr)
-            
-            st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
-            st.markdown(f"""
+                r_num_r = nilai_jummal_r
+                while r_num_r > 9: r_num_r = sum(int(d) for d in str(r_num_r))
+                
+                asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal_r, r_num_r, safe_nr)
+                protokol_nlp = get_protokol_terapi(r_num_r, safe_nr)
+                
+                st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
+                st.markdown(f"""
 <div style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
     <div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:20px;">
         <span style="color:#00FFFF; font-size:16px; font-weight:900; letter-spacing:2px;">🧠 PROTOKOL TERAPI KOMPREHENSIF: {safe_nr}</span>
@@ -922,24 +923,16 @@ with tab3:
         <i style="color:#fff; font-size:16px; line-height:1.6;">"{protokol_nlp['afirmasi']}"</i>
     </div>
 
-    <div style="border-top: 1px dashed #555; padding-top: 15px; padding-bottom: 15px;">
+    <div style="border-top: 1px dashed #555; padding-top: 15px; padding-bottom: 5px;">
         <b style="color:#25D366; font-size:16px;">🏃‍♂️ 3. QUANTUM HABIT (Tindakan Fisik Hari Ini)</b><br>
         <span style="color:#ccc; font-size:15px; line-height:1.6;">Semesta merespons tindakan nyata. Untuk menghancurkan Mental Block Anda, eksekusi tugas ini hari ini:<br>
         <b style="color:#FFF;">{protokol_nlp['habit']}</b></span>
     </div>
 </div>
 """, unsafe_allow_html=True)
-            
-            # Menggunakan link_produk asli milik lo Bro untuk CTA Falak Ruhani
-            url_terapi = link_produk.get(r_num_r, "https://lynk.id/neuronada")
-            st.markdown(f"""
-<a href="{url_terapi}" target="_blank" style="text-decoration: none;">
-<div class="cta-button" style="background: linear-gradient(90deg, #00FFFF 0%, #008B8B 100%); box-shadow: 0 6px 15px rgba(0, 255, 255, 0.4); color: #000 !important;">
-🎧 DOWNLOAD AUDIO TERAPI KHUSUS KODE {r_num_r} DI SINI
-</div>
-</a>
-""", unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+            except Exception as e:
+                st.error(f"Terjadi kesalahan saat memproses sandi terapi: {e}")
             
         else:
             st.warning("⚠️ Ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi.")
