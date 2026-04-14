@@ -226,11 +226,11 @@ def proc_tactical_plan(nama, mod_harian, planet_live, planet_desc, sun_fase, sun
     do_html = "".join([f"<li style='margin-bottom: 8px;'>{item}</li>" for item in random.sample(fd["do"], 2)])
 
     html_output = f"""
-    <div class="live-engine-box" style="background: rgba(20,20,25,0.9); border-left: 4px solid #00FFFF; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,255,255,0.1);">
+    <div class="live-engine-box soft-fade" style="background: rgba(20,20,25,0.9); border-left: 4px solid #00FFFF; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,255,255,0.1);">
         <h4 style="color: #00FFFF; margin-top:0; letter-spacing: 1px; font-weight:900;">⚡ TACTICAL ACTION PLAN <span style="font-size:12px; color:#aaa; font-weight:normal;">(Kritis: 60 Menit ke Depan)</span></h4>
         <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin-bottom:20px;">
             {buka}<br><br>
-            <b style="color:#FFF; font-size:16px;">STATUS BIORITME ANDA: <span style="color:#FFD700;">{fd['nama'].split(' ')[1]} {fd['nama'].split(' ')[2]}</span></b><br>
+            <b style="color:#FFF; font-size:16px;">STATUS BIORITME ANDA: <span style="color:#FFD700;">{fd['nama'].split('(')[0].strip()}</span></b><br>
             {fd['analisa']}<br><br>
             <i style="color:#888;">Sinkronisasi Kosmik:</i> {koneksi} ({planet_desc})
         </p>
@@ -549,7 +549,7 @@ def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
     header = random.choice(["⚙️ ARSITEKTUR ANALISA", "📡 DEKODE SINYAL KOSMIK", "📜 LOGIKA MESIN NEURO"])
     f_eso = random.choice([f"Fusi nama <b>{n1}</b> & <b>{n2}</b> mengunci di <b>{eso_val}</b>. Ini adalah persona yang muncul saat kalian bersama.", f"Ekstraksi sandi menghasilkan <b>{eso_val}</b>. Menentukan bagaimana kalian dipandang sebagai entitas."])
     f_nep = random.choice([f"Kalkulasi sinkronisasi waktu (Total Neptu <b>{nep_val}</b>) memetakan dinamika ego bawah sadar.", f"Analisa siklus (Parameter <b>{nep_val}</b>) menjadi radar pengukur stabilitas emosi kalian."])
-    return f'<div class="info-metric-box"><b style="color:#FFD700; font-size:14px;">{header}:</b><br>• <b style="color:white;">TOTAL ESOTERIK:</b> {f_eso}<br>• <b style="color:white;">TOTAL NEPTU:</b> {f_nep}</div>'
+    return f'<div class="info-metric-box soft-fade"><b style="color:#FFD700; font-size:14px;">{header}:</b><br>• <b style="color:white;">TOTAL ESOTERIK:</b> {f_eso}<br>• <b style="color:white;">TOTAL NEPTU:</b> {f_nep}</div>'
 
 KAMUS_ABJAD = {
     'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
@@ -698,12 +698,10 @@ with tab1:
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
                 
-                st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
-                
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
                 
                 st.markdown(f"""
-<div class="matrix-container">
+<div class="matrix-container soft-fade">
 <div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
 <div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div>
 <div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div>
@@ -713,7 +711,7 @@ with tab1:
 """, unsafe_allow_html=True)
                 
                 st.markdown(f"""
-<div class="dynamic-reading-box">
+<div class="dynamic-reading-box soft-fade">
 <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
 <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
 <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
@@ -729,7 +727,7 @@ with tab1:
 """, unsafe_allow_html=True)
 
                 st.markdown(f"""
-<div class="primbon-box">
+<div class="primbon-box soft-fade">
 <div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;">
 <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
 </div>
@@ -759,16 +757,13 @@ with tab1:
                     st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
                     st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
                 
-                # Link Produk Jualan Bro Ahmad aman terkendali di Tab 1
                 st.markdown("<br>", unsafe_allow_html=True)
                 url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
                 st.markdown(f"""
 <a href="{url_t}" target="_blank" style="text-decoration: none;">
-<div class="cta-button">⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA</div>
+<div class="cta-button soft-fade">⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA</div>
 </a>
 """, unsafe_allow_html=True)
-                
-                st.markdown('</div>', unsafe_allow_html=True)
                 
             except Exception as e:
                 st.error(f"Sistem gagal melakukan komputasi: {e}")
@@ -813,10 +808,9 @@ with tab2:
                 c_title, c_desc = proc_couple_persona(root_c, safe_n1, safe_n2)
                 judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
                 
-                st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
                 st.markdown(f"""
-<div class="matrix-container">
+<div class="matrix-container soft-fade">
 <div class="matrix-item"><div class="matrix-label">Neptu {safe_n1}</div><div class="matrix-value">{hc1} {pc1} ({nep_1})</div></div>
 <div class="matrix-item"><div class="matrix-label">Neptu {safe_n2}</div><div class="matrix-value">{hc2} {pc2} ({nep_2})</div></div>
 <div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL NEPTU</div><div class="matrix-value matrix-value-special">{nep_1 + nep_2}</div></div>
@@ -824,7 +818,7 @@ with tab2:
 </div>
 """, unsafe_allow_html=True)
                 st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2, total_couple, (nep_1+nep_2)), unsafe_allow_html=True)
-                st.markdown(f'<div class="dynamic-reading-box" style="border-left-color: #25D366;"><h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4><p><i>{c_desc}</i></p></div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="dynamic-reading-box soft-fade" style="border-left-color: #25D366;"><h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4><p><i>{c_desc}</i></p></div>', unsafe_allow_html=True)
                 st.info(f"**Titik Benturan Weton ({judul_jodoh}):**\n{desk_jodoh}")
                 
                 if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): Sangat Sinkron**")
@@ -832,9 +826,8 @@ with tab2:
                 else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): Rawan Gesekan**")
      
                 c_do_c, c_dont_c = st.columns(2)
-                with c_do_c: st.markdown(f"<div style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366;'>✅ <b>LAKUKAN INI:</b><br><br>{d_do}</div>", unsafe_allow_html=True)
-                with c_dont_c: st.markdown(f"<div style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b;'>❌ <b>HINDARI INI:</b><br><br>{d_dont}</div>", unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
+                with c_do_c: st.markdown(f"<div class='soft-fade' style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366;'>✅ <b>LAKUKAN INI:</b><br><br>{d_do}</div>", unsafe_allow_html=True)
+                with c_dont_c: st.markdown(f"<div class='soft-fade' style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b;'>❌ <b>HINDARI INI:</b><br><br>{d_dont}</div>", unsafe_allow_html=True)
             except Exception as e: st.error(f"Error komputasi: {e}")
 
 # ==========================================
@@ -860,18 +853,16 @@ with tab5:
             
             siklus_nama, html_plan = proc_tactical_plan(safe_qe, mod_harian, planet_live, planet_desc, sun_fase, sun_desc)
             
-            st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
             st.markdown(f"### 📡 Live Dashboard: {safe_qe}")
             st.markdown(f"""
-<div class="matrix-container">
-<div class="matrix-item"><div class="matrix-label">Fase Harian</div><div class="matrix-value">{siklus_nama.split(' ')[0]}</div></div>
+<div class="matrix-container soft-fade">
+<div class="matrix-item"><div class="matrix-label">Fase Harian</div><div class="matrix-value">{siklus_nama.split('(')[0].strip()}</div></div>
 <div class="matrix-item"><div class="matrix-label">Matahari</div><div class="matrix-value matrix-value-special">{sun_fase.split(' ')[0]}</div></div>
 <div class="matrix-item" style="border-bottom: 2px solid {planet_color};"><div class="matrix-label">Jam Planet</div><div class="matrix-value" style="color:{planet_color};">{planet_live}</div></div>
 </div>
 """, unsafe_allow_html=True)
             
             st.markdown(html_plan, unsafe_allow_html=True)
-            st.markdown('</div>', unsafe_allow_html=True)
 
 # ==========================================
 # TAB 3: FALAK RUHANI (PROTOKOL TERAPI)
@@ -898,9 +889,8 @@ with tab3:
                 asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal_r, r_num_r, safe_nr)
                 protokol_nlp = get_protokol_terapi(r_num_r, safe_nr)
                 
-                st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
                 st.markdown(f"""
-<div style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
+<div class="soft-fade" style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
     <div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:20px;">
         <span style="color:#00FFFF; font-size:16px; font-weight:900; letter-spacing:2px;">🧠 PROTOKOL TERAPI KOMPREHENSIF: {safe_nr}</span>
     </div>
@@ -930,7 +920,6 @@ with tab3:
     </div>
 </div>
 """, unsafe_allow_html=True)
-                st.markdown('</div>', unsafe_allow_html=True)
             except Exception as e:
                 st.error(f"Terjadi kesalahan saat memproses sandi terapi: {e}")
             
