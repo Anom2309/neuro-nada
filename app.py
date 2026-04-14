@@ -19,9 +19,17 @@ st.set_page_config(
     initial_sidebar_state="collapsed" 
 )
 
-# --- CUSTOM CSS ---
+# --- CUSTOM CSS & SOFT ANIMATION ---
 st.markdown(
     """<style>
+    @keyframes softFade {
+        0% { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+    .soft-fade {
+        animation: softFade 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    
     html, body, [class*="css"]  { font-family: 'Inter', sans-serif; background-color: #050505; color: #e0e0e0; }
     .stApp { background: radial-gradient(circle at top, #111 0%, #000 100%); }
     
@@ -442,6 +450,14 @@ arketipe_punchy = {
     9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
 }
 
+link_produk = {
+    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout", 2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
+    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout", 4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
+    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout", 6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
+    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout", 8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
+    9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
+}
+
 KAMUS_ABJAD = {
     'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
     't': 9, 'y': 10, 'k': 20, 'l': 30, 'm': 40, 'n': 50, 
@@ -567,7 +583,10 @@ with tab1:
             st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf).")
         else:
             try:
-                st.snow()
+                # Soft Animation Loading
+                with st.spinner('Menyelaraskan frekuensi kosmik...'):
+                    time.sleep(1.5)
+                
                 safe_name = get_safe_firstname(nama_user)
                 angka_hasil = hitung_angka(tgl_input)
                 rincian_tgl = get_rincian_tanggal(tgl_input)
@@ -586,6 +605,9 @@ with tab1:
                 punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
+                
+                # Wrapping results in fade-in animation
+                st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
                 
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
                 
@@ -646,7 +668,16 @@ with tab1:
                     st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
                     st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
                 
-                st.info("💡 Lanjutkan ke Tab **🌌 Falak Ruhani** untuk mendapatkan resep terapi dan afirmasi spesifik Anda.")
+                # Mengembalikan CTA Lynk.id berdasarkan KODE angka_hasil
+                st.markdown("<br>", unsafe_allow_html=True)
+                url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
+                st.markdown(f"""
+<a href="{url_t}" target="_blank" style="text-decoration: none;">
+<div class="cta-button">⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA</div>
+</a>
+""", unsafe_allow_html=True)
+                
+                st.markdown('</div>', unsafe_allow_html=True) # End of soft-fade div
                 
             except Exception as e:
                 st.error(f"Sistem gagal melakukan komputasi: {e}")
@@ -675,7 +706,9 @@ with tab2:
     if st.button("Analisis Resonansi Pasangan"):
         if str(n1).strip() and str(n2).strip():
             try:
-                st.snow()
+                with st.spinner('Menghitung benturan energi pasangan...'):
+                    time.sleep(1.5)
+                
                 safe_n1, safe_n2 = get_safe_firstname(n1, "Pria"), get_safe_firstname(n2, "Wanita")
                 zod1, zod2 = get_zodiak(d1), get_zodiak(d2)
                 nep_1, nep_2 = hitung_neptu_langsung(hc1, pc1), hitung_neptu_langsung(hc2, pc2)
@@ -689,6 +722,7 @@ with tab2:
                 c_title, c_desc = proc_couple_persona(root_c, safe_n1, safe_n2)
                 judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
                 
+                st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
                 st.markdown(f"""
 <div class="matrix-container">
@@ -709,6 +743,7 @@ with tab2:
                 c_do_c, c_dont_c = st.columns(2)
                 with c_do_c: st.markdown(f"<div style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366;'>✅ <b>LAKUKAN INI:</b><br><br>{d_do}</div>", unsafe_allow_html=True)
                 with c_dont_c: st.markdown(f"<div style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b;'>❌ <b>HINDARI INI:</b><br><br>{d_dont}</div>", unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
             except Exception as e: st.error(f"Error komputasi: {e}")
 
 # ==========================================
@@ -722,7 +757,9 @@ with tab5:
     
     if st.button("Hack My Reality Now"):
         if qe_nama:
-            st.snow()
+            with st.spinner('Menarik data pergerakan planet...'):
+                time.sleep(1.2)
+            
             safe_qe = get_safe_firstname(qe_nama)
             jummal_qe = hitung_nama_esoterik(qe_nama)
             mod_harian = (jummal_qe + sum(int(d) for d in tgl_today.strftime("%d%m%Y"))) % 7
@@ -740,6 +777,7 @@ with tab5:
             sun_fase, sun_desc = get_sun_phase()
             planet_live, planet_desc, planet_color = get_planetary_hour()
             
+            st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
             st.markdown(f"### 📡 Live Dashboard: {safe_qe}")
             st.markdown(f"""
 <div class="matrix-container">
@@ -749,6 +787,7 @@ with tab5:
 </div>
 """, unsafe_allow_html=True)
             st.markdown(f'<div class="live-engine-box"><h4 style="color: #00FFFF; margin-top:0;">⚡ TACTICAL ACTION PLAN</h4><p style="color: #ccc;">Fase Bioritme Anda: <b>{siklus_hari_ini}</b>. <i>Saran: {saran_siklus}</i><br><br><b>🎯 KESIMPULAN:</b> Manfaatkan energi {planet_live.split(" ")[0]} ini untuk mengeksekusi misi fase {siklus_hari_ini.split(" ")[1]} Anda. Jangan ditunda!</p></div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
 # ==========================================
 # TAB 3: FALAK RUHANI (PROTOKOL TERAPI)
@@ -762,7 +801,9 @@ with tab3:
     
     if st.button("Aktivasi Anchor Spiritual"):
         if nama_ruhani and len(nama_ruhani.strip()) >= 3:
-            st.snow()
+            with st.spinner('Mengekstrak sandi penyembuhan Anda...'):
+                time.sleep(1.5)
+                
             safe_nr = get_safe_firstname(nama_ruhani)
             nilai_jummal_r = hitung_nama_esoterik(nama_ruhani)
             
@@ -772,6 +813,7 @@ with tab3:
             asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal_r, r_num_r, safe_nr)
             protokol_nlp = get_protokol_terapi(r_num_r, safe_nr)
             
+            st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
             st.markdown(f"""
 <div style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
     <div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:20px;">
@@ -796,13 +838,25 @@ with tab3:
         <i style="color:#fff; font-size:16px; line-height:1.6;">"{protokol_nlp['afirmasi']}"</i>
     </div>
 
-    <div style="border-top: 1px dashed #555; padding-top: 15px;">
+    <div style="border-top: 1px dashed #555; padding-top: 15px; padding-bottom: 15px;">
         <b style="color:#25D366; font-size:16px;">🏃‍♂️ 3. QUANTUM HABIT (Tindakan Fisik Hari Ini)</b><br>
         <span style="color:#ccc; font-size:15px; line-height:1.6;">Semesta merespons tindakan nyata. Untuk menghancurkan Mental Block Anda, eksekusi tugas ini hari ini:<br>
         <b style="color:#FFF;">{protokol_nlp['habit']}</b></span>
     </div>
 </div>
 """, unsafe_allow_html=True)
+            
+            # Mengembalikan CTA Lynk.id di Tab Falak Ruhani
+            url_terapi = link_produk.get(r_num_r, "https://lynk.id/neuronada")
+            st.markdown(f"""
+<a href="{url_terapi}" target="_blank" style="text-decoration: none;">
+<div class="cta-button" style="background: linear-gradient(90deg, #00FFFF 0%, #008B8B 100%); box-shadow: 0 6px 15px rgba(0, 255, 255, 0.4); color: #000 !important;">
+🎧 DOWNLOAD AUDIO TERAPI KHUSUS KODE {r_num_r} DI SINI
+</div>
+</a>
+""", unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
+            
         else:
             st.warning("⚠️ Ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi.")
 
