@@ -157,6 +157,99 @@ def kirim_ulasan(nama, rating, komentar):
 def generate_seed(base_str):
     return int(hashlib.md5(base_str.encode('utf-8')).hexdigest(), 16) % (10**8)
 
+# --- PROCEDURAL TACTICAL PLAN (DYNAMIC & DEEP) ---
+def proc_tactical_plan(nama, mod_harian, planet_live, planet_desc, sun_fase, sun_desc):
+    random.seed(generate_seed(f"tac_{nama}_{mod_harian}_{planet_live}"))
+    
+    fase_detail = {
+        0: {
+            "nama": "🔴 FASE NADIR (Rest & Reset)",
+            "analisa": f"Sistem saraf dan gelombang otak {nama} sedang berada di titik terendah siklusnya. Tubuh eterik Anda sedang melakukan 'reboot' sistem internal. Memaksakan ambisi besar hari ini sama dengan memacu mobil dengan gigi satu, mesin saraf Anda akan cepat aus dan *burnout*.",
+            "do": ["Kerjakan hal-hal repetitif yang tidak butuh mikir keras (balas email biasa, rapihin file).", "Lakukan *Deep Rest*, *stretching* fisik, atau perbanyak tidur untuk regenerasi sel.", "Fokus pada penyembuhan fisik dan menenangkan pikiran tanpa menuntut pencapaian.", "Rapikan kamar tidur atau meja kerja Anda pelan-pelan."],
+            "dont": "DILARANG KERAS membuat keputusan finansial besar, mengambil risiko bisnis, atau memulai konflik emosional hari ini. Filter logika Anda sedang lemah."
+        },
+        1: {
+            "nama": "🟢 FASE INISIASI (The Spark)",
+            "analisa": f"Ini adalah momentum ledakan energi pertama Anda, {nama}! Pintu kosmik terbuka lebar untuk niat-niat baru. Segala sesuatu (sekecil apapun) yang Anda mulai hari ini memiliki daya dorong *momentum* 3x lipat lebih kuat dari hari biasa.",
+            "do": ["Luncurkan ide baru, kirim proposal, atau hubungi prospek/klien target Anda sekarang.", "Buat deklarasi/target berani untuk 1 bulan ke depan dan bagikan ke orang terdekat.", "Lakukan gebrakan eksekusi pertama, walau hanya 5 menit, jangan tunggu sempurna.", "Daftar kursus, beli domain web, atau *checkout* hal pendukung karir Anda."],
+            "dont": "HINDARI sifat *over-analysis*. Hari ini adalah tentang 'Speed of Implementation', bukan tentang kesempurnaan. Bertindaklah!"
+        },
+        2: {
+            "nama": "🔵 FASE SINKRONISASI (Kolaborasi)",
+            "analisa": f"Energi independen (kesendirian) {nama} sedang menurun secara alami, digantikan oleh daya magnetisme sosial. Hari ini, rezeki dan solusi masalah Anda kemungkinan besar tidak datang dari diri sendiri, melainkan tersembunyi di tangan orang lain.",
+            "do": ["Ajak negosiasi pihak yang tadinya alot, hari ini aura Anda lebih persuasif dan diterima.", "Delegasikan tugas yang bikin pusing ke tim atau orang yang lebih ahli.", "Hubungi teman lama atau *networking* santai tanpa niat jualan langsung.", "Minta *feedback* atau validasi atas karya/bisnis Anda dari mentor."],
+            "dont": "JANGAN menjadi 'Lone Wolf' (berjuang sendirian) memecahkan masalah besar hari ini. Anda akan cepat kehabisan daya dan frustrasi."
+        },
+        3: {
+            "nama": "🟡 FASE RESONANSI (Ekspresi Diri)",
+            "analisa": f"Cakra komunikasi {nama} sedang menyala terang. Frekuensi suara dan pilihan kata-kata tulisan Anda memiliki daya tembus alam bawah sadar yang luar biasa kepada siapapun yang mendengarnya hari ini.",
+            "do": ["Buat konten (video/tulisan), lakukan presentasi, *pitching*, atau *Live* di sosmed.", "*Speak up*! Sampaikan keluhan, batasan, atau ide yang selama ini Anda pendam ke atasan/pasangan.", "Jual produk atau gagasan Anda hari ini dengan gaya bercerita (Storytelling).", "Kirim pesan masal (Broadcast) penawaran Anda ke *database* kontak."],
+            "dont": "JANGAN berdiam diri di goa atau memilih diam saat ditanya. Sangat sayang jika energi persuasi magis ini terbuang percuma."
+        },
+        4: {
+            "nama": "🟤 FASE MATERIALISASI (Pondasi)",
+            "analisa": f"Gelombang otak {nama} sedang sangat rasional, praktis, dan membumi. Ini bukan waktunya berkhayal masa depan. Hari ini murni tentang mengamankan dan merawat apa yang sudah Anda bangun agar tidak runtuh.",
+            "do": ["Audit total arus kas (keuangan) Anda. Cek mutasi dan kebocoran pengeluaran minggu ini.", "Rapikan SOP kerja, bersihkan arsip laptop, dan kelola administrasi pajak/tagihan.", "Fokus pada detail operasional yang membosankan namun vital bagi bisnis.", "Bayar lunas utang kecil atau selesaikan janji yang tertunda."],
+            "dont": "DILARANG mengambil risiko spekulatif (judi, trading asal, investasi tanpa data valid, foya-foya) hari ini. Pegang aset Anda erat-erat."
+        },
+        5: {
+            "nama": "🟠 FASE EKSPANSI (Tantangan Ekstrim)",
+            "analisa": f"Adrenalin kosmik {nama} memuncak tajam! Insting bertahan hidup dan *growth* Anda sedang sinkron. Batas-batas ketakutan (mental block) Anda melemah, memberikan celah terbuka untuk melakukan terobosan radikal.",
+            "do": ["Eksekusi satu hal yang paling Anda takuti minggu ini (misal: *follow-up* klien kelas kakap atau *cold calling*).", "Ubah rutinitas Anda secara ekstrem (lewat jalan berbeda, kerja di cafe baru) untuk memancing ide liar.", "Uji coba strategi marketing/bisnis yang 'Out of the Box' dan berisiko.", "Lakukan hobi fisik yang menguras keringat untuk menyalurkan energi berlebih."],
+            "dont": "JANGAN biarkan diri Anda diam terjebak dalam kebosanan rutinitas. Diam hari ini akan berubah menjadi *Anxiety* (kecemasan parah)."
+        },
+        6: {
+            "nama": "🟣 FASE ELEVASI (Pengayoman & Karma)",
+            "analisa": f"Vibrasi jiwa {nama} menembus urusan duniawi hari ini. Anda memancarkan energi *Healer* (Penyembuh/Orang Tua). Alam semesta menuntut Anda sejenak kembali ke 'akar': keluarga, keikhlasan batin, dan relasi spiritual.",
+            "do": ["Perbaiki hubungan yang retak. Minta maaf atau maafkan kesalahan pasangan/orang tua/sahabat.", "Lakukan *Charity* (sedekah nominal ekstrim) atau bantu kesulitan orang lain secara anonim.", "Luangkan 15 menit untuk meditasi, dzikir mendalam, atau ibadah murni tanpa meminta balasan dunia.", "Dengarkan curhatan teman tanpa niat menggurui, cukup jadi pendengar."],
+            "dont": "HINDARI debat ego, pertengkaran keras kepala, atau ambisi memanipulasi orang lain demi keuntungan uang. Karma berlaku instan hari ini."
+        }
+    }
+
+    fd = fase_detail[mod_harian]
+    
+    buka = random.choice([
+        f"Berdasarkan dekripsi algoritma lahir dan posisi langit saat ini, sistem mendeteksi lonjakan energi spesifik pada diri Anda, **{nama}**.",
+        f"Peringatan Taktis! Gelombang kosmik sedang berpusat pada sektor tindakan Anda. Jika **{nama}** salah melangkah dalam jam ini, momentum akan hangus.",
+        f"Radar Neuro menangkap sinyal krusial. Pergerakan {planet_live.split(' ')[0]} sedang memaksa sistem saraf **{nama}** untuk bermanuver cepat."
+    ])
+
+    planet_murni = planet_live.split(' ')[0]
+    matahari_murni = sun_fase.split(' ')[0]
+    
+    koneksi = random.choice([
+        f"Diperkuat oleh jam {planet_murni} yang mengintervensi fase {matahari_murni} Anda, situasi ini menciptakan desakan absolut untuk bertindak.",
+        f"Fase bioritme ini sedang 'dibakar' oleh energi {planet_murni}, menuntut Anda untuk berhenti overthinking dan langsung eksekusi.",
+        f"Resonansi {planet_murni} yang bertabrakan dengan siklus {matahari_murni} ini mengunci otak Anda dalam mode sadar tingkat tinggi."
+    ])
+
+    do_html = "".join([f"<li style='margin-bottom: 8px;'>{item}</li>" for item in random.sample(fd["do"], 2)])
+
+    html_output = f"""
+    <div class="live-engine-box" style="background: rgba(20,20,25,0.9); border-left: 4px solid #00FFFF; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,255,255,0.1);">
+        <h4 style="color: #00FFFF; margin-top:0; letter-spacing: 1px; font-weight:900;">⚡ TACTICAL ACTION PLAN <span style="font-size:12px; color:#aaa; font-weight:normal;">(Kritis: 60 Menit ke Depan)</span></h4>
+        <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin-bottom:20px;">
+            {buka}<br><br>
+            <b style="color:#FFF; font-size:16px;">STATUS BIORITME ANDA: <span style="color:#FFD700;">{fd['nama'].split(' ')[1]} {fd['nama'].split(' ')[2]}</span></b><br>
+            {fd['analisa']}<br><br>
+            <i style="color:#888;">Sinkronisasi Kosmik:</i> {koneksi} ({planet_desc})
+        </p>
+        
+        <div style="background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.4); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <b style="color: #25D366; font-size:15px;">🎯 PROTOKOL EKSEKUSI (LAKUKAN SEKARANG):</b>
+            <ul style="color: #e0e0e0; font-size: 15px; margin-top: 10px; margin-bottom: 0; padding-left: 20px; line-height:1.5;">
+                {do_html}
+            </ul>
+        </div>
+        
+        <div style="background: rgba(255,75,75,0.1); border: 1px solid rgba(255,75,75,0.4); padding: 15px; border-radius: 8px;">
+            <b style="color: #ff4b4b; font-size:15px;">🛑 RED ZONE (HINDARI MUTLAK):</b><br>
+            <span style="color: #ccc; font-size: 14px; display:inline-block; margin-top:5px; line-height:1.5;">{fd['dont']}</span>
+        </div>
+    </div>
+    """
+    return fd['nama'], html_output
+
 # --- ENGINE FALAK RUHANI (SPIRITUAL ANCHORING) ---
 def proc_falak_ruhani(total_jummal, root_num, nama):
     ruhani_data = {
@@ -308,6 +401,27 @@ def get_protokol_terapi(root_num, nama):
     }
     return protokol.get(root_num, protokol[1])
 
+# --- DATABASE BLUEPRINT ---
+arketipe_punchy = {
+    1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
+    2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
+    3: {"inti": "Sang Visioner (Kreator Ide & Komunikator Handal)", "kekuatan": ["Komunikasi memikat", "Kreativitas tanpa batas", "Ahli mencairkan suasana"]},
+    4: {"inti": "Sang Transformator (Ahli Strategi & Pembangun Sistem)", "kekuatan": ["Pola pikir sangat terstruktur", "Bisa diandalkan 100%", "Ketelitian tingkat dewa"]},
+    5: {"inti": "Sang Penggerak (Eksplorator & Pemecah Kebuntuan)", "kekuatan": ["Kelincahan berpikir", "Inovator pemecah kebuntuan", "Keberanian mengeksplorasi"]},
+    6: {"inti": "Sang Harmonizer (Pengayom & Pelindung Natural)", "kekuatan": ["Insting pengayom", "Tanggung jawab moral tinggi", "Loyalitas tanpa pamrih"]},
+    7: {"inti": "Sang Legacy Builder (Pemikir Analitik & Spiritualis)", "kekuatan": ["Kemampuan analisa", "Intuisi sering akurat", "Sangat selektif menilai kualitas"]},
+    8: {"inti": "Sang Sovereign (Eksekutor Otoritas & Magnet Material)", "kekuatan": ["Tahan banting mental", "Insting bisnis tajam", "Kemampuan memegang kendali"]},
+    9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
+}
+
+link_produk = {
+    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout", 2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
+    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout", 4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
+    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout", 6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
+    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout", 8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
+    9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
+}
+
 def proc_arketipe(nama, angka, zodiak, neptu):
     random.seed(generate_seed(f"hyper_ark_{nama}_{angka}_{zodiak}_{neptu}"))
     buka = random.choice([
@@ -437,27 +551,6 @@ def proc_penjelasan_matriks(n1, n2, eso_val, nep_val):
     f_nep = random.choice([f"Kalkulasi sinkronisasi waktu (Total Neptu <b>{nep_val}</b>) memetakan dinamika ego bawah sadar.", f"Analisa siklus (Parameter <b>{nep_val}</b>) menjadi radar pengukur stabilitas emosi kalian."])
     return f'<div class="info-metric-box"><b style="color:#FFD700; font-size:14px;">{header}:</b><br>• <b style="color:white;">TOTAL ESOTERIK:</b> {f_eso}<br>• <b style="color:white;">TOTAL NEPTU:</b> {f_nep}</div>'
 
-# --- DATABASE BLUEPRINT ---
-arketipe_punchy = {
-    1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
-    2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
-    3: {"inti": "Sang Visioner (Kreator Ide & Komunikator Handal)", "kekuatan": ["Komunikasi memikat", "Kreativitas tanpa batas", "Ahli mencairkan suasana"]},
-    4: {"inti": "Sang Transformator (Ahli Strategi & Pembangun Sistem)", "kekuatan": ["Pola pikir sangat terstruktur", "Bisa diandalkan 100%", "Ketelitian tingkat dewa"]},
-    5: {"inti": "Sang Penggerak (Eksplorator & Pemecah Kebuntuan)", "kekuatan": ["Kelincahan berpikir", "Inovator pemecah kebuntuan", "Keberanian mengeksplorasi"]},
-    6: {"inti": "Sang Harmonizer (Pengayom & Pelindung Natural)", "kekuatan": ["Insting pengayom", "Tanggung jawab moral tinggi", "Loyalitas tanpa pamrih"]},
-    7: {"inti": "Sang Legacy Builder (Pemikir Analitik & Spiritualis)", "kekuatan": ["Kemampuan analisa", "Intuisi sering akurat", "Sangat selektif menilai kualitas"]},
-    8: {"inti": "Sang Sovereign (Eksekutor Otoritas & Magnet Material)", "kekuatan": ["Tahan banting mental", "Insting bisnis tajam", "Kemampuan memegang kendali"]},
-    9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
-}
-
-link_produk = {
-    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout", 2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
-    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout", 4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
-    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout", 6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
-    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout", 8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
-    9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
-}
-
 KAMUS_ABJAD = {
     'a': 1, 'b': 2, 'j': 3, 'd': 4, 'h': 5, 'w': 6, 'z': 7, 
     't': 9, 'y': 10, 'k': 20, 'l': 30, 'm': 40, 'n': 50, 
@@ -583,7 +676,6 @@ with tab1:
             st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf).")
         else:
             try:
-                # Soft Animation Loading
                 with st.spinner('Menyelaraskan frekuensi kosmik...'):
                     time.sleep(1.5)
                 
@@ -606,7 +698,6 @@ with tab1:
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
                 
-                # Wrapping results in fade-in animation
                 st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
                 
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
@@ -668,7 +759,7 @@ with tab1:
                     st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
                     st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
                 
-                # Mengembalikan CTA Lynk.id berdasarkan KODE angka_hasil
+                # Menggunakan link_produk asli milik lo Bro
                 st.markdown("<br>", unsafe_allow_html=True)
                 url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
                 st.markdown(f"""
@@ -677,7 +768,7 @@ with tab1:
 </a>
 """, unsafe_allow_html=True)
                 
-                st.markdown('</div>', unsafe_allow_html=True) # End of soft-fade div
+                st.markdown('</div>', unsafe_allow_html=True)
                 
             except Exception as e:
                 st.error(f"Sistem gagal melakukan komputasi: {e}")
@@ -747,7 +838,7 @@ with tab2:
             except Exception as e: st.error(f"Error komputasi: {e}")
 
 # ==========================================
-# TAB 5: QUANTUM ENGINE
+# TAB 5: QUANTUM ENGINE (FATE HACKING)
 # ==========================================
 with tab5:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -764,29 +855,22 @@ with tab5:
             jummal_qe = hitung_nama_esoterik(qe_nama)
             mod_harian = (jummal_qe + sum(int(d) for d in tgl_today.strftime("%d%m%Y"))) % 7
             
-            fase_harian = {
-                0: ("🔴 Rest & Reset", f"Energi di titik nadir. Lakukan hal repetitif saja."),
-                1: ("🟢 Inisiasi", f"Momentum awal. Saatnya eksekusi proyek baru!"),
-                2: ("🔵 Kolaborasi", f"Cari rekan, negosiasi, atau minta bantuan. Pintu peluang lewat orang lain."),
-                3: ("🟡 Ekspresi", f"Aura komunikasi terang. Update sosmed, bikin presentasi."),
-                4: ("🟤 Pondasi", f"Fokus struktur. Rapikan meja, bereskan file admin/keuangan."),
-                5: ("🟠 Ekspansi & Risiko", f"Waktu tepat mencoba rute baru/ambil risiko terkalkulasi."),
-                6: ("🟣 Pengayoman", f"Energi perlindungan tinggi. Selesaikan konflik dengan orang terdekat.")
-            }
-            siklus_hari_ini, saran_siklus = fase_harian.get(mod_harian, fase_harian[0])
             sun_fase, sun_desc = get_sun_phase()
             planet_live, planet_desc, planet_color = get_planetary_hour()
+            
+            siklus_nama, html_plan = proc_tactical_plan(safe_qe, mod_harian, planet_live, planet_desc, sun_fase, sun_desc)
             
             st.markdown('<div class="soft-fade">', unsafe_allow_html=True)
             st.markdown(f"### 📡 Live Dashboard: {safe_qe}")
             st.markdown(f"""
 <div class="matrix-container">
-<div class="matrix-item"><div class="matrix-label">Fase Harian</div><div class="matrix-value">{siklus_hari_ini.split(' ')[1]}</div></div>
+<div class="matrix-item"><div class="matrix-label">Fase Harian</div><div class="matrix-value">{siklus_nama.split(' ')[0]}</div></div>
 <div class="matrix-item"><div class="matrix-label">Matahari</div><div class="matrix-value matrix-value-special">{sun_fase.split(' ')[0]}</div></div>
 <div class="matrix-item" style="border-bottom: 2px solid {planet_color};"><div class="matrix-label">Jam Planet</div><div class="matrix-value" style="color:{planet_color};">{planet_live}</div></div>
 </div>
 """, unsafe_allow_html=True)
-            st.markdown(f'<div class="live-engine-box"><h4 style="color: #00FFFF; margin-top:0;">⚡ TACTICAL ACTION PLAN</h4><p style="color: #ccc;">Fase Bioritme Anda: <b>{siklus_hari_ini}</b>. <i>Saran: {saran_siklus}</i><br><br><b>🎯 KESIMPULAN:</b> Manfaatkan energi {planet_live.split(" ")[0]} ini untuk mengeksekusi misi fase {siklus_hari_ini.split(" ")[1]} Anda. Jangan ditunda!</p></div>', unsafe_allow_html=True)
+            
+            st.markdown(html_plan, unsafe_allow_html=True)
             st.markdown('</div>', unsafe_allow_html=True)
 
 # ==========================================
@@ -846,7 +930,7 @@ with tab3:
 </div>
 """, unsafe_allow_html=True)
             
-            # Mengembalikan CTA Lynk.id di Tab Falak Ruhani
+            # Menggunakan link_produk asli milik lo Bro untuk CTA Falak Ruhani
             url_terapi = link_produk.get(r_num_r, "https://lynk.id/neuronada")
             st.markdown(f"""
 <a href="{url_terapi}" target="_blank" style="text-decoration: none;">
