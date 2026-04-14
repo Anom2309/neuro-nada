@@ -225,29 +225,25 @@ def proc_tactical_plan(nama, mod_harian, planet_live, planet_desc, sun_fase, sun
 
     do_html = "".join([f"<li style='margin-bottom: 8px;'>{item}</li>" for item in random.sample(fd["do"], 2)])
 
-    html_output = f"""
-    <div class="live-engine-box soft-fade" style="background: rgba(20,20,25,0.9); border-left: 4px solid #00FFFF; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,255,255,0.1);">
-        <h4 style="color: #00FFFF; margin-top:0; letter-spacing: 1px; font-weight:900;">⚡ TACTICAL ACTION PLAN <span style="font-size:12px; color:#aaa; font-weight:normal;">(Kritis: 60 Menit ke Depan)</span></h4>
-        <p style="color: #ccc; font-size: 15px; line-height: 1.6; margin-bottom:20px;">
-            {buka}<br><br>
-            <b style="color:#FFF; font-size:16px;">STATUS BIORITME ANDA: <span style="color:#FFD700;">{fd['nama'].split('(')[0].strip()}</span></b><br>
-            {fd['analisa']}<br><br>
-            <i style="color:#888;">Sinkronisasi Kosmik:</i> {koneksi} ({planet_desc})
-        </p>
-        
-        <div style="background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.4); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-            <b style="color: #25D366; font-size:15px;">🎯 PROTOKOL EKSEKUSI (LAKUKAN SEKARANG):</b>
-            <ul style="color: #e0e0e0; font-size: 15px; margin-top: 10px; margin-bottom: 0; padding-left: 20px; line-height:1.5;">
-                {do_html}
-            </ul>
-        </div>
-        
-        <div style="background: rgba(255,75,75,0.1); border: 1px solid rgba(255,75,75,0.4); padding: 15px; border-radius: 8px;">
-            <b style="color: #ff4b4b; font-size:15px;">🛑 RED ZONE (HINDARI MUTLAK):</b><br>
-            <span style="color: #ccc; font-size: 14px; display:inline-block; margin-top:5px; line-height:1.5;">{fd['dont']}</span>
-        </div>
-    </div>
-    """
+    html_output = f"""<div class="live-engine-box soft-fade" style="background: rgba(20,20,25,0.9); border-left: 4px solid #00FFFF; padding: 25px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,255,255,0.1);">
+<h4 style="color: #00FFFF; margin-top:0; letter-spacing: 1px; font-weight:900;">⚡ TACTICAL ACTION PLAN <span style="font-size:12px; color:#aaa; font-weight:normal;">(Kritis: 60 Menit ke Depan)</span></h4>
+<p style="color: #ccc; font-size: 15px; line-height: 1.6; margin-bottom:20px;">
+{buka}<br><br>
+<b style="color:#FFF; font-size:16px;">STATUS BIORITME ANDA: <span style="color:#FFD700;">{fd['nama'].split('(')[0].strip()}</span></b><br>
+{fd['analisa']}<br><br>
+<i style="color:#888;">Sinkronisasi Kosmik:</i> {koneksi} ({planet_desc})
+</p>
+<div style="background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.4); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+<b style="color: #25D366; font-size:15px;">🎯 PROTOKOL EKSEKUSI (LAKUKAN SEKARANG):</b>
+<ul style="color: #e0e0e0; font-size: 15px; margin-top: 10px; margin-bottom: 0; padding-left: 20px; line-height:1.5;">
+{do_html}
+</ul>
+</div>
+<div style="background: rgba(255,75,75,0.1); border: 1px solid rgba(255,75,75,0.4); padding: 15px; border-radius: 8px;">
+<b style="color: #ff4b4b; font-size:15px;">🛑 RED ZONE (HINDARI MUTLAK):</b><br>
+<span style="color: #ccc; font-size: 14px; display:inline-block; margin-top:5px; line-height:1.5;">{fd['dont']}</span>
+</div>
+</div>"""
     return fd['nama'], html_output
 
 # --- ENGINE FALAK RUHANI (SPIRITUAL ANCHORING) ---
@@ -640,10 +636,9 @@ with st.sidebar:
  
 # --- INTERFACE UTAMA ---
 cur_planet, cur_instr, cur_color = get_planetary_hour()
-st.markdown(f"""
-<div style='text-align: right;'>
-    <div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div>
-    <div style='font-size: 11px; color: #888; margin-top: 5px;'>{cur_instr}</div>
+st.markdown(f"""<div style='text-align: right;'>
+<div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div>
+<div style='font-size: 11px; color: #888; margin-top: 5px;'>{cur_instr}</div>
 </div>""", unsafe_allow_html=True)
  
 st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900; color:#FFD700;'>🌌 Neuro Nada Deep Analysis</h1>", unsafe_allow_html=True)
@@ -700,18 +695,15 @@ with tab1:
                 
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
                 
-                st.markdown(f"""
-<div class="matrix-container soft-fade">
+                st.markdown(f"""<div class="matrix-container soft-fade">
 <div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div>
 <div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div>
 <div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div>
 <div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div>
 <div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} ({nep})</div></div>
-</div>
-""", unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
                 
-                st.markdown(f"""
-<div class="dynamic-reading-box soft-fade">
+                st.markdown(f"""<div class="dynamic-reading-box soft-fade">
 <h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4>
 <p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br>
 <code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p>
@@ -723,11 +715,9 @@ with tab1:
 <code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br>
 <span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> otak <b>{safe_name}</b> memproses informasi.</span></p>
 {m_note}
-</div>
-""", unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
 
-                st.markdown(f"""
-<div class="primbon-box soft-fade">
+                st.markdown(f"""<div class="primbon-box soft-fade">
 <div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;">
 <span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span>
 </div>
@@ -742,8 +732,7 @@ with tab1:
 <span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari_input}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br>
 <i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan diri Anda menghadap <b>{arah_naga}</b> saat mengambil keputusan penting hari ini.</i>
 </div>
-</div>
-""", unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
                 
                 st.markdown(f"### 👁️ Decode Kepribadian Dinamis: {safe_name}")
                 st.info(f"Mengacu pada pola unik {safe_name}, arketipe utama dikunci sebagai:\n\n**{punchy['inti']}**")
@@ -759,11 +748,9 @@ with tab1:
                 
                 st.markdown("<br>", unsafe_allow_html=True)
                 url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
-                st.markdown(f"""
-<a href="{url_t}" target="_blank" style="text-decoration: none;">
+                st.markdown(f"""<a href="{url_t}" target="_blank" style="text-decoration: none;">
 <div class="cta-button soft-fade">⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA</div>
-</a>
-""", unsafe_allow_html=True)
+</a>""", unsafe_allow_html=True)
                 
             except Exception as e:
                 st.error(f"Sistem gagal melakukan komputasi: {e}")
@@ -809,14 +796,12 @@ with tab2:
                 judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
                 
                 st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
-                st.markdown(f"""
-<div class="matrix-container soft-fade">
+                st.markdown(f"""<div class="matrix-container soft-fade">
 <div class="matrix-item"><div class="matrix-label">Neptu {safe_n1}</div><div class="matrix-value">{hc1} {pc1} ({nep_1})</div></div>
 <div class="matrix-item"><div class="matrix-label">Neptu {safe_n2}</div><div class="matrix-value">{hc2} {pc2} ({nep_2})</div></div>
 <div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL NEPTU</div><div class="matrix-value matrix-value-special">{nep_1 + nep_2}</div></div>
 <div class="matrix-item"><div class="matrix-label">Total Esoterik</div><div class="matrix-value">{total_couple}</div></div>
-</div>
-""", unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
                 st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2, total_couple, (nep_1+nep_2)), unsafe_allow_html=True)
                 st.markdown(f'<div class="dynamic-reading-box soft-fade" style="border-left-color: #25D366;"><h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4><p><i>{c_desc}</i></p></div>', unsafe_allow_html=True)
                 st.info(f"**Titik Benturan Weton ({judul_jodoh}):**\n{desk_jodoh}")
@@ -854,13 +839,11 @@ with tab5:
             siklus_nama, html_plan = proc_tactical_plan(safe_qe, mod_harian, planet_live, planet_desc, sun_fase, sun_desc)
             
             st.markdown(f"### 📡 Live Dashboard: {safe_qe}")
-            st.markdown(f"""
-<div class="matrix-container soft-fade">
+            st.markdown(f"""<div class="matrix-container soft-fade">
 <div class="matrix-item"><div class="matrix-label">Fase Harian</div><div class="matrix-value">{siklus_nama.split('(')[0].strip()}</div></div>
 <div class="matrix-item"><div class="matrix-label">Matahari</div><div class="matrix-value matrix-value-special">{sun_fase.split(' ')[0]}</div></div>
 <div class="matrix-item" style="border-bottom: 2px solid {planet_color};"><div class="matrix-label">Jam Planet</div><div class="matrix-value" style="color:{planet_color};">{planet_live}</div></div>
-</div>
-""", unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
             
             st.markdown(html_plan, unsafe_allow_html=True)
 
@@ -889,37 +872,31 @@ with tab3:
                 asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal_r, r_num_r, safe_nr)
                 protokol_nlp = get_protokol_terapi(r_num_r, safe_nr)
                 
-                st.markdown(f"""
-<div class="soft-fade" style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
-    <div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:20px;">
-        <span style="color:#00FFFF; font-size:16px; font-weight:900; letter-spacing:2px;">🧠 PROTOKOL TERAPI KOMPREHENSIF: {safe_nr}</span>
-    </div>
-    
-    <div style="margin-bottom: 20px;">
-        <b style="color:#ff4b4b; font-size:16px;">⚠️ MENTAL BLOCK (Virus Bawah Sadar):</b><br>
-        <span style="color:#ccc; font-size:15px; line-height:1.6;">{protokol_nlp['block']}</span>
-    </div>
-    
-    <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-        <b style="color:#FFF; font-size:16px;">✨ 1. ANCHOR SPIRITUAL (Falak Ruhani)</b><br>
-        <span style="color:#aaa; font-size:14px;">Gunakan Asma ini sebagai Dzikir penenang hati:</span><br>
-        <b style="color:#00FFFF; font-size:20px;">{asma_terapi}</b> <span style="color:#FFD700; font-weight:bold;">(BACA {jumlah_dzikir}x)</span><br>
-        <i style="color:#ccc; font-size:14px;">Fungsi: {tujuan_ruhani}</i>
-    </div>
-    
-    <div style="background: rgba(255,215,0,0.05); border-left: 4px solid #FFD700; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-        <b style="color:#FFD700; font-size:16px;">🗣️ 2. SUGESTI HYPNO-NLP (Afirmasi Diri)</b><br>
-        <span style="color:#aaa; font-size:14px;">Ucapkan kalimat ini di dalam hati dengan penuh keyakinan menjelang tidur (Gelombang Theta):</span><br>
-        <i style="color:#fff; font-size:16px; line-height:1.6;">"{protokol_nlp['afirmasi']}"</i>
-    </div>
-
-    <div style="border-top: 1px dashed #555; padding-top: 15px; padding-bottom: 5px;">
-        <b style="color:#25D366; font-size:16px;">🏃‍♂️ 3. QUANTUM HABIT (Tindakan Fisik Hari Ini)</b><br>
-        <span style="color:#ccc; font-size:15px; line-height:1.6;">Semesta merespons tindakan nyata. Untuk menghancurkan Mental Block Anda, eksekusi tugas ini hari ini:<br>
-        <b style="color:#FFF;">{protokol_nlp['habit']}</b></span>
-    </div>
+                st.markdown(f"""<div class="soft-fade" style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
+<div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:20px;">
+<span style="color:#00FFFF; font-size:16px; font-weight:900; letter-spacing:2px;">🧠 PROTOKOL TERAPI KOMPREHENSIF: {safe_nr}</span>
 </div>
-""", unsafe_allow_html=True)
+<div style="margin-bottom: 20px;">
+<b style="color:#ff4b4b; font-size:16px;">⚠️ MENTAL BLOCK (Virus Bawah Sadar):</b><br>
+<span style="color:#ccc; font-size:15px; line-height:1.6;">{protokol_nlp['block']}</span>
+</div>
+<div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+<b style="color:#FFF; font-size:16px;">✨ 1. ANCHOR SPIRITUAL (Falak Ruhani)</b><br>
+<span style="color:#aaa; font-size:14px;">Gunakan Asma ini sebagai Dzikir penenang hati:</span><br>
+<b style="color:#00FFFF; font-size:20px;">{asma_terapi}</b> <span style="color:#FFD700; font-weight:bold;">(BACA {jumlah_dzikir}x)</span><br>
+<i style="color:#ccc; font-size:14px;">Fungsi: {tujuan_ruhani}</i>
+</div>
+<div style="background: rgba(255,215,0,0.05); border-left: 4px solid #FFD700; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+<b style="color:#FFD700; font-size:16px;">🗣️ 2. SUGESTI HYPNO-NLP (Afirmasi Diri)</b><br>
+<span style="color:#aaa; font-size:14px;">Ucapkan kalimat ini di dalam hati dengan penuh keyakinan menjelang tidur (Gelombang Theta):</span><br>
+<i style="color:#fff; font-size:16px; line-height:1.6;">"{protokol_nlp['afirmasi']}"</i>
+</div>
+<div style="border-top: 1px dashed #555; padding-top: 15px; padding-bottom: 5px;">
+<b style="color:#25D366; font-size:16px;">🏃‍♂️ 3. QUANTUM HABIT (Tindakan Fisik Hari Ini)</b><br>
+<span style="color:#ccc; font-size:15px; line-height:1.6;">Semesta merespons tindakan nyata. Untuk menghancurkan Mental Block Anda, eksekusi tugas ini hari ini:<br>
+<b style="color:#FFF;">{protokol_nlp['habit']}</b></span>
+</div>
+</div>""", unsafe_allow_html=True)
             except Exception as e:
                 st.error(f"Terjadi kesalahan saat memproses sandi terapi: {e}")
             
