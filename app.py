@@ -272,6 +272,14 @@ arketipe_punchy = {
     9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
 }
 
+link_produk = {
+    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout", 2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
+    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout", 4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
+    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout", 6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
+    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout", 8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
+    9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
+}
+
 def proc_arketipe(nama, angka, zodiak, neptu):
     random.seed(generate_seed(f"hyper_ark_{nama}_{angka}_{zodiak}_{neptu}"))
     buka = random.choice([
@@ -638,7 +646,7 @@ with tab2:
             st.markdown("<h4 style='color:#FF69B4;'>Pihak 2 (Wanita)</h4>", unsafe_allow_html=True)
             n2 = st.text_input("Nama Pasangan", key="n2_c")
             d2 = st.date_input("Lahir Wanita", value=datetime.date(1995, 1, 1), format="DD/MM/YYYY", key="d2_c")
-            hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=2, key="hc2")
+            hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Sabtu", "Minggu"], index=2, key="hc2")
             pc2 = st.selectbox("Pasaran Wanita", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=0, key="pc2")
         st.markdown("</div>", unsafe_allow_html=True)
             
