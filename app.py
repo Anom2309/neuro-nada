@@ -16,7 +16,7 @@ if 'premium' not in st.session_state:
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="Neuron AI Ultimate OS", 
+    page_title="Neuro Nada Ultimate OS", 
     page_icon="🌌", 
     layout="wide",
     initial_sidebar_state="expanded" 
@@ -512,7 +512,7 @@ with st.sidebar:
 <span style='color: #FFD700; font-size: 13px; display:inline-block; margin-top:5px; margin-bottom:12px;'>Sisa Slot Hari Ini: <b>2 Orang</b></span><br>
 <a href='https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20butuh%20sesi%20kalibrasi%20private%20hari%20ini' target='_blank' style='background: #25D366; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 900; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37,211,102,0.4);'>💬 CHAT COACH AHMAD</a>
 </div>""", unsafe_allow_html=True)
-    st.markdown("<br><center><small style='color:#666;'>© 2026 Neuron AI Academy</small></center>", unsafe_allow_html=True)
+    st.markdown("<br><center><small style='color:#666;'>© 2026 Neuro Nada Academy</small></center>", unsafe_allow_html=True)
  
 # --- INTERFACE UTAMA ---
 cur_planet, cur_instr, cur_color = get_planetary_hour()
