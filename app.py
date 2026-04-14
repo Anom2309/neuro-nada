@@ -5,12 +5,12 @@ import time
 import urllib.parse
 import urllib.request
 import math
-import plotly.graph_objects as go
 import random
 import csv
 import io
 import hashlib
- 
+import plotly.graph_objects as go # Dipertahankan in-case lu butuh lagi buat update ke depan
+
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
     page_title="Neuro Nada Ultimate OS", 
@@ -18,7 +18,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed" 
 )
- 
+
 # --- CUSTOM CSS ---
 st.markdown(
     """<style>
@@ -42,7 +42,7 @@ st.markdown(
         text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
     }
     .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 75, 75, 0.6); }
- 
+
     .ulasan-box {
         background: rgba(30, 30, 30, 0.6); backdrop-filter: blur(10px);
         padding: 15px; border-radius: 8px; border-left: 4px solid #FFD700; 
@@ -96,7 +96,7 @@ st.markdown(
     }
     </style>""", unsafe_allow_html=True
 )
- 
+
 def get_greeting():
     hour = datetime.datetime.now().hour
     if hour < 11: return "Selamat Pagi, Jiwa Kosmik"
@@ -124,11 +124,11 @@ def get_sun_phase():
     elif 15 <= hour < 18: return "Golden Hour (Refleksi)", "Waktu terbaik untuk kreativitas dan menyelesaikan urusan harian."
     elif 18 <= hour < 20: return "Sunset (Pelepasan)", "Tutup sistem saraf Anda dari beban kerja."
     else: return "Night Void (Regenerasi)", "Fase Delta. Dilarang mengambil keputusan besar di jam ini."
- 
+
 # --- DATABASE CLOUD ---
 URL_POST = "https://script.google.com/macros/s/AKfycbwkOL8-E50RKM5BRR8puh_XbfL-K_hQj5cnv0un6UzmFmMBEG6HZZ4aEQmFZj5EMsSBUQ/exec"
 URL_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2H-IH_8TbdbMRtvZnvza-InIO-Xl-B9YzLYtWtSb8vpUVuM1uZ4FTi6JwOtk2esj7hilwgGCoWex4/pub?output=csv"
- 
+
 def ambil_ulasan():
     try:
         req = urllib.request.Request(URL_CSV)
@@ -137,7 +137,7 @@ def ambil_ulasan():
             reader = csv.DictReader(io.StringIO(decoded))
             return [row for row in reader][::-1]
     except: return []
- 
+
 def kirim_ulasan(nama, rating, komentar):
     try:
         data = urllib.parse.urlencode({"nama": nama, "rating": rating, "komentar": komentar}).encode("utf-8")
@@ -146,7 +146,7 @@ def kirim_ulasan(nama, rating, komentar):
         return True
     except: return False
 
-# --- PROCEDURAL TEXT ENGINE (HYPER-DYNAMIC GENERATOR) ---
+# --- PROCEDURAL TEXT ENGINE ---
 def generate_seed(base_str):
     return int(hashlib.md5(base_str.encode('utf-8')).hexdigest(), 16) % (10**8)
 
@@ -386,6 +386,23 @@ def get_rincian_esoterik(nama):
         if nilai > 0: rincian.append(f"{huruf.upper()}({nilai})")
     return " + ".join(rincian) if rincian else "0"
 
+# --- ENGINE FALAK RUHANI (SPIRITUAL ANCHORING) ---
+def proc_falak_ruhani(total_jummal, root_num, nama):
+    ruhani_data = {
+        1: {"asma": "Ya Fattah (Maha Pembuka)", "vibrasi": "Mendobrak Jalan Buntu & Kesombongan", "tujuan": "Membersihkan hambatan ego, menaklukkan keras kepala, dan membuka pintu rezeki yang terkunci akibat kesombongan tak sadar."},
+        2: {"asma": "Ya Salam (Maha Sejahtera)", "vibrasi": "Harmoni & Perisai Mental", "tujuan": "Menetralisir energi beracun (toxic) dari lingkungan sekitar dan menyembuhkan penyakit mental (anxiety)."},
+        3: {"asma": "Ya Mushawwir (Maha Pembentuk)", "vibrasi": "Manifestasi Ide ke Realita", "tujuan": "Mengubah pikiran yang overthinking dan ide liar menjadi sebuah karya nyata yang terstruktur."},
+        4: {"asma": "Ya Muqit (Maha Pemberi Kecukupan)", "vibrasi": "Stabilitas & Nutrisi Batin", "tujuan": "Menghancurkan 'Mental Miskin' (Scarcity Mindset) dan memberikan rasa aman absolut pada finansial."},
+        5: {"asma": "Ya Basith (Maha Melapangkan)", "vibrasi": "Ekspansi & Pembebasan Diri", "tujuan": "Melepaskan perasaan terkekang/stres dan memperluas kapasitas wadah rezeki agar siap menerima hal besar."},
+        6: {"asma": "Ya Wadud (Maha Mengasihi)", "vibrasi": "Cinta Universal & Daya Tarik", "tujuan": "Menyembuhkan trauma masa lalu, menumbuhkan self-love, dan memancarkan aura pengasihan (Rapport) alami."},
+        7: {"asma": "Ya Batin (Maha Tersembunyi)", "vibrasi": "Intuisi & Hikmah Langit", "tujuan": "Mempertajam indra keenam (intuisi bisnis/hidup) dan kemampuan membaca niat tersembunyi orang lain."},
+        8: {"asma": "Ya Ghaniy (Maha Kaya)", "vibrasi": "Otoritas & Kelimpahan Absolut", "tujuan": "Menjadi magnet kekayaan material dan memegang kendali kekuasaan tanpa jatuh pada keserakahan."},
+        9: {"asma": "Ya Hakim (Maha Bijaksana)", "vibrasi": "Pencerahan & Kesadaran", "tujuan": "Pelepasan beban karma masa lalu dan menyelaraskan tindakan fisik dengan Misi Semesta (Life Purpose)."}
+    }
+    data = ruhani_data.get(root_num, ruhani_data[1])
+    dzikir_count = total_jummal
+    return data["asma"], data["vibrasi"], data["tujuan"], dzikir_count
+
 def generate_dynamic_reading(total_jummal):
     mod = total_jummal % 4 if total_jummal % 4 != 0 else 4
     elemen_dict = {
@@ -438,12 +455,11 @@ def get_rincian_tanggal(tanggal):
     except:
         return "1 = 1"
 
-# --- BYPASS ENGINE (DIRECT WETON INPUT) ---
 def hitung_neptu_langsung(hari, pasaran):
     n_hari = {"Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9}
     n_pas = {"Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8}
     return n_hari.get(hari, 0) + n_pas.get(pasaran, 0)
- 
+
 def get_betaljemur_data(neptu, hari):
     lakuning = {
         7: ("Lebu Katiup Angin", "Pikiran dinamis, mudah goyah, sering berpindah fokus."),
@@ -485,7 +501,7 @@ def get_rezeki_usaha(neptu):
         5: ("Pati", "Hindari spekulasi buta, harus berbasis *data-driven*.")
     }
     return rezeki[mod_rezeki], usaha[mod_usaha]
- 
+
 def get_zodiak(tanggal):
     d, m = tanggal.day, tanggal.month
     if (m == 3 and d >= 21) or (m == 4 and d <= 19): return "Aries"
@@ -539,7 +555,7 @@ st.markdown("---")
 tgl_today = datetime.date.today()
  
 # --- MENU TABS ---
-tab1, tab2, tab5, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "⏱️ Quantum Engine", "🕸️ Radar Saraf", "📚 FAQ"])
+tab1, tab2, tab_quantum, tab_falak, tab_faq = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix", "⏱️ Quantum Engine", "🌌 Falak Ruhani", "📚 FAQ"])
  
 # ==========================================
 # TAB 1: IDENTITAS KOSMIK & BETALJEMUR
@@ -595,6 +611,9 @@ with tab1:
                 punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
+                
+                # Panggil Engine Falak Ruhani
+                asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal, r_num, safe_name)
                 
                 st.snow()
                 st.markdown(f"<h3 style='text-align:center;'>🌌 Blueprint Kosmik: {safe_name}</h3>", unsafe_allow_html=True)
@@ -659,6 +678,27 @@ Kalkulasi penyederhanaan (reduksi matriks) dari tanggal lahir Masehi Anda:<br>
                 with c_shadow:
                     st.markdown(f"⚠️ **SHADOW TERSEMBUNYI (SPESIFIK):**")
                     st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
+                
+                # UI Box Falak Ruhani (DI DALAM TAB 1)
+                st.markdown(f"""
+<div style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; margin-bottom: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
+<div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:15px;">
+<span style="color:#00FFFF; font-size:14px; font-weight:900; letter-spacing:2px;">🌌 PRESKRIPSI FALAK RUHANI (TERAPI SPIRITUAL)</span>
+</div>
+<p style="color:#ccc; font-size:14px; line-height:1.6;">
+Secara metafisika Islam (Ilmu Al-Tanjim), setiap angka nama memiliki "Anchor Spiritual" (Jangkar Batin). Untuk menetralisir kelemahan mental (Shadow) dan mengaktifkan gelombang kesuksesan, <b>{safe_name}</b> diwajibkan menyelaraskan diri dengan frekuensi kosmik berikut:
+</p>
+<div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+<b style="color:#FFF; font-size:18px;">✨ Frekuensi Asma: <span style="color:#00FFFF;">{asma_terapi}</span></b><br>
+<b style="color:#FFD700; font-size:14px;">Resonansi:</b> <i style="color:#fff;">{vibrasi_asma}</i><br>
+<b style="color:#25D366; font-size:14px;">Tujuan Terapi:</b> <i style="color:#ccc;">{tujuan_ruhani}</i>
+</div>
+<div style="border-top: 1px dashed #555; padding-top: 10px;">
+<b style="color:#FFD700;">⚙️ Taktik Eksekusi (Quantum Habit):</b><br>
+<span style="color:#aaa; font-size:14px;">Gunakan asma di atas sebagai afirmasi atau dzikir. Baca sebanyak <b><span style="color:#00FFFF; font-size:18px;">{jumlah_dzikir}x</span></b> <i>(Sesuai nilai Hisab Jummal nama Anda)</i>, dilakukan pada saat Jam Planet sedang dikuasai oleh <b>Bulan 🌙</b> (waktu intuitif) atau <b>Yupiter 🍀</b> (pintu rezeki), untuk mereset ulang arsitektur saraf Anda ke mode *Peak State*.</span>
+</div>
+</div>
+""", unsafe_allow_html=True)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
                 url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
@@ -768,9 +808,9 @@ with tab2:
             st.warning("⚠️ Mohon isi kedua nama terlebih dahulu sebelum melakukan analisis.")
 
 # ==========================================
-# TAB 5: QUANTUM ENGINE (FATE HACKING)
+# TAB 3: QUANTUM ENGINE (FATE HACKING)
 # ==========================================
-with tab5:
+with tab_quantum:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("⏱️ Live Cosmic Dashboard (Fate Hacking)")
     st.write("Sistem menyinkronkan data numerologi Anda dengan kalender rotasi planet dan matahari hari ini. Dapatkan taktik tindakan presisi detik ini juga.")
@@ -833,34 +873,68 @@ Mengacu pada data langit saat ini, Anda <u>diwajibkan</u> memfokuskan energi pad
 """, unsafe_allow_html=True)
         else:
             st.warning("⚠️ Ketik nama panggilan Anda untuk mensinkronisasi radar harian.")
- 
-# ==========================================
-# TAB 3: AUDIT SISTEM SARAF
-# ==========================================
-with tab3:
-    st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-    st.subheader("🕸️ Audit Sistem Saraf (Wheel of Life)")
-    st.info("**Apa itu Audit Sistem Saraf?**\n\nEnergi manusia mengalir layaknya jaring. Geser *slider* sejujur-jujurnya untuk melihat kebocoran energi Anda saat ini.")
-    kategori_label = ['Kesehatan Mental', 'Karir & Finansial', 'Asmara', 'Spiritual', 'Fisik']
-    sk = [st.slider(k, 1, 10, 5) for k in kategori_label]
-    st.markdown("</div>", unsafe_allow_html=True)
-    
-    if st.button("Mulai Audit Radar"):
-        fig = go.Figure(data=go.Scatterpolar(
-            r=sk+[sk[0]], theta=['Mental','Karir','Asmara','Spiritual','Fisik','Mental'], 
-            fill='toself', fillcolor='rgba(212, 175, 55, 0.4)', line=dict(color='#D4AF37')
-        ))
-        fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", font=dict(color="white"))
-        st.plotly_chart(fig)
-        avg = sum(sk)/5
-        if avg < 5: st.error("🚨 **KONDISI KRITIS (ALARM BERBUNYI)**\n\nSistem saraf Anda sedang kelelahan parah. Anda butuh 'Detoks Mental' secepatnya sebelum berujung pada psikosomatis.")
-        elif avg < 8: st.warning("🟡 **ZONA NYAMAN YANG MENIPU**\n\nSistem mendeteksi Anda memendam potensi besar yang tertahan. Selesaikan area terlemah Anda, dan lihat keajaiban terjadi.")
-        else: st.success("🔥 **PEAK STATE (GELOMBANG EMAS)**\n\nSinkronisasi otak dan tindakan Anda sangat sempurna. Ini momentum terbaik mengeksekusi visi Anda!")
 
 # ==========================================
-# TAB 4: FAQ & DISCLAIMER (WISDOM UPDATE)
+# TAB 4: FALAK RUHANI (SPIRITUAL ANCHORING)
 # ==========================================
-with tab4:
+with tab_falak:
+    st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
+    st.subheader("🌌 Terapi Falak Ruhani (Spiritual Anchoring)")
+    st.info("**Apa itu Falak Ruhani?**\n\nSistem mengonversi nama Anda menjadi angka getaran (Hisab Jummal), lalu mencocokkannya dengan frekuensi kosmik (Asmaul Husna) yang paling tepat untuk menghancurkan *mental block* dan menyembuhkan sistem saraf Anda.")
+    
+    nama_ruhani = st.text_input("Masukkan Nama Lengkap:", placeholder="Ketik nama asli Anda...", key="input_ruhani")
+    st.markdown("</div>", unsafe_allow_html=True)
+    
+    if st.button("Aktivasi Anchor Spiritual"):
+        if nama_ruhani and len(nama_ruhani.strip()) >= 3:
+            st.snow()
+            safe_nr = get_safe_firstname(nama_ruhani)
+            nilai_jummal_r = hitung_nama_esoterik(nama_ruhani)
+            
+            # Cari Root Number
+            r_num_r = nilai_jummal_r
+            while r_num_r > 9: r_num_r = sum(int(d) for d in str(r_num_r))
+            
+            asma_terapi, vibrasi_asma, tujuan_ruhani, jumlah_dzikir = proc_falak_ruhani(nilai_jummal_r, r_num_r, safe_nr)
+            
+            st.markdown(f"""
+<div style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; margin-bottom: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
+    <div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:15px;">
+        <span style="color:#00FFFF; font-size:14px; font-weight:900; letter-spacing:2px;">🔮 PRESKRIPSI RUHANI: {safe_nr}</span>
+    </div>
+    <p style="color:#ccc; font-size:14px; line-height:1.6;">
+        Secara metafisika Islam (Ilmu Al-Tanjim), setiap nama memiliki "Anchor Spiritual" (Jangkar Batin). Untuk menetralisir kelemahan mental (Shadow) dan mengaktifkan gelombang kesuksesan, <b>{safe_nr}</b> diwajibkan menyelaraskan diri dengan frekuensi kosmik berikut:
+    </p>
+    <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+        <b style="color:#FFF; font-size:18px;">✨ Frekuensi Asma: <span style="color:#00FFFF;">{asma_terapi}</span></b><br>
+        <b style="color:#FFD700; font-size:14px;">Resonansi:</b> <i style="color:#fff;">{vibrasi_asma}</i><br>
+        <b style="color:#25D366; font-size:14px;">Tujuan Terapi:</b> <i style="color:#ccc;">{tujuan_ruhani}</i>
+    </div>
+    <div style="border-top: 1px dashed #555; padding-top: 10px;">
+        <b style="color:#FFD700;">⚙️ Taktik Eksekusi (Quantum Habit):</b><br>
+        <span style="color:#aaa; font-size:14px;">Gunakan asma di atas sebagai afirmasi batin atau dzikir harian. Rapalkan sebanyak <b><span style="color:#00FFFF; font-size:18px;">{jumlah_dzikir}x</span></b> <i>(Presisi sesuai nilai Gematria nama Anda)</i>. Lakukan saat Jam Planet sedang dikuasai oleh <b>Bulan 🌙</b> (untuk ketenangan) atau <b>Yupiter 🍀</b> (untuk kelancaran bisnis).</span>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+            
+            # CTA Opsional
+            st.markdown(f"""
+            <div class="info-metric-box" style="text-align: center;">
+            <b style="color:#FFD700;">Butuh panduan suara untuk masuk gelombang Alpha/Theta?</b><br>
+            Akses Hypno-Audio Vault untuk mempercepat proses instalasi afirmasi di atas.<br><br>
+            <a href="{link_produk.get(r_num_r, 'https://lynk.id/neuronada')}" target="_blank" style="text-decoration: none;">
+                <span class="live-badge">🎧 BUKA HYPNO-AUDIO VAULT</span>
+            </a>
+            </div>
+            """, unsafe_allow_html=True)
+            
+        else:
+            st.warning("⚠️ Mohon ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi vibrasi.")
+
+# ==========================================
+# TAB 5: FAQ & DISCLAIMER (WISDOM UPDATE)
+# ==========================================
+with tab_faq:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
     st.subheader("📚 FAQ & Navigasi Energi")
     
