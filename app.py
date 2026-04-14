@@ -16,7 +16,7 @@ if 'premium' not in st.session_state:
 
 # --- PENGATURAN HALAMAN ---
 st.set_page_config(
-    page_title="Neuro Nada Ultimate OS", 
+    page_title="Neuron AI Ultimate OS", 
     page_icon="🌌", 
     layout="wide",
     initial_sidebar_state="expanded" 
@@ -197,6 +197,7 @@ def proc_tactical_plan(nama, mod_harian, planet_live, planet_desc, sun_fase, sun
 <b style="color: #ff4b4b; font-size:15px;">🛑 RED ZONE (HINDARI MUTLAK):</b><br>
 <span style="color: #ccc; font-size: 14px; display:inline-block; margin-top:5px; line-height:1.5;">{fd['dont']}</span>
 </div>
+<p style="font-size:12px; color:#ff4b4b; margin-top:10px; font-weight:bold;">⏳ Sistem mendeteksi perubahan energi dalam beberapa jam ke depan. Jangan tunda eksekusi!</p>
 </div>"""
     return fd['nama'], html_output
 
@@ -270,14 +271,6 @@ arketipe_punchy = {
     7: {"inti": "Sang Legacy Builder (Pemikir Analitik & Spiritualis)", "kekuatan": ["Kemampuan analisa", "Intuisi sering akurat", "Sangat selektif menilai kualitas"]},
     8: {"inti": "Sang Sovereign (Eksekutor Otoritas & Magnet Material)", "kekuatan": ["Tahan banting mental", "Insting bisnis tajam", "Kemampuan memegang kendali"]},
     9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
-}
-
-link_produk = {
-    1: "http://lynk.id/neuronada/kj98l4zgzwdw/checkout", 2: "http://lynk.id/neuronada/6z23q03121lg/checkout",
-    3: "http://lynk.id/neuronada/0rd6gr7nlzxp/checkout", 4: "http://lynk.id/neuronada/elp83loeyggg/checkout",
-    5: "http://lynk.id/neuronada/wne9p4q1l3d9/checkout", 6: "http://lynk.id/neuronada/nm840y6nlo21/checkout",
-    7: "http://lynk.id/neuronada/vv0797ll7g7o/checkout", 8: "http://lynk.id/neuronada/ropl1lm6rz8g/checkout",
-    9: "http://lynk.id/neuronada/704ke23nzmgx/checkout"
 }
 
 def proc_arketipe(nama, angka, zodiak, neptu):
@@ -506,7 +499,8 @@ with st.sidebar:
                 st.rerun()
             else:
                 st.error("❌ Kode Salah atau Kadaluarsa.")
-        st.caption("Dapatkan Kode Akses via Lynk.id")
+        # CTA Sidebar diubah langsung ke WA
+        st.markdown("<p style='font-size:13px; color:#888;'>Dapatkan Kode Akses via <a href='https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuron%20AI.' target='_blank' style='color:#25D366; font-weight:bold; text-decoration:none;'>WhatsApp</a></p>", unsafe_allow_html=True)
     else:
         st.success("👑 Status: VIP MEMBER")
         if st.button("Logout"):
@@ -516,25 +510,27 @@ with st.sidebar:
     # WA CTA (URGENT & AGGRESSIVE)
     st.markdown("---")
     st.markdown("""<div style='background: linear-gradient(135deg, #ff0000 0%, #8b0000 100%); padding: 18px; border-radius: 10px; text-align: center; border: 1px solid #ff4b4b; box-shadow: 0 5px 15px rgba(255,0,0,0.3);'>
-<b style='color: white; font-size: 16px; letter-spacing: 1px;'>🔥 PRIVATE KALIBRASI</b><br>
-<span style='color: #FFD700; font-size: 13px; display:inline-block; margin-top:5px; margin-bottom:12px;'>Sisa Slot Hari Ini: <b>2 Orang</b></span><br>
-<a href='https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20butuh%20sesi%20kalibrasi%20private%20hari%20ini' target='_blank' style='background: #25D366; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 900; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37,211,102,0.4);'>💬 CHAT COACH AHMAD</a>
+<b style='color: white; font-size: 16px; letter-spacing: 1px;'>🔥 BUTUH ANALISA LEBIH DALAM?</b><br>
+<span style='color: #ccc; font-size: 12px; display:block; margin-top:5px;'>Beberapa hasil tidak bisa ditampilkan di sistem.</span>
+<span style='color: #FFD700; font-size: 13px; display:inline-block; margin-top:5px; margin-bottom:12px;'>Konsultasi langsung dengan Coach (Slot Terbatas Hari Ini)</span><br>
+<a href='https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20butuh%20sesi%20kalibrasi%20private%20hari%20ini' target='_blank' style='background: #25D366; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 900; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37,211,102,0.4);'>💬 KLIK DI SINI SEKARANG</a>
 </div>""", unsafe_allow_html=True)
-    st.markdown("<br><center><small style='color:#666;'>© 2026 Neuro Nada Academy</small></center>", unsafe_allow_html=True)
+    st.markdown("<br><center><small style='color:#666;'>© 2026 Neuron AI Academy</small></center>", unsafe_allow_html=True)
  
-# --- INTERFACE UTAMA ---
+# --- INTERFACE UTAMA (HERO SECTION) ---
 cur_planet, cur_instr, cur_color = get_planetary_hour()
 st.markdown(f"""<div style='text-align: right;'><div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div><div style='font-size: 11px; color: #888; margin-top: 5px;'>{cur_instr}</div></div>""", unsafe_allow_html=True)
  
-st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900; color:#FFD700;'>🌌 Neuron AI Deep Analysis</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 18px; color: #ccc; margin-bottom:0;'>Meretas Realita Melalui Kode Sandi Alam Bawah Sadar</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900; color:#FFD700;'>🌌 BUKA KODE HIDUP ANDA HARI INI</h1>", unsafe_allow_html=True)
+st.markdown("""<p style='text-align: center; font-size: 16px; color: #ccc;'>Bukan ramalan biasa. Ini adalah hasil decoding energi nama, tanggal lahir, dan siklus waktu Anda.<br><br><b>⚡ Dalam 10 detik, Anda akan tahu:</b><br>• Arah rezeki hari ini<br>• Keputusan yang HARUS diambil<br>• Risiko yang WAJIB dihindari</p>""", unsafe_allow_html=True)
+st.markdown("<div style='text-align:center; margin-bottom:20px;'><span style='background:rgba(255,75,75,0.2); color:#ff4b4b; padding:8px 15px; border-radius:5px; font-size:13px; font-weight:bold;'>⚠️ Jangan baca ini kalau belum siap tahu kebenaran tentang diri Anda.</span></div>", unsafe_allow_html=True)
 st.markdown("---")
  
 tgl_today = datetime.date.today()
 tab1, tab2, tab5, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix 🔒", "⏱️ Quantum Engine 🔒", "🌌 Falak Ruhani 🔒", "📚 FAQ"])
  
 # ==========================================
-# TAB 1: IDENTITAS KOSMIK (GRATIS - LEAD MAGNET)
+# TAB 1: IDENTITAS KOSMIK (HOOK & PAYWALL)
 # ==========================================
 with tab1:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -551,7 +547,7 @@ with tab1:
         pasaran_input = st.selectbox("Pasaran", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="p_t1")
     st.markdown("</div>", unsafe_allow_html=True)
  
-    if st.button("Kalkulasi Blueprint (Mulai)"):
+    if st.button("🔓 Buka Hasil Saya"):
         if not nama_user or len(nama_user.strip()) < 3: 
             st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf).")
         else:
@@ -578,42 +574,58 @@ with tab1:
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
                 
-                # --- HASIL CEPAT 10 DETIK (HOOK) ---
+                # --- HASIL CEPAT 10 DETIK (HOOK - SELALU MUNCUL) ---
                 st.markdown(f"""<div class="soft-fade" style="background: rgba(255,215,0,0.1); border-left: 5px solid #FFD700; padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 1px solid rgba(255,215,0,0.3);">
-<h3 style="margin-top:0; color:#FFD700; font-weight:900; letter-spacing:1px;">⚡ HASIL CEPAT ANDA HARI INI</h3>
+<h3 style="margin-top:0; color:#FFD700; font-weight:900; letter-spacing:1px;">🎯 HASIL ANDA HARI INI</h3>
 <ul style="font-size: 17px; line-height: 1.8; color: #fff; list-style-type: none; padding-left: 0;">
-<li style="margin-bottom: 10px;">💰 <b>Status Rezeki:</b> <span style="color:#25D366; font-weight:bold;">TERBUKA</span> <i style="color:#aaa; font-size:14px;">({rezeki_data[0]})</i></li>
-<li style="margin-bottom: 10px;">🧠 <b>Karakter Inti:</b> <span style="color:#00FFFF;">{punchy['inti'].split('(')[0].strip()}</span></li>
-<li style="margin-bottom: 10px;">⚠️ <b>Titik Buta (Risiko):</b> Waspadai sifat <span style="color:#ff4b4b;">{shadow[0].lower()}</span> hari ini.</li>
+<li style="margin-bottom: 10px;">💰 <b>REZEKI:</b> <span style="color:#25D366; font-weight:bold;">TERBUKA</span> <i style="color:#aaa; font-size:14px;">(Momentum tinggi - {rezeki_data[0]})</i></li>
+<li style="margin-bottom: 10px;">⚡ <b>AKSI:</b> Hubungi seseorang yang sudah lama Anda tunda.</li>
+<li style="margin-bottom: 10px;">🚫 <b>LARANGAN:</b> Jangan ambil keputusan finansial besar hari ini (Waspadai sifat {shadow[0].lower()}).</li>
 </ul>
 <div style="background: rgba(255,75,75,0.2); padding: 8px 15px; border-radius: 5px; display: inline-block; margin-top: 10px;">
-<b style="color:#ff4b4b; font-size:13px;">⏳ VALID HANYA 24 JAM:</b> <span style="color:#ccc; font-size:13px;">Energi kosmik Anda akan berubah besok. Gulir ke bawah untuk analisa lengkap.</span>
+<b style="color:#ff4b4b; font-size:13px;">⏳ Energi ini hanya berlaku sampai 24 jam ke depan</b>
 </div>
 </div>""", unsafe_allow_html=True)
                 
-                st.markdown(f"<h3 style='text-align:center;'>🌌 Deep Analysis: {safe_name}</h3>", unsafe_allow_html=True)
-                
-                st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div><div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div><div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div><div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div><div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} ({nep})</div></div></div>""", unsafe_allow_html=True)
-                
-                st.markdown(f"""<div class="dynamic-reading-box soft-fade"><h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4><p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br><code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p><ul style="margin-left: -15px; margin-bottom: 20px;"><li><b>Elemen Bawah Sadar:</b> {el_nama} - <i style="color:#aaa;">{el_desc}</i></li><li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b> ({r_desc})</li></ul><p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br><code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br><span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> otak <b>{safe_name}</b> memproses informasi.</span></p>{m_note}</div>""", unsafe_allow_html=True)
-
-                st.markdown(f"""<div class="primbon-box soft-fade"><div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;"><span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span></div><div style="font-size:15px; line-height:1.6; margin-bottom: 15px;"><b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i></div><div style="font-size:15px; line-height:1.6; margin-bottom: 15px; border-top: 1px dashed #555; padding-top: 10px;">• <b>Rezeki (<span style="color:#FFD700;">{rezeki_data[0]}</span>):</b> <i style="color:#ccc;">{rezeki_data[1]}</i><br>• <b>Usaha (<span style="color:#25D366;">{usaha_data[0]}</span>):</b> <i style="color:#ccc;">{usaha_data[1]}</i></div><div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;"><span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari_input}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br><i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan diri Anda menghadap <b>{arah_naga}</b> saat mengambil keputusan penting hari ini.</i></div></div>""", unsafe_allow_html=True)
-                
-                st.markdown(f"### 👁️ Decode Kepribadian Dinamis: {safe_name}")
-                st.info(f"Mengacu pada pola unik {safe_name}, arketipe utama dikunci sebagai:\n\n**{punchy['inti']}**")
-                st.write(desk_ark_dinamis)
-                
-                c_kekuatan, c_shadow = st.columns(2)
-                with c_kekuatan:
-                    st.markdown(f"🔥 **KEKUATAN DOMINAN:**")
-                    st.markdown(f"<ul class='list-punchy' style='color:#25D366;'><li>{punchy['kekuatan'][0]}</li><li>{punchy['kekuatan'][1]}</li><li>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
-                with c_shadow:
-                    st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
-                    st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
-                
-                st.markdown("<br>", unsafe_allow_html=True)
-                url_t = link_produk.get(angka_hasil, "https://lynk.id/neuronada")
-                st.markdown(f"""<a href="{url_t}" target="_blank" style="text-decoration: none;"><div class="cta-button soft-fade">⚠️ BONGKAR MENTAL BLOCK KODE {angka_hasil} & REBUT KENDALI HIDUP ANDA</div></a>""", unsafe_allow_html=True)
+                # --- PAYWALL: CEK STATUS PREMIUM ---
+                if not st.session_state.premium:
+                    st.markdown("""<div class="glass-container soft-fade" style="text-align:center; border: 2px solid #ff4b4b; padding: 30px 20px;">
+<h3 style="color:#ff4b4b; margin-top:0;">🔓 Anda baru melihat 20% dari hasil Anda...</h3>
+<div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left; display: inline-block;">
+<span style="color:#ccc; font-size: 15px;">Di dalam analisa lengkap:</span><br>
+<b style="color:#fff;">• Blueprint kepribadian terdalam Anda</b><br>
+<b style="color:#fff;">• Titik kebocoran rezeki Anda</b><br>
+<b style="color:#fff;">• Strategi spesifik 60 menit ke depan</b><br>
+<b style="color:#fff;">• Analisa hubungan & jodoh (jika ada pasangan)</b>
+</div>
+<p style="color:#FFD700; font-size: 16px;"><b>🔥 Ini bukan informasi umum.<br>Ini PERSONAL — hanya untuk Anda.</b></p>
+<a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuron%20AI." target="_blank" style="text-decoration:none;">
+<div class="cta-button" style="font-size:18px; margin-top: 10px;">🚀 AKTIFKAN ANALISA LENGKAP</div>
+</a>
+<p style="font-size:14px; color:#ccc; margin-top:15px; margin-bottom: 5px;">Hanya <b>Rp 19.000</b><br><i style="color:#888;">(Lebih murah dari kopi, tapi bisa ubah arah hidup Anda)</i></p>
+<span style="background:rgba(255,75,75,0.2); color:#ff4b4b; padding:4px 10px; border-radius:3px; font-size:12px; font-weight:bold;">⚠️ Harga bisa naik kapan saja | Akses langsung terbuka</span>
+<div style="margin-top: 25px; border-top: 1px dashed #555; padding-top: 15px;">
+<span style="font-size:14px; color:#25D366; font-weight:bold;">🔥 1.287 orang sudah membuka analisa mereka hari ini.</span><br>
+<span style="font-size:13px; color:#888;">Jangan jadi yang ketinggalan momentum.</span>
+</div>
+</div>""", unsafe_allow_html=True)
+                else:
+                    # --- DEEP ANALYSIS (HANYA JIKA PREMIUM) ---
+                    st.markdown(f"<h3 style='text-align:center;'>🌌 Deep Analysis: {safe_name}</h3>", unsafe_allow_html=True)
+                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div><div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div><div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div><div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div><div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} ({nep})</div></div></div>""", unsafe_allow_html=True)
+                    st.markdown(f"""<div class="dynamic-reading-box soft-fade"><h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4><p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br><code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p><ul style="margin-left: -15px; margin-bottom: 20px;"><li><b>Elemen Bawah Sadar:</b> {el_nama} - <i style="color:#aaa;">{el_desc}</i></li><li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b> ({r_desc})</li></ul><p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br><code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br><span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> otak <b>{safe_name}</b> memproses informasi.</span></p>{m_note}</div>""", unsafe_allow_html=True)
+                    st.markdown(f"""<div class="primbon-box soft-fade"><div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;"><span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span></div><div style="font-size:15px; line-height:1.6; margin-bottom: 15px;"><b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i></div><div style="font-size:15px; line-height:1.6; margin-bottom: 15px; border-top: 1px dashed #555; padding-top: 10px;">• <b>Rezeki (<span style="color:#FFD700;">{rezeki_data[0]}</span>):</b> <i style="color:#ccc;">{rezeki_data[1]}</i><br>• <b>Usaha (<span style="color:#25D366;">{usaha_data[0]}</span>):</b> <i style="color:#ccc;">{usaha_data[1]}</i></div><div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;"><span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari_input}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br><i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan diri Anda menghadap <b>{arah_naga}</b> saat mengambil keputusan penting hari ini.</i></div></div>""", unsafe_allow_html=True)
+                    st.markdown(f"### 👁️ Decode Kepribadian Dinamis: {safe_name}")
+                    st.info(f"Mengacu pada pola unik {safe_name}, arketipe utama dikunci sebagai:\n\n**{punchy['inti']}**")
+                    st.write(desk_ark_dinamis)
+                    
+                    c_kekuatan, c_shadow = st.columns(2)
+                    with c_kekuatan:
+                        st.markdown(f"🔥 **KEKUATAN DOMINAN:**")
+                        st.markdown(f"<ul class='list-punchy' style='color:#25D366;'><li>{punchy['kekuatan'][0]}</li><li>{punchy['kekuatan'][1]}</li><li>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
+                    with c_shadow:
+                        st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
+                        st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
                 
             except Exception as e:
                 st.error(f"Sistem gagal melakukan komputasi: {e}")
@@ -624,17 +636,17 @@ with tab1:
 with tab2:
     if not st.session_state.premium:
         st.markdown("""<div class='glass-container soft-fade' style='text-align: center; padding: 40px 20px;'>
-<h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR PREMIUM DIKUNCI</h2>
-<p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Anda sedang mengakses versi Gratis. Buka rahasia <b>Tingkat Kecocokan, Potensi Konflik, & Resep Jodoh Weton</b> Anda dan Pasangan dengan Akses Premium.</p>
-<a href="https://lynk.id/neuronada" target="_blank" style="text-decoration: none;">
-<div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE AKSES (Rp 49.000)</div>
+<h3 style='color: #ff4b4b; font-weight: 900; margin-top:0;'>💞 CEK KECOCOKAN ANDA & DIA</h3>
+<p style='color: #ccc; font-size: 16px; margin-bottom: 20px;'>Apakah hubungan ini:<br><b style='color:#ff4b4b;'>❤️ JODOH?</b> | <b style='color:#FFD700;'>⚡ Ujian?</b> | <b style='color:#888;'>💔 Atau sebenarnya tidak cocok?</b></p>
+<p style='font-size: 14px; color: #aaa; margin-bottom: 30px;'>Masukkan 2 nama dan lihat hasilnya sekarang.<br><i style='color:#ff4b4b;'>⚠️ Banyak yang kaget setelah lihat hasilnya.</i></p>
+<a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuron%20AI." target="_blank" style="text-decoration: none;">
+<div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE VIA WHATSAPP (Rp 19.000)</div>
 </a>
-<br><br>
-<p style='font-size: 13px; color: #888;'>Sudah punya kode akses? Masukkan di menu samping (Sidebar).</p>
+<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 1.287 orang sudah membuka analisa mereka hari ini.</p>
 </div>""", unsafe_allow_html=True)
     else:
         st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-        st.subheader("Penyatuan Esoterik & Betaljemur (Couple Matrix)")
+        st.subheader("💞 Penyatuan Esoterik & Betaljemur (Couple Matrix)")
         ca, cb = st.columns(2)
         with ca: 
             st.markdown("<h4 style='color:#FFD700;'>Pihak 1 (Pria)</h4>", unsafe_allow_html=True)
@@ -646,11 +658,11 @@ with tab2:
             st.markdown("<h4 style='color:#FF69B4;'>Pihak 2 (Wanita)</h4>", unsafe_allow_html=True)
             n2 = st.text_input("Nama Pasangan", key="n2_c")
             d2 = st.date_input("Lahir Wanita", value=datetime.date(1995, 1, 1), format="DD/MM/YYYY", key="d2_c")
-            hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Sabtu", "Minggu"], index=2, key="hc2")
+            hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=2, key="hc2")
             pc2 = st.selectbox("Pasaran Wanita", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=0, key="pc2")
         st.markdown("</div>", unsafe_allow_html=True)
             
-        if st.button("Analisis Resonansi Pasangan"):
+        if st.button("🚀 Lihat Nasib Saya Hari Ini", key="btn_couple"):
             if str(n1).strip() and str(n2).strip():
                 try:
                     with st.spinner('Menghitung benturan energi pasangan...'):
@@ -692,11 +704,10 @@ with tab5:
         st.markdown("""<div class='glass-container soft-fade' style='text-align: center; padding: 40px 20px;'>
 <h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR PREMIUM DIKUNCI</h2>
 <p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Anda sedang mengakses versi Gratis. Buka akses <b>Tactical Action Plan (Pemetaan Aksi Taktis Harian)</b> yang dikalibrasi real-time dengan energi planet Anda.</p>
-<a href="https://lynk.id/neuronada" target="_blank" style="text-decoration: none;">
-<div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE AKSES (Rp 49.000)</div>
+<a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuron%20AI." target="_blank" style="text-decoration: none;">
+<div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE VIA WHATSAPP (Rp 19.000)</div>
 </a>
-<br><br>
-<p style='font-size: 13px; color: #888;'>Sudah punya kode akses? Masukkan di menu samping (Sidebar).</p>
+<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 1.287 orang sudah membuka analisa mereka hari ini.</p>
 </div>""", unsafe_allow_html=True)
     else:
         st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -704,7 +715,7 @@ with tab5:
         qe_nama = st.text_input("Nama Panggilan:", key="qe_n")
         st.markdown("</div>", unsafe_allow_html=True)
         
-        if st.button("Hack My Reality Now"):
+        if st.button("🚀 Lihat Nasib Saya Hari Ini", key="btn_qe"):
             if qe_nama:
                 with st.spinner('Menarik data pergerakan planet...'):
                     time.sleep(1.2)
@@ -731,11 +742,10 @@ with tab3:
         st.markdown("""<div class='glass-container soft-fade' style='text-align: center; padding: 40px 20px;'>
 <h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR PREMIUM DIKUNCI</h2>
 <p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Anda sedang mengakses versi Gratis. Buka resep <b>Terapi Falak Ruhani, Afirmasi NLP Khusus, & Penawar Mental Block</b> dengan Akses Premium.</p>
-<a href="https://lynk.id/neuronada" target="_blank" style="text-decoration: none;">
-<div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE AKSES (Rp 49.000)</div>
+<a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuron%20AI." target="_blank" style="text-decoration: none;">
+<div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE VIA WHATSAPP (Rp 19.000)</div>
 </a>
-<br><br>
-<p style='font-size: 13px; color: #888;'>Sudah punya kode akses? Masukkan di menu samping (Sidebar).</p>
+<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 1.287 orang sudah membuka analisa mereka hari ini.</p>
 </div>""", unsafe_allow_html=True)
     else:
         st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
@@ -744,7 +754,7 @@ with tab3:
         nama_ruhani = st.text_input("Masukkan Nama Lengkap Anda:", placeholder="Ketik nama asli...", key="input_ruhani")
         st.markdown("</div>", unsafe_allow_html=True)
         
-        if st.button("Aktivasi Anchor Spiritual"):
+        if st.button("🔓 Buka Hasil Saya", key="btn_ruhani"):
             if nama_ruhani and len(nama_ruhani.strip()) >= 3:
                 try:
                     with st.spinner('Mengekstrak sandi penyembuhan Anda...'):
@@ -783,6 +793,7 @@ with tab3:
 <span style="color:#ccc; font-size:15px; line-height:1.6;">Semesta merespons tindakan nyata. Untuk menghancurkan rantai Mental Block Anda secara instan, eksekusi satu tugas ini hari ini juga:<br>
 <b style="color:#FFF;">{protokol_nlp['habit']}</b></span>
 </div>
+<p style="font-size:12px; color:#ff4b4b; margin-top:15px; font-weight:bold;">⏳ Sistem mendeteksi perubahan energi. Lakukan protokol ini sebelum siklus berganti!</p>
 </div>""", unsafe_allow_html=True)
                 except Exception as e:
                     st.error(f"Terjadi kesalahan saat memproses sandi terapi: {e}")
