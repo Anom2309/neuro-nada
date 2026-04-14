@@ -535,7 +535,7 @@ cur_planet, cur_instr, cur_color = get_planetary_hour()
 st.markdown(f"""<div style='text-align: right;'><div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div><div style='font-size: 11px; color: #888; margin-top: 5px;'>{cur_instr}</div></div>""", unsafe_allow_html=True)
  
 st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900; color:#FFD700;'>🌌 BUKA KODE HIDUP ANDA HARI INI</h1>", unsafe_allow_html=True)
-st.markdown("""<p style='text-align: center; font-size: 16px; color: #ccc;'>Lebih dari sekadar ramalan. Ini adalah pemetaan presisi tinggi berdasarkan cetak biru nama, garis waktu kelahiran, dan bioritme alam semesta Anda.<br><br><b style='color:#FFF;'>⚡ Dalam 10 detik, Anda akan tahu:</b><br><span style='color:#D4AF37;'>• Arah rezeki hari ini<br>• Keputusan yang HARUS diambil<br>• Risiko yang WAJIB dihindari</span></p>""", unsafe_allow_html=True)
+st.markdown("""<p style='text-align: center; font-size: 16px; color: #ccc;'>Ini bukanlah Ramalan. Ini adalah pemetaan presisi tinggi berdasarkan cetak biru nama, garis waktu kelahiran, dan bioritme alam semesta Anda.<br><br><b style='color:#FFF;'>⚡ Dalam 10 detik, Anda akan tahu:</b><br><span style='color:#D4AF37;'>• Arah rezeki hari ini<br>• Keputusan yang HARUS diambil<br>• Risiko yang WAJIB dihindari</span></p>""", unsafe_allow_html=True)
 st.markdown("<div style='text-align:center; margin-bottom:20px;'><span style='background:rgba(255,75,75,0.2); color:#ff4b4b; padding:8px 15px; border-radius:5px; font-size:13px; font-weight:bold; letter-spacing:1px;'>⚠️ Jangan baca ini kalau belum siap tahu kebenaran tentang diri Anda.</span></div>", unsafe_allow_html=True)
 st.markdown("---")
  
@@ -560,7 +560,7 @@ with tab1:
         pasaran_input = st.selectbox("Pasaran", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="p_t1")
     st.markdown("</div>", unsafe_allow_html=True)
  
-    if st.button("🚀 Lihat Nasib Saya Hari Ini", key="btn_t1"):
+    if st.button("🚀 Lihat Peluang Saya Hari Ini", key="btn_t1"):
         if not nama_user or len(nama_user.strip()) < 3: 
             st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf).")
         else:
