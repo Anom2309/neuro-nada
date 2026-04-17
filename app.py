@@ -321,7 +321,6 @@ def get_naga_dina(hari_eksekusi):
     return nd.get(hari_eksekusi,"Netral")
 
 def get_rezeki_usaha(neptu, tgl_hari_ini):
-    # Dinamis berdasarkan kombinasi Weton Klien + Tanggal Hari Ini
     angka_hari_ini = sum(int(d) for d in tgl_hari_ini.strftime("%d%m%Y"))
     dinamis_7 = (neptu + angka_hari_ini) % 7 or 7
     dinamis_5 = (neptu + angka_hari_ini) % 5 or 5
@@ -343,10 +342,9 @@ def get_rezeki_usaha(neptu, tgl_hari_ini):
         5: ("Pati (Status Penahanan Strategis)", "Disarankan untuk membekukan sementara aktivitas transaksi berisiko tinggi. Hindari spekulasi finansial murni hari ini. Salurkan energi hari ini untuk melakukan audit internal, mengevaluasi sistem kerja, atau melakukan perbaikan struktur manajemen.")
     }[dinamis_5]
     
-    # Indikator Status Warna
-    if dinamis_7 in [1, 3, 4]: status_warna = "#25D366"  # Hijau
-    elif dinamis_7 in [2, 5]: status_warna = "#FFD700" # Kuning
-    else: status_warna = "#ff4b4b" # Merah
+    if dinamis_7 in [1, 3, 4]: status_warna = "#25D366"  
+    elif dinamis_7 in [2, 5]: status_warna = "#FFD700" 
+    else: status_warna = "#ff4b4b" 
     
     return r, u, status_warna
  
@@ -389,6 +387,19 @@ def proc_couple_persona(root_c, n1, n2):
         f"Ketika karakter **{n1}** disandingkan dengan pendekatan **{n2}**, sistem mendeteksi terbentuknya dinamika hubungan yang terkunci di **Root {root_c}**."
     ])
     
+    # PENJELASAN FILOSOFI DASAR ROOT 1-9
+    filosofi = {
+        1: "Dalam numerologi esoterik, Angka 1 melambangkan Genesis (penciptaan) dan kemandirian mutlak. Ketika dua orang bersatu dan menghasilkan Root 1, entitas hubungan ini berfokus pada dorongan penaklukan dan pencapaian luar. Ini adalah energi pemimpin. Hubungan ini tidak dirancang untuk sekadar bermesraan pasif, melainkan untuk membangun 'kerajaan' bersama dan memenangkan persaingan hidup secara dominan.",
+        2: "Angka 2 adalah simbol dualitas tertinggi, mewakili keseimbangan, intuisi, dan penerimaan emosional murni. Hubungan dengan Root 2 berfungsi sebagai wadah penyembuhan. Visi fundamental dari frekuensi ini adalah menciptakan kedamaian batin dan keharmonisan. Mereka berkomunikasi lebih banyak lewat perasaan non-verbal dibandingkan logika keras, menjadikannya hubungan yang sangat peka dan suportif.",
+        3: "Angka 3 mewakili ekspresi daya cipta, pesona, dan magnetisme sosial. Root 3 memancarkan frekuensi yang sangat terang dan butuh panggung. Hubungan ini memiliki tujuan untuk berekspansi melalui koneksi sosial, ide-ide kreatif, dan keceriaan. Mereka adalah pasangan yang menghidupkan suasana di lingkungan mana pun mereka berada, namun harus waspada agar komitmen tidak terabaikan oleh interaksi luar yang terlalu luas.",
+        4: "Angka 4 adalah arsitektur keteraturan (seperti 4 pilar kokoh penyangga gedung). Root 4 tidak menyukai angan-angan tanpa bukti. Hubungan ini menuntut struktur yang membumi, logis, dan sangat realistis. Esensi dari penyatuan ini adalah mengunci rasa aman (khususnya secara materi dan loyalitas). Ini adalah frekuensi anti-badai yang mengutamakan ketahanan jangka panjang di atas romansa sesaat.",
+        5: "Angka 5 melambangkan energi kinetik, eksplorasi, dan perubahan. Root 5 menghasilkan hubungan yang tidak bisa dikekang oleh rutinitas statis. Tujuan penyatuan mereka adalah untuk memecahkan kebosanan melalui petualangan, pembelajaran hal baru, dan mengambil risiko yang terukur bersama-sama. Kebebasan ruang gerak personal adalah oksigen mutlak bagi keberhasilan hubungan ini.",
+        6: "Angka 6 adalah frekuensi pengayoman, pengorbanan moral, dan kekeluargaan. Entitas Root 6 sering kali bertindak sebagai pelindung (*Sanctuary*) tidak hanya bagi mereka berdua, tapi juga bagi lingkungan sekitar. Visi utama hubungan ini adalah menciptakan 'Rumah' yang sesungguhnya—tempat di mana nilai-nilai tradisi, kesetiaan absolut, dan perlindungan emosional dijunjung tinggi.",
+        7: "Angka 7 bermakna kedalaman misteri, analisis intelektual, dan pencarian esensi. Root 7 menciptakan hubungan yang sangat eksklusif dan privat. Mereka jarang mencari validasi publik atau pamer di media sosial. Koneksi mereka divalidasi lewat percakapan filosofis tingkat tinggi dan pemahaman spiritual yang tak kasat mata. Terkesan dingin dari luar, namun memiliki ikatan batin yang sangat rasional.",
+        8: "Angka 8 adalah simbol *infinity*, gravitasi material, dan otoritas karmik. Root 8 adalah penyatuan beban berat sekaligus kelimpahan besar. Hubungan ini ditakdirkan untuk mengelola sumber daya, bisnis, atau manusia dalam skala yang luas. Jika ego berhasil diselaraskan menjadi satu visi integritas, kombinasi ini akan menarik perputaran finansial dan wibawa sosial secara besar-besaran.",
+        9: "Angka 9 adalah puncak kematangan spiritual, penyelesaian, dan toleransi universal. Root 9 mempertemukan dua individu dengan tingkat kedewasaan batin yang tinggi. Seringkali, frekuensi ini hadir untuk saling menyembuhkan trauma masa lalu (*Healing*). Fokus utama mereka tidak lagi egois, melainkan bagaimana kolaborasi mereka bisa memberikan nilai atau dampak positif yang lebih luas bagi orang lain."
+    }
+
     desc = {
         1: ("THE EMPIRE BUILDERS (Kekuatan Pendorong Target Besar)", f"Sinergi kalian memancarkan ketegasan yang berorientasi pada pencapaian. Saat {n1} dan {n2} berkolaborasi, fokus utamanya bukan hanya pada romantisme semata, melainkan pada eksekusi terukur untuk mengumpulkan aset, mencapai target profesional, dan meningkatkan kualitas hidup secara signifikan. Peringatan: Hindari adu dominasi; pembagian wewenang dalam hubungan harus dikelola dengan bijak."),
         2: ("THE EMPATHIC RESONANCE (Harmoni Keterikatan Batin)", f"Kalian dianugerahi tingkat empati dua arah yang sangat responsif. Cukup mudah bagi {n1} maupun {n2} untuk memahami perubahan nuansa hati pasangan hanya dari isyarat non-verbal tanpa harus banyak bertanya. Keunggulan kolaborasi ini adalah kemampuannya saling menenangkan dan meredam kecemasan mental (*anxiety*) di tengah kerasnya tantangan eksternal."),
@@ -402,7 +413,8 @@ def proc_couple_persona(root_c, n1, n2):
     }
     
     data = desc.get(root_c, ("UNCHARTED ANOMALY", "Entitas frekuensi tak tertebak."))
-    return data[0], f"{buka} {data[1]}"
+    filosofi_dasar = filosofi.get(root_c, "Anomali frekuensi terdeteksi. Silakan periksa kembali parameter yang dimasukkan.")
+    return data[0], filosofi_dasar, f"{buka} {data[1]}"
 
 def proc_weton_kombo(sisa, n1, n2, z1, z2):
     random.seed(generate_seed(f"wt_deep_{n1}_{n2}_{sisa}_{z1}_{z2}"))
@@ -434,7 +446,7 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
         5: ("💰 ALGORITMA TINARI (Penguatan Magnet Kelimpahan)", "Ini merupakan indikator kemitraan yang positif! Kolaborasi entitas ini merepresentasikan kemudahan dalam meraih target finansial. Hambatan dan stagnasi pekerjaan yang sebelumnya membebani dapat berangsur terurai sejak kalian merumuskan visi komitmen bersama yang lebih tertata."),
         6: ("⚡ FRIKSI PADU (Pusaran Miskomunikasi Sistem)", "Sistem memetakan probabilitas terjadinya pengulangan miskomunikasi (*noise*). Perselisihan ini umumnya bukan disebabkan oleh ketiadaan visi bersama, melainkan murni perbedaan *filter* persepsi: satu pihak mengolah data dengan objektivitas keras, pihak lain merespons dengan pendekatan rasa. Membutuhkan titik kompromi yang disiplin."),
         7: ("👁️ JEBAKAN SUJANAN (Kerentanan Asumsi Negatif)", "Indikator waspada pada transparansi! Interaksi penyatuan ini sangat rentan memicu kesalahpahaman berbasis *asumsi*. Banyak interpretasi keliru yang bermunculan di benak tanpa ada bukti faktual, yang berisiko menciptakan perdebatan fiktif. Selalu pastikan komunikasi berjalan secara eksplisit."),
-        8: ("🕊️ ANCHOR PESTHI (Zona Keseimbangan Ketahanan Stres)", "Kondisi penyatuan yang sangat sehat. Keterikatan ini mampu bertindak sebagai penyeimbang biologis untuk meredam pelepasan hormon stres. Hubungan interaktif kalian cenderung konsisten, tenang, dan secara signifikan melindungi kapasitas rasionalitas masing পুনরায় pihak dari tekanan pihak luar.")
+        8: ("🕊️ ANCHOR PESTHI (Zona Keseimbangan Ketahanan Stres)", "Kondisi penyatuan yang sangat sehat. Keterikatan ini mampu bertindak sebagai penyeimbang biologis untuk meredam pelepasan hormon stres. Hubungan interaktif kalian cenderung konsisten, tenang, dan secara signifikan melindungi kapasitas rasionalitas masing-masing pihak dari tekanan pihak luar.")
     }
     return hasil[sisa][0], hasil[sisa][1], random.choice(do_list[sisa]), random.choice(dont_list[sisa])
 
@@ -565,7 +577,6 @@ with tab1:
                 wet = f"{hari_input} {pasaran_input}"
                 zod = get_zodiak(tgl_input)
                 
-                # Dinamis berdasarkan Hari Ini
                 hari_ini_str = {"Monday":"Senin", "Tuesday":"Selasa", "Wednesday":"Rabu", "Thursday":"Kamis", "Friday":"Jumat", "Saturday":"Sabtu", "Sunday":"Minggu"}[tgl_today.strftime("%A")]
                 n_laku, d_laku = get_betaljemur_data(nep)
                 arah_naga = get_naga_dina(hari_ini_str)
@@ -703,7 +714,7 @@ with tab2:
                     root_c = total_couple
                     while root_c > 9: root_c = sum(int(d) for d in str(root_c))
                     
-                    c_title, c_desc = proc_couple_persona(root_c, safe_n1, safe_n2)
+                    c_title, c_filosofi, c_desc = proc_couple_persona(root_c, safe_n1, safe_n2)
                     judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
                     
                     st.markdown(f"### 🔮 Rekapitulasi Resonansi: {safe_n1} 💥 {safe_n2}")
@@ -711,7 +722,14 @@ with tab2:
                     
                     st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2, total_couple, (nep_1+nep_2)), unsafe_allow_html=True)
                     
-                    st.markdown(f'<div class="dynamic-reading-box soft-fade" style="border-left-color: #25D366; background: rgba(10,30,15,0.8);"><h4 style="color: #25D366; margin-top:0; letter-spacing:1px;">🧬 Karakteristik Hubungan Keseluruhan: {c_title}</h4><p style="color:#e0e0e0; line-height:1.7; font-size:15px;">{c_desc}</p></div>', unsafe_allow_html=True)
+                    st.markdown(f"""<div class="dynamic-reading-box soft-fade" style="border-left-color: #25D366; background: rgba(10,30,15,0.8);">
+<h4 style="color: #25D366; margin-top:0; letter-spacing:1px;">🧬 Karakteristik Hubungan Keseluruhan: {c_title}</h4>
+<div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #FFD700;">
+<b style="color: #FFD700; font-size: 14px; letter-spacing: 1px;">🧠 APA ITU ROOT {root_c}? (DEKODE FILOSOFI DASAR)</b><br>
+<span style="color:#ccc; line-height:1.7; font-size:14px; display:inline-block; margin-top:5px;">{c_filosofi}</span>
+</div>
+<p style="color:#e0e0e0; line-height:1.7; font-size:15px;"><b style="color:#FFF;">⚡ ANALISIS SINERGI SPESIFIK ({safe_n1} & {safe_n2}):</b><br>{c_desc}</p>
+</div>""", unsafe_allow_html=True)
                     
                     st.markdown(f"""<div class="soft-fade" style="background: rgba(30,20,20,0.8); border: 1px solid #ff4b4b; border-left: 5px solid #ff4b4b; padding: 20px; border-radius: 8px; margin-bottom:20px;">
                     <b style="color:#ff4b4b; font-size:16px;">Titik Kerentanan Komunikasi Bawah Sadar ({judul_jodoh}):</b><br>
@@ -878,4 +896,4 @@ with st.expander("💬 Sampaikan Ulasan atau Kesan atas Temuan Resolusi Karakter
                 st.rerun()
  
 st.markdown("---")
-st.markdown("<center><b style='color:#FFF; letter-spacing:1px; font-size:16px;'>Ahmad Septian Dwi Cahyo</b><br><span style='color:#888; font-size:13px; display:inline-block; margin-top:5px;'>Certified NLP Trainer & Professional Hypnotherapist<br>Hak Cipta © 2026 Neuro Nada Academy (Build-V4.2 Dynamic Output)</span></center>", unsafe_allow_html=True)
+st.markdown("<center><b style='color:#FFF; letter-spacing:1px; font-size:16px;'>Ahmad Septian Dwi Cahyo</b><br><span style='color:#888; font-size:13px; display:inline-block; margin-top:5px;'>Certified NLP Trainer & Professional Hypnotherapist<br>Hak Cipta © 2026 Neuro Nada Academy (Build-V4.3 Filosofi Matriks)</span></center>", unsafe_allow_html=True)
