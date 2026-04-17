@@ -206,7 +206,6 @@ def get_protokol_terapi(root_num, nama):
     ])
     h2 = random.choice(["Terapi Ketegasan: Berlatihlah bilang 'TIDAK' atau 'Maaf gue gak bisa' pada satu ajakan/permintaan hari ini. Jangan beri alasan panjang lebar, cukup tolak dengan sopan dan tegas.", "Puasa Orang Toxic: Matikan notifikasi grup WhatsApp atau *mute* satu orang yang paling sering ngeluh/nyedot energi Anda selama 24 jam penuh."])
 
-    # ... (Protokol 3 sampai 9 gue kembangin bahasanya biar lebih awam dan ngena) ...
     b3 = random.choice([f"**Lompatan Kera (Fokus Berserakan):** Otak Anda ({nama}) itu pabrik ide cemerlang, tapi eksekusinya NOL. Anda terlalu cepat bosan. Baru mulai belajar A, besok udah pindah ke B karena liat peluang baru. Akhirnya nggak ada yang jadi duit.", f"**Mabuk Dopamin Awal:** Anda ({nama}) cuma semangat di 'awal' mula sebuah proyek. Pas udah masuk fase teknis yang ribet dan butuh konsistensi, Anda mendadak kabur nyari inspirasi lain. Ini sabotase paling nyata."])
     a3 = random.choice([f"Saya, {nama}, memerintahkan pikiran liar saya untuk diam dan membumi. Saya sadar, satu karya kecil yang SELESAI jauh lebih menghasilkan uang daripada seribu ide jenius yang cuma ada di angan-angan.", f"Pikiran saya setajam laser. Saya ({nama}) berjanji pada diri sendiri untuk menahan rasa bosan dan menyelesaikan apa yang sudah saya mulai sampai tuntas 100%."])
     h3 = random.choice(["Gunakan teknik Alarm 20 Menit. Pilih 1 kerjaan paling penting, set alarm 20 menit, dan paksa tangan Anda kerja tanpa buka WA atau YouTube sama sekali sampai alarm bunyi.", "Terapi Rapi-rapi: Pikiran yang ruwet berawal dari tempat yang berantakan. Bereskan total meja kerja Anda atau hapus file-file sampah di laptop hari ini juga."])
@@ -237,6 +236,26 @@ def get_protokol_terapi(root_num, nama):
 
     protokol = {1: {"block": b1, "afirmasi": a1, "habit": h1}, 2: {"block": b2, "afirmasi": a2, "habit": h2}, 3: {"block": b3, "afirmasi": a3, "habit": h3}, 4: {"block": b4, "afirmasi": a4, "habit": h4}, 5: {"block": b5, "afirmasi": a5, "habit": h5}, 6: {"block": b6, "afirmasi": a6, "habit": h6}, 7: {"block": b7, "afirmasi": a7, "habit": h7}, 8: {"block": b8, "afirmasi": a8, "habit": h8}, 9: {"block": b9, "afirmasi": a9, "habit": h9}}
     return protokol.get(root_num, protokol[1])
+
+
+# =======================================================
+# FUNGSI YANG KEMARIN HILANG: proc_shadow_list
+# =======================================================
+def proc_shadow_list(nama, angka):
+    random.seed(generate_seed(f"shd_deep_{nama}_{angka}"))
+    semua_shadow = {
+        1: ["**Ego Superman & Gengsi Selangit:** Anda mending hancur sendirian daripada kelihatan lemah dan harus minta tolong orang lain. Ujung-ujungnya fisik Anda gampang *burnout*.", "**Ilusi Kesempurnaan (Overthinking Action):** Sering nunda rilis karya/bisnis karena sibuk nyari detail yang kurang. Terlalu perfeksionis yang bikin rezeki telat masuk.", "**Abaikan Alarm Tubuh:** Ambisi Anda sering matiin sinyal capek dari otak. Anda maksa kerja keras sampai akhirnya tumbang sakit mendadak."],
+        2: ["**Penyakit Nggak Enakan (People Pleaser):** Anda rutin ngorbanin kebahagiaan sendiri cuma demi ngejaga perasaan orang lain (yang kadang nggak peduli juga sama Anda).", "**Tong Sampah Emosi:** Radar empati Anda bocor. Anda tanpa sadar nyerap keluhan, amarah, dan energi *toxic* dari sirkel Anda, bikin *mood* Anda hancur seharian.", "**Bom Waktu Amarah:** Terlalu banyak mendem kecewa demi 'harmoni palsu'. Kalau udah meledak, hal sepele bisa bikin Anda ngamuk besar yang merusak relasi."],
+        3: ["**Topeng Badut (Hidden Anxiety):** Anda sering nutupin rasa gelisah dan *insecure* parah pake topeng ceria, asyik, dan banyak omong pas lagi kumpul sama orang.", "**Fokus Lompat Kera:** Baru mulai satu kerjaan, otak udah gatel nyari proyek baru. Gampang banget bosan, akhirnya banyak kerjaan setengah matang yang nggak jadi duit.", "**Lidah Berbisa:** Pas ego lagi kesentil, mulut Anda bisa refleks ngeluarin kalimat sarkas (nyindir) yang tajem banget dan bikin lawan bicara trauma."],
+        4: ["**Lumpuh di Zona Nyaman:** Otak bawah sadar Anda ketakutan ngambil risiko bisnis. Akhirnya Anda milih main aman, terjebak di rutinitas gitu-gitu aja, dan ngelewatin peluang emas.", "**Micro-managing (Diktator Kecil):** Saking takutnya kerjaan berantakan, Anda ngerecokin detail kerjaan bawahan/pasangan. Bikin suasana jadi tegang dan kaku.", "**Kulkas Emosi:** Kalau lagi ada masalah besar, Anda mendadak jadi manusia robot yang dingin dan nggak punya perasaan demi ngebela logika matematis."],
+        5: ["**Sindrom Kabur (Escapism):** Ketakutan bawah sadar buat terikat komitmen bikin Anda sering kabur/menghilang tiba-tiba pas hubungan asmara atau bisnis lagi masuk fase serius.", "**Alergi Rutinitas:** Otak Anda kecanduan hal baru. Kalau disuruh ngerjain hal berulang (SOP), saraf Anda seolah mati rasa dan ujungnya mensabotase kerjaan itu biar cepat kelar/hancur.", "**Cepat Panas Cepat Dingin:** Semangat menggebu-gebu di awal doang. Pas udah jalan sebulan dan mulai bosen, Anda bisa ninggalin *project* gitu aja tanpa rasa bersalah."],
+        6: ["**Pahlawan Kesiangan (Savior Complex):** Anda ngerasa wajib nolongin orang *toxic* sampai dompet dan mental Anda sendiri kering. Anda lupa nolong diri sendiri.", "**Penjara Rasa Bersalah:** Anda susah nikmatin *me-time* atau liburan mewah karena selalu kepikiran 'keluarga di rumah kasihan belum tentu bisa makan enak'.", "**Pamrih Batin Terselubung:** Walau mulut bilang ikhlas, dalam hati terdalam Anda sering kecewa parah kalau pengorbanan besar Anda nggak dihargai/dibalas sama pasangan."],
+        7: ["**Lumpuh karena Logika (Paralysis by Analysis):** Otak Anda terlalu sibuk ngebedah risiko A-Z sampai akhirnya Anda nggak berani *action* apa-apa. Kebanyakan mikir, kurang eksekusi.", "**Penyakit Curigaan (Trust Issue):** Luka dikhianati di masa lalu bikin otak Anda paranoid. Anda sering nolak peluang kerja sama gede gara-gara ngerasa niat partnernya busuk.", "**Arogansi Intelektual:** Standar pinter Anda ketinggian. Anda sering ngerasa orang di sekitar Anda itu 'bego/dangkal', bikin Anda jadi sinis dan susah berbaur santai."],
+        8: ["**Gila Kontrol (Ketakutan Terlihat Lemah):** Di balik wibawa bos Anda, ada ego rapuh yang nolak keras kelihatan nangis/gagal di depan orang. Anda pakai topeng 'Si Paling Kuat' 24 jam.", "**Diktator Otak:** Anda susah banget ngelepas kendali ke orang lain. Semua harus sesuai cara Anda, termasuk ngatur-ngatur urusan privasi pasangan.", "**Mati Rasa Kemanusiaan:** Kalau lagi buta ambisi duit, empati Anda mati. Anda rawan mandang temen atau relasi cuma dari ukuran 'dia nguntungin gue apa nggak?'."],
+        9: ["**Empati Beracun (Toxic Empathy):** Hati Anda terlalu lembek. Anda terlalu gampang maafin dan ngasih kesempatan kedua ke parasit/manipulator yang udah jelas-jelas nipu Anda.", "**Patah Hati Universal:** Ekspektasi moral Anda ke manusia lain itu ketinggian. Pas liat realita orang-orang pada licik, Anda gampang depresi dan kehilangan harapan hidup.", "**Lupa Daratan Jati Diri:** Saking sibuknya mikirin visi masa depan atau ngurusin *healing* sirkel Anda, Anda malah kehilangan arah soal apa yang bikin Anda sendiri bahagia hari ini."]
+    }
+    return random.sample(semua_shadow[angka], 3)
+
 
 # --- TAB 1: IDENTITAS KOSMIK (AWAM-FRIENDLY) ---
 arketipe_punchy = {
@@ -510,7 +529,6 @@ with tab1:
     col_tgl, col_wt = st.columns(2)
     with col_tgl:
         st.write("📅 **Data Masehi:**")
-        # FIXED DATE DEFAULT (1995-01-01) & WIDE RANGE (1930)
         tgl_input = st.date_input("Tanggal Lahir", value=datetime.date(1995, 1, 1), min_value=datetime.date(1930, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
     with col_wt:
         st.write("📜 **Data Weton:**")
@@ -645,7 +663,6 @@ with tab2:
         with ca: 
             st.markdown("<h4 style='color:#FFD700;'>Pihak 1 (Aktor Pendobrak / Pria)</h4>", unsafe_allow_html=True)
             n1 = st.text_input("Ketik Nama Panggilan Pihak 1", key="n1_c")
-            # FIXED DEFAULT DATE TAB 2
             d1 = st.date_input("Lahir Masehi Pihak 1", value=datetime.date(1995, 1, 1), min_value=datetime.date(1930, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="d1_c")
             hc1 = st.selectbox("Hari Pihak 1", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="hc1")
             pc1 = st.selectbox("Pasaran Pihak 1", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="pc1")
