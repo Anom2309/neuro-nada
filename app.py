@@ -299,42 +299,56 @@ def proc_arketipe(nama, angka, zodiak, neptu):
     
     return f"{buka} {inti[angka]}<br><br><span style='color:#ccc;'>{shadow[angka]}</span>"
 
-def get_betaljemur_data(neptu, hari):
+def get_betaljemur_data(neptu):
     lk = {
-        7: ("Lebu Katiup Angin (Rentan Terpecah)", "Fokus pikiran Anda hari ini cenderung mudah terdistraksi oleh faktor eksternal. Anda membutuhkan jadwal rutinitas yang terstruktur. Jika tidak, ada potensi waktu atau sumber daya Anda terbuang untuk hal yang kurang prioritas."),
-        8: ("Lakuning Geni (Karakteristik Elemen Api)", "Sistem emosi Anda hari ini ibarat percikan yang mudah membesar. Di satu sisi, ambisi dan semangat kerja Anda menyala terang. Namun Anda wajib memegang kendali atas emosi dan tutur kata agar tidak merusak relasi profesional yang sudah terjalin baik."),
-        9: ("Lakuning Angin (Akselerasi & Fluktuatif)", "Daya adaptasi Anda sangat gesit hari ini, namun *mood* Anda dapat berubah dengan cepat. Energi ini sangat efektif untuk penyelesaian kesepakatan (*closing*) kilat, namun kurang ideal untuk merumuskan kontrak kerja sama jangka panjang."),
-        10: ("Pandito Mbangun Teki (Aura Kedalaman Analisa)", "Ketenangan berpikir mendominasi Anda. Hari ini adalah momen emas untuk melakukan introspeksi, menyusun strategi secara matang, dan mempertajam analisa logika. Otak Anda mampu mengurai kerumitan masalah dengan sangat jernih."),
-        11: ("Aras Tuding (Fase Terpilih)", "Aura kepemimpinan dan inisiatif sedang aktif. Anda akan sering berada dalam posisi di mana Anda ditunjuk—baik untuk memimpin penyelesaian masalah mendadak, maupun untuk menyambut peluang rezeki baru. Hadapi dengan rasa percaya diri!"),
-        12: ("Aras Kembang (Daya Tarik Persuasif)", "Tingkat pesona dan komunikasi simpatik Anda sedang berada pada titik puncaknya. Pendapat Anda akan lebih mudah diterima dan dihormati oleh lingkungan. Ini adalah waktu terbaik untuk melobi pihak penting atau membangun koneksi bernilai tinggi."),
+        7: ("Lebu Katiup Angin (Rentan Terpecah)", "Fokus pikiran Anda cenderung mudah terdistraksi oleh faktor eksternal. Anda membutuhkan jadwal rutinitas yang terstruktur. Jika tidak, ada potensi waktu atau sumber daya Anda terbuang untuk hal yang kurang prioritas."),
+        8: ("Lakuning Geni (Karakteristik Elemen Api)", "Sistem emosi Anda ibarat percikan yang mudah membesar. Di satu sisi, ambisi dan semangat kerja Anda menyala terang. Namun Anda wajib memegang kendali atas emosi dan tutur kata agar tidak merusak relasi profesional yang sudah terjalin baik."),
+        9: ("Lakuning Angin (Akselerasi & Fluktuatif)", "Daya adaptasi Anda sangat gesit, namun *mood* Anda dapat berubah dengan cepat. Energi ini sangat efektif untuk penyelesaian kesepakatan (*closing*) kilat, namun kurang ideal untuk merumuskan kontrak kerja sama jangka panjang."),
+        10: ("Pandito Mbangun Teki (Aura Kedalaman Analisa)", "Ketenangan berpikir mendominasi Anda. Ini adalah indikasi emas untuk selalu melakukan introspeksi, menyusun strategi secara matang, dan mempertajam analisa logika. Otak Anda mampu mengurai kerumitan masalah dengan sangat jernih."),
+        11: ("Aras Tuding (Fase Terpilih)", "Aura kepemimpinan dan inisiatif aktif di dalam diri Anda. Anda akan sering berada dalam posisi di mana Anda ditunjuk—baik untuk memimpin penyelesaian masalah mendadak, maupun untuk menyambut peluang rezeki baru. Hadapi dengan rasa percaya diri!"),
+        12: ("Aras Kembang (Daya Tarik Persuasif)", "Tingkat pesona dan komunikasi simpatik Anda sangat mekar. Pendapat Anda akan lebih mudah diterima dan dihormati oleh lingkungan. Ini adalah modal terbaik untuk melobi pihak penting atau membangun koneksi bernilai tinggi."),
         13: ("Lakuning Lintang (Kharisma yang Tenang)", "Anda memancarkan ketenangan yang seringkali menarik perhatian tanpa disadari, namun batin Anda cenderung menginginkan ruang privasi. Pesannya adalah: Sesekali melangkahlah keluar dari zona nyaman, karena ada peluang kolaborasi menanti Anda."),
-        14: ("Lakuning Rembulan (Pembawa Harmoni)", "Kehadiran Anda hari ini bertindak sebagai penyeimbang suasana bagi lingkungan sekitar. Rekan kerja akan merasa nyaman di dekat Anda. Manfaatkan kejernihan batin ini untuk mengambil keputusan bisnis yang berlandaskan asas saling menguntungkan (*win-win*)."),
-        15: ("Lakuning Srengenge (Pancaran Ketegasan)", "Aura wibawa Anda sangat kuat, logis, dan tegas hari ini. Arahan Anda sulit untuk dibantah. Manfaatkan gelombang ketegasan ini untuk mengeksekusi proyek yang tertunda atau mendisiplinkan operasional yang kurang efektif."),
+        14: ("Lakuning Rembulan (Pembawa Harmoni)", "Kehadiran Anda bertindak sebagai penyeimbang suasana bagi lingkungan sekitar. Rekan kerja akan merasa nyaman di dekat Anda. Manfaatkan kejernihan batin ini untuk mengambil keputusan bisnis yang berlandaskan asas saling menguntungkan (*win-win*)."),
+        15: ("Lakuning Srengenge (Pancaran Ketegasan)", "Aura wibawa Anda sangat kuat, logis, dan tegas. Arahan Anda sulit untuk dibantah. Manfaatkan gelombang ketegasan ini untuk mengeksekusi proyek yang tertunda atau mendisiplinkan operasional yang kurang efektif."),
         16: ("Lakuning Banyu (Kedalaman Strategi)", "Ketenangan Anda menutupi arus analisa yang sangat kuat di dalam pikiran. Anda terlihat fleksibel menghadapi orang, namun memiliki perhitungan presisi. Sangat tepat untuk melakukan observasi diam-diam sebelum mengajukan penawaran krusial di menit akhir."),
-        17: ("Lakuning Bumi (Fondasi Baja Terstruktur)", "Pikiran Anda sangat realistis, gigih, dan terstruktur hari ini. Anda kurang dapat menolerir rencana tanpa dasar yang kuat. Gunakan energi ini untuk 'merapikan barisan': memverifikasi laporan keuangan, mengecek aset, dan menyempurnakan alur kerja bisnis."),
-        18: ("Lakuning Paripurna (Otoritas Kematangan)", "Ini adalah fase kematangan penuh! Otoritas Anda diakui dengan rasa hormat. Peringatan etika: Karena ucapan Anda memiliki bobot yang besar hari ini, hindari melontarkan keluhan atau kalimat pesimis, dan fokuslah mengucapkan afirmasi keberhasilan.")
+        17: ("Lakuning Bumi (Fondasi Baja Terstruktur)", "Pikiran Anda sangat realistis, gigih, dan terstruktur. Anda kurang dapat menolerir rencana tanpa dasar yang kuat. Gunakan energi ini untuk 'merapikan barisan': memverifikasi laporan keuangan, mengecek aset, dan menyempurnakan alur kerja bisnis."),
+        18: ("Lakuning Paripurna (Otoritas Kematangan)", "Ini adalah fase kematangan penuh! Otoritas Anda diakui dengan rasa hormat. Peringatan etika: Karena ucapan Anda memiliki bobot yang besar, hindari melontarkan keluhan atau kalimat pesimis, dan fokuslah mengucapkan afirmasi keberhasilan.")
     }
-    nd = {"Minggu":"Timur", "Senin":"Selatan", "Selasa":"Barat", "Rabu":"Utara", "Kamis":"Timur", "Jumat":"Selatan", "Sabtu":"Selatan"}
-    return lk.get(neptu,("Anomali Sistem","Pola energi tidak standar. Gunakan intuisi logis Anda dengan kehati-hatian ekstra hari ini."))[0], lk.get(neptu,("Anomali",""))[1], nd.get(hari,"Netral")
+    return lk.get(neptu,("Anomali Sistem","Pola energi tidak standar. Gunakan intuisi logis Anda dengan kehati-hatian ekstra."))[0], lk.get(neptu,("Anomali",""))[1]
 
-def get_rezeki_usaha(neptu):
+def get_naga_dina(hari_eksekusi):
+    nd = {"Minggu":"Timur", "Senin":"Selatan", "Selasa":"Barat", "Rabu":"Utara", "Kamis":"Timur", "Jumat":"Selatan", "Sabtu":"Selatan"}
+    return nd.get(hari_eksekusi,"Netral")
+
+def get_rezeki_usaha(neptu, tgl_hari_ini):
+    # Dinamis berdasarkan kombinasi Weton Klien + Tanggal Hari Ini
+    angka_hari_ini = sum(int(d) for d in tgl_hari_ini.strftime("%d%m%Y"))
+    dinamis_7 = (neptu + angka_hari_ini) % 7 or 7
+    dinamis_5 = (neptu + angka_hari_ini) % 5 or 5
+    
     r = {
-        1: ("Wasesa Segara (Arus Kelimpahan Luas)", "Saluran rezeki Anda sedang dalam fase ekspansi yang sangat luas. Kejutan peluang finansial kerap muncul dari arah yang tidak diperhitungkan sebelumnya. Kunci optimalisasinya: Singkirkan keraguan, dan beranikan diri untuk mengambil langkah maju!"),
+        1: ("Wasesa Segara (Arus Kelimpahan Luas)", "Saluran rezeki Anda sedang dalam fase ekspansi yang sangat luas hari ini. Kejutan peluang finansial kerap muncul dari arah yang tidak diperhitungkan sebelumnya. Kunci optimalisasinya: Singkirkan keraguan, dan beranikan diri untuk mengambil langkah maju!"),
         2: ("Tunggak Semi (Regenerasi Berkelanjutan)", "Memiliki karakter pertumbuhan yang persisten. Apabila hari ini Anda menemui hambatan teknis atau penundaan kesepakatan, pertahankan ketenangan Anda. Algoritma ini menandakan bahwa setiap kerugian berpotensi memantul kembali menjadi keuntungan yang lebih mapan ke depannya."),
         3: ("Satria Wibawa (Modal Kepercayaan Tinggi)", "Fokus utama rezeki Anda hari ini bukan sekadar pada transaksi tunai instan, melainkan pada peningkatan 'Kredibilitas' (Trust) dan perluasan relasi berkualitas. Wibawa profesional adalah aset utama Anda hari ini; pertahankan standar etika dan tata bahasa Anda."),
-        4: ("Sumur Sinaba (Sumber Solusi Inspiratif)", "Kapasitas energi Anda bertindak sebagai pusat rujukan. Klien atau relasi akan proaktif mencari Anda untuk meminta solusi dan perspektif. Berikan nilai tambah (*value*) terbaik Anda secara tulus, karena dari sinilah konversi kesepakatan komersial Anda akan bermula."),
+        4: ("Sumur Sinaba (Sumber Solusi Inspiratif)", "Kapasitas energi Anda bertindak sebagai pusat rujukan hari ini. Klien atau relasi akan proaktif mencari Anda untuk meminta solusi dan perspektif. Berikan nilai tambah (*value*) terbaik Anda secara tulus, karena dari sinilah konversi kesepakatan komersial Anda akan bermula."),
         5: ("Bumi Kapetak (Panen Dedikasi Kerja)", "Fase ini menuntut dedikasi praktis tanpa kompromi. Kesuksesan finansial hari ini membutuhkan implementasi strategi jitu dan kesediaan menangani detail teknis. Kesediaan Anda untuk berkonsentrasi pada hal operasional akan memberikan imbal hasil yang sangat sepadan."),
-        6: ("Satria Wirang (Fase Kalibrasi Mental)", "Peringatan stabilitas! Anda sedang memasuki zona evaluasi. Mungkin akan ada hambatan kecil atau perbedaan pandangan yang menguji kesabaran. Ini adalah proses pembentukan ketahanan mental sebelum Anda menaiki level finansial berikutnya. Tetaplah merespons dengan kepala dingin."),
-        7: ("Lebu Katiup Angin (Waspada Kebocoran Kas)", "Arus keuangan Anda sedang dalam status peringatan dini. Potensi pemasukan memang ada, namun dorongan untuk melakukan pengeluaran impulsif atau konsumtif juga meningkat drastis. Segera amankan likuiditas Anda ke dalam instrumen investasi jangka panjang yang lebih aman.")
-    }[neptu%7 or 7]
+        6: ("Satria Wirang (Fase Kalibrasi Mental)", "Peringatan stabilitas! Anda sedang memasuki zona evaluasi hari ini. Mungkin akan ada hambatan kecil atau perbedaan pandangan yang menguji kesabaran. Ini adalah proses pembentukan ketahanan mental sebelum Anda menaiki level finansial berikutnya. Tetaplah merespons dengan kepala dingin."),
+        7: ("Lebu Katiup Angin (Waspada Kebocoran Kas)", "Arus keuangan Anda sedang dalam status peringatan dini hari ini. Potensi pemasukan memang ada, namun dorongan untuk melakukan pengeluaran impulsif atau konsumtif juga meningkat drastis. Segera amankan likuiditas Anda ke dalam instrumen investasi jangka panjang yang lebih aman.")
+    }[dinamis_7]
     u = {
-        1: ("Sandang (Sektor Kebutuhan Penunjang)", "Potensi perputaran modal paling optimal berada pada sektor komoditas pendukung, gaya hidup, mode, atau jasa yang berfokus pada perbaikan citra dan representasi pihak lain."),
-        2: ("Pangan (Sektor Pemenuhan Esensial)", "Aktivitas komersial Anda memiliki resonansi kuat pada bidang kuliner, kebutuhan ritel harian, atau layanan yang bersifat memberikan 'nutrisi' seperti edukasi dan pengembangan kapasitas diri."),
-        3: ("Beja (Akselerasi Keberuntungan Murni)", "Gelombang momentum Anda sangat mendukung aktivitas tingkat tinggi. Waktu yang ideal untuk melakukan kesepakatan kontrak bernilai strategis, manajemen instrumen aset, atau peluncuran layanan inovatif."),
+        1: ("Sandang (Sektor Kebutuhan Penunjang)", "Potensi perputaran modal paling optimal hari ini berada pada sektor komoditas pendukung, gaya hidup, mode, atau jasa yang berfokus pada perbaikan citra dan representasi pihak lain."),
+        2: ("Pangan (Sektor Pemenuhan Esensial)", "Aktivitas komersial Anda hari ini memiliki resonansi kuat pada bidang kuliner, kebutuhan ritel harian, atau layanan yang bersifat memberikan 'nutrisi' seperti edukasi dan pengembangan kapasitas diri."),
+        3: ("Beja (Akselerasi Keberuntungan Murni)", "Gelombang momentum Anda sangat mendukung aktivitas tingkat tinggi hari ini. Waktu yang ideal untuk melakukan kesepakatan kontrak bernilai strategis, manajemen instrumen aset, atau peluncuran layanan inovatif."),
         4: ("Lara (Zona Evaluasi Keputusan)", "Status waspada pada pengambilan keputusan tunggal. Sangat disarankan untuk tidak mengeksekusi ekspansi modal atau investasi mandiri hari ini. Anda perlu meminta pandangan tambahan (*second opinion*) dari penasihat atau pihak ketiga yang kredibel."),
-        5: ("Pati (Status Penahanan Strategis)", "Disarankan untuk membekukan sementara aktivitas transaksi berisiko tinggi. Hindari spekulasi finansial murni. Salurkan energi hari ini untuk melakukan audit internal, mengevaluasi sistem kerja, atau melakukan perbaikan struktur manajemen.")
-    }[neptu%5 or 5]
-    return r, u
+        5: ("Pati (Status Penahanan Strategis)", "Disarankan untuk membekukan sementara aktivitas transaksi berisiko tinggi. Hindari spekulasi finansial murni hari ini. Salurkan energi hari ini untuk melakukan audit internal, mengevaluasi sistem kerja, atau melakukan perbaikan struktur manajemen.")
+    }[dinamis_5]
+    
+    # Indikator Status Warna
+    if dinamis_7 in [1, 3, 4]: status_warna = "#25D366"  # Hijau
+    elif dinamis_7 in [2, 5]: status_warna = "#FFD700" # Kuning
+    else: status_warna = "#ff4b4b" # Merah
+    
+    return r, u, status_warna
  
 def get_zodiak(tanggal):
     d, m = tanggal.day, tanggal.month
@@ -420,7 +434,7 @@ def proc_weton_kombo(sisa, n1, n2, z1, z2):
         5: ("💰 ALGORITMA TINARI (Penguatan Magnet Kelimpahan)", "Ini merupakan indikator kemitraan yang positif! Kolaborasi entitas ini merepresentasikan kemudahan dalam meraih target finansial. Hambatan dan stagnasi pekerjaan yang sebelumnya membebani dapat berangsur terurai sejak kalian merumuskan visi komitmen bersama yang lebih tertata."),
         6: ("⚡ FRIKSI PADU (Pusaran Miskomunikasi Sistem)", "Sistem memetakan probabilitas terjadinya pengulangan miskomunikasi (*noise*). Perselisihan ini umumnya bukan disebabkan oleh ketiadaan visi bersama, melainkan murni perbedaan *filter* persepsi: satu pihak mengolah data dengan objektivitas keras, pihak lain merespons dengan pendekatan rasa. Membutuhkan titik kompromi yang disiplin."),
         7: ("👁️ JEBAKAN SUJANAN (Kerentanan Asumsi Negatif)", "Indikator waspada pada transparansi! Interaksi penyatuan ini sangat rentan memicu kesalahpahaman berbasis *asumsi*. Banyak interpretasi keliru yang bermunculan di benak tanpa ada bukti faktual, yang berisiko menciptakan perdebatan fiktif. Selalu pastikan komunikasi berjalan secara eksplisit."),
-        8: ("🕊️ ANCHOR PESTHI (Zona Keseimbangan Ketahanan Stres)", "Kondisi penyatuan yang sangat sehat. Keterikatan ini mampu bertindak sebagai penyeimbang biologis untuk meredam pelepasan hormon stres. Hubungan interaktif kalian cenderung konsisten, tenang, dan secara signifikan melindungi kapasitas rasionalitas masing-masing pihak dari tekanan pihak luar.")
+        8: ("🕊️ ANCHOR PESTHI (Zona Keseimbangan Ketahanan Stres)", "Kondisi penyatuan yang sangat sehat. Keterikatan ini mampu bertindak sebagai penyeimbang biologis untuk meredam pelepasan hormon stres. Hubungan interaktif kalian cenderung konsisten, tenang, dan secara signifikan melindungi kapasitas rasionalitas masing পুনরায় pihak dari tekanan pihak luar.")
     }
     return hasil[sisa][0], hasil[sisa][1], random.choice(do_list[sisa]), random.choice(dont_list[sisa])
 
@@ -546,11 +560,17 @@ with tab1:
                 nilai_jummal = hitung_nama_esoterik(nama_user)
                 rincian_jummal = get_rincian_esoterik(nama_user)
                 el_nama, el_desc, p_reduk, s_reduk, r_num, r_desc, m_note = generate_dynamic_reading(nilai_jummal)
+                
                 nep = hitung_neptu_langsung(hari_input, pasaran_input)
                 wet = f"{hari_input} {pasaran_input}"
                 zod = get_zodiak(tgl_input)
-                n_laku, d_laku, arah_naga = get_betaljemur_data(nep, hari_input)
-                rezeki_data, usaha_data = get_rezeki_usaha(nep)
+                
+                # Dinamis berdasarkan Hari Ini
+                hari_ini_str = {"Monday":"Senin", "Tuesday":"Selasa", "Wednesday":"Rabu", "Thursday":"Kamis", "Friday":"Jumat", "Saturday":"Sabtu", "Sunday":"Minggu"}[tgl_today.strftime("%A")]
+                n_laku, d_laku = get_betaljemur_data(nep)
+                arah_naga = get_naga_dina(hari_ini_str)
+                rezeki_data, usaha_data, r_color = get_rezeki_usaha(nep, tgl_today)
+                
                 punchy = arketipe_punchy.get(angka_hasil, arketipe_punchy[1])
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
@@ -568,8 +588,8 @@ with tab1:
 <h3 style="margin-top:0; color:#FFD700; font-weight:900; letter-spacing:1px;">🎯 HASIL PENILAIAN ALGORITMA HARI INI</h3>
 <ul style="font-size: 16px; line-height: 1.8; color: #fff; list-style-type: none; padding-left: 0;">
 <li style="margin-bottom: 15px; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px;">
-💰 <b>STATUS REZEKI (<span style='color:#FFD700;'>{rezeki_data[0].split('(')[0].strip()}</span>):</b><br>
-<span style='color:#25D366; font-weight:bold; font-size:15px;'>MOMENTUM PRODUKTIF.</span> <span style="color:#e0e0e0; font-size:14px; line-height:1.7;">{rezeki_data[1]}</span>
+💰 <b>STATUS REZEKI (<span style='color:{r_color};'>{rezeki_data[0].split('(')[0].strip()}</span>):</b><br>
+<span style='color:{r_color}; font-weight:bold; font-size:15px;'>MOMENTUM AKTIF HARI INI.</span> <span style="color:#e0e0e0; font-size:14px; line-height:1.7;">{rezeki_data[1]}</span>
 </li>
 <li style="margin-bottom: 15px; background: rgba(37,211,102,0.1); border-left: 4px solid #25D366; padding: 15px; border-radius: 8px;">
 ⚡ <b>INSTRUKSI TINDAKAN OPERASIONAL:</b><br>
@@ -593,10 +613,10 @@ with tab1:
 <span style="color:#ccc; font-size: 15px;">Di dalam zona Akses Penuh (Premium):</span><br>
 <b style="color:#fff;">• Pemetaan kepribadian terdalam & Arsitektur Karakter yang memengaruhi keputusan Anda</b><br>
 <b style="color:#fff;">• 3 Titik Kerentanan Psikologis (*Shadow*) yang berpotensi memperlambat progres kinerja Anda</b><br>
-<b style="color:#fff;">• Indikator Penyelarasan Fokus Berdasarkan Kompas Waktu (*Naga Dina*)</b><br>
+<b style="color:#fff;">• Indikator Penyelarasan Fokus Berdasarkan Kompas Waktu (*Naga Dina*) HARI INI</b><br>
 <b style="color:#fff;">• Tab Matriks Kolaborasi: Bedah intensitas keselarasan komunikasi dengan rekan atau pasangan</b>
 </div>
-<p style="color:#FFD700; font-size: 16px;"><b>🔥 Catatan: Laporan komprehensif ini dikalibrasi secara eksklusif berdasar data unik Anda.<br>Merupakan panduan spesifik untuk perbaikan manajemen diri.</b></p>
+<p style="color:#FFD700; font-size: 16px;"><b>🔥 Catatan: Laporan komprehensif ini dikalibrasi secara eksklusif berdasar data unik klien.<br>Merupakan panduan spesifik untuk perbaikan manajemen diri.</b></p>
 <a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuro%20Nada%20Academy." target="_blank" style="text-decoration:none;">
 <div class="cta-button" style="font-size:18px; margin-top: 10px;">🚀 AKTIFKAN LAPORAN PENUH SEKARANG</div>
 </a>
@@ -608,19 +628,19 @@ with tab1:
 </div>""", unsafe_allow_html=True)
                 else:
                     st.markdown(f"<h3 style='text-align:center;'>🌌 Laporan Intelijen Personal: {safe_name}</h3>", unsafe_allow_html=True)
-                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Nilai Esoterik Nama</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div><div class="matrix-item"><div class="matrix-label">Karakteristik Elemen</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div><div class="matrix-item"><div class="matrix-label">OS Otak (Meta-Program)</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div><div class="matrix-item"><div class="matrix-label">Indikator Zodiak</div><div class="matrix-value">{zod}</div></div><div class="matrix-item"><div class="matrix-label">Gravitasi Weton</div><div class="matrix-value">{wet} ({nep})</div></div></div>""", unsafe_allow_html=True)
+                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Nilai Esoterik Nama</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div><div class="matrix-item"><div class="matrix-label">Karakteristik Elemen</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div><div class="matrix-item"><div class="matrix-label">OS Otak (Meta-Program)</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div><div class="matrix-item"><div class="matrix-label">Indikator Zodiak</div><div class="matrix-value">{zod}</div></div><div class="matrix-item"><div class="matrix-label">Gravitasi Weton Klien</div><div class="matrix-value">{wet} ({nep})</div></div></div>""", unsafe_allow_html=True)
                     
                     st.markdown(f"""<div class="dynamic-reading-box soft-fade"><h4 style="color: #FFD700; margin-top:0;">🔍 Dekoding Arsitektur Mesin Diri (DNA Numerologi)</h4><p><b>1. Sandi Esoterik Nama (Aura Tarikan Potensi):</b><br><code style="color:#25D366; background:transparent; padding:0; font-size:15px;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p><ul style="margin-left: -15px; margin-bottom: 20px; color:#ccc; line-height:1.7;"><li><b>Kerangka Bawah Sadar:</b> {el_nama} - <i>{el_desc}</i></li><li><b>Orientasi Dasar:</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b> ({r_desc})</li></ul><p><b>2. Sandi Garis Waktu Lahir (Meta-Program NLP):</b><br><code style="color:#FFD700; background:transparent; padding:0; font-size:15px;">{rincian_tgl}</code><br><span style="font-size:14px; color:#ccc; display:inline-block; margin-top:8px; line-height:1.7;">Ekstraksi di atas mengkategorikan kerangka analisa Anda pada <b>KODE {angka_hasil}</b>. Pengkategorian ini membedah wujud *Blueprint* genetik yang menjelaskan secara rasional bagaimana mekanisme pemrosesan informasi dari <b>{safe_name}</b> bekerja saat berada di bawah tekanan target, menerima instruksi dari pihak luar, hingga pembentukan gaya kepemimpinan dasar.</span></p>{m_note}</div>""", unsafe_allow_html=True)
                     
                     st.markdown(f"""<div class="primbon-box soft-fade"><div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;"><span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 REFERENSI LOGIKA ALGORITMA: BETALJEMUR ADAMMAKNA</span></div>
 <div style="font-size:15px; line-height:1.7; margin-bottom: 20px;"><b style="color:#FFF; font-size:18px; letter-spacing:1px;">{n_laku}</b><br><i style="color:#ccc; display:inline-block; margin-top:5px;">{d_laku}</i></div>
 <div style="font-size:15px; line-height:1.7; margin-bottom: 20px; border-top: 1px dashed #555; border-bottom: 1px dashed #555; padding-top: 15px; padding-bottom: 15px;">
-• <b style="color:#FFF;">Siklus Potensi Material (<span style="color:#FFD700;">{rezeki_data[0]}</span>):</b><br><span style="color:#ccc; display:inline-block; margin-top:5px; margin-bottom:12px;">{rezeki_data[1]}</span><br>
+• <b style="color:#FFF;">Siklus Potensi Material Hari Ini (<span style="color:{r_color};">{rezeki_data[0]}</span>):</b><br><span style="color:#ccc; display:inline-block; margin-top:5px; margin-bottom:12px;">{rezeki_data[1]}</span><br>
 • <b style="color:#FFF;">Afinitas Sektor Pengembangan (<span style="color:#25D366;">{usaha_data[0]}</span>):</b><br><span style="color:#ccc; display:inline-block; margin-top:5px;">{usaha_data[1]}</span>
 </div>
 <div style="font-size:15px; line-height:1.7; background: rgba(212,175,55,0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #FFD700;">
-<span style="color:#FFD700;">🧭 <b>NAGA DINA (Orientasi Geografis Resolusi Hari {hari_input}):</b></span> <b style="font-size: 18px; color:#FFF;">{arah_naga}</b><br>
-<i style="color:#e0e0e0; font-size:14px; display:inline-block; margin-top:8px;">*APLIKASI LAPANGAN: Saat memimpin negosiasi penting, mengirim proposal tingkat tinggi, atau melakukan pertimbangan manajerial hari ini, pertimbangkan untuk menempatkan fokus arah fisik ke <b>{arah_naga}</b>. Ini merupakan metode penyelarasan fokus yang dipercaya dapat mengurangi hambatan eksternal di ruang kerja Anda.</i>
+<span style="color:#FFD700;">🧭 <b>NAGA DINA (Orientasi Geografis Resolusi Hari {hari_ini_str}):</b></span> <b style="font-size: 18px; color:#FFF;">{arah_naga}</b><br>
+<i style="color:#e0e0e0; font-size:14px; display:inline-block; margin-top:8px;">*APLIKASI LAPANGAN: Saat memimpin negosiasi penting, mengirim proposal tingkat tinggi, atau melakukan pertimbangan manajerial HARI INI, pertimbangkan untuk menempatkan fokus arah fisik ke <b>{arah_naga}</b>. Ini merupakan metode penyelarasan fokus yang dipercaya dapat mengurangi hambatan eksternal di ruang kerja Anda.</i>
 </div></div>""", unsafe_allow_html=True)
                     
                     st.markdown(f"<h3 style='margin-bottom:5px;'>👁️ Bedah Tuntas Kepribadian Psikologis: {safe_name}</h3>", unsafe_allow_html=True)
@@ -858,4 +878,4 @@ with st.expander("💬 Sampaikan Ulasan atau Kesan atas Temuan Resolusi Karakter
                 st.rerun()
  
 st.markdown("---")
-st.markdown("<center><b style='color:#FFF; letter-spacing:1px; font-size:16px;'>Ahmad Septian Dwi Cahyo</b><br><span style='color:#888; font-size:13px; display:inline-block; margin-top:5px;'>Certified NLP Trainer & Professional Hypnotherapist<br>Hak Cipta © 2026 Neuro Nada Academy (Build-V4.1 Profesional NLP)</span></center>", unsafe_allow_html=True)
+st.markdown("<center><b style='color:#FFF; letter-spacing:1px; font-size:16px;'>Ahmad Septian Dwi Cahyo</b><br><span style='color:#888; font-size:13px; display:inline-block; margin-top:5px;'>Certified NLP Trainer & Professional Hypnotherapist<br>Hak Cipta © 2026 Neuro Nada Academy (Build-V4.2 Dynamic Output)</span></center>", unsafe_allow_html=True)
