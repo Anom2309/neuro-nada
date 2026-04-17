@@ -504,7 +504,7 @@ with st.sidebar:
         if kode_input:
             if kode_input.upper() == "NEUROVIP": # BISA DIGANTI KODE APA AJA BRO
                 st.session_state.premium = True
-                st.success("✅ Akses Terbuka! Selamat Datang.")
+                st.toast("Akses Terbuka! Selamat Datang di Mode VIP.", icon="👑")
                 time.sleep(1)
                 st.rerun()
             else:
@@ -540,7 +540,7 @@ st.markdown("<div style='text-align:center; margin-bottom:20px;'><span style='ba
 st.markdown("---")
  
 tgl_today = datetime.date.today()
-tab1, tab2, tab5, tab3, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix 🔒", "⏱️ Quantum Engine 🔒", "🌌 Falak Ruhani 🔒", "📚 FAQ"])
+tab1, tab2, tab5, tab3, tab6, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix 🔒", "⏱️ Quantum Engine 🔒", "🌌 Falak Ruhani 🔒", "📚 Neuro-Insights", "❓ FAQ"])
  
 # ==========================================
 # TAB 1: IDENTITAS KOSMIK (HOOK & PAYWALL)
@@ -567,6 +567,7 @@ with tab1:
             try:
                 with st.spinner('Menyelaraskan frekuensi kosmik...'):
                     time.sleep(1.5)
+                st.toast("Kalibrasi selesai! Membuka gerbang analisis...", icon="⚡")
                 
                 safe_name = get_safe_firstname(nama_user)
                 angka_hasil = hitung_angka(tgl_input)
@@ -685,6 +686,7 @@ with tab2:
                 try:
                     with st.spinner('Menghitung benturan energi pasangan...'):
                         time.sleep(1.5)
+                    st.toast("Analisa pasangan selesai!", icon="💞")
                     
                     safe_n1, safe_n2 = get_safe_firstname(n1, "Pria"), get_safe_firstname(n2, "Wanita")
                     zod1, zod2 = get_zodiak(d1), get_zodiak(d2)
@@ -737,6 +739,7 @@ with tab5:
             if qe_nama:
                 with st.spinner('Menarik data pergerakan planet...'):
                     time.sleep(1.2)
+                st.toast("Dashboard Taktis diperbarui!", icon="⏱️")
                 
                 safe_qe = get_safe_firstname(qe_nama)
                 jummal_qe = hitung_nama_esoterik(qe_nama)
@@ -777,6 +780,7 @@ with tab3:
                 try:
                     with st.spinner('Mengekstrak sandi penyembuhan Anda...'):
                         time.sleep(1.5)
+                    st.toast("Protokol Terapi berhasil disusun!", icon="✨")
                         
                     safe_nr = get_safe_firstname(nama_ruhani)
                     nilai_jummal_r = hitung_nama_esoterik(nama_ruhani)
@@ -820,15 +824,51 @@ with tab3:
                 st.warning("⚠️ Ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi.")
 
 # ==========================================
+# TAB 6: NEURO-INSIGHTS (KOLAM ARTIKEL)
+# ==========================================
+with tab6:
+    st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
+    st.subheader("📚 Neuro-Insights: Opini & Kalibrasi Mindset")
+    st.write("Jelajahi pemikiran terdalam seputar NLP, Modifikasi Bawah Sadar, dan Esoterik Nusantara.")
+    
+    with st.expander("🧠 1. Kenapa Logika Sering Kalah Sama Perasaan?"):
+        st.markdown("""
+        **Oleh: Coach Ahmad Septian**
+        
+        Banyak orang mengira setiap keputusan yang mereka buat sehari-hari adalah hasil kalkulasi rasional. Faktanya, **95% keputusan hidup kita dikendalikan oleh pikiran bawah sadar** yang bahasa utamanya adalah emosi. 
+        
+        Ketika logika berkata "Jangan makan gorengan karena bikin gendut", namun hati berkata "Tapi enak dan bikin tenang", siapakah yang menang? Biasanya perasaan.
+        
+        **Strategi NLP:** Jika Anda ingin merubah nasib atau kebiasaan buruk, jangan berdebat dengan logika. Ubahlah 'rasa' (Anchor Emosi) yang menempel pada kebiasaan tersebut.
+        """)
+        
+    with st.expander("💰 2. Rahasia Vibrasi Rezeki di Balik Susunan Nama"):
+        st.markdown("""
+        Pernahkah Anda merasa sudah bekerja keras, banting tulang siang-malam, tapi rezeki selalu 'lewat' begitu saja? Atau mudah mendapatkan uang tapi uangnya selalu habis untuk hal-hal yang tidak terduga?
+        
+        Dalam kajian kuno Nusantara dan Metodologi Hisab Jummal, **setiap huruf pada nama Anda membawa beban frekuensi.** Jika nama Anda memiliki vibrasi elemen "Api" yang terlalu mendominasi tanpa penyeimbang elemen "Air", wajar jika secara bawah sadar Anda sering mensabotase kesuksesan Anda sendiri karena sifat terburu-buru.
+        
+        **Tindakan:** Lakukan kalibrasi identitas. Bukan berarti Anda harus ganti nama KTP, cukup temukan 'Asma' penyeimbang (Falak Ruhani) sebagai jangkar spiritual Anda.
+        """)
+        
+    with st.expander("⚡ 3. Lone Wolf Syndrome: Bahayanya Terlalu Mandiri"):
+        st.markdown("""
+        Di era modern, menjadi manusia serba bisa sering diagungkan. Anda belajar desain sendiri, ngoding sendiri, marketing sendiri. Sayangnya, sikap terlalu mandiri ini seringkali menutupi *Mental Block* yang lebih dalam: **Gengsi Meminta Tolong (Ego Supremacy).**
+        
+        Alam semesta mendistribusikan rezekinya lewat tangan orang lain (kolaborasi). Jika Anda selalu menutup pintu bantuan karena merasa bisa segalanya, Anda sedang membangun bendungan penutup arus kelimpahan Anda sendiri.
+        """)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ==========================================
 # TAB 4: FAQ
 # ==========================================
 with tab4:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-    st.subheader("📚 FAQ & Navigasi Energi")
-    with st.expander("🤔 1. Apa itu Jam Planet?"): st.write("Pembagian waktu astronomi kuno yang membagi siang/malam menjadi 12 fase energi.")
-    with st.expander("🤔 2. Apa itu Hisab Jummal?"): st.write("Sains huruf kuno (Gematria Arab) yang memberi bobot matematika pada tiap aksara.")
-    with st.expander("🤔 3. Apakah hasil ini mutlak?"): st.write("TIDAK. Ini adalah Alat Pemetaan Pola (Pattern Mapping) untuk Self-Awareness.")
-    st.error("**⚠️ DISCLAIMER:** Bukan saran medis profesional.")
+    st.subheader("❓ FAQ & Navigasi Energi")
+    with st.expander("🤔 1. Apa itu Jam Planet?"): st.write("Pembagian waktu astronomi kuno yang membagi siang/malam menjadi 12 fase energi. Berguna untuk tahu kapan harus eksekusi, kapan harus menahan diri.")
+    with st.expander("🤔 2. Apa itu Hisab Jummal?"): st.write("Sains huruf kuno yang memberi bobot matematika pada tiap aksara untuk memetakan frekuensi jiwa.")
+    with st.expander("🤔 3. Apakah hasil ini mutlak?"): st.write("TIDAK. Ini adalah Alat Pemetaan Pola (Pattern Mapping) untuk memperkuat Self-Awareness. Keputusan tetap di tangan Anda.")
+    st.error("**⚠️ DISCLAIMER:** Analisa ini ditujukan untuk rekreasi dan kalibrasi mindset, bukan pengganti saran medis atau psikologis profesional.")
     st.markdown("</div>", unsafe_allow_html=True)
  
 # ==========================================
@@ -848,7 +888,7 @@ with st.expander("💬 Bagikan Pengalaman Anda"):
         rn, rr, rk = st.text_input("Nama"), st.radio("Rating", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"], horizontal=True), st.text_area("Ulasan")
         if st.form_submit_button("Kirim") and rn and rk:
             if kirim_ulasan(rn, rr, rk): 
-                st.success("Terkirim!")
+                st.toast("Ulasan berhasil dikirim. Terima kasih!", icon="✨")
                 time.sleep(1)
                 st.rerun()
  
