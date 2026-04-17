@@ -109,7 +109,7 @@ st.markdown(
 )
 
 def get_dynamic_count():
-    start_date = datetime.date(2026, 4, 15) # Tanggal base
+    start_date = datetime.date(2026, 4, 15) 
     today = datetime.date.today()
     delta = (today - start_date).days
     if delta < 0: delta = 0
@@ -268,87 +268,129 @@ def get_protokol_terapi(root_num, nama):
     protokol = {1: {"block": b1, "afirmasi": a1, "habit": h1}, 2: {"block": b2, "afirmasi": a2, "habit": h2}, 3: {"block": b3, "afirmasi": a3, "habit": h3}, 4: {"block": b4, "afirmasi": a4, "habit": h4}, 5: {"block": b5, "afirmasi": a5, "habit": h5}, 6: {"block": b6, "afirmasi": a6, "habit": h6}, 7: {"block": b7, "afirmasi": a7, "habit": h7}, 8: {"block": b8, "afirmasi": a8, "habit": h8}, 9: {"block": b9, "afirmasi": a9, "habit": h9}}
     return protokol.get(root_num, protokol[1])
 
-# --- DATABASE BLUEPRINT ---
+# --- DATABASE BLUEPRINT (DEEP NLP PROFILING) ---
 arketipe_punchy = {
-    1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak tinggi & berani ambil risiko", "Mandiri secara absolut", "Fokus eksekusi"]},
-    2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati tinggi", "Negosiator ulung", "Kemampuan adaptasi emosional"]},
-    3: {"inti": "Sang Visioner (Kreator Ide & Komunikator Handal)", "kekuatan": ["Komunikasi memikat", "Kreativitas tanpa batas", "Ahli mencairkan suasana"]},
-    4: {"inti": "Sang Transformator (Ahli Strategi & Pembangun Sistem)", "kekuatan": ["Pola pikir sangat terstruktur", "Bisa diandalkan 100%", "Ketelitian tingkat dewa"]},
-    5: {"inti": "Sang Penggerak (Eksplorator & Pemecah Kebuntuan)", "kekuatan": ["Kelincahan berpikir", "Inovator pemecah kebuntuan", "Keberanian mengeksplorasi"]},
-    6: {"inti": "Sang Harmonizer (Pengayom & Pelindung Natural)", "kekuatan": ["Insting pengayom", "Tanggung jawab moral tinggi", "Loyalitas tanpa pamrih"]},
-    7: {"inti": "Sang Legacy Builder (Pemikir Analitik & Spiritualis)", "kekuatan": ["Kemampuan analisa", "Intuisi sering akurat", "Sangat selektif menilai kualitas"]},
-    8: {"inti": "Sang Sovereign (Eksekutor Otoritas & Magnet Material)", "kekuatan": ["Tahan banting mental", "Insting bisnis tajam", "Kemampuan memegang kendali"]},
-    9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan luas", "Kepedulian universal", "Melihat 'Big Picture'"]}
+    1: {"inti": "Sang Perintis (Dominator & Visioner Masa Depan)", "kekuatan": ["Daya dobrak insting tinggi & keberanian mengambil risiko ekstrim", "Kemandirian absolut (Self-Sufficient)", "Fokus eksekusi tanpa banyak wacana"]},
+    2: {"inti": "Sang Penyelaras (Negosiator & Pembaca Emosi)", "kekuatan": ["Kapasitas empati dan diplomasi tingkat dewa", "Negosiator ulung yang mampu membaca ruang", "Kemampuan adaptasi emosional dalam krisis"]},
+    3: {"inti": "Sang Visioner (Kreator Ide & Komunikator Handal)", "kekuatan": ["Daya tarik komunikasi yang memikat (Magnetic Charisma)", "Kreativitas lateral tanpa batas", "Ahli mencairkan suasana dan persuasi masal"]},
+    4: {"inti": "Sang Transformator (Ahli Strategi & Pembangun Sistem)", "kekuatan": ["Pola pikir sangat presisi dan terstruktur", "Loyalitas dan keandalan sistematis 100%", "Ketelitian audit tingkat tinggi"]},
+    5: {"inti": "Sang Penggerak (Eksplorator & Pemecah Kebuntuan)", "kekuatan": ["Kelincahan berpikir (Agility) di situasi *chaos*", "Inovator pemecah kebuntuan *out-of-the-box*", "Keberanian mengeksplorasi wilayah yang belum dipetakan"]},
+    6: {"inti": "Sang Harmonizer (Pengayom & Pelindung Natural)", "kekuatan": ["Insting pengayom dan penyembuh (Healer) yang sangat kuat", "Tanggung jawab moral dan integritas tinggi", "Loyalitas tanpa pamrih pada sirkel terdekat"]},
+    7: {"inti": "Sang Legacy Builder (Pemikir Analitik & Spiritualis)", "kekuatan": ["Kemampuan analisa forensik menembus kebohongan", "Intuisi batin (Indra ke-6) yang seringkali akurat", "Sangat selektif dan memegang standar kualitas tinggi"]},
+    8: {"inti": "Sang Sovereign (Eksekutor Otoritas & Magnet Material)", "kekuatan": ["Tahan banting mental luar biasa terhadap tekanan", "Insting bisnis dan radar kekayaan yang sangat presisi", "Kemampuan mutlak untuk memegang dan merebut kendali"]},
+    9: {"inti": "Sang Kesadaran Tinggi (Old Soul & Empati Universal)", "kekuatan": ["Kebijaksanaan pandangan (Eagle-Eye Perspective) yang luas", "Kepedulian universal yang melampaui ego pribadi", "Kemampuan memahami inti penderitaan orang lain"]}
 }
 
 def proc_arketipe(nama, angka, zodiak, neptu):
     random.seed(generate_seed(f"hyper_ark_{nama}_{angka}_{zodiak}_{neptu}"))
     buka = random.choice([
-        f"Melalui persilangan matriks waktu dan elemen {zodiak}, DNA numerologi **{nama}** mengunci kuat pada **KODE {angka}**.",
-        f"Kalkulasi semesta menyempit di **KODE {angka}**. Ini menandakan bahwa sejak lahir, alam bawah sadar **{nama}**",
-        f"Sistem mendeteksi getaran **KODE {angka}** pada diri Anda. Secara genetik dan arsitektur mental, **{nama}**",
-        f"Berdasarkan algoritma kepribadian {zodiak} yang melebur dengan weton, cetak biru **{nama}** adalah **KODE {angka}**."
+        f"Melalui persilangan matriks waktu lahir dan algoritma elemen {zodiak}, DNA numerologi dan psikologis **{nama}** mengunci kuat pada **KODE {angka}**.",
+        f"Kalkulasi semesta dan kalibrasi weton menyempit presisi di **KODE {angka}**. Ini menandakan bahwa sejak tarikan napas pertama, alam bawah sadar **{nama}**",
     ])
     inti = {
-        1: ["sebagai sosok perintis yang didesain untuk memimpin dan menembus batas.", "memiliki dorongan mutlak untuk mandiri dan benci didikte."],
-        2: ["sebagai Sang Penyelaras yang mampu menetralisir konflik.", "memiliki radar empati tingkat dewa untuk membaca ruang dan emosi."],
-        3: ["sebagai komunikator handal dengan pikiran yang meletup-letup seperti kembang api.", "memiliki anugerah kreativitas tanpa batas."],
-        4: ["sebagai arsitek kehidupan yang sangat sistematis dan presisi.", "memiliki pola pikir logis yang menjadikannya pondasi kuat."],
-        5: ["sebagai simbol kebebasan yang menolak keras rutinitas monoton.", "memiliki kelincahan otak untuk beradaptasi cepat."],
-        6: ["sebagai pelindung sejati dengan insting pengayom yang luar biasa.", "memegang standar tanggung jawab moral yang sangat tinggi."],
-        7: ["sebagai pencari kebenaran esensial dengan intuisi yang tajam.", "tidak pernah puas dengan jawaban dangkal dan selalu menganalisa."],
-        8: ["sebagai eksekutor tangguh dengan insting material yang sangat presisi.", "memiliki fokus bawah sadar yang ditarik kuat menuju puncak otoritas."],
-        9: ["sebagai 'Jiwa Tua' yang memandang dunia dengan kacamata kebijaksanaan.", "memiliki tingkat kepedulian universal yang melampaui ego."]
-    }
-    gaya = {
-        1: ["Anda adalah inisiator cepat yang lebih suka bertindak daripada rapat.", "Anda memancarkan aura alpha kemanapun Anda pergi."],
-        2: ["Anda adalah pendengar ulung tempat orang lain membuang keluh kesah.", "Gaya kerja Anda kolaboratif; memastikan tim merasa dihargai."],
-        3: ["Anda memecahkan masalah dengan ide *out-of-the-box*.", "Anda ahli mencairkan ketegangan lewat humor spontan."],
-        4: ["Anda mengeksekusi visi dengan langkah terukur dan tanpa cacat.", "Lingkungan melihat Anda sebagai sosok yang dingin namun selalu selesai tugas."],
-        5: ["Anda paling bersinar saat diletakkan di situasi *chaos* yang butuh pemecahan instan.", "Gaya hidup Anda nomaden secara mental; mudah bosan."],
-        6: ["Anda memimpin dengan hati, bertindak layaknya orang tua bagi teman-teman Anda.", "Loyalitas Anda tidak perlu diragukan untuk membela sirkel."],
-        7: ["Anda mengobservasi dalam diam sebelum mengambil keputusan strategis.", "Gaya sosial Anda misterius; tidak banyak yang tahu isi kepala Anda."],
-        8: ["Anda mengorganisir sumber daya dengan tangan besi yang elegan.", "Aura wibawa Anda sering membuat orang segan sebelum Anda bicara."],
-        9: ["Anda merangkul keberagaman dan memimpin lewat contoh pengorbanan.", "Orang sering datang meminta nasihat karena kedewasaan batin Anda."]
+        1: "sebagai arsitek pendobrak batas (Sang Perintis). Anda didesain dengan mesin mental beroktan tinggi yang menuntut kemandirian absolut dan secara alami menolak didikte atau dikontrol oleh sistem yang kaku.",
+        2: "sebagai Sang Penyelaras sejati. Anda dibekali dengan radar empati tingkat dewa yang beresonansi kuat dalam mendeteksi dan memanipulasi energi ruang, menjadikan Anda seorang negosiator yang intuitif dan pembaca bahasa tubuh alami.",
+        3: "sebagai komunikator magnetis. Anda memiliki mesin pikiran yang meletup-letup dengan ide visioner. Kekuatan utama Anda terletak pada lidah dan ekspresi; kata-kata Anda memiliki daya tembus hipnotik ke alam bawah sadar pendengar.",
+        4: "sebagai arsitek sistem yang kokoh. Pola pikir Anda beroperasi bagaikan kode mesin yang presisi. Anda didesain untuk menjadi pondasi bagi entitas yang lebih besar, membangun kerangka dari *chaos* menjadi sebuah tatanan logis yang stabil.",
+        5: "sebagai jiwa bebas yang menolak keras rutinitas monoton. Anda adalah simbol eksplorasi; otak Anda paling bersinar terang dan lincah justru ketika diletakkan di tengah situasi krisis atau saat dihadapkan pada kebosanan yang memuncak.",
+        6: "sebagai pilar pengayom dan pelindung (Sang Healer). Anda memegang standar tanggung jawab moral yang sangat tinggi di pundak Anda, dengan insting alami yang secara otomatis bergerak melindungi dan menyembuhkan orang-orang di lingkar dalam Anda.",
+        7: "sebagai pencari kebenaran esensial dengan mata batin yang setajam silet. Anda adalah jiwa analitik yang tidak akan pernah sudi ditipu oleh jawaban dangkal. Filter logika Anda bekerja berlapis-lapis untuk membongkar misteri dan niat tersembunyi.",
+        8: "sebagai eksekutor otoritas (Sang Sovereign) dengan daya tarik gravitasi material yang mutlak. Anda memiliki fokus bawah sadar yang ditarik secara agresif menuju puncak hierarki. Wibawa bawaan Anda seringkali membuat orang lain segan atau tunduk bahkan sebelum Anda mengucapkan sepatah kata pun.",
+        9: "sebagai 'Jiwa Tua' (Old Soul) yang memandang kerasnya dunia lewat kacamata kebijaksanaan tingkat tinggi. Anda didesain untuk memahami lanskap kehidupan secara utuh (Big Picture) dengan tingkat kepedulian universal yang melampaui urusan materi fana."
     }
     shadow = {
-        1: ["Waspadai rasa kesepian akibat ego yang membangun tembok pemisah.", "Sisi gelapnya, Anda rawan terjebak sifat arogan."],
-        2: ["Waspadai memendam amarah terus-menerus yang bisa jadi bom waktu.", "Bahayanya, Anda sering menyerap energi beracun (toxic)."],
-        3: ["Sisi gelapnya, rawan berbicara impulsif saat harga diri tersinggung.", "Musuh terbesar Anda adalah hilangnya fokus."],
-        4: ["Bahayanya, dinilai tidak punya perasaan karena kaku pada aturan.", "Waspadai sifat over-micromanaging yang membuat gerah."],
-        5: ["Waspadai 'Sindrom Cepat Bosan' yang mensabotase karir/asmara.", "Bahayanya, cenderung melarikan diri (escapism) dari komitmen berat."],
-        6: ["Sangat rentan *burnout* ekstrem mengurus beban orang lain.", "Bahayanya, dihantui rasa bersalah tak masuk akal saat *me-time*."],
-        7: ["Sering terjebak *Paralysis by Analysis* (overthinking tanpa aksi).", "Waspadai kecenderungan mengisolasi diri saat merasa tidak dihargai."],
-        8: ["Kesulitan melepaskan kendali dan memaafkan pengkhianatan.", "Rentang mendominasi pasangan secara emosional tanpa sadar."],
-        9: ["Rawan patah hati kronis karena ekspektasi luhur berbenturan realitas.", "Energi batin gampang terkuras memikirkan penderitaan dunia."]
+        1: "Di balik kehebatan eksekusi itu, musuh terbesar Anda adalah rasa sepi akibat tembok gengsi yang Anda bangun sendiri. Kesulitan mendelegasikan tugas rawan memicu *burnout*.",
+        2: "Bahaya tersembunyinya adalah kecenderungan menjadi 'Spons Emosi'. Anda terlalu sering memenjarakan suara hati sendiri (People Pleasing) demi menjaga perasaan orang lain, yang akhirnya menjadi bom waktu.",
+        3: "Sisi gelap arsitektur ini adalah 'Lompatan Kera' (Scattered Focus). Ide Anda ratusan, eksekusi nol. Selain itu, Anda rawan mengeluarkan kata-kata tajam yang impulsif saat ego sedang terluka.",
+        4: "Kelemahan fatal Anda adalah *Micromanaging*. Ketakutan akan hilangnya struktur sering membuat Anda dinilai terlalu kaku, dingin, dan tidak memiliki toleransi pada ritme spontanitas manusiawi.",
+        5: "Waspadai 'Sindrom Cepat Bosan' yang mensabotase hasil jerih payah Anda sendiri. Anda rawan melarikan diri secara impulsif (*escapism*) sesaat sebelum mencapai puncak kesuksesan yang butuh komitmen panjang.",
+        6: "Ada kecenderungan *Toxic Empathy* dan *Savior Complex*. Anda menguras habis energi vital untuk menyelamatkan hidup orang lain, sementara Anda sendiri diam-diam merasa kosong dan tidak dipedulikan.",
+        7: "Jebakan terbesar Anda adalah *Paralysis by Analysis*—berhenti bertindak karena terlalu banyak berpikir. Kekecewaan pada realitas sering membuat Anda menarik diri ke dalam goa isolasi sosial yang dingin.",
+        8: "Ketakutan terdalam Anda adalah terlihat rapuh atau lemah. Sifat 'Control Freak' ini membuat Anda sangat kesulitan untuk berserah, melepaskan kendali, dan memaafkan kesalahan masa lalu tanpa dendam.",
+        9: "Aura empati Anda rawan disalahgunakan oleh para manipulator. Kekecewaan kronis sering melanda karena Anda memaksakan ekspektasi keluhuran moral yang terlalu tinggi kepada manusia pada umumnya."
     }
     saran = {
-        1: "Belajarlah mendelegasikan tugas. Meminta tolong adalah taktik kepemimpinan.",
-        2: "Berlatihlah mengatakan 'TIDAK' tanpa merasa bersalah.",
-        3: "Paksa diri Anda menuntaskan satu proyek kecil hari ini sebelum melompat ke ide lain.",
-        4: "Biarkan ruang untuk spontanitas. Kadang berantakan sedikit adalah terapi.",
-        5: "Temukan kebebasan dalam komitmen panjang.",
-        6: "Buatlah batas yang tegas. Berhenti menyelamatkan orang toxic.",
-        7: "Turunkan ekspektasi Anda terhadap ketidaksempurnaan manusia.",
-        8: "Latih diri berserah di momen istirahat. Kesuksesan butuh sistem saraf sehat.",
-        9: "Anda tidak diutus memikul galaksi. Cintai diri sendiri dulu."
+        1: "Pesan Semesta: Belajarlah menurunkan perisai Anda. Meminta bantuan bawahan/rekan bukanlah tanda kelemahan, melainkan taktik pendelegasian otoritas tingkat dewa.",
+        2: "Pesan Semesta: Berhentilah mensabotase kedamaian Anda demi orang lain. Berlatihlah mengucapkan kata 'TIDAK' dengan lantang tanpa secercah rasa bersalah.",
+        3: "Pesan Semesta: Ikat ide liar Anda ke bumi. Paksa sistem saraf Anda untuk menyelesaikan SATU proyek kecil sampai tuntas 100% sebelum melompat memburu sensasi ide yang baru.",
+        4: "Pesan Semesta: Kendurkan genggaman Anda pada kontrol obsesif. Berikan ruang untuk spontanitas; terkadang sedikit ketidakberaturan adalah terapi mental terbaik bagi Anda.",
+        5: "Pesan Semesta: Temukan ruang kebebasan dan seni di dalam rutinitas jangka panjang. Kedewasaan terbesar Anda diuji saat Anda mampu menetap ketika insting menyuruh Anda lari.",
+        6: "Pesan Semesta: Tangki energi Anda harus penuh sebelum menyiram orang lain. Buat batasan yang agresif. Anda tidak lahir ke dunia ini semata-mata untuk menggendong beban sirkel Anda.",
+        7: "Pesan Semesta: Turunkan ekspektasi Anda terhadap kesempurnaan manusiawi. Kadang, jawaban yang paling benar tidak ditemukan di ujung analisa pikiran, melainkan pada keberanian mengambil langkah pertama.",
+        8: "Pesan Semesta: Latih otot kepasrahan (*Letting Go*) Anda di momen istirahat. Kekuatan sejati justru bersinar paling terang saat Anda mampu berserah. Kesuksesan jangka panjang menuntut sistem saraf yang sehat dan damai.",
+        9: "Pesan Semesta: Tugas suci Anda bukanlah untuk menyelamatkan galaksi. Selamatkanlah dan cintai diri Anda sendiri terlebih dahulu sebelum Anda kehabisan energi menghadapi kerasnya realitas."
     }
-    return f"{buka} Anda didesain {random.choice(inti[angka])} {random.choice(gaya[angka])} {random.choice(shadow[angka])} Pesan Semesta: {saran[angka]}"
+    return f"{buka} {inti[angka]} {shadow[angka]} <br><br><b style='color:#FFD700;'>Pesan Kosmik:</b> <i style='color:#ccc;'>{saran[angka]}</i>"
 
 def proc_shadow_list(nama, angka):
     random.seed(generate_seed(f"shd_{nama}_{angka}"))
     semua_shadow = {
-        1: ["Gengsi minta tolong saat memikul beban", "Membangun tembok ego untuk menutupi sepi", "Overthinking merasa hasil belum sempurna", "Kesulitan menerima kritik", "Mengabaikan lelah demi target"],
-        2: ["Mengorbankan kebahagiaan demi ekspektasi", "Sulit berkata TIDAK (People Pleaser)", "Memendam amarah hindari konflik", "Terlalu bergantung validasi", "Menyerap energi toxic"],
-        3: ["Menyembunyikan gelisah di balik topeng ceria", "Cepat kehilangan motivasi", "Insomnia karena over-analisa", "Kesulitan fokus prioritas", "Bicara impulsif saat tersinggung"],
-        4: ["Stres parah jika rencana mendadak berubah", "Terjebak zona nyaman takut risiko", "Sering dinilai terlalu dingin", "Over-micromanaging", "Menghakimi orang tak disiplin"],
-        5: ["Sindrom Bosan mensabotase karya", "Kelelahan saraf otak jalan terus", "Merasa hampa hilang pijakan", "Lari (escapism) saat ditekan", "Kesulitan rutinitas panjang"],
-        6: ["Burnout mengurus hidup orang lain", "Sikap Over-Protective mengekang", "Rasa bersalah jika me time", "Terlalu ikut campur keluarga", "Mengharap balasan emosional"],
-        7: ["Menganalisa terus tanpa aksi (Paralysis)", "Merasa terasing/tak sepemikiran", "Mencurigai niat baik orang", "Sinis dan sarkastik", "Menutup diri saat emosi memuncak"],
-        8: ["Sulit melepaskan kontrol/memaafkan", "Memaksa tubuh abaikan alarm lelah", "Menilai orang dari sisi guna/status", "Ketakutan berlebih menjadi lemah", "Mendominasi pasangan"],
-        9: ["Memaklumi toxic atas nama kasihan", "Patah hati akibat ekspektasi manusia", "Kelelahan memikirkan beban semesta", "Sering merasa tidak pantas", "Kehilangan jati diri demi visi"]
+        1: ["**Ego Supremacy & Gengsi Absolut:** Anda membangun tembok kemandirian yang sangat tebal. Saat memikul beban berat atau stres ekstrem, Anda lebih memilih hancur sendirian daripada terlihat lemah dan harus meminta bantuan.", "**Ilusi Kesempurnaan (Overthinking Eksekusi):** Sering mensabotase karya atau langkah maju Anda sendiri dengan terus mencari detail yang kurang, mengorbankan momentum berharga demi kesempurnaan palsu.", "**Mengabaikan Alarm Fisik:** Ambisi buta yang membuat Anda sering mematikan sinyal kelelahan dari sistem saraf, mendorong tubuh melampaui batas kewajarannya hingga berujung pada *burnout* diam-diam."],
+        2: ["**Sindrom Penyenang (People Pleaser Chronic):** Anda secara rutin mengorbankan batas diri dan kebahagiaan pribadi hanya untuk memenuhi ekspektasi atau menghindari konflik dengan orang di sekitar Anda.", "**Spons Energi Beracun:** Radar empati yang bocor membuat Anda tanpa sadar menyerap amarah, keluh-kesah, dan energi negatif (toxic) dari orang lain, yang akhirnya merusak *mood* harian Anda sendiri.", "**Bom Waktu Amarah Terselubung:** Terlalu banyak menekan perasaan kecewa demi menjaga 'keharmonisan palsu' yang sewaktu-waktu bisa meledak hebat pada hal sepele."],
+        3: ["**Topeng Keceriaan (Hidden Anxiety):** Menyembunyikan rasa gelisah, *insecurity*, atau kebingungan yang parah di balik persona yang selalu tampil ceria, asyik, dan pandai bicara di depan publik.", "**Scattered Focus (Fokus Berserakan):** Mesin ide yang terlalu panas membuat Anda cepat kehilangan motivasi. Baru memulai satu hal, otak sudah melompat mencari rangsangan (dopamin) dari proyek baru.", "**Lidah Impulsif:** Saat ego merasa diserang atau dikhianati, Anda cenderung kehilangan filter dan menembakkan kata-kata sarkastik yang dampaknya sangat merusak secara emosional."],
+        4: ["**Kelumpuhan Zona Nyaman:** Terdapat ketakutan bawah sadar untuk mengambil risiko besar, membuat Anda sering terjebak dalam rutinitas monoton dan menyabotase peluang emas yang sedikit tidak pasti.", "**Diktator Mikro (Over-Micromanaging):** Rasa cemas jika hal tidak berjalan sesuai sistem membuat Anda sering mencampuri dan mengkritik terlalu detail cara kerja orang lain, menciptakan suasana tegang.", "**Pembekuan Emosional:** Saat menghadapi krisis mendadak, Anda sering mengunci emosi dan terlihat sangat kaku atau tidak berperasaan oleh orang terdekat demi mempertahankan logika operasional."],
+        5: ["**Sindrom Melarikan Diri (Escapism):** Ketakutan bawah sadar akan rasa terikat membuat Anda sering melarikan diri—baik secara mental maupun fisik—saat dihadapkan pada komitmen asmara atau bisnis jangka panjang.", "**Kelelahan Saraf Akibat Rangsangan:** Otak yang terus menerus memburu variasi dan kebebasan membuat Anda rentan mengalami kelelahan mental yang berujung pada rasa hampa dan kehilangan pijakan.", "**Sabotase Rutinitas Berharga:** Anda sering mengakhiri hal yang sudah bagus atau stabil hanya karena rasa bosan impulsif yang mendadak muncul tanpa alasan logis yang kuat."],
+        6: ["**Savior Complex (Sindrom Penyelamat Beban):** Anda merasa bertanggung jawab atas kemalangan orang lain dan sering menguras habis energi material maupun spiritual Anda untuk menyelamatkan nyawa orang-orang *toxic*.", "**Penjara Rasa Bersalah:** Anda dihantui rasa bersalah yang tidak rasional jika mengambil waktu untuk menikmati hasil keringat sendiri (Me-Time) sementara ada keluarga/teman yang masih kesusahan.", "**Ekspektasi Balasan Emosional (Pamrih Batin):** Sekuat apapun Anda bilang ikhlas, jauh di lubuk hati terdapat kekecewaan parah jika pengorbanan besar Anda diabaikan atau tidak mendapat pengakuan yang setimpal."],
+        7: ["**Paralysis by Analysis (Lumpuh Logika):** Ketajaman analitik Anda berbalik menjadi bumerang. Anda membedah setiap risiko secara *overthinking* hingga akhirnya kehilangan momentum dan tidak mengeksekusi apapun.", "**Skeptisisme & Trust Issue Kronis:** Luka masa lalu menciptakan filter paranoid di otak Anda, membuat Anda sering mencurigai niat baik orang lain dan menyabotase hubungan atau kerja sama potensial.", "**Arogansi Intelektual Bawah Sadar:** Karena standar kualitas yang tinggi, Anda rawan merasa terasing dan secara tidak sadar memancarkan aura sinis atau sarkastik pada lingkungan yang Anda anggap 'dangkal'."],
+        8: ["**Insecurity Otoritas (Ketakutan Menjadi Lemah):** Di bawah wibawa yang kokoh, terdapat ego rapuh yang menolak keras terlihat rentan di depan siapa pun, menekan Anda untuk terus menggunakan topeng 'Si Paling Kuat'.", "**Cengkeraman Kontrol (Diktator Psikologis):** Anda sangat kesulitan melepaskan kendali dan mempercayakan hasil akhir pada orang lain, bahkan cenderung memaksakan dominasi Anda pada ranah privasi pasangan.", "**Kalkulasi Nilai Kemanusiaan:** Saat ambisi material sedang menguasai, radar empati Anda mati. Anda rawan menilai orang-orang di sekitar murni berdasarkan metrik fungsi, aset, atau keuntungan status sosio-ekonominya saja."],
+        9: ["**Empati Penghancur (Toxic Empathy):** Kesadaran universal Anda membuat Anda terlalu mudah memaklumi, memaafkan, dan memberi kesempatan berkali-kali pada manipulator yang terus merugikan hidup Anda.", "**Patah Hati Paradigma (Ekspektasi Semu):** Anda memegang filosofi dan standar kemanusiaan yang sangat luhur, yang ujungnya membuat Anda kelelahan dan depresi melihat kerasnya realitas sifat asli manusia.", "**Kehilangan Jangkar Jati Diri:** Saking sibuknya memikirkan masa depan atau visi besar kehidupan sirkel Anda, Anda rawan terombang-ambing, kehilangan sentuhan pada keinginan dan kebahagiaan Anda sendiri di masa kini."]
     }
     return random.sample(semua_shadow[angka], 3)
+
+def get_betaljemur_data(neptu, hari):
+    lk = {
+        7: ("Lebu Katiup Angin", "Pikiran Anda sangat dinamis dan mudah terombang-ambing. Rawan godaan impulsif yang membuat fokus terpecah. Anda membutuhkan anchor (jangkar) rutinitas yang ketat untuk menahan energi yang berhamburan hari ini."),
+        8: ("Lakuning Geni", "Elemen api mendominasi. Emosi Anda bagaikan bensin yang mudah tersulut percikan kecil. Ini adalah hari di mana ambisi menyala terang, namun Anda wajib memegang kendali agar lidah Anda tidak membakar relasi yang sudah dibangun susah payah."),
+        9: ("Lakuning Angin", "Kapasitas adaptasi Anda sedang berada di puncaknya, namun di sisi lain karakter Anda menjadi sulit ditebak dan cenderung labil. Sangat bagus untuk negosiasi kilat, sangat buruk untuk komitmen jangka panjang."),
+        10: ("Pandito Mbangun Teki", "Energi sang pertapa menyelimuti Anda. Waktu yang luar biasa tajam untuk introspeksi mendalam, menyusun strategi sunyi, dan menajamkan intuisi. Kecerdasan analitik Anda mampu membedah masalah yang paling rumit sekalipun."),
+        11: ("Aras Tuding", "Aura keberanian dan kepeloporan sedang aktif. Anda akan sering 'ditunjuk' oleh semesta—baik itu ditunjuk untuk memimpin krisis, atau ditunjuk oleh peluang rezeki emas. Jangan menunduk, ambil panggung Anda hari ini."),
+        12: ("Aras Kembang", "Pesona dan kharisma alami (Magnetic Aura) Anda sedang memancar maksimal. Gelombang vibrasi ini membuat perkataan Anda lebih mudah dituruti dan kehadiran Anda didambakan. Waktu terbaik untuk melobi klien kelas kakap atau penyelesaian konflik."),
+        13: ("Lakuning Lintang", "Magnetis namun menyendiri. Anda memancarkan pesona misterius yang sering menjadi pusat perhatian tanpa Anda sadari. Namun jauh di lubuk hati, Anda menyimpan dunia eksklusif. Fase ini meminta Anda untuk tidak terlalu lama mengisolasi diri saat ada peluang kolaborasi di depan mata."),
+        14: ("Lakuning Rembulan", "Anda bertindak bagaikan penenang batin di tengah kekacauan. Kehadiran Anda memberikan rasa aman bagi sirkel Anda. Intuisi Anda jernih dan tajam, sangat cocok untuk mengambil keputusan yang berlandaskan empati dan harmoni."),
+        15: ("Lakuning Srengenge", "Aura Anda sepanas dan seterang matahari siang. Sangat logis, pencerah, dan dominan. Kepemimpinan Anda tidak bisa dibantah hari ini. Gunakan energi raksasa ini untuk mengeksekusi *project* mandek atau menegakkan aturan dengan tegas."),
+        16: ("Lakuning Banyu", "Ketenangan air yang menyimpan arus bawah mematikan. Anda terlihat sangat sabar dan fleksibel di permukaan, namun menyimpan kekuatan presisi yang luar biasa. Sangat pas untuk mengamati diam-diam lalu melakukan serangan negosiasi di saat krusial."),
+        17: ("Lakuning Bumi", "Sangat membumi, sabar, dan terstruktur. Hari ini pikiran Anda tidak mentolerir angan-angan kosong. Fokus pada pondasi: audit pembukuan, merapikan aset, dan memastikan semua operasional dasar bisnis/hidup Anda tidak memiliki kebocoran."),
+        18: ("Lakuning Paripurna", "Fase puncak pemegang kendali yang bijaksana. Ego telah luruh menjadi kewibawaan murni. Perkataan Anda mengandung tuah (sabda), sehingga Anda dilarang keras mengeluh atau menyumpahi hal buruk, karena potensi manifestasinya sangat cepat terjadi.")
+    }
+    nd = {"Minggu":"Timur", "Senin":"Selatan", "Selasa":"Barat", "Rabu":"Utara", "Kamis":"Timur", "Jumat":"Selatan", "Sabtu":"Selatan"}
+    return lk.get(neptu,("Anomali","Energi tak terpetakan. Dengarkan insting dasar Anda."))[0], lk.get(neptu,("Anomali",""))[1], nd.get(hari,"Netral")
+
+def get_rezeki_usaha(neptu):
+    r = {
+        1: ("Wasesa Segara (Lautan Rezeki)", "Pintu kelimpahan Anda sedang dalam fase ekspansi maksimal, seluas samudra. Aliran finansial berpotensi datang dari arah yang tidak terduga jika Anda berani melepaskan keraguan dan mengeksekusi niat besar hari ini."),
+        2: ("Tunggak Semi (Tumbuh Abadi)", "Memiliki vibrasi 'Patah tumbuh hilang berganti'. Jika hari ini Anda mengalami kerugian atau penolakan, jangan panik. Algoritma rezeki Anda didesain untuk memantul kembali dengan ganti yang jauh lebih menguntungkan."),
+        3: ("Satria Wibawa (Magnet Kehormatan)", "Rezeki Anda hari ini tidak datang dalam bentuk uang tunai seketika, melainkan 'Trust' atau respek dari koneksi tingkat tinggi. Kewibawaan adalah mata uang Anda hari ini; jaga penampilan dan tata bahasa Anda."),
+        4: ("Sumur Sinaba (Sumber Berkah)", "Vibrasi energi Anda bertindak bagaikan oasis. Orang-orang (klien/prospek) akan datang menghampiri untuk mencari jawaban dan solusi dari Anda. Jangan pelit berbagi *value*, karena dari situlah konversi rezeki Anda tercipta."),
+        5: ("Bumi Kapetak (Kerja Cerdas)", "Tidak ada keajaiban instan hari ini. Mesin rezeki Anda menuntut pembuktian berupa keringat dan strategi presisi. Jika Anda mau menurunkan ego untuk bekerja lebih keras di belakang layar, panen besar sedang menunggu Anda."),
+        6: ("Satria Wirang (Ujian Kelayakan)", "Fase ini adalah kawah candradimuka. Ada potensi gesekan rintangan atau ujian mental yang muncul di permukaan. Ini bukanlah kesialan, melainkan cara Semesta memfilter kelayakan ego Anda sebelum membuka akses ke level rezeki yang jauh lebih tinggi. Tetaplah *low-profile*."),
+        7: ("Lebu Katiup Angin (Rentan Bocor)", "Arus kas Anda sedang berada di zona rawan. Potensi uang masuk besar, namun angin pengeluaran impulsif bertiup sangat kencang. Anda wajib menahan keinginan foya-foya dan segera kunci rezeki Anda ke dalam bentuk aset tetap atau investasi mati.")
+    }[neptu%7 or 7]
+    u = {
+        1: ("Sandang (Kebutuhan Dasar)", "Sektor hoki Anda terhubung erat pada komoditas, gaya hidup, atau *tools* yang menyelesaikan masalah fundamental orang lain."),
+        2: ("Pangan (Nutrisi Esensial)", "Vibrasi usaha berputar kuat pada ritel, kuliner, konsumsi, atau memberikan 'asupan nutrisi mental' (seperti edukasi dan *training*)."),
+        3: ("Beja (Keberuntungan Murni)", "Sektor paling resonan adalah instrumen investasi, *closing* negosiasi bernilai tinggi, atau peluncuran aset digital baru. Cuan menanti."),
+        4: ("Lara (Butuh Mitigasi)", "Zona merah. Hindari mengambil keputusan ekspansi bisnis secara Solo (*Lone Wolf*). Anda wajib berkolaborasi atau mencari referensi pihak ketiga."),
+        5: ("Pati (Titik Buta)", "Dilarang keras melakukan spekulasi buta, judi, atau investasi bodong. Fokuskan tenaga murni untuk memperbaiki SOP internal atau *maintenance* sistem.")
+    }[neptu%5 or 5]
+    return r, u
+ 
+def get_zodiak(tanggal):
+    d, m = tanggal.day, tanggal.month
+    if (m == 3 and d >= 21) or (m == 4 and d <= 19): return "Aries"
+    elif (m == 4 and d >= 20) or (m == 5 and d <= 20): return "Taurus"
+    elif (m == 5 and d >= 21) or (m == 6 and d <= 20): return "Gemini"
+    elif (m == 6 and d >= 21) or (m == 7 and d <= 22): return "Cancer"
+    elif (m == 7 and d >= 23) or (m == 8 and d <= 22): return "Leo"
+    elif (m == 8 and d >= 23) or (m == 9 and d <= 22): return "Virgo"
+    elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra"
+    elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio"
+    elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius"
+    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn"
+    elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
+    else: return "Pisces"
+
+def get_safe_firstname(name_str, default="User"):
+    return str(name_str).strip().split()[0].upper() if str(name_str).strip() else default
 
 def proc_couple_persona(root_c, n1, n2):
     random.seed(generate_seed(f"cp_{n1}_{n2}_{root_c}"))
@@ -433,7 +475,9 @@ def generate_dynamic_reading(total_jummal):
     r_num = s_red
     while r_num > 9: r_num = sum(int(d) for d in str(r_num))
     r_dict = {1:"Pencipta jalan baru", 2:"Penyelaras harmoni", 3:"Penyampai pesan", 4:"Pembangun sistem", 5:"Agen transformasi", 6:"Pengayom sejati", 7:"Pencari esensi", 8:"Pemegang kendali", 9:"Kesadaran universal"}
-    m_note = "<div style='background:rgba(212,175,55,0.1); padding:10px; border-radius:5px;'><span style='color:#FFD700;'>⚡ <b>KODE MASTER:</b></span> Intuisi Spiritual Tinggi Terdeteksi.</div>" if any(m in str(total_jummal) for m in ["11","22","33"]) else ""
+    
+    m_note = "<div style='background:rgba(212,175,55,0.1); padding:15px; border-radius:8px; border-left: 4px solid #FFD700; margin-top:15px; margin-bottom:15px; box-shadow: 0 4px 15px rgba(212,175,55,0.2);'><span style='color:#FFD700; font-size:16px; letter-spacing:1px; font-weight:900;'>⚡ KODE MASTER TERDETEKSI</span><br><span style='color:#e0e0e0; font-size:14px; line-height:1.6; display:inline-block; margin-top:5px;'>Sistem mendeteksi anomali vibrasi positif tingkat tinggi (Angka Master). Intuisi spiritual dan indra ke-6 Anda beroperasi pada gelombang Theta hari ini. Firasat, ide dadakan, atau 'suara hati' yang muncul bukanlah ilusi—itu adalah transmisi presisi dari <i>Higher Self</i> Anda. Gunakan kompas batin ini untuk mengambil keputusan krusial yang selama ini membingungkan logika analitis Anda.</span></div>" if any(m in str(total_jummal) for m in ["11","22","33"]) else ""
+    
     return el[mod][0], el[mod][1], p_red, s_red, r_num, r_dict.get(r_num,""), m_note
 
 def hitung_angka(tanggal):
@@ -456,34 +500,6 @@ def get_rincian_tanggal(tanggal):
 
 def hitung_neptu_langsung(hari, pasaran):
     return {"Minggu":5,"Senin":4,"Selasa":3,"Rabu":7,"Kamis":8,"Jumat":6,"Sabtu":9}.get(hari,0) + {"Legi":5,"Pahing":9,"Pon":7,"Wage":4,"Kliwon":8}.get(pasaran,0)
- 
-def get_betaljemur_data(neptu, hari):
-    lk = {7:("Lebu Katiup Angin","Pikiran dinamis"),8:("Lakuning Geni","Emosi meledak-ledak"),9:("Lakuning Angin","Adaptif namun labil"),10:("Pandito Mbangun Teki","Introspektif, cerdas"),11:("Aras Tuding","Pemberani, ditunjuk peluang"),12:("Aras Kembang","Menebar pesona"),13:("Lakuning Lintang","Magnetis menyendiri"),14:("Lakuning Rembulan","Penenang batin"),15:("Lakuning Srengenge","Pencerah logis"),16:("Lakuning Banyu","Ketenangan mematikan"),17:("Lakuning Bumi","Sabar membumi"),18:("Lakuning Paripurna","Pemegang kendali bijak")}
-    nd = {"Minggu":"Timur", "Senin":"Selatan", "Selasa":"Barat", "Rabu":"Utara", "Kamis":"Timur", "Jumat":"Selatan", "Sabtu":"Selatan"}
-    return lk.get(neptu,("Anomali",""))[0], lk.get(neptu,("Anomali",""))[1], nd.get(hari,"Netral")
-
-def get_rezeki_usaha(neptu):
-    r = {1:("Wasesa Segara","Rezeki seluas lautan"),2:("Tunggak Semi","Patah tumbuh hilang berganti"),3:("Satria Wibawa","Dihormati kolega"),4:("Sumur Sinaba","Menjadi referensi, membawa berkah"),5:("Bumi Kapetak","Kerja cerdas dan keras"),6:("Satria Wirang","Rawan rintangan"),7:("Lebu Katiup Angin","Wajib punya aset tetap")}[neptu%7 or 7]
-    u = {1:("Sandang","Bisnis komoditas"),2:("Pangan","Kuliner/ritel"),3:("Beja","Instrumen investasi"),4:("Lara","Butuh partner mitigasi"),5:("Pati","Hindari spekulasi buta")}[neptu%5 or 5]
-    return r, u
- 
-def get_zodiak(tanggal):
-    d, m = tanggal.day, tanggal.month
-    if (m == 3 and d >= 21) or (m == 4 and d <= 19): return "Aries"
-    elif (m == 4 and d >= 20) or (m == 5 and d <= 20): return "Taurus"
-    elif (m == 5 and d >= 21) or (m == 6 and d <= 20): return "Gemini"
-    elif (m == 6 and d >= 21) or (m == 7 and d <= 22): return "Cancer"
-    elif (m == 7 and d >= 23) or (m == 8 and d <= 22): return "Leo"
-    elif (m == 8 and d >= 23) or (m == 9 and d <= 22): return "Virgo"
-    elif (m == 9 and d >= 23) or (m == 10 and d <= 22): return "Libra"
-    elif (m == 10 and d >= 23) or (m == 11 and d <= 21): return "Scorpio"
-    elif (m == 11 and d >= 22) or (m == 12 and d <= 21): return "Sagittarius"
-    elif (m == 12 and d >= 22) or (m == 1 and d <= 19): return "Capricorn"
-    elif (m == 1 and d >= 20) or (m == 2 and d <= 18): return "Aquarius"
-    else: return "Pisces"
-
-def get_safe_firstname(name_str, default="User"):
-    return str(name_str).strip().split()[0].upper() if str(name_str).strip() else default
 
 # Menghitung angka pengguna secara dinamis
 dynamic_users = get_dynamic_count()
@@ -520,8 +536,8 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""<div style='background: linear-gradient(135deg, #ff0000 0%, #8b0000 100%); padding: 18px; border-radius: 10px; text-align: center; border: 1px solid #ff4b4b; box-shadow: 0 5px 15px rgba(255,0,0,0.3);'>
 <b style='color: white; font-size: 16px; letter-spacing: 1px;'>🔥 BUTUH ANALISA LEBIH DALAM?</b><br>
-<span style='color: #ccc; font-size: 12px; display:block; margin-top:5px;'>Beberapa hasil tidak bisa ditampilkan di sistem.</span>
-<span style='color: #FFD700; font-size: 13px; display:inline-block; margin-top:5px; margin-bottom:12px;'>Konsultasi langsung dengan Coach (Slot Terbatas Hari Ini)</span><br>
+<span style='color: #ccc; font-size: 12px; display:block; margin-top:5px;'>Beberapa hasil (Blok Mental Spesifik) tidak bisa ditampilkan di sistem terbuka.</span>
+<span style='color: #FFD700; font-size: 13px; display:inline-block; margin-top:5px; margin-bottom:12px;'>Konsultasi Private dengan Coach (Slot Terbatas)</span><br>
 <a href='https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20butuh%20sesi%20kalibrasi%20private%20hari%20ini' target='_blank' style='background: #25D366; color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: 900; font-size: 14px; display: inline-block; box-shadow: 0 4px 10px rgba(37,211,102,0.4);'>💬 KLIK DI SINI SEKARANG</a>
 </div>""", unsafe_allow_html=True)
     st.markdown("<br><center><small style='color:#666;'>© 2026 Neuro Nada Academy</small></center>", unsafe_allow_html=True)
@@ -535,20 +551,20 @@ cur_planet, cur_instr, cur_color = get_planetary_hour()
 st.markdown(f"""<div style='text-align: right;'><div class='live-badge' style='background: {cur_color};'>🕒 LIVE PLANET: {cur_planet.upper()}</div><div style='font-size: 11px; color: #888; margin-top: 5px;'>{cur_instr}</div></div>""", unsafe_allow_html=True)
  
 st.markdown("<h1 style='text-align: center; margin-top: 10px; font-weight: 900; color:#FFD700;'>🌌 BUKA KODE HIDUP ANDA HARI INI</h1>", unsafe_allow_html=True)
-st.markdown("""<p style='text-align: center; font-size: 16px; color: #ccc;'>Ini bukanlah Ramalan. Ini adalah pemetaan presisi tinggi berdasarkan cetak biru nama, garis waktu kelahiran, dan bioritme alam semesta Anda.<br><br><b style='color:#FFF;'>⚡ Dalam 10 detik, Anda akan tahu:</b><br><span style='color:#D4AF37;'>• Arah rezeki hari ini<br>• Keputusan yang HARUS diambil<br>• Risiko yang WAJIB dihindari</span></p>""", unsafe_allow_html=True)
-st.markdown("<div style='text-align:center; margin-bottom:20px;'><span style='background:rgba(255,75,75,0.2); color:#ff4b4b; padding:8px 15px; border-radius:5px; font-size:13px; font-weight:bold; letter-spacing:1px;'>⚠️ Jangan baca ini kalau belum siap tahu kebenaran tentang diri Anda.</span></div>", unsafe_allow_html=True)
+st.markdown("""<p style='text-align: center; font-size: 16px; color: #ccc;'>Ini bukanlah Ramalan konvensional. Ini adalah pemetaan presisi tinggi berdasarkan cetak biru nama (Hisab Jummal), garis waktu kelahiran (Meta-Program NLP), dan bioritme alam semesta Anda.<br><br><b style='color:#FFF;'>⚡ Dalam 10 detik, Anda akan meretas:</b><br><span style='color:#D4AF37;'>• Fluktuasi momentum rezeki hari ini<br>• Celah *Blind Spot* yang HARUS dieksekusi<br>• Sabotase mental bawah sadar yang WAJIB dihindari</span></p>""", unsafe_allow_html=True)
+st.markdown("<div style='text-align:center; margin-bottom:20px;'><span style='background:rgba(255,75,75,0.2); color:#ff4b4b; padding:8px 15px; border-radius:5px; font-size:13px; font-weight:bold; letter-spacing:1px;'>⚠️ PERINGATAN: Jangan teruskan jika Anda belum siap menghadapi cermin kebenaran diri Anda.</span></div>", unsafe_allow_html=True)
 st.markdown("---")
  
 tgl_today = datetime.date.today()
-tab1, tab2, tab5, tab3, tab6, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix 🔒", "⏱️ Quantum Engine 🔒", "🌌 Falak Ruhani 🔒", "📚 Neuro-Insights", "❓ FAQ"])
+tab1, tab2, tab5, tab3, tab6, tab4 = st.tabs(["👤 Personal Identity", "👩‍❤️‍👨 Couple Matrix 🔒", "⏱️ Quantum Engine 🔒", "🌌 Falak Ruhani 🔒", "📚 Neuro-Insights", "❓ FAQ & Disclaimer"])
  
 # ==========================================
 # TAB 1: IDENTITAS KOSMIK (HOOK & PAYWALL)
 # ==========================================
 with tab1:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-    st.markdown("<h4 style='margin-top:0; color:#fff;'>👇 Masukkan data Anda sekarang</h4>", unsafe_allow_html=True)
-    nama_user = st.text_input("Nama Lengkap:", placeholder="Ketik nama asli Anda...", key="t1_nama")
+    st.markdown("<h4 style='margin-top:0; color:#fff;'>👇 Masukkan parameter Anda sekarang</h4>", unsafe_allow_html=True)
+    nama_user = st.text_input("Nama Lengkap Sesuai Identitas Asli:", placeholder="Ketik nama lengkap...", key="t1_nama")
     
     col_tgl, col_wt = st.columns(2)
     with col_tgl:
@@ -556,16 +572,16 @@ with tab1:
         tgl_input = st.date_input("Tanggal Lahir", value=datetime.date(1983, 9, 23), min_value=datetime.date(1900, 1, 1), max_value=tgl_today, format="DD/MM/YYYY", key="tgl_user_t1")
     with col_wt:
         st.write("📜 **Data Weton:**")
-        hari_input = st.selectbox("Hari", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="h_t1")
-        pasaran_input = st.selectbox("Pasaran", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="p_t1")
+        hari_input = st.selectbox("Hari Kelahiran", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="h_t1")
+        pasaran_input = st.selectbox("Pasaran Kelahiran", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="p_t1")
     st.markdown("</div>", unsafe_allow_html=True)
  
-    if st.button("🚀 Lihat Peluang Saya Hari Ini", key="btn_t1"):
+    if st.button("🚀 Lihat Peluang & Sabotase Saya Hari Ini", key="btn_t1"):
         if not nama_user or len(nama_user.strip()) < 3: 
-            st.error("🚨 Mohon ketik nama lengkap Anda (minimal 3 huruf).")
+            st.error("🚨 Filter Keamanan: Mohon ketik nama lengkap Anda (minimal 3 karakter).")
         else:
             try:
-                with st.spinner('Menyelaraskan frekuensi kosmik...'):
+                with st.spinner('Menyelaraskan frekuensi kosmik dan algoritma NLP...'):
                     time.sleep(1.5)
                 st.toast("Kalibrasi selesai! Membuka gerbang analisis...", icon="⚡")
                 
@@ -588,66 +604,100 @@ with tab1:
                 desk_ark_dinamis = proc_arketipe(safe_name, angka_hasil, zod, nep)
                 shadow = proc_shadow_list(safe_name, angka_hasil)
                 
-                # --- HASIL CEPAT 10 DETIK (HOOK - SELALU MUNCUL) ---
+                # Dynamic Action Generator based on Sun Phase for Hook
+                aksi_list = [
+                    f"Jebol kebuntuan Anda hari ini. Segera hubungi satu prospek atau koneksi kunci yang selama ini penanganannya Anda tunda akibat rasa ragu.",
+                    f"Lakukan audit energi mental. Identifikasi dan hentikan SATU interaksi/tugas repetitif hari ini yang diam-diam menguras kewarasan Anda.",
+                    f"Praktikkan delegasi radikal. Ada satu beban teknis yang menahan potensi besar Anda—lepaskan ego dan serahkan tugas itu ke orang yang tepat hari ini."
+                ]
+                aksi_teks = random.choice(aksi_list)
+                
+                # Mengambil Core Shadow untuk Red Flag
+                core_shadow_raw = shadow[0]
+                core_shadow_title = core_shadow_raw.split("**")[1].replace(":", "") if "**" in core_shadow_raw else core_shadow_raw.split(":")[0]
+                
+                # --- HASIL CEPAT 10 DETIK (HOOK - DYNAMIC & DEEP) ---
                 st.markdown(f"""<div class="soft-fade" style="background: rgba(255,215,0,0.1); border-left: 5px solid #FFD700; padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 1px solid rgba(255,215,0,0.3);">
-<h3 style="margin-top:0; color:#FFD700; font-weight:900; letter-spacing:1px;">🎯 HASIL ANDA HARI INI</h3>
-<ul style="font-size: 17px; line-height: 1.8; color: #fff; list-style-type: none; padding-left: 0;">
-<li style="margin-bottom: 10px;">💰 <b>REZEKI:</b> <span style="color:#25D366; font-weight:bold;">TERBUKA</span> <i style="color:#aaa; font-size:14px;">(Momentum tinggi - {rezeki_data[0]})</i></li>
-<li style="margin-bottom: 10px;">⚡ <b>AKSI:</b> Hubungi seseorang yang sudah lama Anda tunda.</li>
-<li style="margin-bottom: 10px;">🚫 <b>LARANGAN:</b> Jangan ambil keputusan finansial besar hari ini (Waspadai sifat {shadow[0].lower()}).</li>
+<h3 style="margin-top:0; color:#FFD700; font-weight:900; letter-spacing:1px;">🎯 HASIL DECODING ANDA HARI INI</h3>
+<ul style="font-size: 16px; line-height: 1.8; color: #fff; list-style-type: none; padding-left: 0;">
+<li style="margin-bottom: 15px; background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px;">
+💰 <b>STATUS REZEKI (<span style='color:#FFD700;'>{rezeki_data[0].split('(')[0].strip()}</span>):</b><br>
+<span style='color:#25D366; font-weight:bold; font-size:15px;'>MOMENTUM AKTIF.</span> <span style="color:#e0e0e0; font-size:14px; line-height:1.6;">{rezeki_data[1]}</span>
+</li>
+<li style="margin-bottom: 15px; background: rgba(37,211,102,0.1); border-left: 4px solid #25D366; padding: 15px; border-radius: 8px;">
+⚡ <b>INSTRUKSI AKSI TAKTIS:</b><br>
+<span style="color:#e0e0e0; font-size:14px; line-height:1.6;">{aksi_teks}</span>
+</li>
+<li style="margin-bottom: 10px; background: rgba(255,75,75,0.1); border-left: 4px solid #ff4b4b; padding: 15px; border-radius: 8px;">
+🚫 <b>RED FLAG (LARANGAN MUTLAK):</b><br>
+<span style="color:#ff4b4b; font-size:14px; font-weight:bold;">Waspadai letupan {core_shadow_title}!</span><br>
+<span style="color:#e0e0e0; font-size:14px; line-height:1.6;">Sistem membaca adanya celah sabotase bawah sadar hari ini. Tahan dorongan impulsif atau ketakutan tak beralasan Anda sebelum menjatuhkan keputusan finansial atau komitmen besar.</span>
+</li>
 </ul>
 <div style="background: rgba(255,75,75,0.2); padding: 8px 15px; border-radius: 5px; display: inline-block; margin-top: 10px;">
-<b style="color:#ff4b4b; font-size:13px;">⏳ Energi ini hanya berlaku sampai 24 jam ke depan</b>
+<b style="color:#ff4b4b; font-size:13px;">⏳ Fluktuasi energi ini hanya relevan hingga pergantian siklus (24 jam ke depan).</b>
 </div>
 </div>""", unsafe_allow_html=True)
                 
                 # --- PAYWALL: CEK STATUS PREMIUM ---
                 if not st.session_state.premium:
                     st.markdown(f"""<div class="glass-container soft-fade" style="text-align:center; border: 2px solid #ff4b4b; padding: 30px 20px;">
-<h3 style="color:#ff4b4b; margin-top:0;">🔓 Anda baru melihat 20% dari hasil Anda...</h3>
+<h3 style="color:#ff4b4b; margin-top:0;">🔓 Anda baru melihat 15% dari hasil *Decoding* Anda...</h3>
 <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: left; display: inline-block;">
-<span style="color:#ccc; font-size: 15px;">Di dalam analisa lengkap:</span><br>
-<b style="color:#fff;">• Blueprint kepribadian terdalam Anda</b><br>
-<b style="color:#fff;">• Titik kebocoran rezeki Anda</b><br>
-<b style="color:#fff;">• Strategi spesifik 60 menit ke depan</b><br>
-<b style="color:#fff;">• Analisa hubungan & jodoh (jika ada pasangan)</b>
+<span style="color:#ccc; font-size: 15px;">Di dalam analisa Premium (Tanpa Batas):</span><br>
+<b style="color:#fff;">• Blueprint kepribadian terdalam & Arsitektur Ego Anda</b><br>
+<b style="color:#fff;">• 3 Titik Kebocoran Mental (Shadow) yang mensabotase cuan</b><br>
+<b style="color:#fff;">• Strategi Arah Mata Angin (Geomansi) penarik keberuntungan</b><br>
+<b style="color:#fff;">• Analisa Kompatibilitas Hubungan Bawah Sadar (Couple Matrix)</b>
 </div>
-<p style="color:#FFD700; font-size: 16px;"><b>🔥 Ini bukan informasi umum.<br>Ini PERSONAL — hanya untuk Anda.</b></p>
+<p style="color:#FFD700; font-size: 16px;"><b>🔥 Laporan ini tidak akan Anda temukan di Google.<br>Ini murni algoritma PERSONAL — hanya untuk Anda.</b></p>
 <a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuro%20Nada%20Academy." target="_blank" style="text-decoration:none;">
-<div class="cta-button" style="font-size:18px; margin-top: 10px;">🚀 AKTIFKAN ANALISA LENGKAP</div>
+<div class="cta-button" style="font-size:18px; margin-top: 10px;">🚀 AKTIFKAN FULL REPORT SEKARANG</div>
 </a>
-<p style="font-size:14px; color:#ccc; margin-top:15px; margin-bottom: 5px;">Hanya <b>Rp 19.000</b><br><i style="color:#888;">(Lebih murah dari kopi, tapi bisa ubah arah hidup Anda)</i></p>
-<span style="background:rgba(255,75,75,0.2); color:#ff4b4b; padding:4px 10px; border-radius:3px; font-size:12px; font-weight:bold;">⚠️ Harga bisa naik kapan saja | Akses langsung terbuka</span>
+<p style="font-size:14px; color:#ccc; margin-top:15px; margin-bottom: 5px;">Investasi: <b>Hanya Rp 19.000</b><br><i style="color:#888;">(Harga perkenalan platform. Bebas akses 1 bulan penuh.)</i></p>
+<span style="background:rgba(255,75,75,0.2); color:#ff4b4b; padding:4px 10px; border-radius:3px; font-size:12px; font-weight:bold;">⚠️ Algoritma Harga dapat naik otomatis mengikuti *traffic* sistem.</span>
 <div style="margin-top: 25px; border-top: 1px dashed #555; padding-top: 15px;">
-<span style="font-size:14px; color:#25D366; font-weight:bold;">🔥 {dynamic_users} orang sudah membuka analisa mereka hari ini.</span><br>
-<span style="font-size:13px; color:#888;">Jangan jadi yang ketinggalan momentum.</span>
+<span style="font-size:14px; color:#25D366; font-weight:bold;">🔥 {dynamic_users} individu telah mengkalibrasi nasib mereka minggu ini.</span><br>
+<span style="font-size:13px; color:#888;">Keluar dari kebingungan Anda sekarang juga.</span>
 </div>
 <br><br>
 <div style='background: rgba(212,175,55,0.1); padding: 15px; border-radius: 10px; border: 1px solid #D4AF37;'>
-<b style='color: #D4AF37; font-size: 16px; letter-spacing: 1px;'>🚀 BONUS (VERSI SUPER VIRAL)</b><br>
-<span style='color: white; font-size: 14px; display:inline-block; margin-top:5px; margin-bottom:12px;'><i>“Jangan baca ini kalau belum siap tahu kebenaran tentang diri Anda”</i></span>
+<b style='color: #D4AF37; font-size: 16px; letter-spacing: 1px;'>🚀 EKSTRA BONUS (UNTUK ANDA HARI INI)</b><br>
+<span style='color: white; font-size: 14px; display:inline-block; margin-top:5px; margin-bottom:12px;'><i>“Dapatkan akses langsung ke Modul Opini Eksklusif Hypno-NLP”</i></span>
 </div>
 </div>""", unsafe_allow_html=True)
                 else:
                     # --- DEEP ANALYSIS (HANYA JIKA PREMIUM) ---
-                    st.markdown(f"<h3 style='text-align:center;'>🌌 Deep Analysis: {safe_name}</h3>", unsafe_allow_html=True)
-                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Nilai Esoterik</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div><div class="matrix-item"><div class="matrix-label">Elemen Dasar</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div><div class="matrix-item"><div class="matrix-label">Meta-Program</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div><div class="matrix-item"><div class="matrix-label">Filter Zodiak</div><div class="matrix-value">{zod}</div></div><div class="matrix-item"><div class="matrix-label">Energi Weton</div><div class="matrix-value">{wet} ({nep})</div></div></div>""", unsafe_allow_html=True)
-                    st.markdown(f"""<div class="dynamic-reading-box soft-fade"><h4 style="color: #FFD700; margin-top:0;">🔍 Bedah DNA Angka & Waktu Lahir</h4><p><b>1. Sandi Esoterik Nama (Hisab Jummal)</b><br><code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p><ul style="margin-left: -15px; margin-bottom: 20px;"><li><b>Elemen Bawah Sadar:</b> {el_nama} - <i style="color:#aaa;">{el_desc}</i></li><li><b>Inti Jiwa (Root Number):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b> ({r_desc})</li></ul><p><b>2. Sandi Waktu Lahir (Meta-Program NLP)</b><br><code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br><span style="font-size:14px; color:#ccc;">Maka didapatkan <b>KODE {angka_hasil}</b>. Angka ini adalah <i>Blueprint</i> otak <b>{safe_name}</b> memproses informasi.</span></p>{m_note}</div>""", unsafe_allow_html=True)
-                    st.markdown(f"""<div class="primbon-box soft-fade"><div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;"><span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN KITAB BETALJEMUR ADAMMAKNA</span></div><div style="font-size:15px; line-height:1.6; margin-bottom: 15px;"><b style="color:#FFF; font-size:18px;">{n_laku}</b> — <i style="color:#ccc;">"{d_laku}"</i></div><div style="font-size:15px; line-height:1.6; margin-bottom: 15px; border-top: 1px dashed #555; padding-top: 10px;">• <b>Rezeki (<span style="color:#FFD700;">{rezeki_data[0]}</span>):</b> <i style="color:#ccc;">{rezeki_data[1]}</i><br>• <b>Usaha (<span style="color:#25D366;">{usaha_data[0]}</span>):</b> <i style="color:#ccc;">{usaha_data[1]}</i></div><div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 10px; border-radius: 8px;"><span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Hari {hari_input}):</b></span> <b style="font-size: 16px;">{arah_naga}</b><br><i style="color:#888; font-size:13px;">*ACTIONABLE: Posisikan diri Anda menghadap <b>{arah_naga}</b> saat mengambil keputusan penting hari ini.</i></div></div>""", unsafe_allow_html=True)
-                    st.markdown(f"### 👁️ Decode Kepribadian Dinamis: {safe_name}")
-                    st.info(f"Mengacu pada pola unik {safe_name}, arketipe utama dikunci sebagai:\n\n**{punchy['inti']}**")
-                    st.write(desk_ark_dinamis)
+                    st.markdown(f"<h3 style='text-align:center;'>🌌 Laporan Decoding Lengkap: {safe_name}</h3>", unsafe_allow_html=True)
+                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Nilai Esoterik (Jummal)</div><div class="matrix-value matrix-value-special">{nilai_jummal}</div></div><div class="matrix-item"><div class="matrix-label">Core Element</div><div class="matrix-value">{el_nama.split(' ')[1] if len(el_nama.split(' '))>1 else el_nama}</div></div><div class="matrix-item"><div class="matrix-label">Meta-Program (NLP)</div><div class="matrix-value matrix-value-special">KODE {angka_hasil}</div></div><div class="matrix-item"><div class="matrix-label">Filter Astrologi</div><div class="matrix-value">{zod}</div></div><div class="matrix-item"><div class="matrix-label">Beban Weton</div><div class="matrix-value">{wet} ({nep})</div></div></div>""", unsafe_allow_html=True)
+                    
+                    st.markdown(f"""<div class="dynamic-reading-box soft-fade"><h4 style="color: #FFD700; margin-top:0;">🔍 Analisa Arsitektur Diri (DNA Numerologi)</h4><p><b>1. Sandi Esoterik Nama (Peta Vibrasi):</b><br><code style="color:#25D366; background:transparent; padding:0;">{rincian_jummal} = <b>{nilai_jummal}</b></code></p><ul style="margin-left: -15px; margin-bottom: 20px;"><li><b>Elemen Bawah Sadar:</b> {el_nama} - <i style="color:#aaa;">{el_desc}</i></li><li><b>Inti Jiwa (Root Frequency):</b> {p_reduk} = {s_reduk} ➡ <b>{r_num}</b> ({r_desc})</li></ul><p><b>2. Sandi Waktu Lahir (Meta-Program NLP):</b><br><code style="color:#FFD700; background:transparent; padding:0;">{rincian_tgl}</code><br><span style="font-size:14px; color:#ccc;">Ekstraksi di atas menghasilkan <b>KODE {angka_hasil}</b>. Angka final ini bukanlah tebakan, melainkan struktur *Blueprint* bagaimana otak <b>{safe_name}</b> memproses stres, memfilter informasi, dan mengeksekusi tindakan sedari Anda dilahirkan.</span></p>{m_note}</div>""", unsafe_allow_html=True)
+                    
+                    st.markdown(f"""<div class="primbon-box soft-fade"><div style="text-align:center; border-bottom:1px solid #D4AF37; padding-bottom:10px; margin-bottom:15px;"><span style="color:#D4AF37; font-size:14px; font-weight:900; letter-spacing:2px;">📜 PETHIKAN ALGORITMA BETALJEMUR ADAMMAKNA</span></div>
+<div style="font-size:15px; line-height:1.6; margin-bottom: 20px;"><b style="color:#FFF; font-size:18px; letter-spacing:1px;">{n_laku}</b><br><i style="color:#ccc; display:inline-block; margin-top:5px;">{d_laku}</i></div>
+<div style="font-size:15px; line-height:1.6; margin-bottom: 20px; border-top: 1px dashed #555; border-bottom: 1px dashed #555; padding-top: 15px; padding-bottom: 15px;">
+• <b style="color:#FFF;">Siklus Rezeki (<span style="color:#FFD700;">{rezeki_data[0]}</span>):</b><br><i style="color:#ccc; display:inline-block; margin-top:3px; margin-bottom:10px;">{rezeki_data[1]}</i><br>
+• <b style="color:#FFF;">Resonansi Sektor Usaha (<span style="color:#25D366;">{usaha_data[0]}</span>):</b><br><i style="color:#ccc; display:inline-block; margin-top:3px;">{usaha_data[1]}</i>
+</div>
+<div style="font-size:15px; line-height:1.6; background: rgba(212,175,55,0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #FFD700;">
+<span style="color:#FFD700;">🧭 <b>NAGA DINA (Arah Kejayaan Geomansi Hari {hari_input}):</b></span> <b style="font-size: 18px; color:#FFF;">{arah_naga}</b><br>
+<i style="color:#e0e0e0; font-size:14px; display:inline-block; margin-top:8px;">*ACTIONABLE (Tindakan Fisik): Posisikan tubuh fisik Anda menghadap ke arah <b>{arah_naga}</b> saat melakukan negosiasi *closing*, mengirim *email* krusial, atau *brainstorming* pengambilan keputusan besar hari ini. Penyelarasan magnetik ini dipercaya kuat secara empiris untuk membuka 'Blind Spot' hambatan dan memuluskan niat (manifestasi) Anda.</i>
+</div></div>""", unsafe_allow_html=True)
+                    
+                    st.markdown(f"<h3 style='margin-bottom:5px;'>👁️ Decode Kepribadian Psikologis Dinamis: {safe_name}</h3>", unsafe_allow_html=True)
+                    st.info(f"Sistem mengkalibrasi ulang pola perilaku Anda. Arsitektur mental (Arketipe) Anda dikunci secara absolut sebagai:\n\n### **{punchy['inti']}**")
+                    st.markdown(f"<p style='font-size:15px; line-height:1.6; color:#ccc; margin-bottom:25px;'>{desk_ark_dinamis}</p>", unsafe_allow_html=True)
                     
                     c_kekuatan, c_shadow = st.columns(2)
                     with c_kekuatan:
-                        st.markdown(f"🔥 **KEKUATAN DOMINAN:**")
-                        st.markdown(f"<ul class='list-punchy' style='color:#25D366;'><li>{punchy['kekuatan'][0]}</li><li>{punchy['kekuatan'][1]}</li><li>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
+                        st.markdown(f"🔥 <b style='color:#FFF; font-size:16px;'>KEKUATAN DOMINAN KARIER:</b>", unsafe_allow_html=True)
+                        st.markdown(f"<ul class='list-punchy' style='color:#25D366; line-height:1.6;'><li>{punchy['kekuatan'][0]}</li><li style='margin-top:8px;'>{punchy['kekuatan'][1]}</li><li style='margin-top:8px;'>{punchy['kekuatan'][2]}</li></ul>", unsafe_allow_html=True)
                     with c_shadow:
-                        st.markdown(f"⚠️ **SHADOW TERSEMBUNYI:**")
-                        st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b;'><li>{shadow[0]}</li><li>{shadow[1]}</li><li>{shadow[2]}</li></ul>", unsafe_allow_html=True)
+                        st.markdown(f"⚠️ <b style='color:#FFF; font-size:16px;'>SHADOW (VIRUS BAWAH SADAR):</b>", unsafe_allow_html=True)
+                        st.markdown(f"<ul class='list-punchy' style='color:#ff4b4b; line-height:1.6;'><li><span style='color:#e0e0e0'>{shadow[0]}</span></li><li style='margin-top:10px;'><span style='color:#e0e0e0'>{shadow[1]}</span></li><li style='margin-top:10px;'><span style='color:#e0e0e0'>{shadow[2]}</span></li></ul>", unsafe_allow_html=True)
                 
             except Exception as e:
-                st.error(f"Sistem gagal melakukan komputasi: {e}")
+                st.error(f"Sistem gagal melakukan komputasi tingkat tinggi: {e}")
  
 # ==========================================
 # TAB 2: COUPLE MATRIX (LOCKED)
@@ -655,38 +705,38 @@ with tab1:
 with tab2:
     if not st.session_state.premium:
         st.markdown(f"""<div class='glass-container soft-fade' style='text-align: center; padding: 40px 20px;'>
-<h3 style='color: #ff4b4b; font-weight: 900; margin-top:0;'>💞 CEK KECOCOKAN ANDA & DIA</h3>
-<p style='color: #ccc; font-size: 16px; margin-bottom: 20px;'>Apakah hubungan ini:<br><b style='color:#ff4b4b;'>❤️ JODOH?</b> | <b style='color:#FFD700;'>⚡ Ujian?</b> | <b style='color:#888;'>💔 Atau sebenarnya tidak cocok?</b></p>
-<p style='font-size: 14px; color: #aaa; margin-bottom: 30px;'>Masukkan 2 nama dan lihat hasilnya sekarang.<br><i style='color:#ff4b4b;'>⚠️ Banyak yang kaget setelah lihat hasilnya.</i></p>
+<h3 style='color: #ff4b4b; font-weight: 900; margin-top:0;'>💞 KALIBRASI HUBUNGAN BAWAH SADAR</h3>
+<p style='color: #ccc; font-size: 16px; margin-bottom: 20px;'>Bongkar algoritma ketidakcocokan Anda. Apakah hubungan ini:<br><b style='color:#ff4b4b;'>❤️ Pertemuan Jodoh Karmik?</b> | <b style='color:#FFD700;'>⚡ Fase Ujian Mental?</b> | <b style='color:#888;'>💔 Atau Bom Waktu Kehancuran?</b></p>
+<p style='font-size: 14px; color: #aaa; margin-bottom: 30px;'>Masukkan 2 nama (pasangan/rekan bisnis) dan bedah letak letupan konflik kalian sekarang.<br><i style='color:#ff4b4b;'>⚠️ Peringatan: Hasil algoritma sangat frontal dan *to-the-point*.</i></p>
 <a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuro%20Nada%20Academy." target="_blank" style="text-decoration: none;">
 <div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE VIA WHATSAPP (Rp 19.000)</div>
 </a>
-<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 {dynamic_users} orang sudah membuka analisa mereka hari ini.</p>
+<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 Akses ini sudah termasuk di dalam Paket Premium 1 Bulan.</p>
 </div>""", unsafe_allow_html=True)
     else:
         st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
         st.subheader("💞 Penyatuan Esoterik & Betaljemur (Couple Matrix)")
         ca, cb = st.columns(2)
         with ca: 
-            st.markdown("<h4 style='color:#FFD700;'>Pihak 1 (Pria)</h4>", unsafe_allow_html=True)
-            n1 = st.text_input("Nama Anda", key="n1_c")
-            d1 = st.date_input("Lahir Masehi", value=datetime.date(1995, 1, 1), format="DD/MM/YYYY", key="d1_c")
-            hc1 = st.selectbox("Hari Pria", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="hc1")
-            pc1 = st.selectbox("Pasaran Pria", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="pc1")
+            st.markdown("<h4 style='color:#FFD700;'>Pihak 1 (Aktor/Pria)</h4>", unsafe_allow_html=True)
+            n1 = st.text_input("Nama Asli Pihak 1", key="n1_c")
+            d1 = st.date_input("Lahir Masehi Pihak 1", value=datetime.date(1995, 1, 1), format="DD/MM/YYYY", key="d1_c")
+            hc1 = st.selectbox("Hari Pihak 1", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=4, key="hc1")
+            pc1 = st.selectbox("Pasaran Pihak 1", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=2, key="pc1")
         with cb: 
-            st.markdown("<h4 style='color:#FF69B4;'>Pihak 2 (Wanita)</h4>", unsafe_allow_html=True)
-            n2 = st.text_input("Nama Pasangan", key="n2_c")
-            d2 = st.date_input("Lahir Wanita", value=datetime.date(1995, 1, 1), format="DD/MM/YYYY", key="d2_c")
-            hc2 = st.selectbox("Hari Wanita", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=2, key="hc2")
-            pc2 = st.selectbox("Pasaran Wanita", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=0, key="pc2")
+            st.markdown("<h4 style='color:#FF69B4;'>Pihak 2 (Reaktor/Wanita)</h4>", unsafe_allow_html=True)
+            n2 = st.text_input("Nama Asli Pihak 2", key="n2_c")
+            d2 = st.date_input("Lahir Masehi Pihak 2", value=datetime.date(1995, 1, 1), format="DD/MM/YYYY", key="d2_c")
+            hc2 = st.selectbox("Hari Pihak 2", ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"], index=2, key="hc2")
+            pc2 = st.selectbox("Pasaran Pihak 2", ["Legi", "Pahing", "Pon", "Wage", "Kliwon"], index=0, key="pc2")
         st.markdown("</div>", unsafe_allow_html=True)
             
-        if st.button("🚀 Lihat Nasib Saya Hari Ini", key="btn_couple"):
+        if st.button("🚀 Retas Kode Pasangan", key="btn_couple"):
             if str(n1).strip() and str(n2).strip():
                 try:
-                    with st.spinner('Menghitung benturan energi pasangan...'):
+                    with st.spinner('Menghitung benturan energi dan menumbuk ego...'):
                         time.sleep(1.5)
-                    st.toast("Analisa pasangan selesai!", icon="💞")
+                    st.toast("Analisa sinkronisasi pasangan berhasil diekstrak!", icon="💞")
                     
                     safe_n1, safe_n2 = get_safe_firstname(n1, "Pria"), get_safe_firstname(n2, "Wanita")
                     zod1, zod2 = get_zodiak(d1), get_zodiak(d2)
@@ -702,18 +752,18 @@ with tab2:
                     judul_jodoh, desk_jodoh, d_do, d_dont = proc_weton_kombo((nep_1+nep_2)%8 or 8, safe_n1, safe_n2, zod1, zod2)
                     
                     st.markdown(f"### 🔮 The Unified Resonance: {safe_n1} & {safe_n2}")
-                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Neptu {safe_n1}</div><div class="matrix-value">{hc1} {pc1} ({nep_1})</div></div><div class="matrix-item"><div class="matrix-label">Neptu {safe_n2}</div><div class="matrix-value">{hc2} {pc2} ({nep_2})</div></div><div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL NEPTU</div><div class="matrix-value matrix-value-special">{nep_1 + nep_2}</div></div><div class="matrix-item"><div class="matrix-label">Total Esoterik</div><div class="matrix-value">{total_couple}</div></div></div>""", unsafe_allow_html=True)
+                    st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Beban Neptu {safe_n1}</div><div class="matrix-value">{hc1} {pc1} ({nep_1})</div></div><div class="matrix-item"><div class="matrix-label">Beban Neptu {safe_n2}</div><div class="matrix-value">{hc2} {pc2} ({nep_2})</div></div><div class="matrix-item" style="background: rgba(212,175,55,0.2);"><div class="matrix-label" style="color:#FFD700;">TOTAL BENTURAN NEPTU</div><div class="matrix-value matrix-value-special">{nep_1 + nep_2}</div></div><div class="matrix-item"><div class="matrix-label">Total Frekuensi Esoterik</div><div class="matrix-value">{total_couple}</div></div></div>""", unsafe_allow_html=True)
                     st.markdown(proc_penjelasan_matriks(safe_n1, safe_n2, total_couple, (nep_1+nep_2)), unsafe_allow_html=True)
-                    st.markdown(f'<div class="dynamic-reading-box soft-fade" style="border-left-color: #25D366;"><h4 style="color: #25D366; margin-top:0;">🧬 Persona Pasangan: {c_title}</h4><p><i>{c_desc}</i></p></div>', unsafe_allow_html=True)
-                    st.info(f"**Titik Benturan Weton ({judul_jodoh}):**\n{desk_jodoh}")
+                    st.markdown(f'<div class="dynamic-reading-box soft-fade" style="border-left-color: #25D366;"><h4 style="color: #25D366; margin-top:0;">🧬 Persona Entitas Baru: {c_title}</h4><p style="color:#e0e0e0; line-height:1.6;">{c_desc}</p></div>', unsafe_allow_html=True)
+                    st.info(f"**Titik Benturan Gesekan ({judul_jodoh}):**\n\n{desk_jodoh}")
                     
-                    if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): Sangat Sinkron**")
-                    elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): Dinamis** - Butuh toleransi.")
-                    else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): Rawan Gesekan**")
+                    if sel in [0, 3, 6, 9]: st.success(f"💘 **SKOR META-PROGRAM (NLP): Sangat Sinkron.** Otak kalian memproses konflik dengan bahasa ego yang serupa.")
+                    elif sel in [1, 2, 8]: st.warning(f"⚖️ **SKOR META-PROGRAM (NLP): Dinamis Labil.** Butuh banyak toleransi kalibrasi emosi agar tidak cepat bosan.")
+                    else: st.error(f"🔥 **SKOR META-PROGRAM (NLP): Rawan Gesekan Tinggi.** Secara genetik psikologis, kalian memiliki filter penerimaan informasi yang bertolak belakang.")
          
                     c_do_c, c_dont_c = st.columns(2)
-                    with c_do_c: st.markdown(f"<div class='soft-fade' style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366; height:100%;'><b style='color:#25D366; font-size:16px;'>✅ LAKUKAN INI:</b><br><br><span style='color:#e0e0e0; line-height:1.6;'>{d_do}</span></div>", unsafe_allow_html=True)
-                    with c_dont_c: st.markdown(f"<div class='soft-fade' style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b; height:100%;'><b style='color:#ff4b4b; font-size:16px;'>❌ HINDARI INI:</b><br><br><span style='color:#e0e0e0; line-height:1.6;'>{d_dont}</span></div>", unsafe_allow_html=True)
+                    with c_do_c: st.markdown(f"<div class='soft-fade' style='background:rgba(37,211,102,0.1); padding:20px; border-radius:10px; border:1px solid #25D366; height:100%;'><b style='color:#25D366; font-size:16px;'>✅ PROTOKOL HUBUNGAN (DO):</b><br><br><span style='color:#e0e0e0; line-height:1.6;'>{d_do}</span></div>", unsafe_allow_html=True)
+                    with c_dont_c: st.markdown(f"<div class='soft-fade' style='background:rgba(255,75,75,0.1); padding:20px; border-radius:10px; border:1px solid #ff4b4b; height:100%;'><b style='color:#ff4b4b; font-size:16px;'>❌ RED ZONE (DON'T):</b><br><br><span style='color:#e0e0e0; line-height:1.6;'>{d_dont}</span></div>", unsafe_allow_html=True)
                 except Exception as e: st.error(f"Error komputasi: {e}")
 
 # ==========================================
@@ -722,24 +772,24 @@ with tab2:
 with tab5:
     if not st.session_state.premium:
         st.markdown(f"""<div class='glass-container soft-fade' style='text-align: center; padding: 40px 20px;'>
-<h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR PREMIUM DIKUNCI</h2>
-<p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Anda sedang mengakses versi Gratis. Buka akses <b>Tactical Action Plan (Pemetaan Aksi Taktis Harian)</b> yang dikalibrasi real-time dengan energi planet Anda.</p>
+<h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR EKSKLUSIF DIKUNCI</h2>
+<p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Anda sedang mengakses batas *Free Tier*. Buka akses <b>Tactical Action Plan (Pemetaan Aksi Taktis Harian Berbasis Menit)</b> yang dikalibrasi real-time dengan energi rotasi planet Anda.</p>
 <a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuro%20Nada%20Academy." target="_blank" style="text-decoration: none;">
 <div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE VIA WHATSAPP (Rp 19.000)</div>
 </a>
-<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 {dynamic_users} orang sudah membuka analisa mereka hari ini.</p>
 </div>""", unsafe_allow_html=True)
     else:
         st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
         st.subheader("⏱️ Live Cosmic Dashboard (Fate Hacking)")
-        qe_nama = st.text_input("Nama Panggilan:", key="qe_n")
+        st.write("Sinkronkan langkah Anda dengan rotasi jam planet dan ritme sirkadian matahari untuk efisiensi eksekusi 10x lipat.")
+        qe_nama = st.text_input("Nama Panggilan Target (Anda):", key="qe_n")
         st.markdown("</div>", unsafe_allow_html=True)
         
-        if st.button("🚀 Lihat Nasib Saya Hari Ini", key="btn_qe"):
+        if st.button("🚀 Tarik Data Taktis Saat Ini", key="btn_qe"):
             if qe_nama:
-                with st.spinner('Menarik data pergerakan planet...'):
+                with st.spinner('Membaca pergerakan astronomi *real-time*...'):
                     time.sleep(1.2)
-                st.toast("Dashboard Taktis diperbarui!", icon="⏱️")
+                st.toast("Dashboard Taktis berhasil diperbarui!", icon="⏱️")
                 
                 safe_qe = get_safe_firstname(qe_nama)
                 jummal_qe = hitung_nama_esoterik(qe_nama)
@@ -750,8 +800,8 @@ with tab5:
                 
                 siklus_nama, html_plan = proc_tactical_plan(safe_qe, mod_harian, planet_live, planet_desc, sun_fase, sun_desc)
                 
-                st.markdown(f"### 📡 Live Dashboard: {safe_qe}")
-                st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Fase Harian</div><div class="matrix-value">{siklus_nama.split('(')[0].strip()}</div></div><div class="matrix-item"><div class="matrix-label">Matahari</div><div class="matrix-value matrix-value-special">{sun_fase.split(' ')[0]}</div></div><div class="matrix-item" style="border-bottom: 2px solid {planet_color};"><div class="matrix-label">Jam Planet</div><div class="matrix-value" style="color:{planet_color};">{planet_live}</div></div></div>""", unsafe_allow_html=True)
+                st.markdown(f"### 📡 Live Dashboard Komando: {safe_qe}")
+                st.markdown(f"""<div class="matrix-container soft-fade"><div class="matrix-item"><div class="matrix-label">Fase Bioritme Harian</div><div class="matrix-value">{siklus_nama.split('(')[0].strip()}</div></div><div class="matrix-item"><div class="matrix-label">Fase Sirkadian Matahari</div><div class="matrix-value matrix-value-special">{sun_fase.split(' ')[0]}</div></div><div class="matrix-item" style="border-bottom: 2px solid {planet_color};"><div class="matrix-label">Intervensi Jam Planet</div><div class="matrix-value" style="color:{planet_color};">{planet_live}</div></div></div>""", unsafe_allow_html=True)
                 
                 st.markdown(html_plan, unsafe_allow_html=True)
 
@@ -761,26 +811,25 @@ with tab5:
 with tab3:
     if not st.session_state.premium:
         st.markdown(f"""<div class='glass-container soft-fade' style='text-align: center; padding: 40px 20px;'>
-<h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR PREMIUM DIKUNCI</h2>
-<p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Anda sedang mengakses versi Gratis. Buka resep <b>Terapi Falak Ruhani, Afirmasi NLP Khusus, & Penawar Mental Block</b> dengan Akses Premium.</p>
+<h2 style='color: #ff4b4b; font-weight: 900;'>🔒 FITUR PENYEMBUHAN DIKUNCI</h2>
+<p style='color: #ccc; font-size: 16px; margin-bottom: 30px;'>Akses ditolak. Buka resep <b>Terapi Falak Ruhani, Dzikir Khusus Nama, Afirmasi NLP Terdalam, & Penawar Mental Block</b> dengan *Akses VIP*.</p>
 <a href="https://wa.me/628999771486?text=Halo%20Coach%20Ahmad,%20saya%20mau%20beli%20Kode%20Akses%20Premium%20Neuro%20Nada%20Academy." target="_blank" style="text-decoration: none;">
 <div class="cta-button" style="display: inline-block; padding: 15px 40px; font-size: 18px;">🚀 DAPATKAN KODE VIA WHATSAPP (Rp 19.000)</div>
 </a>
-<p style='font-size:13px; color:#25D366; font-weight:bold; margin-top:15px;'>🔥 {dynamic_users} orang sudah membuka analisa mereka hari ini.</p>
 </div>""", unsafe_allow_html=True)
     else:
         st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-        st.subheader("🌌 Terapi Falak Ruhani & Hypno-NLP")
-        st.info("**Reset Ulang Saraf Anda**\n\nSistem mengonversi nama Anda menjadi angka getaran, lalu mencocokkannya dengan frekuensi Asmaul Husna dan Afirmasi Bawah Sadar untuk menghancurkan *Mental Block*.")
-        nama_ruhani = st.text_input("Masukkan Nama Lengkap Anda:", placeholder="Ketik nama asli...", key="input_ruhani")
+        st.subheader("🌌 Terapi Falak Ruhani & Hypno-NLP Anchor")
+        st.info("**Reset Ulang Mesin Saraf Anda**\n\nSistem mengonversi nama Anda menjadi angka getaran khusus, lalu memformulasikannya dengan frekuensi Asmaul Husna (Anchor Spiritual) dan Afirmasi Bawah Sadar (Sugesti NLP) yang spesifik didesain hanya untuk menghancurkan *Mental Block* utama Anda.")
+        nama_ruhani = st.text_input("Masukkan Nama Lengkap Anda (Untuk Sinkronisasi Dzikir):", placeholder="Ketik nama asli...", key="input_ruhani")
         st.markdown("</div>", unsafe_allow_html=True)
         
-        if st.button("🚀 Lihat Nasib Saya Hari Ini", key="btn_ruhani"):
+        if st.button("🚀 Generate Resep Terapi Mental", key="btn_ruhani"):
             if nama_ruhani and len(nama_ruhani.strip()) >= 3:
                 try:
-                    with st.spinner('Mengekstrak sandi penyembuhan Anda...'):
+                    with st.spinner('Mengekstrak sandi penyembuhan matriks Anda...'):
                         time.sleep(1.5)
-                    st.toast("Protokol Terapi berhasil disusun!", icon="✨")
+                    st.toast("Protokol Terapi berhasil diturunkan dari sistem!", icon="✨")
                         
                     safe_nr = get_safe_firstname(nama_ruhani)
                     nilai_jummal_r = hitung_nama_esoterik(nama_ruhani)
@@ -793,104 +842,120 @@ with tab3:
                     
                     st.markdown(f"""<div class="soft-fade" style="background: linear-gradient(135deg, rgba(10, 20, 40, 0.9) 0%, rgba(20, 10, 40, 0.9) 100%); border-left: 5px solid #00FFFF; padding: 25px; border-radius: 12px; margin-top: 20px; box-shadow: 0 8px 25px rgba(0, 255, 255, 0.15);">
 <div style="text-align:center; border-bottom:1px solid #00FFFF; padding-bottom:10px; margin-bottom:20px;">
-<span style="color:#00FFFF; font-size:16px; font-weight:900; letter-spacing:2px;">🧠 PROTOKOL TERAPI KOMPREHENSIF: {safe_nr}</span>
+<span style="color:#00FFFF; font-size:16px; font-weight:900; letter-spacing:2px;">🧠 PROTOKOL TERAPI KOMPREHENSIF: {safe_nr.upper()}</span>
 </div>
 <div style="margin-bottom: 20px;">
-<b style="color:#ff4b4b; font-size:16px;">⚠️ MENTAL BLOCK (Virus Bawah Sadar):</b><br>
-<span style="color:#ccc; font-size:15px; line-height:1.6;">{protokol_nlp['block']}</span>
+<b style="color:#ff4b4b; font-size:16px;">⚠️ MENTAL BLOCK (Virus Sabotase Bawah Sadar):</b><br>
+<span style="color:#ccc; font-size:15px; line-height:1.6; display:inline-block; margin-top:5px;">{protokol_nlp['block']}</span>
 </div>
 <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-<b style="color:#FFF; font-size:16px;">✨ 1. ANCHOR SPIRITUAL (Falak Ruhani)</b><br>
-<span style="color:#aaa; font-size:14px;">Gunakan Asma ini sebagai Dzikir penenang hati:</span><br>
-<b style="color:#00FFFF; font-size:20px;">{asma_terapi}</b> <span style="color:#FFD700; font-weight:bold;">(BACA {jumlah_dzikir}x)</span><br>
-<i style="color:#ccc; font-size:14px;">Fungsi: {tujuan_ruhani}</i>
+<b style="color:#FFF; font-size:16px;">✨ 1. ANCHOR SPIRITUAL KUNCI (Falak Ruhani)</b><br>
+<span style="color:#aaa; font-size:14px; display:inline-block; margin-bottom:8px;">Gunakan Asma ini sebagai Dzikir penenang hati (pengunci fokus) saat pikiran sedang *chaos*:</span><br>
+<b style="color:#00FFFF; font-size:22px;">{asma_terapi}</b> <span style="color:#FFD700; font-weight:bold; font-size:16px;">(BACA {jumlah_dzikir}x)</span><br>
+<i style="color:#ccc; font-size:14px; display:inline-block; margin-top:5px; padding-top:8px; border-top:1px solid #333;">Tujuan Injeksi Batin: {tujuan_ruhani}</i>
 </div>
 <div style="background: rgba(255,215,0,0.05); border-left: 4px solid #FFD700; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-<b style="color:#FFD700; font-size:16px;">🗣️ 2. SUGESTI HYPNO-NLP (Afirmasi Diri)</b><br>
-<span style="color:#aaa; font-size:14px;">Ucapkan kalimat ini berulang di dalam hati dengan penuh keyakinan menjelang tidur (Gelombang Theta):</span><br>
-<i style="color:#fff; font-size:16px; line-height:1.6;">"{protokol_nlp['afirmasi']}"</i>
+<b style="color:#FFD700; font-size:16px;">🗣️ 2. SUGESTI HYPNO-NLP (Afirmasi Pemutusan Rantai)</b><br>
+<span style="color:#aaa; font-size:14px; display:inline-block; margin-bottom:8px;">Ucapkan kalimat sugesti ini berulang kali di dalam hati dengan penuh keyakinan dan rasakan emosinya sesaat menjelang tidur (Fase Gelombang Theta Terbuka):</span><br>
+<div style="background: rgba(0,0,0,0.6); padding: 12px; border-radius:6px;"><i style="color:#fff; font-size:16px; line-height:1.6;">"{protokol_nlp['afirmasi']}"</i></div>
 </div>
 <div style="border-top: 1px dashed #555; padding-top: 15px; padding-bottom: 5px;">
-<b style="color:#25D366; font-size:16px;">🏃‍♂️ 3. QUANTUM HABIT (Tindakan Fisik Hari Ini)</b><br>
-<span style="color:#ccc; font-size:15px; line-height:1.6;">Semesta merespons tindakan nyata. Untuk menghancurkan rantai Mental Block Anda secara instan, eksekusi satu tugas ini hari ini juga:<br>
-<b style="color:#FFF;">{protokol_nlp['habit']}</b></span>
+<b style="color:#25D366; font-size:16px;">🏃‍♂️ 3. QUANTUM HABIT (Tindakan Fisik Pengunci Hari Ini)</b><br>
+<span style="color:#ccc; font-size:15px; line-height:1.6; display:inline-block; margin-top:5px;">Hanya berdiam diri tidak mengubah nasib karena Semesta hanya merespons *tindakan nyata*. Untuk menghancurkan struktur *Mental Block* Anda secara instan, paksa diri Anda untuk mengeksekusi satu tugas ini hari ini juga:<br><br>
+<b style="color:#FFF; font-size:16px; background: rgba(37,211,102,0.2); padding: 8px; border-radius: 5px; display:inline-block;">{protokol_nlp['habit']}</b></span>
 </div>
-<p style="font-size:12px; color:#ff4b4b; margin-top:15px; font-weight:bold;">⏳ Sistem mendeteksi perubahan energi. Lakukan protokol ini sebelum siklus berganti!</p>
+<p style="font-size:12px; color:#ff4b4b; margin-top:20px; font-weight:bold; text-align:center;">⏳ Sistem memonitor kebocoran energi. Lakukan protokol ini malam ini sebelum siklus tidur Anda me-reset semuanya!</p>
 </div>""", unsafe_allow_html=True)
                 except Exception as e:
-                    st.error(f"Terjadi kesalahan saat memproses sandi terapi: {e}")
+                    st.error(f"Terjadi kesalahan saat memproses sandi terapi *deep level*: {e}")
                 
             else:
-                st.warning("⚠️ Ketik nama lengkap Anda (minimal 3 huruf) untuk sinkronisasi.")
+                st.warning("⚠️ Filter Keamanan: Ketik nama lengkap Anda (minimal 3 huruf) untuk otorisasi sinkronisasi.")
 
 # ==========================================
 # TAB 6: NEURO-INSIGHTS (KOLAM ARTIKEL)
 # ==========================================
 with tab6:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-    st.subheader("📚 Neuro-Insights: Opini & Kalibrasi Mindset")
-    st.write("Jelajahi pemikiran terdalam seputar NLP, Modifikasi Bawah Sadar, dan Esoterik Nusantara.")
+    st.subheader("📚 Neuro-Insights: Kalibrasi Mindset Otoritatif")
+    st.write("Jelajahi pemikiran terdalam, modifikasi bawah sadar, dan telaah esoterik Nusantara langsung dari sudut pandang *Hypno-Copywriting*.")
     
-    with st.expander("🧠 1. Kenapa Logika Sering Kalah Sama Perasaan?"):
+    with st.expander("🧠 1. Kenapa Logika Sering Kalah Telak Oleh Perasaan?"):
         st.markdown("""
-        **Oleh: Coach Ahmad Septian**
+        **Oleh: Coach Ahmad Septian (NLP Trainer & Hypnotherapist)**
+        ---
+        Banyak eksekutif dan pengusaha mengira setiap keputusan bisnis atau hidup yang mereka buat sehari-hari adalah hasil kalkulasi rasional tingkat tinggi. Faktanya secara neuro-sains, **95% keputusan manusia dikendalikan mutlak oleh pikiran bawah sadar**—yang bahasa utamanya bukanlah angka, melainkan emosi. 
         
-        Banyak orang mengira setiap keputusan yang mereka buat sehari-hari adalah hasil kalkulasi rasional. Faktanya, **95% keputusan hidup kita dikendalikan oleh pikiran bawah sadar** yang bahasa utamanya adalah emosi. 
+        Ketika logika berteriak "Jangan hubungi prospek itu karena berisiko ditolak", namun hati berkata "Tapi ada ketakutan aneh jika peluang ini hilang", siapakah yang memegang kendali eksekusi? Selalu perasaan (emosi ketakutan). Logika selalu datang belakangan hanya untuk merasionalisasi / mencari pembenaran atas emosi tersebut.
         
-        Ketika logika berkata "Jangan makan gorengan karena bikin gendut", namun hati berkata "Tapi enak dan bikin tenang", siapakah yang menang? Biasanya perasaan.
-        
-        **Strategi NLP:** Jika Anda ingin merubah nasib atau kebiasaan buruk, jangan berdebat dengan logika. Ubahlah 'rasa' (Anchor Emosi) yang menempel pada kebiasaan tersebut.
+        **Strategi Modifikasi (NLP Reframing):** Jika Anda ingin membalikkan nasib, memecah *procrastination* (penundaan), atau menghancurkan kebiasaan buruk finansial, jangan berdebat dengan logika Anda sendiri. Anda tidak akan menang melawan diri sendiri. Ubahlah 'Rasa' (*Anchor* Emosional) yang menempel pada kebiasaan tersebut. Mulailah mengasosiasikan "bertindak berani" dengan "rasa lega yang luar biasa".
         """)
         
-    with st.expander("💰 2. Rahasia Vibrasi Rezeki di Balik Susunan Nama"):
+    with st.expander("💰 2. Rahasia Vibrasi Kebocoran Rezeki di Balik Sandi Nama"):
         st.markdown("""
-        Pernahkah Anda merasa sudah bekerja keras, banting tulang siang-malam, tapi rezeki selalu 'lewat' begitu saja? Atau mudah mendapatkan uang tapi uangnya selalu habis untuk hal-hal yang tidak terduga?
+        Pernahkah Anda merasa sudah banting tulang, mengorbankan waktu tidur dan keringat siang-malam, tapi rezeki selalu terasa 'lewat' begitu saja? Atau mungkin uang mudah masuk dalam jumlah besar, tapi anehnya selalu menguap habis untuk hal-hal darurat yang tidak terduga?
         
-        Dalam kajian kuno Nusantara dan Metodologi Hisab Jummal, **setiap huruf pada nama Anda membawa beban frekuensi.** Jika nama Anda memiliki vibrasi elemen "Api" yang terlalu mendominasi tanpa penyeimbang elemen "Air", wajar jika secara bawah sadar Anda sering mensabotase kesuksesan Anda sendiri karena sifat terburu-buru.
+        Dalam ranah esoterik Nusantara (khususnya Metodologi Hisab Jummal), tidak ada yang namanya kebetulan. **Setiap huruf pada nama Anda (yang dipanggil setiap hari) membawa beban frekuensi psikologis tertentu.** Jika nama Anda memiliki vibrasi elemen "Api" (Nar) yang terlalu memonopoli ego tanpa penyeimbang elemen "Air" (Ma'), wajar jika secara impulsif bawah sadar, Anda sering mensabotase kesuksesan investasi Anda sendiri karena sifat terburu-buru, kesombongan instan, atau nafsu materialistik jangka pendek.
         
-        **Tindakan:** Lakukan kalibrasi identitas. Bukan berarti Anda harus ganti nama KTP, cukup temukan 'Asma' penyeimbang (Falak Ruhani) sebagai jangkar spiritual Anda.
+        **Tindakan Resolusi:** Lakukan kalibrasi identitas spiritual. Ini bukan berarti Anda harus repot ke catatan sipil mengganti nama KTP. Cukup temukan 'Asma' penyeimbang (*Falak Ruhani*) dan jadikan itu sebagai jangkar (*Anchor*) vibrasi baru di saat Anda sedang butuh mengambil keputusan fatal.
         """)
         
-    with st.expander("⚡ 3. Lone Wolf Syndrome: Bahayanya Terlalu Mandiri"):
+    with st.expander("⚡ 3. Lone Wolf Syndrome: Ilusi Mematikan dari Kata 'Mandiri'"):
         st.markdown("""
-        Di era modern, menjadi manusia serba bisa sering diagungkan. Anda belajar desain sendiri, ngoding sendiri, marketing sendiri. Sayangnya, sikap terlalu mandiri ini seringkali menutupi *Mental Block* yang lebih dalam: **Gengsi Meminta Tolong (Ego Supremacy).**
+        Di era modern yang mengagungkan konsep *hustle-culture*, menjadi manusia serba bisa (Super-Soloist) sering dianggap keren. Anda memaksa belajar *copywriting* sendiri, membangun web sendiri, merancang produk sendiri, dan menjualnya sendiri. 
         
-        Alam semesta mendistribusikan rezekinya lewat tangan orang lain (kolaborasi). Jika Anda selalu menutup pintu bantuan karena merasa bisa segalanya, Anda sedang membangun bendungan penutup arus kelimpahan Anda sendiri.
+        Sayangnya, sikap yang terlihat seperti "Mandiri" ini seringkali hanyalah kedok yang digunakan ego untuk menutupi *Mental Block* yang jauh lebih dalam: **Insecurity dan Gengsi Meminta Tolong (Ego Supremacy).**
+        
+        Hukum tarik-menarik rezeki sangat jelas: Semesta mendistribusikan energi kelimpahannya melalui *tangan orang lain* (kolaborasi & delegasi). Jika Anda terus mengunci pintu dari bantuan orang lain karena merasa "lebih aman dan sempurna" jika dikerjakan sendiri, bersiaplah menghadapi mesin saraf yang cepat hancur akibat lelah mental (*Burnout*). Uang tidak masuk kepada mereka yang kelelahan, melainkan kepada mereka yang memiliki sistem yang efisien.
         """)
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ==========================================
-# TAB 4: FAQ
+# TAB 4: FAQ & DISCLAIMER (LEGALITY)
 # ==========================================
 with tab4:
     st.markdown("<div class='glass-container'>", unsafe_allow_html=True)
-    st.subheader("❓ FAQ & Navigasi Energi")
-    with st.expander("🤔 1. Apa itu Jam Planet?"): st.write("Pembagian waktu astronomi kuno yang membagi siang/malam menjadi 12 fase energi. Berguna untuk tahu kapan harus eksekusi, kapan harus menahan diri.")
-    with st.expander("🤔 2. Apa itu Hisab Jummal?"): st.write("Sains huruf kuno yang memberi bobot matematika pada tiap aksara untuk memetakan frekuensi jiwa.")
-    with st.expander("🤔 3. Apakah hasil ini mutlak?"): st.write("TIDAK. Ini adalah Alat Pemetaan Pola (Pattern Mapping) untuk memperkuat Self-Awareness. Keputusan tetap di tangan Anda.")
-    st.error("**⚠️ DISCLAIMER:** Analisa ini ditujukan untuk rekreasi dan kalibrasi mindset, bukan pengganti saran medis atau psikologis profesional.")
+    st.subheader("❓ Parameter Sistem & Kebijakan Hak Cipta")
+    
+    with st.expander("🤔 1. Apa dasar algoritma dari Neuro Nada OS ini?"): 
+        st.write("Sistem Neuro Nada OS adalah entitas *cyber-esoteric* independen. Platform ini memadukan kalkulasi numerologi purba (Gematria Arab/Hisab Jummal), siklus kalender pasaran Nusantara (Primbon Betaljemur Adammakna), yang dikalibrasi ulang dengan *profiling* psikologi modern berbasis *Neuro-Linguistic Programming* (NLP). Kami tidak meramal kejadian masa depan secara klenik, melainkan memetakan kecenderungan pola pikir (Meta-Program) di alam bawah sadar agar Anda bisa mengambil alih kemudi keputusan hidup Anda (Fate Hacking).")
+        
+    with st.expander("🤔 2. Kenapa terkadang hasilnya terkesan kasar atau menakutkan?"): 
+        st.write("Algoritma ini didesain murni objektif. Sistem tidak dibuat untuk menyenangkan hati Anda (No Sugar-Coating). Fungsi utama mesin ini adalah membongkar *Blind Spot* (Titik Buta) dan kelemahan ego (Shadow) yang selama ini menghalangi Anda dari kelimpahan hidup. Pertumbuhan hanya terjadi saat kebenaran dihadapkan secara telanjang.")
+        
+    with st.expander("🤔 3. Apakah kalkulasi 'Naga Dina' dan 'Arah Hadap' itu mutlak?"): 
+        st.write("Di dalam esoterik tradisional, hukum *Naga Dina* bertindak sebagai referensi geomansi (penyelarasan energi magnetik lokasi). Mengikuti rekomendasi arah dipercaya membantu memecah stagnasi energi ruang saat Anda mengambil keputusan bisnis/sosial. Namun, eksekusi dan tindakan logis Anda tetap memegang porsi 90% dari hasil keberhasilan.")
+    
+    st.markdown("<hr style='border-top: 1px dashed #555;'>", unsafe_allow_html=True)
+    
+    st.error("""**⚠️ DISCLAIMER LEGAL & ETIKA (HARAP DIBACA):**
+Seluruh laporan hasil analisis (*Decoding*), prediksi rotasi planet, dan saran protokol terapi di platform **Neuro Nada Academy** disediakan semata-mata sebagai alat bantu pemicu kesadaran diri (*Self-Awareness Tool*), referensi kalibrasi mental, dan media eksperimental hiburan psikologis. 
+
+Platform ini beserta *developer* (Coach Ahmad Septian) **BUKAN** merupakan penyedia layanan saran investasi finansial yang berlisensi, diagnosa medis, maupun jasa psikiatri/psikologi klinis absolut. 
+
+Setiap langkah, eksekusi finansial, tindakan hubungan asmara, maupun perubahan rutinitas fisik yang Anda ambil berdasarkan keluaran aplikasi ini merupakan tanggung jawab rasional dan kehendak bebas (*Free Will*) Anda sepenuhnya. Pengembang tidak memikul tanggung jawab hukum atas kerugian materil maupun immaterial yang timbul dari interpretasi pengguna terhadap algoritma *software* ini.""")
     st.markdown("</div>", unsafe_allow_html=True)
  
 # ==========================================
 # SOCIAL PROOF
 # ==========================================
 st.markdown("---")
-st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Jejak Transformasi</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: #D4AF37;'>Jejak Transformasi Kalibrasi Ego</h3>", unsafe_allow_html=True)
 daftar_ulasan = ambil_ulasan()
 if daftar_ulasan:
     marquee_content = " | ".join([f"<span style='color: #FFD700;'>{u.get('Rating', '⭐⭐⭐⭐⭐')}</span> <b>{u.get('Nama', 'User')}:</b> \"{u.get('Komentar', '')[:50]}...\"" for u in daftar_ulasan[:3]])
     st.markdown(f'<div style="background-color: #1a1a1a; padding: 12px; border-radius: 8px; border-left: 3px solid #D4AF37; border-right: 3px solid #D4AF37; white-space: nowrap; overflow: hidden; margin-bottom: 20px;"><marquee behavior="scroll" direction="left" scrollamount="6" style="color: #f0f0f0; font-size: 15px;">{marquee_content}</marquee></div>', unsafe_allow_html=True)
     for u in daftar_ulasan[:5]:
-        if u.get("Komentar", ""): st.markdown(f'<div class="ulasan-box"><span style="color: #FFD700; font-size: 12px;">{u.get("Rating", "⭐⭐⭐⭐⭐")}</span><br><b>{u.get("Nama", "Jiwa")}</b><br><i style="color: #ccc;">"{u.get("Komentar", "")}"</i></div>', unsafe_allow_html=True)
+        if u.get("Komentar", ""): st.markdown(f'<div class="ulasan-box"><span style="color: #FFD700; font-size: 12px;">{u.get("Rating", "⭐⭐⭐⭐⭐")}</span><br><b>{u.get("Nama", "Entitas")}</b><br><i style="color: #ccc;">"{u.get("Komentar", "")}"</i></div>', unsafe_allow_html=True)
 
-with st.expander("💬 Bagikan Pengalaman Anda"):
+with st.expander("💬 Tinggalkan Testimoni Sinkronisasi Anda"):
     with st.form("form_review"):
-        rn, rr, rk = st.text_input("Nama"), st.radio("Rating", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"], horizontal=True), st.text_area("Ulasan")
-        if st.form_submit_button("Kirim") and rn and rk:
+        rn, rr, rk = st.text_input("Nama Penyamaran / Asli"), st.radio("Kalibrasi Energi", ["⭐⭐⭐⭐⭐", "⭐⭐⭐⭐", "⭐⭐⭐", "⭐⭐", "⭐"], horizontal=True), st.text_area("Deskripsi Dampak")
+        if st.form_submit_button("Suntikkan Testimoni ke Sistem") and rn and rk:
             if kirim_ulasan(rn, rr, rk): 
-                st.toast("Ulasan berhasil dikirim. Terima kasih!", icon="✨")
+                st.toast("Jejak energi ulasan Anda berhasil masuk ke *database* utama. Terima kasih!", icon="✨")
                 time.sleep(1)
                 st.rerun()
  
 st.markdown("---")
-st.markdown("<center><b>Ahmad Septian Dwi Cahyo</b><br><small>Certified NLP Trainer & Professional Hypnotherapist © 2026</small></center>", unsafe_allow_html=True)
+st.markdown("<center><b style='color:#FFF; letter-spacing:1px;'>Ahmad Septian Dwi Cahyo</b><br><small style='color:#888;'>Certified NLP Trainer & Professional Hypnotherapist<br>Hak Cipta © 2026 Neuro Nada Academy (Ultimate Build)</small></center>", unsafe_allow_html=True)
